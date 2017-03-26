@@ -21,8 +21,9 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Animation idle;
-	Animation forward;
+	
 	Animation backward;
+	SDL_Rect spaceship;
 	iPoint position;
 
 };

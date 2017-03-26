@@ -42,7 +42,7 @@ bool ModuleLevel2::Start()
 	bool ret = true;
 	graphics = App->textures->Load("honda_stage2.png");
 
-	// TODO 1: Enable (and properly disable) the player module
+	
 	App->player->Enable();
 
 	return ret;
@@ -51,7 +51,7 @@ bool ModuleLevel2::Start()
 // Load assets
 bool ModuleLevel2::CleanUp()
 {
-	// TODO 5: Remove all memory leaks
+	
 	LOG("Unloading level 2");
 
 	App->player->Disable();
