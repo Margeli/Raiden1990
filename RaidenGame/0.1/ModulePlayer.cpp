@@ -8,10 +8,10 @@
 
 ModulePlayer::ModulePlayer()
 {
-	spaceship.x = 104;
-	spaceship.y = 97;
-	spaceship.w = 27;
-	spaceship.h = 28 ;
+	spaceship.x = 80;
+	spaceship.y = 13;
+	spaceship.w = 24;
+	spaceship.h = 27 ;
 	
 }
 
@@ -44,8 +44,23 @@ update_status ModulePlayer::Update()
 		
 		position.y -= speed;
 	}
+	if (App->input->keyboard[SDL_SCANCODE_S] == 1)
+	{
 
-	App->render->Blit(graphics, -50, -2965, &spaceship, 0.75f);
+		position.y += speed;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+	{
+
+		position.x -= speed;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
+	{
+
+		position.x += speed;
+	}
+
+	App->render->Blit(graphics, position.x, position.y, &spaceship, 0.75f);//-50, -2965
 	
 	return UPDATE_CONTINUE;
 }

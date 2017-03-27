@@ -36,7 +36,7 @@ bool ModuleLevel1::Start()
 {
 	LOG("Loading level 1");
 	
-	graphics = App->textures->Load("level1_tilemap.png");
+	graphics = App->textures->Load("lvl1_tilemap.png");
 
 	
 	App->player->Enable();
