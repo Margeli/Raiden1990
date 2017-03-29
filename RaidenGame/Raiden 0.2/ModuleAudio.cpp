@@ -1,107 +1,90 @@
-/*#include "Globals.h"
+#include "Globals.h"
 #include "Application.h"
-#include "ModuleAudio.h
+#include "ModuleAudio.h"
+#include "ModuleLevel1.h"
+#include "ModuleLevel2.h"
+
+#include "SDL/include/SDL.h"
 
 ModuleAudio::ModuleAudio() : Module()
 {
-	for (uint i = 0; i < MAX_TEXTURES; ++i)
-		textures[i] = nullptr;
+	
 }
 
 // Destructor
 ModuleAudio::~ModuleAudio()
 {}
 
-// Called before render is available
 bool ModuleAudio::Init()
 {
-	LOG("Init Image library");
+
+	LOG("Init Mixer library");
 	bool ret = true;
+	int flags = MIX_INIT_OGG;
 
-	// load support for the PNG image format
-	int flags = IMG_INIT_PNG;
-	int init = IMG_Init(flags);
-
-	if ((init & flags) != flags)
+	if (Mix_Init(flags) == 0)
 	{
-		LOG("Could not initialize Image lib. IMG_Init: %s", IMG_GetError());
-		ret = false;
+		LOG("Error initializing audio: %s", SDL_GetError())
+			ret = false;
+	}
+
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == -1)
+	{
+		LOG("Error opening Audio: %s", SDL_GetError())
+			ret = false;
+	}
+	
+	
+
+	if ((Mix_PlayMusic(music, -1) == -1)&&(!first_load))
+	{
+		LOG("Error reproducing audio: %s", SDL_GetError())
+			return false;
 	}
 
 	return ret;
+
 }
 
-// Called before q	uitting
-bool ModuleAudio::CleanUp()
+update_status ModuleAudio::Update()
 {
-	LOG("Freeing textures and Image library");
+	
+	if ((App->audio->IsEnabled())&&(!playing)) {	
+		Init();
+		playing = true;
+	}
+	
+	else if ((!App->audio->IsEnabled()) && (playing)) {	
+		Close();
+		playing = false;
+	}
+	return UPDATE_CONTINUE;
+}
 
-	for (uint i = 0; i < MAX_TEXTURES; ++i)
-		if (textures[i] != nullptr)
-			SDL_DestroyTexture(textures[i]);
-
-	IMG_Quit();
+bool ModuleAudio::Close()
+{
+	Mix_CloseAudio();
 	return true;
 }
 
-// Load new texture from file path
-SDL_Texture* const ModuleTextures::Load(const char* path)
+bool ModuleAudio::CleanUp()
 {
-	SDL_Texture* texture = NULL;
-	SDL_Surface* surface = IMG_Load(path);
+	LOG("Freeing audio  library");
+		
+	Mix_CloseAudio();
+	Mix_Quit();
 
-	if (surface == NULL)
-	{
-		LOG("Could not load surface with path: %s. IMG_Load: %s", path, IMG_GetError());
-	}
-	else
-	{
-		texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
-
-		if (texture == NULL)
-		{
-			LOG("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
-		}
-		else
-		{
-			bool room = false;
-			for (int i = 0; i < MAX_TEXTURES; ++i)
-			{
-				if (textures[i] == nullptr)
-				{
-					textures[i] = texture;
-					room = true;
-					break;
-				}
-			}
-			if (room == false)
-				LOG("Texture buffer overflow");
-		}
-
-		SDL_FreeSurface(surface);
-	}
-
-	return texture;
+	return true;
 }
 
-bool ModuleTextures::Unload(SDL_Texture * texture)
+Mix_Music* const ModuleAudio::Load(const char* path)
 {
-	bool ret = false;
 
-	if (texture != nullptr)
+	music = Mix_LoadMUS(path);
+	if (music == NULL)
 	{
-		for (int i = 0; i < MAX_TEXTURES; ++i)
-		{
-			if (textures[i] == texture)
-			{
-				textures[i] = nullptr;
-				ret = true;
-				break;
-			}
-		}
-		SDL_DestroyTexture(texture);
+		LOG("Error loading sound: %s", SDL_GetError())
 	}
 
-	return ret;
+	return music;
 }
-*/

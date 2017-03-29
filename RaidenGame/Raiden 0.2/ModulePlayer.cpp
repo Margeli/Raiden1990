@@ -23,7 +23,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Raiden_Spaceship.png"); // arcade version
+	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png"); // arcade version
 	if (graphics == nullptr) {
 		LOG("Error loading player textures %s", SDL_GetError);
 		ret = false;

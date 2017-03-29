@@ -5,6 +5,8 @@
 #include "Animation.h"
 #include "Globals.h"
 
+#include "SDL_mixer/include/SDL_mixer.h"
+
 struct SDL_Texture;
 
 class ModuleLevel1 : public Module
@@ -20,6 +22,7 @@ public:
 public:
 	
 	SDL_Texture* graphics = nullptr;
+	Mix_Music* music_lvl1 = nullptr;
 	SDL_Rect foreground;
 	SDL_Rect background;
 	bool fading = false;

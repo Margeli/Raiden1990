@@ -28,7 +28,7 @@ bool ModuleLevel2::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("lvl2_tilemap.png");
+	graphics = App->textures->Load("Assets/Images/lvl2_tilemap.png");
 
 	
 	App->player->Enable();

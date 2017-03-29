@@ -8,6 +8,7 @@
 #include "ModuleLevel2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleIntro.h"
+#include "ModuleAudio.h"
 
 
 
@@ -36,10 +37,13 @@ ModuleLevel1::~ModuleLevel1()
 bool ModuleLevel1::Start()
 {
 	LOG("Loading level 1");
-	
-	graphics = App->textures->Load("lvl1_tilemap.png");
 
+	music_lvl1 = App->audio->Load("Assets/Audio/00_Raiden.ogg");
+	App->audio->first_load = false;
+	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
+
+	App->audio->Enable();
 	App->player->Enable();
 
 	return true;

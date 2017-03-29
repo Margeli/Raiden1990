@@ -8,6 +8,7 @@
 #include "ModuleLevel2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleIntro.h"
+#include "ModuleAudio.h"
 
 
 
@@ -31,9 +32,9 @@ bool ModuleIntro::Start()
 {
 	LOG("Loading Intro screen");
 
-	graphics = App->textures->Load("Intro_Raiden.png");
+	graphics = App->textures->Load("Assets/Images/Intro_Raiden.png");
 
-
+	App->audio->Disable();
 	App->player->Disable();
 
 	return true;
