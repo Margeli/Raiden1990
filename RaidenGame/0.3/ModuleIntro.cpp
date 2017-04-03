@@ -61,7 +61,7 @@ update_status ModuleIntro::Update()
 	App->render->Blit(graphics, 0, 0, &background, 0.75f); 
 
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] && fading == false) {
+	if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
 
 		App->fade->FadeToBlack(this, App->level1);
 		fading = true;

@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleParticles.h"
 
 
 ModulePlayer::ModulePlayer()
@@ -39,25 +40,30 @@ update_status ModulePlayer::Update()
 
 	int speed = 1;
 
-	if(App->input->keyboard[SDL_SCANCODE_W] == 1)
+	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		
 		position.y -= speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_S] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 
 		position.y += speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 
 		position.x -= speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 
 		position.x += speed;
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	{
+		App->particles->AddParticle(App->particles->basic_shot, position.x , position.y-10);
 	}
 
 	App->render->Blit(graphics, position.x, position.y, &spaceship, 0.75f);//-50, -2965

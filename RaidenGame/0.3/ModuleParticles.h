@@ -45,7 +45,7 @@ private:
 
 public:
 
-	Particle explosion;
+	Particle basic_shot;
 };
 
 #endif // __MODULEPARTICLES_H__

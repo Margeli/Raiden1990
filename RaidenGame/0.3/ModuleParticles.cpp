@@ -20,19 +20,11 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("rtype/particles.png");
+	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
 
-	// Explosion particle
-	explosion.anim.PushBack({ 274, 296, 33, 30 });
-	explosion.anim.PushBack({ 313, 296, 33, 30 });
-	explosion.anim.PushBack({ 346, 296, 33, 30 });
-	explosion.anim.PushBack({ 382, 296, 33, 30 });
-	explosion.anim.PushBack({ 419, 296, 33, 30 });
-	explosion.anim.PushBack({ 457, 296, 33, 30 });
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-
-	// TODO 2: Create the template for a new particle "laser"
+	
+	basic_shot.anim.PushBack({ 184, 36, 5, 5});
+	basic_shot.speed.y = 5;
 
 	return true;
 }

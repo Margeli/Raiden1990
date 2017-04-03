@@ -58,7 +58,7 @@ update_status ModuleLevel2::Update()
 	App->render->Blit(graphics, -50,-5100 , &background, 0.75f); // back of the room
 	
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] && fading == false) {
+	if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
 
 		App->fade->FadeToBlack(this, App->intro);
 		fading = true;
