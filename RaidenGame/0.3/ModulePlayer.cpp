@@ -38,7 +38,7 @@ update_status ModulePlayer::Update()
 {
 	
 
-	int speed = 1;
+	int speed = 3;
 
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{

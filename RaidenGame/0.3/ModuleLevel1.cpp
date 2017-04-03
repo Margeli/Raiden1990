@@ -67,8 +67,13 @@ bool ModuleLevel1::CleanUp()
 update_status ModuleLevel1::Update()
 {
 	
+	int scroll_speed = 1;
+
+	App->player->position.y += 1;
+	App->render->camera.y += 2;
+
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, -50, -2965, &background, 0.75f); // sea and sky
+	App->render->Blit(graphics, -50, -2965, &background, 0.75f); 
 
 	App->render->Blit(graphics, -50, -2965, &foreground, 0.75f);
 	
