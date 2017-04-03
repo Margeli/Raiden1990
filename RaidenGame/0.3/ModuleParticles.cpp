@@ -23,7 +23,7 @@ bool ModuleParticles::Start()
 	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
 	
 	
-	basic_shot.anim.PushBack({ 150, 35, 5, 5});
+	basic_shot.anim.PushBack({ 184, 36, 5, 5});
 	basic_shot.anim.speed = 0.0f;
 	basic_shot.speed.y = -4;
 	basic_shot.speed.x = 0;
