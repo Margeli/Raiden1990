@@ -38,27 +38,32 @@ update_status ModulePlayer::Update()
 {
 	
 
-	int speed = 3;
+	int speed = 2;
+	int cam_speed=2;
 
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		
 		position.y -= speed;
+		App->render->camera.y += cam_speed;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 
 		position.y += speed;
+		App->render->camera.y -= cam_speed;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 
 		position.x -= speed;
+		App->render->camera.x += cam_speed;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 
 		position.x += speed;
+		App->render->camera.x -= cam_speed;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
