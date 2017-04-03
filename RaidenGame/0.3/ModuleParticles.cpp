@@ -21,11 +21,13 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
-
 	
-	basic_shot.anim.PushBack({ 184, 36, 5, 5});
-	basic_shot.speed.y = 5;
-
+	
+	basic_shot.anim.PushBack({ 150, 35, 5, 5});
+	basic_shot.anim.speed = 0.0f;
+	basic_shot.speed.y = -4;
+	basic_shot.speed.x = 0;
+	basic_shot.life = 3000;
 	return true;
 }
 
@@ -64,7 +66,7 @@ update_status ModuleParticles::Update()
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 0.75f);
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
