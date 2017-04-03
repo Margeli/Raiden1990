@@ -1,0 +1,19 @@
+﻿  ModuleWindow.cpp
+  ModuleTextures.cpp
+  ModuleLevel1.cpp
+  ModuleLevel2.cpp
+  ModuleRender.cpp
+  ModulePlayer.cpp
+  ModuleParticles.cpp
+c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\moduleparticles.cpp(32): error C2039: 'loop': is not a member of 'Animation'
+  c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\animation.h(8): note: see declaration of 'Animation'
+c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\moduleparticles.cpp(121): error C2039: 'Finished': is not a member of 'Animation'
+  c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\animation.h(8): note: see declaration of 'Animation'
+  ModuleIntro.cpp
+  ModuleInput.cpp
+  ModuleFadeToBlack.cpp
+  ModuleAudio.cpp
+  Main.cpp
+  Globals.cpp
+  Application.cpp
+  Generating Code...

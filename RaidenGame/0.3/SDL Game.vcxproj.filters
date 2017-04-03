@@ -62,7 +62,7 @@
     <ClInclude Include="ModuleAudio.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleParticle.h">
+    <ClInclude Include="ModuleParticles.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -106,7 +106,7 @@
     <ClCompile Include="ModuleAudio.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleParticle.cpp">
+    <ClCompile Include="ModuleParticles.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
