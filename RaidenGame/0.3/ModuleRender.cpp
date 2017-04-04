@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 
+
 ModuleRender::ModuleRender() : Module()
 {
 	camera.x = camera.y = 0;

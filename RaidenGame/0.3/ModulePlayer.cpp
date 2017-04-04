@@ -9,8 +9,8 @@
 
 ModulePlayer::ModulePlayer()
 {
-	graphics = nullptr;
-	current_animation = nullptr;
+	graphics = NULL;
+	current_animation = NULL;
 
 	position.x = 111;
 	position.y = 150;
@@ -24,6 +24,15 @@ ModulePlayer::ModulePlayer()
 
 ModulePlayer::~ModulePlayer()
 {}
+
+bool ModulePlayer::CleanUp()
+{
+	LOG("Unloading player");
+
+	App->textures->Unload(graphics);
+
+	return true;
+}
 
 // Load assets
 bool ModulePlayer::Start()
@@ -67,7 +76,7 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->basic_shot, position.x , position.y-10);
+		App->particles->AddParticle(App->particles->basic_shot, position.x+9 , position.y);
 	}
 
 	App->render->Blit(graphics, position.x, position.y, &spaceship, 0.75f);//-50, -2965
