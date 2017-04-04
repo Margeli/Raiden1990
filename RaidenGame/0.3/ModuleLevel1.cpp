@@ -67,7 +67,7 @@ bool ModuleLevel1::CleanUp()
 update_status ModuleLevel1::Update()
 {
 	
-	int scroll_speed = 1;
+	int scroll_speed = 0.5f;
 
 	App->player->position.y += 1;
 	App->render->camera.y += 2;
