@@ -53,7 +53,10 @@ bool ModuleLevel2::CleanUp()
 // Update: draw background
 update_status ModuleLevel2::Update()
 {
-	// Draw everything --------------------------------------	
+	int scroll_speed = 0.5f;
+
+	App->player->position.y += 1;
+	App->render->camera.y += 2;
 	
 	App->render->Blit(graphics, -50,-5100 , &background, 0.75f); // back of the room
 	

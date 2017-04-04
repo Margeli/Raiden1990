@@ -1,5 +1,3 @@
 ﻿  ModulePlayer.cpp
-c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\moduleplayer.cpp(57): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\moduleplayer.cpp(62): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
   SDL Game.vcxproj -> C:\Users\vladislavb\Documents\GitHub\Raiden1990\RaidenGame\0.3\Debug\SDL5 Handout.exe
   SDL Game.vcxproj -> C:\Users\vladislavb\Documents\GitHub\Raiden1990\RaidenGame\0.3\Debug\SDL5 Handout.pdb (Full PDB)

@@ -9,6 +9,12 @@
 
 ModulePlayer::ModulePlayer()
 {
+	graphics = nullptr;
+	current_animation = nullptr;
+
+	position.x = 111;
+	position.y = 150;
+	
 	spaceship.x = 80;
 	spaceship.y = 13;
 	spaceship.w = 24;
@@ -46,17 +52,17 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y += speed;
-		App->render->camera.y-=speed;
+		
 	}
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x -= speed;
-		App->render->camera.x +=3.5f;
+		App->render->camera.x +=4;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x += speed;
-		App->render->camera.x -= 3.5f;
+		App->render->camera.x -= 4;
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
