@@ -21,15 +21,18 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("Assets/Images/Raiden_Particles.png");
+	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
 
-	
-	basic_shot.anim.PushBack({ 16, 15, 5, 5});	
+	if (graphics == nullptr) {
+		LOG("Error loading particles");
+	}
+	basic_shot.anim.PushBack({ 184, 36, 5, 5 });//Raiden_Spaceship
+	//basic_shot.anim.PushBack({ 17, 15, 5, 5});//Raiden_Particles	
 	basic_shot.anim.speed = 0.0f;
 	basic_shot.speed.y = -4;
 	basic_shot.speed.x = 0;
 	basic_shot.life = 3000;
-	basic_shot.anim.loop = false;
+	basic_shot.anim.loop = true;
 
 	return true;
 }
@@ -93,7 +96,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 			p->position.y = y;
 			//if (collider_type != COLLIDER_NONE)
 			//	p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
-			active[i] = p;
+			active[last_particle++] = p;
 			break;
 		}
 	}
