@@ -5,6 +5,8 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
+#include "ModuleFadeToBlack.h"
+//#include "ModuleCollision.h"
 
 
 ModulePlayer::ModulePlayer()
@@ -12,8 +14,7 @@ ModulePlayer::ModulePlayer()
 	graphics = NULL;
 	current_animation = NULL;
 
-	position.x = 111;
-	position.y = 150;
+	
 	
 	idle.PushBack({ 80, 13, 24,27 });
 	
@@ -54,6 +55,9 @@ bool ModulePlayer::Start()
 		LOG("Error loading player textures %s", SDL_GetError);
 		ret = false;
 	}
+
+	position.x = 111;
+	position.y = 150;
 
 	return ret;
 }
@@ -100,10 +104,10 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->basic_shot, position.x+9 , position.y);
+		App->particles->AddParticle(App->particles->basic_shot, position.x + 9 , position.y);
 	}
-
-	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.75f);//-50, -2965
+	// Draw everything --------------------------------------
+		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.75f);
 	
 	return UPDATE_CONTINUE;
 }

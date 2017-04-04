@@ -7,6 +7,7 @@
 #include "p2Point.h"
 
 struct SDL_Texture;
+struct Collider;
 
 class ModulePlayer : public Module
 {

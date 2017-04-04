@@ -1,6 +1,10 @@
 #ifndef __MODULE_H__
 #define __MODULE_H__
 
+#include "Globals.h"
+
+struct Collider;
+
 class Module
 {
 private:
@@ -29,16 +33,15 @@ public:
 
 	void Disable()
 	{
-		// TODO 0: Call CleanUp() for disabling a module
-
-		if (enabled == true) {
+		if (enabled == true)
+		{
 			enabled = false;
-
 			CleanUp();
 		}
-		
-
 	}
+	// Callbacks ---
+	virtual void OnCollision(Collider*, Collider*) {}
+
 };
 
 #endif // __MODULE_H__

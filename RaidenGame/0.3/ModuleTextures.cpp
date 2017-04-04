@@ -98,14 +98,15 @@ bool ModuleTextures::Unload(SDL_Texture * texture)
 	{
 		for (int i = 0; i < MAX_TEXTURES; ++i)
 		{
-			if (textures[i] == texture)
+			if (texture == textures[i])
 			{
+				SDL_DestroyTexture(textures[i]);
 				textures[i] = nullptr;
 				ret = true;
 				break;
 			}
 		}
-		SDL_DestroyTexture(texture);
+		
 	}
 
 	return ret;

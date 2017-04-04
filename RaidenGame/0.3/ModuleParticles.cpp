@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+//#include "ModuleCollision.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -23,11 +24,12 @@ bool ModuleParticles::Start()
 	graphics = App->textures->Load("Assets/Images/Raiden_Particles.png");
 
 	
-	basic_shot.anim.PushBack({ 16, 15, 5, 5});
+	basic_shot.anim.PushBack({ 16, 15, 5, 5});	
 	basic_shot.anim.speed = 0.0f;
 	basic_shot.speed.y = -4;
 	basic_shot.speed.x = 0;
 	basic_shot.life = 3000;
+	basic_shot.anim.loop = false;
 
 	return true;
 }
@@ -81,12 +83,20 @@ update_status ModuleParticles::Update()
 
 void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay)
 {
-	Particle* p = new Particle(particle);
-	p->born = SDL_GetTicks() + delay;
-	p->position.x = x;
-	p->position.y = y;
-
-	active[last_particle++] = p;
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i] == nullptr)
+		{
+			Particle* p = new Particle(particle);
+			p->born = SDL_GetTicks() + delay;
+			p->position.x = x;
+			p->position.y = y;
+			//if (collider_type != COLLIDER_NONE)
+			//	p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+			active[i] = p;
+			break;
+		}
+	}
 }
 
 // -------------------------------------------------------------
@@ -103,6 +113,11 @@ Particle::Particle(const Particle& p) :
 	fx(p.fx), born(p.born), life(p.life)
 {}
 
+Particle::~Particle()
+{
+	//if (collider != nullptr)
+		//App->collision->EraseCollider(collider);
+}
 bool Particle::Update()
 {
 	bool ret = true;
@@ -118,6 +133,9 @@ bool Particle::Update()
 
 	position.x += speed.x;
 	position.y += speed.y;
+	
+	//if (collider != nullptr)
+	//	collider->SetPos(position.x, position.y);
 
 	return ret;
 }
