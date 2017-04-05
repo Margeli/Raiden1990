@@ -28,7 +28,7 @@ public:
 	
 	Animation backward;
 	//SDL_Rect spaceship;
-	iPoint position;
+	fPoint position;
 
 };
 

@@ -66,7 +66,9 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	
-	int speed = 3;
+	float speed = 3.0f;
+	float  spaceship_speed = 1.75f;
+	position.y -= spaceship_speed;
 
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
