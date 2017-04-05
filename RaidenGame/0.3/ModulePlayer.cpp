@@ -16,7 +16,7 @@ ModulePlayer::ModulePlayer()
 
 	
 	
-	idle.PushBack({ 80, 13, 24,27 });
+	idle.PushBack({ 80, 14, 23,27 });
 	
 	//move animation right
 	
@@ -40,7 +40,7 @@ bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
 
-	App->textures->Unload(graphics);
+	App->textures->CleanUp();
 
 	return true;
 }
