@@ -20,7 +20,13 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics2 = nullptr;
+	Animation* current_animation = nullptr;
+	Animation loading_screen;
 	SDL_Rect background;
+
+	iPoint position;
+
 	bool fading = false;
 
 	bool forward;
