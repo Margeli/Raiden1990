@@ -20,6 +20,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+	Mix_Music* music_lvl2 = nullptr;
 	SDL_Rect ground;
 	SDL_Rect roof;
 	SDL_Rect foreground;

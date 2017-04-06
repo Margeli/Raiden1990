@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleStageCompleted.h"
 #include "ModuleLevel1.h"
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
@@ -89,7 +90,7 @@ update_status ModuleLevel1::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
 	
-		App->fade->FadeToBlack(this, App->level2);
+		App->fade->FadeToBlack(this, App->StageCleared);
 		fading = true;
 		
 	}

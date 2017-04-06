@@ -65,6 +65,9 @@
     <ClInclude Include="ModuleParticles.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleStageCompleted.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -107,6 +110,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleStageCompleted.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
