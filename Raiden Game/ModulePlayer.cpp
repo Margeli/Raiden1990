@@ -88,6 +88,13 @@ update_status ModulePlayer::Update()
 			left.Reset();
 			current_animation = &left;
 		}
+		if (App->render->camera.x >= 134) {//left camera limit
+			App->render->camera.x = 134;
+			if (position.x <= -48) { //left player limit
+				position.x = -48;
+			}
+		}
+		
 	}
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
@@ -98,11 +105,19 @@ update_status ModulePlayer::Update()
 			right.Reset();
 			current_animation = &right;
 		}
+		if (App->render->camera.x <= -206) {//right camera limit
+			App->render->camera.x =-206;
+			if (position.x >= 275) { //right player limit
+				position.x = 275;
+			}
+		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE //check error
+		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 		current_animation = &idle;
+	}
+		
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
