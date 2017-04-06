@@ -45,7 +45,7 @@ bool ModuleIntro::CleanUp()
 {
 	LOG("Unloading intro screen");
 
-	App->textures->CleanUp();
+	App->textures->Unload(graphics);
 
 	App->player->Disable();
 
