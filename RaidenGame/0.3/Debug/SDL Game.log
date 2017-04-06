@@ -1,7 +1,20 @@
-﻿  ModulePlayer.cpp
+﻿  ModuleWindow.cpp
+  ModuleTextures.cpp
+  ModuleRender.cpp
+  ModulePlayer.cpp
 c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\moduleplayer.cpp(109): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\moduleplayer.cpp(112): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  ModuleParticles.cpp
+  ModuleLevel2.cpp
+c:\users\vladislavb\documents\github\raiden1990\raidengame\0.3\modulelevel2.cpp(56): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   ModuleLevel1.cpp
+  ModuleIntro.cpp
+  ModuleInput.cpp
+  ModuleFadeToBlack.cpp
+  ModuleAudio.cpp
+  Main.cpp
+  Application.cpp
   Generating Code...
+  LINK : C:\Users\vladislavb\Documents\GitHub\Raiden1990\RaidenGame\0.3\Debug\SDL5 Handout.exe not found or not built by the last incremental link; performing full link
   SDL Game.vcxproj -> C:\Users\vladislavb\Documents\GitHub\Raiden1990\RaidenGame\0.3\Debug\SDL5 Handout.exe
   SDL Game.vcxproj -> C:\Users\vladislavb\Documents\GitHub\Raiden1990\RaidenGame\0.3\Debug\SDL5 Handout.pdb (Full PDB)
