@@ -34,7 +34,7 @@ bool ModuleIntro::Start()
 
 	graphics = App->textures->Load("Assets/Images/Intro_Raiden.png");
 
-	App->audio->Disable();
+	
 	App->player->Disable();
 
 	return true;
@@ -49,6 +49,7 @@ bool ModuleIntro::CleanUp()
 
 	App->player->Disable();
 
+	App->audio->Disable();
 
 	return true;
 }

@@ -8,12 +8,15 @@
 #include "ModuleLevel2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleIntro.h"
+#include "ModuleAudio.h"
 
 
 // Reference at https://youtu.be/6OlenbCC4WI?t=382
 
 ModuleLevel2::ModuleLevel2()
 {
+
+	
 	// Background / sky
 	background.x = 0;
 	background.y = 0;
@@ -26,10 +29,15 @@ ModuleLevel2::~ModuleLevel2()
 // Load assets
 bool ModuleLevel2::Start()
 {
+	App->render->camera.x = 0; //initial pos
+	App->render->camera.y = 0;
+
 	LOG("Loading background assets");
+
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Images/lvl2_tilemap.png");
 
+	
 	
 	App->player->Enable();
 
@@ -42,9 +50,11 @@ bool ModuleLevel2::CleanUp()
 	
 	LOG("Unloading level 2");
 
-	App->textures->CleanUp();
+	App->textures->Unload(graphics);
 
 	App->player->Disable();
+
+	
 
 
 	return true;

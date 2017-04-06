@@ -5,13 +5,12 @@
 #include "ModuleLevel2.h"
 
 #include "SDL/include/SDL.h"
+#include "SDL_mixer/include/SDL_mixer.h"
+#pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
 ModuleAudio::ModuleAudio() : Module()
-{
-	
-}
+{}
 
-// Destructor
 ModuleAudio::~ModuleAudio()
 {}
 
@@ -32,15 +31,20 @@ bool ModuleAudio::Init()
 	{
 		LOG("Error opening Audio: %s", SDL_GetError())
 			ret = false;
-	}
-	
-	
+	}		
 
-	if ((Mix_PlayMusic(music, -1) == -1)&&(!first_load))
+	/*if ((Mix_PlayMusic(music, -1) == -1)&&(!first_load))
 	{
 		LOG("Error reproducing audio: %s", SDL_GetError())
 			return false;
 	}
+	if ((Mix_PlayChannel(-1, fx_shoot, 0) ) && (!first_load_fx))
+	{
+		LOG("Error reproducing fx: %s", SDL_GetError())
+			return false;
+	}*/
+
+
 
 	return ret;
 
@@ -55,8 +59,8 @@ update_status ModuleAudio::Update()
 	}
 	
 	else if ((!App->audio->IsEnabled()) && (playing)) {	
-		Close();
 		playing = false;
+		Close();		
 	}
 	return UPDATE_CONTINUE;
 }
@@ -71,13 +75,13 @@ bool ModuleAudio::CleanUp()
 {
 	LOG("Freeing audio  library");
 		
-	Mix_CloseAudio();
+	Mix_CloseAudio();	
 	Mix_Quit();
 
 	return true;
 }
 
-Mix_Music* const ModuleAudio::Load(const char* path)
+Mix_Music* ModuleAudio::Load_Music(const char* path)
 {
 
 	music = Mix_LoadMUS(path);
@@ -88,3 +92,31 @@ Mix_Music* const ModuleAudio::Load(const char* path)
 
 	return music;
 }
+
+Mix_Chunk*  ModuleAudio::Load_Fx(const char* path) {
+
+	fx_shoot = Mix_LoadWAV(path);
+		if (fx_shoot == NULL)
+		{
+			LOG("Error loading fx: %s", SDL_GetError())
+		}
+	return fx_shoot;
+}
+
+void ModuleAudio::Play_Music(Mix_Music*musi) {
+
+	if (Mix_PlayMusic(musi, -1) == -1) {
+		LOG("Error playing music: %s\n", Mix_GetError());
+
+	}
+}
+
+void ModuleAudio::Play_Fx(Mix_Chunk*chun) {
+
+	if (Mix_PlayChannel(-1, chun, 0) == -1) {
+		LOG("Error reproducing fx: %s", Mix_GetError())
+	}
+}
+		
+
+	

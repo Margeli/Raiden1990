@@ -7,6 +7,9 @@
 #include "p2Point.h"
 //#include "ModuleCollision.h"
 
+#include "SDL_mixer/include/SDL_mixer.h"
+
+
 #define MAX_ACTIVE_PARTICLES 100
 
 struct SDL_Texture;
@@ -21,7 +24,7 @@ struct Particle
 	iPoint position;
 	iPoint speed;
 	Uint32 born = 0;
-	Uint32 life = 0;
+	Uint32 life = 0;	
 	bool fx_played = false;
 
 	Particle();
@@ -45,6 +48,7 @@ public:
 private:
 
 	SDL_Texture* graphics = nullptr;
+	Mix_Chunk* fx_shoot = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 

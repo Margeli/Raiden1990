@@ -5,13 +5,13 @@
 #include "Globals.h"
 #include "SDL_mixer/include/SDL_mixer.h"
 
-#pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
+
 
 class ModuleAudio : public Module
 {
 public:
 	ModuleAudio();
-	~ModuleAudio();
+	virtual ~ModuleAudio();
 
 	bool Init();
 	
@@ -20,12 +20,17 @@ public:
 	Mix_Chunk* fx_shoot = nullptr;
 
 
-	Mix_Music* const Load(const char* path);
+	Mix_Music*Load_Music(const char* path);
+	Mix_Chunk* Load_Fx(const char* path); 
+
+	void Play_Music(Mix_Music*musi);
+	void Play_Fx(Mix_Chunk* Chun);
+		
 
 	update_status Update();
 	bool CleanUp();
 	bool Close();
-	bool first_load=true;
+	
 
 	bool playing = false;
 };

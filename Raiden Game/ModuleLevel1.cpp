@@ -36,15 +36,22 @@ ModuleLevel1::~ModuleLevel1()
 // Load assets
 bool ModuleLevel1::Start()
 {
+	App->audio->Enable();
+	App->player->Enable();
+	
 	LOG("Loading level 1");
 
-	music_lvl1 = App->audio->Load("Assets/Audio/00_Raiden.ogg");
-	App->audio->first_load = false;
+	music_lvl1 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");
+	if (!music_lvl1) {
+	LOG("Error loading lvl1 music: %s",Mix_GetError)
+	}
+	App->audio->Play_Music(music_lvl1);
+	
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
 
-	App->audio->Enable();
-	App->player->Enable();
+	
+	
 
 	return true;
 }
@@ -54,7 +61,7 @@ bool ModuleLevel1::CleanUp()
 {
 	LOG("Unloading level 1");
 
-	App->textures->CleanUp();
+	App->textures->Unload(graphics);
 
 	App->player->Disable();
 

@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
 //#include "ModuleCollision.h"
 
 #include "SDL/include/SDL_timer.h"
@@ -22,6 +23,9 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
+
+	LOG("Loading particles' fx");
+	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Simple_Shot.wav");
 
 	if (graphics == nullptr) {
 		LOG("Error loading particles");
@@ -73,10 +77,18 @@ update_status ModuleParticles::Update()
 		else if (SDL_GetTicks() >= p->born)
 		{
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()), 0.75f);
-			if (p->fx_played == false)
-			{
+			
+			if (p->fx_played == false) //Fx sound when shooting
+			{	
+
+				fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Simple_Shot.wav");
+				if (!fx_shoot) {
+					LOG("Error loading shoot's fx: %s", Mix_GetError)
+				}				
+				App->audio->Play_Fx(fx_shoot);				
 				p->fx_played = true;
-				// Play particle fx here
+				
+				
 			}
 		}
 	}
