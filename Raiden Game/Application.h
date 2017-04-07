@@ -30,7 +30,7 @@ public:
 	ModuleInput* input;
 	ModuleTextures* textures;
 	ModuleAudio* audio;
-	ModuleStageCompleted* StageCleared;
+	ModuleStageCompleted* StageCompleted;
 	ModuleIntro* intro;
 	ModuleLevel1* level1;
 	ModuleLevel2* level2;

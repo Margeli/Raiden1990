@@ -25,7 +25,7 @@ Application::Application()
 	modules[8] = intro = new ModuleIntro();
 	modules[9] = audio = new ModuleAudio();
 	modules[10] = particles = new ModuleParticles();
-	modules[11] = StageCleared = new ModuleStageCompleted();
+	modules[11] = StageCompleted = new ModuleStageCompleted();
 }	
 
 Application::~Application()
@@ -43,7 +43,7 @@ bool Application::Init()
 	// Disable the map that you do not start with
 	level2->Disable();
 	level1->Disable();
-	StageCleared->Disable();
+	StageCompleted->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
