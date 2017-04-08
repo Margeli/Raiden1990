@@ -5,10 +5,9 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 
 #include "SDL_mixer/include/SDL_mixer.h"
-
 
 #define MAX_ACTIVE_PARTICLES 100
 
@@ -42,15 +41,16 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 
 private:
 
 	SDL_Texture* graphics = nullptr;
 	Mix_Chunk* fx_shoot = nullptr;
 	Particle* active[MAX_ACTIVE_PARTICLES];
-	uint last_particle = 0;
+	//uint last_particle = 0;
 
 public:
 

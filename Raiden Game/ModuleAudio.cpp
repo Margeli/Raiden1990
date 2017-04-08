@@ -21,6 +21,8 @@ bool ModuleAudio::Init()
 	bool ret = true;
 	int flags = MIX_INIT_OGG;
 
+	int Mix_VolumeMusic(MIX_MAX_VOLUME/2);//<--- not working, need check to decrease volume.
+
 	if (Mix_Init(flags) == 0)
 	{
 		LOG("Error initializing audio: %s", SDL_GetError())
@@ -32,18 +34,6 @@ bool ModuleAudio::Init()
 		LOG("Error opening Audio: %s", SDL_GetError())
 			ret = false;
 	}		
-
-	/*if ((Mix_PlayMusic(music, -1) == -1)&&(!first_load))
-	{
-		LOG("Error reproducing audio: %s", SDL_GetError())
-			return false;
-	}
-	if ((Mix_PlayChannel(-1, fx_shoot, 0) ) && (!first_load_fx))
-	{
-		LOG("Error reproducing fx: %s", SDL_GetError())
-			return false;
-	}*/
-
 
 
 	return ret;
@@ -118,5 +108,13 @@ void ModuleAudio::Play_Fx(Mix_Chunk*chun) {
 	}
 }
 		
+void ModuleAudio::Unload_Fx(Mix_Chunk *uchunk) {
 
-	
+	Mix_FreeChunk(uchunk);
+
+}
+void ModuleAudio::Unload_Music(Mix_Music *umusic) {
+
+	Mix_FreeMusic(umusic);	
+
+}

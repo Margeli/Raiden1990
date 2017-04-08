@@ -11,6 +11,7 @@
 #include "ModuleAudio.h"
 #include "ModuleParticles.h"
 #include "ModuleStageCompleted.h"
+#include "ModuleCollision.h"
 
 Application::Application()
 {
@@ -25,7 +26,8 @@ Application::Application()
 	modules[8] = intro = new ModuleIntro();
 	modules[9] = audio = new ModuleAudio();
 	modules[10] = particles = new ModuleParticles();
-	modules[11] = StageCompleted = new ModuleStageCompleted();
+	modules[11] = stageCompleted = new ModuleStageCompleted();
+	modules[12]= collision = new ModuleCollision();
 }	
 
 Application::~Application()
@@ -43,7 +45,7 @@ bool Application::Init()
 	// Disable the map that you do not start with
 	level2->Disable();
 	level1->Disable();
-	StageCompleted->Disable();
+	stageCompleted->Disable();
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();

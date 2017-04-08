@@ -6,7 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleFadeToBlack.h"
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 
 
 ModulePlayer::ModulePlayer()
@@ -42,6 +42,10 @@ bool ModulePlayer::CleanUp()
 
 	App->textures->Unload(graphics);
 
+	if (spaceship_collider != nullptr) {
+		spaceship_collider->to_delete = true;
+	}
+
 	return true;
 }
 
@@ -50,7 +54,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png"); // arcade version
+	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png"); 
 	if (graphics == nullptr) {
 		LOG("Error loading player textures %s", SDL_GetError);
 		ret = false;
@@ -58,6 +62,8 @@ bool ModulePlayer::Start()
 
 	position.x = 111;
 	position.y = 150;
+
+	spaceship_collider = App->collision->AddCollider({ (int)position.x,(int)position.y, 23, 26 }, COLLIDER_PLAYER, this);
 
 	return ret;
 }
@@ -121,10 +127,28 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->basic_shot, position.x + 9 , position.y);
+		App->particles->AddParticle(App->particles->basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT);
 	}
+
+	spaceship_collider->SetPos(position.x, position.y);
+
 	// Draw everything --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.75f);
 	
 	return UPDATE_CONTINUE;
+}
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+{
+	if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)
+	{
+		/*App->fade->FadeToBlack((Module*)App->scene_space, (Module*)App->scene_intro);							<--- Ending when spaceship collides
+
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y, COLLIDER_NONE, 150);
+		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, COLLIDER_NONE, 220);
+		App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, COLLIDER_NONE, 670);
+		App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, COLLIDER_NONE, 480);
+		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, COLLIDER_NONE, 350);*/
+
+		destroyed = true;
+	}
 }

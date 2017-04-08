@@ -68,6 +68,9 @@
     <ClInclude Include="ModuleStageCompleted.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleCollision.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -113,6 +116,9 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleStageCompleted.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollision.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

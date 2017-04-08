@@ -25,6 +25,9 @@ public:
 
 	void Play_Music(Mix_Music*musi);
 	void Play_Fx(Mix_Chunk* Chun);
+
+	void Unload_Fx(Mix_Chunk *uchunk);
+	void Unload_Music(Mix_Music *umusic);
 		
 
 	update_status Update();

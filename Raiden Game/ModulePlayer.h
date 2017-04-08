@@ -18,17 +18,19 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	void OnCollision(Collider* c1, Collider* c2);
+
 public:
 
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation right;
-	Animation left;
-	
-	Animation backward;
-	//SDL_Rect spaceship;
+	Animation left;	
+	Animation backward;	
 	fPoint position;
+	Collider* spaceship_collider;
+	bool destroyed=false;
 
 };
 
