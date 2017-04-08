@@ -63,7 +63,7 @@ bool ModuleAudio::Close()
 
 bool ModuleAudio::CleanUp()
 {
-	LOG("Freeing audio  library");
+	LOG("Freeing audio library");
 		
 	Mix_CloseAudio();	
 	Mix_Quit();
