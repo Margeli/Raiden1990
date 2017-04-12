@@ -57,7 +57,7 @@ bool ModuleLevel1::Start()
 	
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
-	col = App->collision->AddCollider({ 111, 100, 100, 100 },COLLIDER_ENEMY_SHOT, this);
+	
 
 	return true;
 }

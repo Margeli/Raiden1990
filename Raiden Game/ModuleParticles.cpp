@@ -109,7 +109,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->position.x = x;
 			p->position.y = y;
 			if (collider_type != COLLIDER_NONE) {
-				p->collider = App->collision->AddCollider({ p->position.x, p->position.y, 6,6 }, collider_type, this);//<---CHECKPOSITION
+				p->collider = App->collision->AddCollider( p->anim.GetCurrentFrame() , collider_type, this);
 				active[i] = p;
 				break;
 			}

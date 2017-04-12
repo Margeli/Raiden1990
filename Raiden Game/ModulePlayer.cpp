@@ -127,7 +127,7 @@ update_status ModulePlayer::Update()
 
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
- 		App->particles->AddParticle(App->particles->basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT);//<---CHECKPOSITION
+ 		App->particles->AddParticle(App->particles->basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT);//Adds a particle (basic_shot) in front of the spaceship.
 	}
 
 	spaceship_collider->SetPos(position.x, position.y);
