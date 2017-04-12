@@ -94,8 +94,8 @@ update_status ModulePlayer::Update()
 			left.Reset();
 			current_animation = &left;
 		}
-		if (App->render->camera.x >= 134) {//left camera limit
-			App->render->camera.x = 134;
+		if (App->render->camera.x >= 100) {//left camera limit
+			App->render->camera.x = 100;
 			if (position.x <= -48) { //left player limit
 				position.x = -48;
 			}
@@ -111,8 +111,8 @@ update_status ModulePlayer::Update()
 			right.Reset();
 			current_animation = &right;
 		}
-		if (App->render->camera.x <= -206) {//right camera limit
-			App->render->camera.x =-206;
+		if (App->render->camera.x <= -154) {//right camera limit
+			App->render->camera.x =-154;
 			if (position.x >= 275) { //right player limit
 				position.x = 275;
 			}

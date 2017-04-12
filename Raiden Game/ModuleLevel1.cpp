@@ -41,6 +41,7 @@ ModuleLevel1::~ModuleLevel1()
 // Load assets
 bool ModuleLevel1::Start()
 {
+	
 	App->audio->Enable();
 	App->player->Enable();
 	App->particles->Enable();
@@ -48,7 +49,7 @@ bool ModuleLevel1::Start()
 	
 	LOG("Loading level 1");
 
-	music_lvl1 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");
+	//music_lvl1 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");// UNCOMMENT FOR PLAYING MUSIC
 	if (!music_lvl1) {
 	LOG("Error loading lvl1 music: %s",Mix_GetError)
 	}

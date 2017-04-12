@@ -38,7 +38,7 @@ bool ModuleIntro::Start()
 
 
 	App->particles->Disable();
-	App->audio->Disable();
+	App->audio->Enable(); 
 	App->player->Disable();
 	App->collision->Disable();
 
@@ -52,7 +52,7 @@ bool ModuleIntro::CleanUp()
 	LOG("Unloading intro screen");
 
 	App->textures->Unload(graphics);
-
+	App->audio->Disable();
 	
 
 	return true;
