@@ -9,6 +9,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleIntro.h"
 #include "ModuleAudio.h"
+#include "ModuleParticles.h"
+#include "ModuleCollision.h"
 
 
 
@@ -34,11 +36,15 @@ bool ModuleIntro::Start()
 
 	graphics = App->textures->Load("Assets/Images/Intro_Raiden.png");
 
-	
+
+	App->particles->Disable();
+	App->audio->Disable();
 	App->player->Disable();
+	App->collision->Disable();
 
 	return true;
 }
+
 
 // UnLoad assets
 bool ModuleIntro::CleanUp()
@@ -47,9 +53,7 @@ bool ModuleIntro::CleanUp()
 
 	App->textures->Unload(graphics);
 
-	App->player->Disable();
-
-	App->audio->Disable();
+	
 
 	return true;
 }

@@ -10,6 +10,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleIntro.h"
 #include "ModuleAudio.h"
+#include "ModuleParticles.h"
+#include "ModuleCollision.h"
 
 
 
@@ -39,6 +41,8 @@ bool ModuleLevel1::Start()
 {
 	App->audio->Enable();
 	App->player->Enable();
+	App->particles->Enable();
+	App->collision->Enable();
 	
 	LOG("Loading level 1");
 
