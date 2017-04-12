@@ -63,7 +63,7 @@ bool ModulePlayer::Start()
 	position.x = 111;
 	position.y = 150;
 
-	spaceship_collider = App->collision->AddCollider({ (int)position.x,(int)position.y, 23, 26 }, COLLIDER_PLAYER, this);
+	spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
 
 	return ret;
 }
@@ -72,20 +72,20 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	
-	float speed = 3.0f;
-	float  spaceship_speed = 1.75f;
+	float speed = 2;
+	float  spaceship_speed = 2;
 	position.y -= spaceship_speed;
 
-	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT) //---UP
 	{
 		position.y -= speed;
 	}
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)//---DOWN
 	{
 		position.y += speed;
 		
 	}
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)//---LEFT
 	{
 		position.x -= speed;
 		App->render->camera.x +=4;
@@ -102,7 +102,7 @@ update_status ModulePlayer::Update()
 		}
 		
 	}
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)//---RIGHT
 	{
 		position.x += speed;
 		App->render->camera.x -= 4;
@@ -133,7 +133,7 @@ update_status ModulePlayer::Update()
 	spaceship_collider->SetPos(position.x, position.y);
 
 	// Draw everything --------------------------------------
-		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.75f);
+		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
 	return UPDATE_CONTINUE;
 }

@@ -28,7 +28,7 @@ public:
 	Animation right;
 	Animation left;	
 	Animation backward;	
-	fPoint position;
+	iPoint position;
 	Collider* spaceship_collider;
 	bool destroyed=false;
 

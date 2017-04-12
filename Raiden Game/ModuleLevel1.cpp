@@ -31,6 +31,8 @@ ModuleLevel1::ModuleLevel1()
 	background.h = 3265;
 
 	
+
+	
 }
 
 ModuleLevel1::~ModuleLevel1()
@@ -54,9 +56,7 @@ bool ModuleLevel1::Start()
 	
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
-
-	
-	
+	col = App->collision->AddCollider({ 111, 100, 100, 100 },COLLIDER_ENEMY_SHOT, this);
 
 	return true;
 }
@@ -85,9 +85,9 @@ update_status ModuleLevel1::Update()
 	App->render->camera.y += 2;
 
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, -50, -2965, &background, 0.75f); 
+	App->render->Blit(graphics, -50, -2965, &background); 
 
-	App->render->Blit(graphics, -50, -2965, &foreground, 0.75f);
+	App->render->Blit(graphics, -50, -2965, &foreground);
 	
 
 
