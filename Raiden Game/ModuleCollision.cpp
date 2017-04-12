@@ -39,7 +39,6 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_SHOT] = false;
 }
 
-// Destructor
 ModuleCollision::~ModuleCollision()
 {}
 

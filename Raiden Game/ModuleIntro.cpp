@@ -40,7 +40,7 @@ bool ModuleIntro::Start()
 	App->particles->Disable();
 	App->audio->Enable(); 
 	App->player->Disable();
-	App->collision->Disable();
+	
 
 	return true;
 }

@@ -61,7 +61,7 @@ update_status ModuleStageCompleted::Update()
 	
 
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, 0, 0, &background, 0.0f);
+	App->render->Blit(graphics, 0, 0, &background);
 
 
 	if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
