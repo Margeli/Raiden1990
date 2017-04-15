@@ -12,6 +12,7 @@
 #include "ModuleAudio.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemies.h"
 
 
 
@@ -58,6 +59,11 @@ bool ModuleLevel1::Start()
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
 	col = App->collision->AddCollider({ 111, 100, 100, 100 },COLLIDER_ENEMY_SHOT, this);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 179, -3000);
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, -50, -2965);
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, -50, -2965);
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, -50, -3000);
 
 	return true;
 }
