@@ -23,7 +23,7 @@ void Enemy::Draw(SDL_Texture* sprites)
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
 
-	if (animation != nullptr)
+	if (animation != nullptr)//NOT LOADING
 		App->render->Blit(sprites, position.x, position.y, &(animation->GetCurrentFrame()));
 }
 

@@ -60,11 +60,11 @@ bool ModuleLevel1::Start()
 	
 	col = App->collision->AddCollider({ 111, 100, 100, 100 },COLLIDER_ENEMY_SHOT, this);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 179, -3000);
-	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, -50, -2965);
-	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, -50, -2965);
-	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, -50, -3000);
-
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 111, 250);
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 300, -1000);
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 100, -100);
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 400, -100);
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 300, -500);
 	return true;
 }
 

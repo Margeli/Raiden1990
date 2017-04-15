@@ -6,12 +6,12 @@ Static_Enemy::Static_Enemy(int x, int y) : Enemy(x, y)
 {
 
 	nave.x = 415;
-	nave.y = 6;
-	nave.w = 317;
+	nave.y = 1;
+	nave.w = 323;
 	nave.h = 265;
 
 	
-	collider = App->collision->AddCollider({ 0, 0, 24, 24 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 323, 265 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 }
 
