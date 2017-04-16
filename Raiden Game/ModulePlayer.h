@@ -32,6 +32,7 @@ public:
 	Collider* spaceship_collider;
 	bool destroyed=false;
 
+	
 };
 
 #endif
