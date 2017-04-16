@@ -37,7 +37,8 @@ bool ModuleIntro::Start()
 
 	graphics = App->textures->Load("Assets/Images/Intro_Raiden.png");
 
-
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	App->particles->Disable();
 	App->audio->Enable(); 
 	App->player->Disable();
