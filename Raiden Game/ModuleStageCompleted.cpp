@@ -31,6 +31,9 @@ bool ModuleStageCompleted::Start()
 {
 	App->audio->Enable();
 
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+
 	LOG("Loading level 1");
 
 	music_stage_cleared = App->audio->Load_Music("Assets/Audio/StageCompleted.ogg");

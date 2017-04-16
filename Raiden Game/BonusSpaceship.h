@@ -9,11 +9,20 @@ private:
 
 	
 	Animation fly;
+	float speed ;
+	float increment_y;
+	float initial_y;
+	int counter_movement;
+	bool right;
+	
 
 public:
 
 	Bonus_Spaceship(int x, int y);
-	//void Move();
+	void Move();
+
+
+	
 
 };
 

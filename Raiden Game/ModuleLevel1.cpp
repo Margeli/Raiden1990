@@ -60,12 +60,12 @@ bool ModuleLevel1::Start()
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
 
-	col = App->collision->AddCollider({ 0,-250, 1000, 1 },COLLIDER_ENEMY_SHOT, this);//blue y=0 line
+	//col = App->collision->AddCollider({ 0,-250, 1000, 1 },COLLIDER_ENEMY_SHOT, this);//blue y=0 line
 
 
 	
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 111, -250);
+	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -250);
 	
 	return true;
 }

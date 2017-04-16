@@ -14,7 +14,7 @@ protected:
 	Collider* collider = nullptr;
 
 public:
-	iPoint position;
+	fPoint position;
 
 public:
 	Enemy(int x, int y);
