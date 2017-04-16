@@ -86,6 +86,9 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)//---DOWN
 	{
 		position.y += speed;
+		if ((-(position.y-SCREEN_HEIGHT+27)*SCREEN_SIZE)<App->render->camera.y) {
+			position.y = ((-App->render->camera.y / SCREEN_SIZE) -27+ SCREEN_HEIGHT) ;
+		}
 		
 		}
 		
