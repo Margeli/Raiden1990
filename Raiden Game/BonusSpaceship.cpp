@@ -4,11 +4,11 @@
 
 Bonus_Spaceship::Bonus_Spaceship (int x, int y) : Enemy(x, y) 
 {
-	fly.PushBack({ 51,53,114,95 });
-	fly.PushBack({ 185,53,114,95 });
-	fly.PushBack({ 316,53,114,95 });
-	fly.PushBack({ 445,53,114,95 });
-	fly.PushBack({ 571,53,114,95 });
+	fly.PushBack({ 45,43,59,50 });
+	fly.PushBack({ 116,43,59,50 });
+	fly.PushBack({ 184,43,59,50 });
+	fly.PushBack({ 252,43,59,50 });
+	fly.PushBack({ 319,43,59,50 });
 	animation = &fly;
 
 	
