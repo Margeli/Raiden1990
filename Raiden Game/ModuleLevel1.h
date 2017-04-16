@@ -27,7 +27,7 @@ public:
 	SDL_Rect background;
 	bool fading = false;
 
-	Collider*col;
+	
 
 	float foreground_pos;
 	bool forward;

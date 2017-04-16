@@ -15,8 +15,8 @@ ModuleParticles::ModuleParticles()
 		active[i] = nullptr;
 
 	basic_shot.anim.PushBack({ 184, 36, 5, 5 });//Raiden_Spaceship	
-	basic_shot.anim.speed = 0.0f;
-	basic_shot.speed.y = -4;
+	basic_shot.anim.speed = 1.0f;
+	basic_shot.speed.y = -3;
 	basic_shot.speed.x = 0;
 	basic_shot.life = 3000;
 	basic_shot.anim.loop = true;
@@ -108,13 +108,14 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
-			if (collider_type != COLLIDER_NONE)
-				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
-			active[i] = p;
-			break;
+			if (collider_type != COLLIDER_NONE) {
+				p->collider = App->collision->AddCollider( p->anim.GetCurrentFrame() , collider_type, this);
+				active[i] = p;
+				break;
+			}
 		}
 	}
-}
+} 
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {

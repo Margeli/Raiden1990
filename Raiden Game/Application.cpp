@@ -44,12 +44,12 @@ bool Application::Init()
 {
 	bool ret = true;
 
-	// Player will be enabled on the first update of a new scene
+	// Deactivate modules here ----
 	player->Disable();
-	// Disable the map that you do not start with
 	level2->Disable();
 	level1->Disable();
 	stageCompleted->Disable();
+	// ----------------------------
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
@@ -80,8 +80,8 @@ bool Application::CleanUp()
 {
 	bool ret = true;
 
-	for(int i = NUM_MODULES - 1; i >= 0 && ret == true; --i)
-		ret = modules[i]->CleanUp();
+	for (int i = NUM_MODULES - 1; i >= 0 && ret == true; --i)
+		ret = modules[i]->IsEnabled() ? modules[i]->CleanUp() : true;
 
 	return ret;
 }

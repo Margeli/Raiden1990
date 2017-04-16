@@ -39,7 +39,6 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_SHOT] = false;
 }
 
-// Destructor
 ModuleCollision::~ModuleCollision()
 {}
 
@@ -126,7 +125,7 @@ void ModuleCollision::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		case COLLIDER_PLAYER_SHOT: // yellow
-			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha, false);
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
 		case COLLIDER_ENEMY_SHOT: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
