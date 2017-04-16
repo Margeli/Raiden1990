@@ -39,7 +39,7 @@ update_status ModuleEnemies::PreUpdate()
 	{
 		if (queue[i].type != ENEMY_TYPES::NO_TYPE)
 		{
-			if (queue[i].y * SCREEN_SIZE > App->render->camera.y- SPAWN_MARGIN)//lower spawn limit				
+			if (SPAWN_MARGIN+ App->render->camera.y>-queue[i].y*SCREEN_SIZE)//lower spawn limit				
 			{
 				SpawnEnemy(queue[i]);
 				queue[i].type = ENEMY_TYPES::NO_TYPE;
@@ -71,7 +71,7 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (enemies[i]->position.y * SCREEN_SIZE < (App->render->camera.y) - SPAWN_MARGIN)
+			if (App->render->camera.y-SCREEN_HEIGHT-SPAWN_MARGIN>-enemies[i]->position.y*SCREEN_SIZE)
 			{
 				LOG("DeSpawning enemy at %d", enemies[i]->position.y );
 				delete enemies[i];

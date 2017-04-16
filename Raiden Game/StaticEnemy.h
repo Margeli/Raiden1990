@@ -7,11 +7,13 @@ class Static_Enemy : public Enemy
 {
 private:
 
-	SDL_Rect nave;
+	
+	Animation fly;
 
 public:
 
 	Static_Enemy(int x, int y);
+	//void Move();
 
 };
 

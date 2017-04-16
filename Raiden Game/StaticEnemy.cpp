@@ -4,14 +4,11 @@
 
 Static_Enemy::Static_Enemy(int x, int y) : Enemy(x, y)
 {
-
-	nave.x = 415;
-	nave.y = 1;
-	nave.w = 323;
-	nave.h = 265;
+	fly.PushBack({ 6,1,35,28 });
+	animation = &fly;
 
 	
-	collider = App->collision->AddCollider({ 0, 0, 323, 265 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 35, 28 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 }
 
