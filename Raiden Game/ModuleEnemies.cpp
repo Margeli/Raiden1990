@@ -23,7 +23,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
-	sprites = App->textures->Load("Assets/Images/nave.png");
+	sprites = App->textures->Load("Assets/Images/Bonus_Spaceship.png");
 
 	if (sprites == nullptr) {
 		LOG("Error loading enemy's sprites.");
