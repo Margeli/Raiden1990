@@ -5,7 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "Enemy.h"
-#include "StaticEnemy.h"
+#include "BonusSpaceship.h"
 
 #define SPAWN_MARGIN 50
 
@@ -131,8 +131,8 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 	{
 		switch (info.type)
 		{
-		case ENEMY_TYPES::STATIC_ENEMY:
-			enemies[i] = new Static_Enemy(info.x, info.y);
+		case ENEMY_TYPES::BONUS_SPACESHIP:
+			enemies[i] = new Bonus_Spaceship(info.x, info.y);
 			break;
 
 			//	case ENEMY_TYPES::CHIPSAHOY:

@@ -90,7 +90,7 @@
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
-    <ClInclude Include="StaticEnemy.h" />
+    <ClInclude Include="BonusSpaceship.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -111,7 +111,7 @@
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="StaticEnemy.cpp" />
+    <ClCompile Include="BonusSpaceship.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

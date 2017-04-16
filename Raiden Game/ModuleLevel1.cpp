@@ -65,7 +65,7 @@ bool ModuleLevel1::Start()
 
 	
 
-	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 111, -250);
+	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 111, -250);
 	
 	return true;
 }
