@@ -12,22 +12,26 @@
 #include "ModuleParticles.h"
 #include "ModuleStageCompleted.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemies.h"
 
 Application::Application()
 {
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = level2 = new ModuleLevel2();
-	modules[5] = level1 = new ModuleLevel1();
-	modules[6] = player = new ModulePlayer();
-	modules[7] = fade = new ModuleFadeToBlack();
-	modules[8] = intro = new ModuleIntro();
-	modules[9] = audio = new ModuleAudio();
-	modules[10] = particles = new ModuleParticles();
-	modules[11] = stageCompleted = new ModuleStageCompleted();
-	modules[12]= collision = new ModuleCollision();
+	int i = 0;
+
+	modules[i++] = window = new ModuleWindow();
+	modules[i++] = render = new ModuleRender();
+	modules[i++] = input = new ModuleInput();
+	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = level2 = new ModuleLevel2();
+	modules[i++] = level1 = new ModuleLevel1();
+	modules[i++] = enemies = new ModuleEnemies();
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = intro = new ModuleIntro();
+	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = stageCompleted = new ModuleStageCompleted();
+	modules[i++] = collision = new ModuleCollision();
 }	
 
 Application::~Application()

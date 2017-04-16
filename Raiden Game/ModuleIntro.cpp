@@ -11,6 +11,7 @@
 #include "ModuleAudio.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemies.h"
 
 
 
@@ -40,7 +41,9 @@ bool ModuleIntro::Start()
 	App->particles->Disable();
 	App->audio->Enable(); 
 	App->player->Disable();
-	
+	App->collision->Disable();
+	App->enemies->Disable();
+
 
 	return true;
 }

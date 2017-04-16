@@ -12,6 +12,7 @@
 #include "ModuleAudio.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemies.h"
 
 
 
@@ -46,6 +47,7 @@ bool ModuleLevel1::Start()
 	App->player->Enable();
 	App->particles->Enable();
 	App->collision->Enable();
+	App->enemies->Enable();
 	
 	LOG("Loading level 1");
 
@@ -57,8 +59,14 @@ bool ModuleLevel1::Start()
 	
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
+
+	col = App->collision->AddCollider({ 0,-250, 1000, 1 },COLLIDER_ENEMY_SHOT, this);//blue y=0 line
+
+
 	
 
+	App->enemies->AddEnemy(ENEMY_TYPES::STATIC_ENEMY, 111, -250);
+	
 	return true;
 }
 
@@ -70,7 +78,7 @@ bool ModuleLevel1::CleanUp()
 	App->textures->Unload(graphics);
 
 	App->player->Disable();
-
+	App->enemies->Disable();
 	
 
 	return true;
