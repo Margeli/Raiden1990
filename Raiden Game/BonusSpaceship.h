@@ -8,7 +8,8 @@ class Bonus_Spaceship : public Enemy
 private:
 
 	
-	Animation fly;
+	Animation idle;
+	Animation forward;
 	float speed ;
 	float increment_y;
 	float initial_y;
