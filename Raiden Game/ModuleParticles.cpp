@@ -14,12 +14,21 @@ ModuleParticles::ModuleParticles()
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
 
-	basic_shot.anim.PushBack({ 184, 36, 5, 5 });//Raiden_Spaceship	
+	basic_shot.anim.PushBack({ 22, 31, 5, 5 });//Raiden_Spaceship	
 	basic_shot.anim.speed = 1.0f;
 	basic_shot.speed.y = -3;
 	basic_shot.speed.x = 0;
 	basic_shot.life = 3000;
 	basic_shot.anim.loop = true;
+
+	basic_shot.anim.PushBack({ 22, 31, 5, 5 });//Raiden_Spaceship	
+	basic_shot.anim.speed = 1.0f;
+	basic_shot.speed.y = -3;
+	basic_shot.speed.x = 0;
+	basic_shot.life = 3000;
+	basic_shot.anim.loop = true;
+	
+
 }
 
 ModuleParticles::~ModuleParticles()

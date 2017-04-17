@@ -55,6 +55,7 @@ private:
 public:
 
 	Particle basic_shot;
+	Particle color_rotatory_shot;
 };
 
 #endif // __MODULEPARTICLES_H__

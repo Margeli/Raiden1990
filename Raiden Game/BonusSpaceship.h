@@ -14,13 +14,14 @@ private:
 	float initial_y;
 	int counter_movement;
 	bool right;
-	
+	void Shot(int shooter_x, int shooter_y);
+	bool shooting ;
 
 public:
 
 	Bonus_Spaceship(int x, int y);
 	void Move();
-
+	int shoots = 3;
 
 	
 
