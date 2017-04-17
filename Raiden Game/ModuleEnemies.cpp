@@ -7,7 +7,7 @@
 #include "Enemy.h"
 #include "BonusSpaceship.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 200
 
 ModuleEnemies::ModuleEnemies()
 {
