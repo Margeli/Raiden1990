@@ -21,12 +21,6 @@ ModuleParticles::ModuleParticles()
 	basic_shot.life = 3000;
 	basic_shot.anim.loop = true;
 
-	basic_shot.anim.PushBack({ 22, 31, 5, 5 });//Raiden_Spaceship	
-	basic_shot.anim.speed = 1.0f;
-	basic_shot.speed.y = -3;
-	basic_shot.speed.x = 0;
-	basic_shot.life = 3000;
-	basic_shot.anim.loop = true;
 	
 
 }
@@ -38,7 +32,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-		graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
+		graphics = App->textures->Load("Assets/Images/Particles_Spritesheet.png");
 
 	LOG("Loading particles' fx");
 	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Simple_Shot.wav");
