@@ -43,18 +43,18 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0, char* path= nullptr);
 
 private:
 
 	SDL_Texture* graphics = nullptr;
-	Mix_Chunk* fx_shoot = nullptr;
+	
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	//uint last_particle = 0;
 
 public:
 
-	Particle basic_shot;
+	
 	Particle color_rotatory_shot;
 };
 

@@ -7,7 +7,7 @@
 #include "ModuleParticles.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollision.h"
-
+#include "ModuleAudio.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -31,6 +31,15 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 22, 14, 15, 27 });
 	left.loop = false;
 	left.speed = 0.1f;
+
+	//Raiden basic shot animation
+
+	basic_shot.anim.PushBack({ 22, 31, 5, 5 });//Raiden_Spaceship	
+	basic_shot.anim.speed = 1.0f;
+	basic_shot.speed.y = -3;
+	basic_shot.speed.x = 0;
+	basic_shot.life = 3000;
+	basic_shot.anim.loop = true;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -135,7 +144,9 @@ update_status ModulePlayer::Update()
 
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
- 		App->particles->AddParticle(App->particles->basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT);//Adds a particle (basic_shot) in front of the spaceship.
+
+		
+ 		App->particles->AddParticle(App->player->basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT);//Adds a particle (basic_shot) in front of the spaceship.
 	}
 
 	spaceship_collider->SetPos(position.x, position.y);

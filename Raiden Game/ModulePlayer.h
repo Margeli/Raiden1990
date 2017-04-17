@@ -32,7 +32,9 @@ public:
 	Collider* spaceship_collider;
 	bool destroyed=false;
 
-	
+	Particle basic_shot;
+
+	Mix_Chunk* fx_shoot = nullptr;
 };
 
 #endif
