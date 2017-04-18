@@ -85,7 +85,7 @@ update_status ModulePlayer2::Update()
 {
 
 	float speed = 2;
-	float  spaceship_speed = 2;
+	float  spaceship_speed = 1;
 	position.y -= spaceship_speed;
 
 	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT) //---UP
