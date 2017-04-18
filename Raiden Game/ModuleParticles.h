@@ -56,7 +56,7 @@ private:
 public:
 
 	Mix_Chunk* fx_shoot = nullptr;
-	//Particle color_rotatory_shot;
+
 };
 
 #endif // __MODULEPARTICLES_H__

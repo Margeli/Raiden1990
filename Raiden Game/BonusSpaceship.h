@@ -2,6 +2,7 @@
 #define __BONUS_SPACESHIP_H__
 
 #include "Enemy.h"
+#include "ModuleParticles.h"
 
 class Bonus_Spaceship : public Enemy
 {
@@ -11,6 +12,8 @@ private:
 	Animation idle;
 	Animation forward;
 	Animation boost;
+	Particle color_rotatory_shot;
+
 	float speed ;
 	float increment_y;
 	float initial_y;
