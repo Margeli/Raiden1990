@@ -5,20 +5,35 @@
 
 Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y) 
 {
-	fly.PushBack({ 45,43,63,50 });
-	fly.PushBack({ 115,43,63,50 });
-	fly.PushBack({ 184,43,63,50 });
-	fly.PushBack({ 253,43,63,50 });
-	fly.PushBack({ 319,43,63,50 });
-	animation = &fly;
-	fly.speed = 0.05f;
+
+	idle.PushBack({ 45, 29,64,65 });
+	idle.PushBack({ 114,29,64,65 });
+	idle.PushBack({ 183,29,64,65 });
+	idle.PushBack({ 252,29,64,65 });
+	idle.PushBack({ 318,29,64,65 });
+	idle.PushBack({ 252,29,64,65 });
+	idle.PushBack({ 183,29,64,65 });
+	idle.PushBack({ 114,29,64,65 });
+	idle.PushBack({ 45, 29,64,65 });
+
+	boost.PushBack({ 45,101,64,65 });
+
+	forward.PushBack({ 114,101,64,65 });
+	forward.PushBack({ 183,101,64,65 });
+	forward.speed = 0.5f;
+	
+	animation = &forward;
+	idle.speed = 0.03f;
+
+
 	initial_y = y;
 	increment_y = 0.0f;
 	counter_movement = 0;
 	right = true;
-	shooting = false; 
 
-	collider = App->collision->AddCollider({ 0, 0, 63, 50 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	
+	collider = App->collision->AddCollider({ 0, 0, 64, 65 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+
 	 
 	
 		
@@ -32,11 +47,18 @@ void Bonus_Spaceship::Move() {
 	}
 
 	increment_y = -(position.y - initial_y);
-	if(increment_y<30)//enemy entrance
+
+	if(increment_y<80)
 	speed = 0.5f;
 	
 
-	else if ((increment_y >= 30)&&(increment_y<350)) {//enemy middle movement
+	else if ((increment_y >= 80)&&(increment_y<550)) {//enemy entrance
+		animation = &idle;
+		if (increment_y <= 90|| increment_y>=540) { 
+			animation = &boost;		
+		}
+		
+
 		speed = 0.7f;
 		if (increment_y == 100) { shooting = true; }//shots at 100
 		if (right) {
@@ -56,9 +78,9 @@ void Bonus_Spaceship::Move() {
 		}
 	}
 
-	else if (increment_y >= 350){  //enemy escape
+	else if (increment_y >= 550){  //enemy escape
 		speed = 0.5f;
-		
+		animation = &forward;
 	}
 
 	
