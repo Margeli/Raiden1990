@@ -5,6 +5,7 @@
 #include "ModuleStageCompleted.h"
 #include "ModuleLevel1.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleLevel2.h"
 #include "ModuleFadeToBlack.h"
@@ -44,6 +45,10 @@ bool ModuleLevel1::Start()
 	
 	App->audio->Enable();
 	App->player->Enable();
+	if (App->player2->player2 == true)
+		App->player2->Enable();
+	else if (App->player2->player2)
+		App->player2->Disable();
 	App->particles->Enable();
 	App->collision->Enable();
 	App->enemies->Enable();
@@ -79,6 +84,7 @@ bool ModuleLevel1::CleanUp()
 	App->textures->Unload(graphics);
 
 	App->player->Disable();
+	App->player2->Disable();
 	App->enemies->Disable();
 	
 

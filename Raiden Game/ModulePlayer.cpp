@@ -71,9 +71,17 @@ bool ModulePlayer::Start()
 		ret = false;
 	}
 	
+	if (App->player2->player2==false) { 
 
-	position.x = 111;
-	position.y = 150;
+		position.x = 111; //position if there's only 1 player
+		position.y = 150;
+	}
+	else {
+
+		position.x = 71; //position if thereare 2 players
+		position.y = 150;
+	}
+	
 
 	spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
 

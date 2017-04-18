@@ -65,12 +65,12 @@ bool ModulePlayer2::Start()
 {
 	LOG("Loading player 2 textures");
 	bool ret = true;
+
 	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
 	if (graphics == nullptr) {
 		LOG("Error loading player 2 textures %s", SDL_GetError);
 		ret = false;
 	}
-
 
 	position.x = 151;
 	position.y = 150;

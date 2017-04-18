@@ -12,6 +12,7 @@
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
+#include "ModulePlayer2.h"
 
 
 
@@ -69,6 +70,14 @@ update_status ModuleIntro::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &background); 
 
+	if (App->input->keyboard[SDL_SCANCODE_1]) {
+		
+		App->player2->player2;
+	}
+	else if (App->input->keyboard[SDL_SCANCODE_2]) {
+		
+		App->player2->player2 = true;
+	}
 
 	if (App->input->keyboard[SDL_SCANCODE_TAB] && App->fade->IsFading() == false) {
 

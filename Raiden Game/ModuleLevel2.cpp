@@ -73,7 +73,7 @@ update_status ModuleLevel2::Update()
 	App->player->position.y += 1;
 	App->render->camera.y += 2;
 	
-	App->render->Blit(graphics, -50,-5100 , &background); // back of the room
+	App->render->Blit(graphics, -25,-5100 , &background); // back of the room
 	
 
 	if (App->input->keyboard[SDL_SCANCODE_TAB] && App->fade->IsFading() == false) {
