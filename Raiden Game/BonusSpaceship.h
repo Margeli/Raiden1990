@@ -19,7 +19,7 @@ private:
 
 public:
 
-	Bonus_Spaceship(int x, int y);
+	Bonus_Spaceship(int x, int y, int count);
 	void Move();
 	int shoots = 3;
 

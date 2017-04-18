@@ -32,14 +32,15 @@ ModulePlayer::ModulePlayer()
 	left.loop = false;
 	left.speed = 0.1f;
 
-	//Raiden basic shot animation
-
-	basic_shot.anim.PushBack({ 22, 31, 5, 5 });//Raiden_Spaceship	
+	//Raiden basic shot 
+	
+	basic_shot.anim.PushBack({ 22, 31, 5, 5 });	//animation
 	basic_shot.anim.speed = 1.0f;
 	basic_shot.speed.y = -3;
 	basic_shot.speed.x = 0;
 	basic_shot.life = 3000;
 	basic_shot.anim.loop = true;
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -68,6 +69,7 @@ bool ModulePlayer::Start()
 		LOG("Error loading player textures %s", SDL_GetError);
 		ret = false;
 	}
+	
 
 	position.x = 111;
 	position.y = 150;
@@ -92,6 +94,7 @@ update_status ModulePlayer::Update()
 			position.y = -App->render->camera.y / SCREEN_SIZE; //upper player limit. ------->The relation between camera.y and position.y is camera.y=-position.y*SCREEN_SIZE
 		}
 	}
+
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)//---DOWN
 	{
 		position.y += speed;
@@ -119,6 +122,7 @@ update_status ModulePlayer::Update()
 		}
 		
 	}
+
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)//---RIGHT
 	{
 		position.x += speed;
@@ -143,10 +147,8 @@ update_status ModulePlayer::Update()
 		
 
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-	{
-
-		
- 		App->particles->AddParticle(App->player->basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT);//Adds a particle (basic_shot) in front of the spaceship.
+	{			
+ 		App->particles->AddParticle(basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT,0,"Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
 	}
 
 	spaceship_collider->SetPos(position.x, position.y);

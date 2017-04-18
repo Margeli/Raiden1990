@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModuleParticles.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -22,6 +23,10 @@ public:
 
 public:
 
+	Particle basic_shot;
+
+public:
+
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Animation idle;
@@ -32,9 +37,7 @@ public:
 	Collider* spaceship_collider;
 	bool destroyed=false;
 
-	Particle basic_shot;
-
-	Mix_Chunk* fx_shoot = nullptr;
+	
 };
 
 #endif

@@ -3,7 +3,7 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 
-Bonus_Spaceship::Bonus_Spaceship (int x, int y) : Enemy(x, y) 
+Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y) 
 {
 	fly.PushBack({ 45,43,63,50 });
 	fly.PushBack({ 115,43,63,50 });

@@ -26,6 +26,7 @@ struct Particle
 	Uint32 life = 0;	
 	bool fx_played = false;
 
+
 	Particle();
 	Particle(const Particle& p);
 	~Particle();
@@ -43,7 +44,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0, char* path= nullptr);
+	void AddParticle(Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0, char* fx_path= nullptr);
 
 private:
 
@@ -54,8 +55,8 @@ private:
 
 public:
 
-	
-	Particle color_rotatory_shot;
+	Mix_Chunk* fx_shoot = nullptr;
+	//Particle color_rotatory_shot;
 };
 
 #endif // __MODULEPARTICLES_H__
