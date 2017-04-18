@@ -171,6 +171,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)
 	{
+		App->player2->player2 = false;
 		App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 		
 
