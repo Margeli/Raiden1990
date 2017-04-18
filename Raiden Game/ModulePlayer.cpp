@@ -78,7 +78,7 @@ bool ModulePlayer::Start()
 	}
 	else {
 
-		position.x = 71; //position if thereare 2 players
+		position.x = 71; //position if there are 2 players
 		position.y = 150;
 	}
 	

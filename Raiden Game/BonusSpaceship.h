@@ -19,14 +19,19 @@ private:
 	float initial_y;
 	int counter_movement;
 	bool right;
-	void Shot(Particle& shot, iPoint aim_position);
-	void ShotMovement();
+	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
+	//void ShotMovement();
 	bool shooting ;
 
+	float m;
 	float delta_x;
 	float delta_y;
 	float vector_lenght;
 	fPoint unitary;
+
+
+	
+
 
 public:
 

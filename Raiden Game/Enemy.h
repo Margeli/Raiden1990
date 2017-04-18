@@ -25,8 +25,8 @@ public:
 
 	virtual void Move() {};
 	virtual void Draw(SDL_Texture* sprites);
-	virtual void Shot(Particle& shot, iPoint aim_position)=0;
-	virtual void ShotMovement()=0;
+	virtual void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos)=0;
+	//virtual void ShotMovement()=0;
 	virtual void OnCollision(Collider* collider);
 };
 

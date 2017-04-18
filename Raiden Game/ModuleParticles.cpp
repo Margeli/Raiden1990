@@ -38,7 +38,7 @@ bool ModuleParticles::CleanUp()
 	LOG("Unloading particles");
 	App->textures->Unload(graphics);
 
-	LOG("Unloading particles");
+	LOG("Unloading fx");
 	App->audio->Unload_Fx(fx_shoot);
 
 
