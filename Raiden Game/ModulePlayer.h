@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModuleParticles.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -19,6 +20,10 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
+
+public:
+
+	Particle basic_shot;
 
 public:
 

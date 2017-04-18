@@ -31,7 +31,6 @@ ModuleLevel1::ModuleLevel1()
 	background.w = 351;
 	background.h = 3265;
 
-	
 
 	
 }
@@ -65,7 +64,7 @@ bool ModuleLevel1::Start()
 
 	
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -250);
+	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -250, 3);
 	
 	return true;
 }

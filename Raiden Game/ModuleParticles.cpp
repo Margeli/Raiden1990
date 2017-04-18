@@ -12,14 +12,8 @@
 ModuleParticles::ModuleParticles()
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-		active[i] = nullptr;
+		active[i] = nullptr;	
 
-	basic_shot.anim.PushBack({ 184, 36, 5, 5 });//Raiden_Spaceship	
-	basic_shot.anim.speed = 1.0f;
-	basic_shot.speed.y = -3;
-	basic_shot.speed.x = 0;
-	basic_shot.life = 3000;
-	basic_shot.anim.loop = true;
 }
 
 ModuleParticles::~ModuleParticles()
@@ -29,10 +23,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-		graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
-
-	LOG("Loading particles' fx");
-	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Simple_Shot.wav");
+		graphics = App->textures->Load("Assets/Images/Particles_Spritesheet.png");
 
 	if (graphics == nullptr) {
 		LOG("Error loading particles");
@@ -47,8 +38,7 @@ bool ModuleParticles::CleanUp()
 	LOG("Unloading particles");
 	App->textures->Unload(graphics);
 
-
-	LOG("Unloading fx");
+	LOG("Unloading particles");
 	App->audio->Unload_Fx(fx_shoot);
 
 
@@ -83,27 +73,29 @@ update_status ModuleParticles::Update()
 		{
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 			
-			if (p->fx_played == false) //Fx sound when shooting
-			{	
-				fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Simple_Shot.wav");
-				if (!fx_shoot) {
-					LOG("Error loading shoot's fx: %s", Mix_GetError)
-				}				
-				App->audio->Play_Fx(fx_shoot);				
-				p->fx_played = true;			
-			}
 		}
 	}
 
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay, char* fx_path)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] == nullptr)
 		{
+			if (particle.fx_played == false) //Fx sound when shooting
+			{
+
+				fx_shoot = App->audio->Load_Fx(fx_path);
+				if (!fx_shoot) {
+					LOG("Error loading shoot's fx: %s", Mix_GetError)
+				}
+				App->audio->Play_Fx(fx_shoot);
+				particle.fx_played = true;
+			}
+
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
