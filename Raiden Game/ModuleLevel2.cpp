@@ -40,7 +40,7 @@ bool ModuleLevel2::Start()
 	
 	
 	App->player->Enable();
-	music_lvl2 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");
+	//music_lvl2 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");// UNCOMMENT FOR PLAYING MUSIC
 	if (!music_lvl2) {
 		LOG("Error loading lvl1 music: %s", Mix_GetError)
 	}
