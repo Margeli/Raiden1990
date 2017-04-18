@@ -23,10 +23,10 @@ private:
 	//void ShotMovement();
 	bool shooting ;
 
-	float m;
+	float m;//
 	float delta_x;
-	float delta_y;
-	float vector_lenght;
+	float delta_y ;
+	float vector_lenght = 0.0f;
 	fPoint unitary;
 
 

@@ -8,12 +8,12 @@
 Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y) 
 {
 	//Bonus Spaceship shot
-	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 5 });	
-	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 5 });
-	color_rotatory_shot.anim.PushBack({56, 40, 6, 5 });//animation
+	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });	
+	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
+	color_rotatory_shot.anim.PushBack({56, 40, 6, 7 });//animation
 	color_rotatory_shot.anim.speed = 0.3f;
 	
-	color_rotatory_shot.life = 3000;
+	color_rotatory_shot.life = 6000;
 	color_rotatory_shot.anim.loop = true;
 
 	idle.PushBack({ 45, 29,64,65 });
@@ -102,23 +102,32 @@ position.y -= speed;
 }
 
 void Bonus_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
-	
+	unitary = { 0,0 };
+	shot.speed ={0,0};
 	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
 	delta_x = (float)aim_position.x - shot_initial_pos.x;
 	delta_y = (float)aim_position.y - shot_initial_pos.y;
 	vector_lenght = sqrt(delta_x*delta_x + delta_y*delta_y); //length between Enemy pos & Player pos
-	/*m = vector_lenght / 2.0f;
+	/*
+	m = vector_lenght / 2.0f;
 	shot.speed.y = -2.0f;
 	shot.speed.y -= delta_y / m;
-	shot.speed.x = delta_x / m;*/
+	shot.speed.x = delta_x / m;
+	*/
+	
+	if (aim_position.y > shot_initial_pos.y) {
+	
+	}
+	
+	
 
-	shot.speed.y = -2.0f;//initial "y" scrolling speed
-
+	
+	
 	unitary.x = delta_x / vector_lenght;
 	unitary.y = delta_y / vector_lenght;
 	unitary.x *= 2.0f;
 	unitary.y *= 2.0f;	
 	
-	shot.speed.y += unitary.y;
+	shot.speed.y = unitary.y;
 	shot.speed.x = unitary.x;
 }
