@@ -8,6 +8,7 @@
 #include "BonusSpaceship.h"
 
 
+
 #define SPAWN_MARGIN 200
 
 
@@ -62,9 +63,10 @@ update_status ModuleEnemies::Update()
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) {
 			enemies[i]->Draw(sprites); }
-	/*for (uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) {
-			enemies[i]->Shot();*/
+			enemies[i]->ShotMovement(); }
+		
 
 	return UPDATE_CONTINUE;
 }

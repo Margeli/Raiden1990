@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "BonusSpaceship.h"
+#include "ModuleParticles.h"
 
 #define MAX_ENEMIES 100
 

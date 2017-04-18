@@ -2,6 +2,8 @@
 #include "BonusSpaceship.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h"
+
 
 Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y) 
 {
@@ -52,8 +54,7 @@ void Bonus_Spaceship::Move() {
 	increment_y = -(position.y - initial_y);
 
 	if (shooting) {
-	
-		App->particles->AddParticle(color_rotatory_shot, position.x + 31, position.y + 25, COLLIDER_ENEMY_SHOT);//Adds a particle (color_rotatory_shot) in front of the spaceship.
+		Shot(color_rotatory_shot, App->player->position);
 		shooting = false;
 	}	
 
@@ -100,8 +101,19 @@ void Bonus_Spaceship::Move() {
 position.y -= speed;
 }
 
-void Bonus_Spaceship::ShotMove(int shooter_x, int shooter_y) {
-	color_rotatory_shot.speed.y = 2;
-	color_rotatory_shot.speed.x = 0;
+void Bonus_Spaceship::ShotMovement() {
+	color_rotatory_shot.speed.y = unitary.y;
+	color_rotatory_shot.speed.x = unitary.x;
 	
+}
+void Bonus_Spaceship::Shot(Particle& shot, iPoint aim_position) {
+	
+	App->particles->AddParticle(color_rotatory_shot, position.x + 31, position.y + 25, COLLIDER_ENEMY_SHOT);//Adds a particle (color_rotatory_shot) in front of the spaceship.
+	delta_x = (float)aim_position.x - position.x;
+	delta_y = (float)aim_position.y - position.y;
+	vector_lenght = sqrt(delta_x*delta_x + delta_y*delta_y);
+	unitary.x = delta_x / vector_lenght;
+	unitary.y = delta_x / vector_lenght;
+	unitary.x *= 2.0f;
+	unitary.y *= 2.0f;	
 }

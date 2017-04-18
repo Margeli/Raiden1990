@@ -3,6 +3,7 @@
 
 #include "p2Point.h"
 #include "Animation.h"
+#include "ModuleParticles.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -24,7 +25,8 @@ public:
 
 	virtual void Move() {};
 	virtual void Draw(SDL_Texture* sprites);
-	//virtual void ShotMove();
+	virtual void Shot(Particle& shot, iPoint aim_position)=0;
+	virtual void ShotMovement()=0;
 	virtual void OnCollision(Collider* collider);
 };
 
