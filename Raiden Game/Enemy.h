@@ -24,6 +24,7 @@ public:
 
 	virtual void Move() {};
 	virtual void Draw(SDL_Texture* sprites);
+	virtual void ShotMove();
 	virtual void OnCollision(Collider* collider);
 };
 

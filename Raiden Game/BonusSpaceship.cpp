@@ -10,8 +10,7 @@ Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y)
 	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 5 });
 	color_rotatory_shot.anim.PushBack({56, 40, 6, 5 });//animation
 	color_rotatory_shot.anim.speed = 0.3f;
-	color_rotatory_shot.speed.y = 2;
-	color_rotatory_shot.speed.x = 0;
+	
 	color_rotatory_shot.life = 3000;
 	color_rotatory_shot.anim.loop = true;
 
@@ -53,7 +52,8 @@ void Bonus_Spaceship::Move() {
 	increment_y = -(position.y - initial_y);
 
 	if (shooting) {
-		Shot(position.x+31, position.y+25);//fitted to shoot from the middle of the ship
+	
+		App->particles->AddParticle(color_rotatory_shot, position.x + 31, position.y + 25, COLLIDER_ENEMY_SHOT);//Adds a particle (color_rotatory_shot) in front of the spaceship.
 		shooting = false;
 	}	
 
@@ -100,7 +100,8 @@ void Bonus_Spaceship::Move() {
 position.y -= speed;
 }
 
-void Bonus_Spaceship::Shot(int shooter_x, int shooter_y) {
-
-	App->particles->AddParticle(color_rotatory_shot, shooter_x, shooter_y, COLLIDER_ENEMY_SHOT);//Adds a particle (color_rotatory_shot) in front of the spaceship.
+void Bonus_Spaceship::ShotMove(int shooter_x, int shooter_y) {
+	color_rotatory_shot.speed.y = 2;
+	color_rotatory_shot.speed.x = 0;
+	
 }

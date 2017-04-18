@@ -19,7 +19,7 @@ private:
 	float initial_y;
 	int counter_movement;
 	bool right;
-	void Shot(int shooter_x, int shooter_y);
+	void ShotMove(int shooter_x, int shooter_y);
 	bool shooting ;
 
 public:
