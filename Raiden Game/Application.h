@@ -14,6 +14,7 @@ class ModuleIntro;
 class ModuleLevel1;
 class ModuleLevel2;
 class ModulePlayer;
+class ModulePlayer2;
 class ModuleFadeToBlack;
 class ModuleParticles;
 class ModuleStageCompleted;
@@ -36,6 +37,7 @@ public:
 	ModuleLevel1* level1;
 	ModuleLevel2* level2;
 	ModulePlayer* player;
+	ModulePlayer2* player2;
 	ModuleFadeToBlack* fade;
 	ModuleParticles*particles;
 	ModuleCollision* collision;

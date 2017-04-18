@@ -10,46 +10,46 @@
 #include "ModuleCollision.h"
 #include "ModuleAudio.h"
 
-ModulePlayer::ModulePlayer()
+ModulePlayer2::ModulePlayer2()
 {
 	graphics = NULL;
 	current_animation = NULL;
 
-	
-	
-	idle.PushBack({ 80, 13, 24,27 });
-	
+
+
+	idle.PushBack({ 305, 13, 24,27 });
+
 	//move animation right
-	
-	right.PushBack({ 114, 14, 20, 27 });
-	right.PushBack({ 149, 14, 15, 27 });
+
+	right.PushBack({ 338, 14, 20, 27 });
+	right.PushBack({ 372, 14, 15, 27 });
 	right.loop = false;
 	right.speed = 0.1f;
 
 	//move animation left
-	
-	left.PushBack({ 51, 14, 20, 27 });
-	left.PushBack({ 22, 14, 15, 27 });
+
+	left.PushBack({ 246, 14, 20, 27 });
+	left.PushBack({ 275, 14, 15, 27 });
 	left.loop = false;
 	left.speed = 0.1f;
 
 	//Raiden basic shot 
-	
+
 	basic_shot.anim.PushBack({ 22, 31, 5, 5 });	//animation
 	basic_shot.anim.speed = 1.0f;
 	basic_shot.speed.y = -3;
 	basic_shot.speed.x = 0;
 	basic_shot.life = 3000;
 	basic_shot.anim.loop = true;
-	
+
 }
 
-ModulePlayer::~ModulePlayer()
+ModulePlayer2::~ModulePlayer2()
 {}
 
-bool ModulePlayer::CleanUp()
+bool ModulePlayer2::CleanUp()
 {
-	LOG("Unloading player");
+	LOG("Unloading player2");
 
 	App->textures->Unload(graphics);
 
@@ -61,18 +61,18 @@ bool ModulePlayer::CleanUp()
 }
 
 // Load assets
-bool ModulePlayer::Start()
+bool ModulePlayer2::Start()
 {
-	LOG("Loading player textures");
+	LOG("Loading player 2 textures");
 	bool ret = true;
-	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png"); 
+	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png");
 	if (graphics == nullptr) {
-		LOG("Error loading player textures %s", SDL_GetError);
+		LOG("Error loading player 2 textures %s", SDL_GetError);
 		ret = false;
 	}
-	
 
-	position.x = 111;
+
+	position.x = 151;
 	position.y = 150;
 
 	spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
@@ -81,14 +81,14 @@ bool ModulePlayer::Start()
 }
 
 // Update: draw background
-update_status ModulePlayer::Update()
+update_status ModulePlayer2::Update()
 {
-	
+
 	float speed = 2;
 	float  spaceship_speed = 2;
 	position.y -= spaceship_speed;
 
-	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT) //---UP
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT) //---UP
 	{
 		position.y -= speed;
 		if (-position.y*SCREEN_SIZE > App->render->camera.y) {
@@ -96,20 +96,20 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)//---DOWN
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)//---DOWN
 	{
 		position.y += speed;
-		if ((-(position.y-SCREEN_HEIGHT+27)*SCREEN_SIZE)<App->render->camera.y) { //lower player limit (27 is height of spaceship)
-			position.y = ((-App->render->camera.y / SCREEN_SIZE) -27+ SCREEN_HEIGHT) ;
+		if ((-(position.y - SCREEN_HEIGHT + 27)*SCREEN_SIZE)<App->render->camera.y) { //lower player limit (27 is height of spaceship)
+			position.y = ((-App->render->camera.y / SCREEN_SIZE) - 27 + SCREEN_HEIGHT);
 		}
-		
-		}
-		
-	
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)//---LEFT
+
+	}
+
+
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)//---LEFT
 	{
 		position.x -= speed;
-		App->render->camera.x +=4;
+		App->render->camera.x += 4;
 		if (current_animation != &left)
 		{
 			left.Reset();
@@ -121,10 +121,10 @@ update_status ModulePlayer::Update()
 				position.x = -48;
 			}
 		}
-		
+
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)//---RIGHT
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)//---RIGHT
 	{
 		position.x += speed;
 		App->render->camera.x -= 4;
@@ -134,37 +134,37 @@ update_status ModulePlayer::Update()
 			current_animation = &right;
 		}
 		if (App->render->camera.x <= -154) {//right camera limit
-			App->render->camera.x =-154;
+			App->render->camera.x = -154;
 			if (position.x >= 275) { //right player limit
 				position.x = 275;
 			}
 		}
 	}
-	 
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE //check error
-		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE //check error
+		&& App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE) {
 		current_animation = &idle;
 	}
-		
 
-  	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-	{			
- 		App->particles->AddParticle(basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT,0,"Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	{
+		App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
 	}
 
 	spaceship_collider->SetPos(position.x, position.y);
 
 	// Draw everything --------------------------------------
-		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	
+	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+
 	return UPDATE_CONTINUE;
 }
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)
 	{
 		App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-		
+
 
 
 		destroyed = true;

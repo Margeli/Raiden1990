@@ -47,6 +47,8 @@ bool ModuleLevel1::Start()
 	App->particles->Enable();
 	App->collision->Enable();
 	App->enemies->Enable();
+
+	App->player->destroyed = false;
 	
 	LOG("Loading level 1");
 

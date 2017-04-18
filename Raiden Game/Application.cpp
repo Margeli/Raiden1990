@@ -6,6 +6,7 @@
 #include "ModuleLevel1.h"
 #include "ModuleLevel2.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleIntro.h"
 #include "ModuleAudio.h"
@@ -26,6 +27,7 @@ Application::Application()
 	modules[i++] = level1 = new ModuleLevel1();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
+	modules[i++] = player2 = new ModulePlayer2();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = intro = new ModuleIntro();
 	modules[i++] = audio = new ModuleAudio();
