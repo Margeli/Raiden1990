@@ -9,10 +9,14 @@ class LightShooter_Spaceship : public Enemy
 private:
 
 
-	Animation idle;
-	Animation forward;
-	Animation boost;
-
+	Animation up;
+	Animation down;
+	Animation left;
+	Animation right;
+	Animation down_right;
+	Animation right_up;
+	Animation up_left;
+	Animation left_down;
 
 	float speed;
 	float increment_y;

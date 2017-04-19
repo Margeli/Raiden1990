@@ -6,6 +6,9 @@
 #include "ModuleTextures.h"
 #include "Enemy.h"
 #include "BonusSpaceship.h"
+#include "LightShooterSpaceship.h"
+#include "GreenShooterSpaceship.h"
+
 
 
 
@@ -27,6 +30,8 @@ bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
 	sprites = App->textures->Load("Assets/Images/Bonus_Spaceship.png");
+	/*sprites = App->textures->Load("Assets/Images/Green_Shooter.png");
+	sprites = App->textures->Load("Assets/Images/Light_Shooter.png");*/
 
 	if (sprites == nullptr) {
 		LOG("Error loading enemy's sprites.");
@@ -141,8 +146,13 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i] = new Bonus_Spaceship(info.x, info.y, info.shots);
 			break;
 
-			//	case ENEMY_TYPES::CHIPSAHOY:
-			//enemies[i] = new Enemy_ChipsAhoy(info.x, info.y);
+		/*case ENEMY_TYPES::GREENSHOOTER_SPACESHIP:
+			enemies[i] = new GreenShooter_Spaceship(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP:
+			enemies[i] = new LightShooter_Spaceship(info.x, info.y, info.shots);
+			break;*/
 		}
 	}
 }
