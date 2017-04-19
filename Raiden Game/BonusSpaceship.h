@@ -43,4 +43,4 @@ public:
 
 };
 
-#endif // __STATIC_ENEMY_H__
+#endif // __BONUS_SPACESHIP_H__
