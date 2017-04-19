@@ -9,9 +9,11 @@ class GreenShooter_Spaceship : public Enemy
 private:
 
 
-	Animation idle;
-	Animation forward;
+	Animation idle;	
 	Animation boost;
+
+	Animation backward_idle;
+	Animation backward_boost;
 	
 
 	float speed;
