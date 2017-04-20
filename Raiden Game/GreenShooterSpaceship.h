@@ -21,8 +21,8 @@ private:
 	float initial_y;
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	//void ShotMovement();
-	bool shooting;
-
+	bool shooting=false;
+	bool down;
 
 
 

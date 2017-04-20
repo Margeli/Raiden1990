@@ -70,12 +70,10 @@ bool ModuleLevel1::Start()
 
 
 	
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 82, -230, 3);
-	//App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 82, -150, 0);
-	//App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 122, -100, 0);
-	//App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 42, -125, 0);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -230, 3);
+	
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -250, 3);
+	//App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -250, 3);
 	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 82, -1500, 3);
 	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 120, -2000, 3);
 	
