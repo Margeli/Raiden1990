@@ -21,6 +21,8 @@ class ModuleStageCompleted;
 class Module;
 class ModuleCollision;
 class ModuleEnemies;
+class ModuleFonts;
+
 
 class Application
 {
@@ -42,6 +44,8 @@ public:
 	ModuleParticles*particles;
 	ModuleCollision* collision;
 	ModuleEnemies* enemies;
+	ModuleFonts* fonts;
+
 public:
 
 	Application();

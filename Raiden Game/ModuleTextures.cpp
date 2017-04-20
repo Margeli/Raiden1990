@@ -111,3 +111,32 @@ bool ModuleTextures::Unload(SDL_Texture * texture)
 
 	return ret;
 }
+// Translate a surface into a texture
+SDL_Texture* ModuleTextures::LoadSurface(SDL_Surface* surface)
+{
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
+
+	if (texture == NULL)
+	{
+		LOG("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
+	}
+	else
+	{
+		for (uint i = 0; i < MAX_TEXTURES; ++i)
+		{
+			if (textures[i] == nullptr)
+			{
+				textures[i] = texture;
+				break;
+			}
+		}
+	}
+
+	return texture;
+}
+
+// Retrieve size of a texture
+void ModuleTextures::GetSize(const SDL_Texture* texture, uint& width, uint& height) const
+{
+	SDL_QueryTexture((SDL_Texture*)texture, NULL, NULL, (int*)&width, (int*)&height);
+}

@@ -9,6 +9,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollision.h"
 #include "ModuleAudio.h"
+#include "ModuleFonts.h"
 
 ModulePlayer::ModulePlayer()
 {
