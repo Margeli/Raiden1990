@@ -37,12 +37,12 @@ bool ModulePowerUps::CleanUp()
 bool ModulePowerUps::Start()
 {
 
-
+	return true;
 }
 
 update_status ModulePowerUps::Update()
 {
-
+	return UPDATE_CONTINUE;
 
 }
 

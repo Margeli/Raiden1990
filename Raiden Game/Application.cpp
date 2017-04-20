@@ -37,7 +37,7 @@ Application::Application()
 	modules[i++] = stageCompleted = new ModuleStageCompleted();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fonts = new ModuleFonts();
-	modules[i++] = powerups = new ModulePowerUps();
+	modules[i++] = powerup = new ModulePowerUps();
 }	
 
 Application::~Application()
