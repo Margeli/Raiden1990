@@ -22,6 +22,7 @@ class Module;
 class ModuleCollision;
 class ModuleEnemies;
 class ModuleFonts;
+class ModulePowerUps;
 
 
 class Application
@@ -45,6 +46,7 @@ public:
 	ModuleCollision* collision;
 	ModuleEnemies* enemies;
 	ModuleFonts* fonts;
+	ModulePowerUps* powerups;
 
 public:
 

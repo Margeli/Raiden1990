@@ -15,6 +15,7 @@
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
 #include "ModuleFonts.h"
+#include "ModulePowerUps.h"
 
 Application::Application()
 {
@@ -36,6 +37,7 @@ Application::Application()
 	modules[i++] = stageCompleted = new ModuleStageCompleted();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fonts = new ModuleFonts();
+	modules[i++] = powerups = new ModulePowerUps();
 }	
 
 Application::~Application()
