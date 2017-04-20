@@ -154,14 +154,24 @@ update_status ModulePlayer::Update()
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 		current_animation = &idle;
 	}
-		
+	
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)
+	{
+		if (spaceship_collider!=nullptr){
+			spaceship_collider->SetPos(-1000, -1000);
+			spaceship_collider = nullptr;
+		}
+		else
+			spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
+	}
 
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{			
  		App->particles->AddParticle(basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT,0,"Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
 	}
 
-	spaceship_collider->SetPos(position.x, position.y);
+	if (spaceship_collider!= nullptr)
+		spaceship_collider->SetPos(position.x, position.y);
 
 	// Draw everything --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
