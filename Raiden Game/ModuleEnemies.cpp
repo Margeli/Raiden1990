@@ -29,7 +29,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
-	sprites = App->textures->Load("Assets/Images/Bonus_Spaceship.png");
+	//sprites = App->textures->Load("Assets/Images/Bonus_Spaceship.png");
 	/*sprites = App->textures->Load("Assets/Images/Green_Shooter.png");
 	sprites = App->textures->Load("Assets/Images/Light_Shooter.png");*/
 
@@ -67,7 +67,7 @@ update_status ModuleEnemies::Update()
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		if (enemies[i] != nullptr) {
-			enemies[i]->Draw(sprites); }
+			enemies[i]->Draw(enemies[i]->sprite_path); }
 			
 
 	return UPDATE_CONTINUE;
@@ -146,13 +146,13 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i] = new Bonus_Spaceship(info.x, info.y, info.shots);
 			break;
 
-		/*case ENEMY_TYPES::GREENSHOOTER_SPACESHIP:
+		case ENEMY_TYPES::GREENSHOOTER_SPACESHIP:
 			enemies[i] = new GreenShooter_Spaceship(info.x, info.y, info.shots);
 			break;
 
 		case ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP:
 			enemies[i] = new LightShooter_Spaceship(info.x, info.y, info.shots);
-			break;*/
+			break;
 		}
 	}
 }

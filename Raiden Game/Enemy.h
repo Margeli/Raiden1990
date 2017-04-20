@@ -13,9 +13,11 @@ class Enemy
 protected:
 	Animation* animation = nullptr;
 	Collider* collider = nullptr;
+	
 
 public:
 	fPoint position;
+	SDL_Texture* sprite_path = nullptr;
 
 public:
 	Enemy(int x, int y);

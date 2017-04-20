@@ -3,10 +3,12 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
+#include "ModuleTextures.h"
 
 
 GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
 {
+	sprite_path = App->textures->Load("Assets/Images/Green_Shooter.png");
 	//GreenShooter Spaceship animations
 
 	idle.PushBack({ 243, 48,71,65 });//no-turbo 

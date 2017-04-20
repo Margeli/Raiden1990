@@ -3,10 +3,13 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
+#include "ModuleTextures.h"
 
 
 Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y) 
 {
+	sprite_path = App->textures->Load("Assets/Images/Bonus_Spaceship.png");
+
 	//Bonus Spaceship shot
 	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });	
 	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
