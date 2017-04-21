@@ -36,7 +36,7 @@ public:
 	iPoint position;
 	Collider* spaceship_collider;
 	bool destroyed=false;
-
+	float hit_dmg;
 	
 };
 

@@ -42,6 +42,8 @@ public:
 
 	bool AddEnemy(ENEMY_TYPES type, int x, int y, int shots=0);
 
+	Enemy* enemies[MAX_ENEMIES];
+
 private:
 
 	void SpawnEnemy(const EnemyInfo& info);
@@ -49,7 +51,7 @@ private:
 private:
 
 	EnemyInfo queue[MAX_ENEMIES];
-	Enemy* enemies[MAX_ENEMIES];
+	
 	SDL_Texture* sprites;
 };
 

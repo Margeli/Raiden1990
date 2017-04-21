@@ -1,12 +1,16 @@
 #include "Application.h"
 #include "LightShooterSpaceship.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 
 
 LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
 {
+
+	hits_life = 1.0f;
 	/*up.PushBack({1,1,22,31}); //Facing down
 
 	//Animation from facing downwards to facing right
@@ -55,4 +59,20 @@ void LightShooter_Spaceship::Move() {
 
 void LightShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
 	
+}
+
+void LightShooter_Spaceship::OnCollision(Collider*collider, int num_enemy) {
+	if (collider->type == COLLIDER_PLAYER_SHOT) {
+		hits_life -= App->player->hit_dmg;
+	}
+	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
+		hits_life -= App->player2->hit_dmg;
+
+	}
+	if (hits_life <= 0) {
+		delete App->enemies->enemies[num_enemy];
+		App->enemies->enemies[num_enemy] = nullptr;
+		App->particles->AddParticle(explosion, position.x, position.y);
+	}
+
 }

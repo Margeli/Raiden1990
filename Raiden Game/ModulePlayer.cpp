@@ -42,6 +42,8 @@ ModulePlayer::ModulePlayer()
 	basic_shot.speed.x = 0;
 	basic_shot.life = 3000;
 	basic_shot.anim.loop = true;
+
+	hit_dmg = 1.0f;
 	
 }
 

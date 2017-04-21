@@ -37,6 +37,7 @@ public:
 	Collider* spaceship_collider;
 	bool destroyed = false;
 	bool player2 = false;
+	float hit_dmg;
 
 
 };

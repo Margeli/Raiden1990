@@ -42,6 +42,8 @@ ModulePlayer2::ModulePlayer2()
 	basic_shot.life = 3000;
 	basic_shot.anim.loop = true;
 
+	hit_dmg = 1.0f;
+
 }
 
 ModulePlayer2::~ModulePlayer2()
@@ -75,7 +77,7 @@ bool ModulePlayer2::Start()
 	position.x = 151;
 	position.y = 150;
 
-	spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
+	spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER2, this);
 
 	return ret;
 }
@@ -149,7 +151,7 @@ update_status ModulePlayer2::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
+		App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
 	}
 
 	spaceship_collider->SetPos(position.x, position.y);
