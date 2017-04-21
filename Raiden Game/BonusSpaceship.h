@@ -14,6 +14,7 @@ private:
 	Animation boost;
 	Particle color_rotatory_shot;
 
+	float hits_life;
 	float speed ;
 	float increment_y;
 	float initial_y;
@@ -29,8 +30,9 @@ private:
 	float vector_lenght = 0.0f;
 	fPoint unitary;
 
+	void OnCollision(Collider* collider, int num_enemy);
 
-	
+	Particle explosion;
 
 
 public:
@@ -38,6 +40,8 @@ public:
 	Bonus_Spaceship(int x, int y, int count);
 	void Move();
 	int shoots = 3;
+
+
 
 	
 

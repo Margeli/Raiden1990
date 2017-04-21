@@ -70,12 +70,11 @@ bool ModuleLevel1::Start()
 
 
 	
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -230, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -330, 3);
 	
 
-	//App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -250, 3);
-	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 82, -1500, 3);
-	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 120, -2000, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -100, 3);
+	
 	
 	return true;
 }

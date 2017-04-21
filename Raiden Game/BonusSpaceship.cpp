@@ -3,6 +3,8 @@
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
+#include "ModuleEnemies.h"
 #include "ModuleTextures.h"
 
 
@@ -47,7 +49,7 @@ Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y)
 	
 	collider = App->collision->AddCollider({ 0, 0, 64, 65 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	 
+	hits_life= 17.0f;
 	
 		
 }
@@ -133,4 +135,19 @@ void Bonus_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_init
 	
 	shot.speed.y = unitary.y;
 	shot.speed.x = unitary.x;
+}
+void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
+	if (collider->type == COLLIDER_PLAYER_SHOT) {
+		hits_life -= App->player->hit_dmg;
+	}
+	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
+		hits_life -= App->player2->hit_dmg;
+
+	}
+	if (hits_life <= 0) {
+		delete App->enemies->enemies[num_enemy];
+		App->enemies->enemies[num_enemy] = nullptr;
+		App->particles->AddParticle(explosion, position.x, position.y);
+	}
+
 }
