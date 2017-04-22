@@ -14,8 +14,7 @@ struct SDL_Texture;
 
 struct PowerUp;
 
-class ModulePowerUps : public Module{
-	enum POWERUP_TYPE {
+enum POWERUP_TYPE {
 		POWERUP_NONE = -1,
 		POWERUP_BLUE,
 		POWERUP_RED,
@@ -27,6 +26,9 @@ class ModulePowerUps : public Module{
 		POWERUP_FAIRY,	
 	};
 
+class ModulePowerUps : public Module{
+	
+
 	public:
 		ModulePowerUps();
 		~ModulePowerUps();
@@ -37,12 +39,24 @@ class ModulePowerUps : public Module{
 		void OnCollision(Collider* c1, Collider* c2);
 		void AddPowerUp(Particle*particle, POWERUP_TYPE type, int x, int y);
 
+		char* sprites_path;
+
 	public:
 
 		SDL_Texture* powerups[MAX_POWERUPS];
 		SDL_Rect PowerUp;
 		Collider* pu_collider;
 
+public:
+	Particle Red_Bonus;
+	Particle Blue_Bonus;
+	Particle M_Bonus;
+	Particle H_Bonus;
+	Particle P_Bonus; 
+	Particle Fairy_Bonus;
+	Particle Medal_Bonus;
+	Particle Dragon_Bonus;
+			
 };
 
 #endif //__MODULEPOWERUPS_H__
