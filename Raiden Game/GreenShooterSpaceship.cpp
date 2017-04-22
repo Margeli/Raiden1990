@@ -12,6 +12,29 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 {
 	sprite_path = App->textures->Load("Assets/Images/Green_Shooter.png");
 
+	//explosion  particle animation (2nd row particle spritesheet.)
+	explosion.anim.PushBack({ 2,60,34,30 });
+	explosion.anim.PushBack({ 36 ,60,34,30 });
+	explosion.anim.PushBack({ 70,60,34,30 });
+	explosion.anim.PushBack({ 104 ,60,34,30 });
+	explosion.anim.PushBack({ 138 ,60,34,30 });
+	explosion.anim.PushBack({ 172 ,60,34,30 });
+	explosion.anim.PushBack({ 206 ,60,34,30 });
+	explosion.anim.PushBack({ 240,60,34,30 });
+	explosion.anim.PushBack({ 274,60,34,30 });
+	explosion.anim.PushBack({ 308 ,60,34,30 });
+	explosion.anim.PushBack({ 342,60,34,30 });
+	explosion.anim.PushBack({ 376 ,60,34,30 });
+	explosion.anim.PushBack({ 410,60,34,30 });
+	explosion.anim.PushBack({ 446 ,60,34,30 });
+	explosion.anim.PushBack({ 478 ,60,34,30 });
+	explosion.anim.PushBack({ 512,60,34,30 });
+	explosion.anim.speed = 0.3f;
+
+	explosion.life = 6000;
+	explosion.anim.loop = false;
+
+
 	//GreenShooter Spaceship animations
 	if (sprite_path == nullptr) {
 		LOG("Error loading GreenShooter's textures. SDL Error: %s", SDL_GetError());
@@ -36,8 +59,8 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 	initial_y = y;
 	increment_y = 0.0f;
 
-
-	hits_life = 21.0f;
+	score_points = 130;
+	hits_life = 5.0f;// 21.0f
 	down = true;
 	
 	collider = App->collision->AddCollider({ 0, 0, 71, 53 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
@@ -113,9 +136,11 @@ void GreenShooter_Spaceship::OnCollision(Collider*collider, int num_enemy){
 	
 	}
 	if (hits_life <= 0) {
+		App->player->score += score_points;
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_NONE, 0, "Assets/Images/Particles_Spritesheet.png");
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
-		App->particles->AddParticle(explosion, position.x, position.y);
+		
 	}
 
 }

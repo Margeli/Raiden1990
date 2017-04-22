@@ -9,8 +9,30 @@
 
 LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
 {
-
+	score_points = 130;
 	hits_life = 1.0f;
+
+	//explosion  particle animation (2nd row particle spritesheet.)
+	explosion.anim.PushBack({2,60,34,30});
+	explosion.anim.PushBack({36 ,60,34,30 });
+	explosion.anim.PushBack({ 70,60,34,30 });
+	explosion.anim.PushBack({104 ,60,34,30 });
+	explosion.anim.PushBack({138 ,60,34,30 }); 
+	explosion.anim.PushBack({172 ,60,34,30 });
+	explosion.anim.PushBack({206 ,60,34,30 });
+	explosion.anim.PushBack({ 240,60,34,30 });
+	explosion.anim.PushBack({ 274,60,34,30 });
+	explosion.anim.PushBack({308 ,60,34,30 });
+	explosion.anim.PushBack({ 342,60,34,30 });
+	explosion.anim.PushBack({376 ,60,34,30 });
+	explosion.anim.PushBack({ 410,60,34,30 });
+	explosion.anim.PushBack({446 ,60,34,30 });
+	explosion.anim.PushBack({478 ,60,34,30 });
+	explosion.anim.PushBack({ 512,60,34,30 });
+	
+
+	
+
 	/*up.PushBack({1,1,22,31}); //Facing down
 
 	//Animation from facing downwards to facing right
@@ -70,6 +92,7 @@ void LightShooter_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 
 	}
 	if (hits_life <= 0) {
+		App->player->score += score_points;
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 		App->particles->AddParticle(explosion, position.x, position.y);

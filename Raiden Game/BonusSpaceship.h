@@ -23,6 +23,8 @@ private:
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	//void ShotMovement();
 	bool shooting ;
+	uint score_points;
+
 
 	float m;//
 	float delta_x;

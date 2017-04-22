@@ -9,8 +9,9 @@
 
 struct SDL_Texture;
 
-class ModulePowerUps : public Module
-{
+struct PowerUp;
+
+class ModulePowerUps : public Module{
 	public:
 		ModulePowerUps();
 		~ModulePowerUps();
@@ -28,5 +29,5 @@ class ModulePowerUps : public Module
 
 };
 
-#endif __MODULEPOWERUPS_H__
+#endif //__MODULEPOWERUPS_H__
 

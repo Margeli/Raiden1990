@@ -28,6 +28,8 @@ private:
 	bool down;
 	void OnCollision(Collider* collider, int num_enemy);
 	float hits_life;
+	uint score_points;
+
 
 
 

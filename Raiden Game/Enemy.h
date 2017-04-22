@@ -25,6 +25,7 @@ public:
 
 	const Collider* GetCollider() const;
 
+	uint score_points;
 	float hits_life ;
 	virtual void Move() {};
 	virtual void Draw(SDL_Texture* sprites);

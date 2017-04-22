@@ -26,6 +26,8 @@ private:
 	float initial_y;		
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);	
 	bool shooting;
+	uint score_points;
+
 
 	void OnCollision(Collider* collider, int num_enemy);
 
