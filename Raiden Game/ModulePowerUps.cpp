@@ -13,7 +13,10 @@
 
 ModulePowerUps::ModulePowerUps()
 {
-
+	for (int i = 0; i < MAX_POWERUPS; i++)
+	{
+		powerups[i] = nullptr;
+	}
 }
 
 ModulePowerUps::~ModulePowerUps()
@@ -24,13 +27,13 @@ ModulePowerUps::~ModulePowerUps()
 bool ModulePowerUps::CleanUp()
 {
 	LOG("Unloading power-ups");
-
-	App->textures->Unload(powerup);
-
-	if (pu_collider != nullptr) {
-		pu_collider->to_delete = true;
+	for (int i = 0; i < MAX_POWERUPS; i++)
+	{
+		if (powerups[i] != nullptr) {
+			App->textures->Unload(powerups[i]);
+		}
 	}
-
+	
 	return true;
 }
 
