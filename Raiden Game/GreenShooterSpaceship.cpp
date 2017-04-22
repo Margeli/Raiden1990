@@ -10,13 +10,13 @@
 
 GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
 {
-	sprite_path = App->textures->Load("Assets/Images/Green_Shooter.png");
+	
 
 	//explosion  particle animation (2nd row particle spritesheet.)
 	explosion.anim.PushBack({ 2,60,34,30 });
 	explosion.anim.PushBack({ 36 ,60,34,30 });
 	explosion.anim.PushBack({ 70,60,34,30 });
-	explosion.anim.PushBack({ 104 ,60,34,30 });
+	explosion.anim.PushBack({ 104 ,60,34,30 }); // test explosion (this explosion is LightShooter's one.)
 	explosion.anim.PushBack({ 138 ,60,34,30 });
 	explosion.anim.PushBack({ 172 ,60,34,30 });
 	explosion.anim.PushBack({ 206 ,60,34,30 });
@@ -34,6 +34,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 	explosion.life = 6000;
 	explosion.anim.loop = false;
 
+	sprite_path = App->textures->Load("Assets/Images/Green_Shooter.png");
 
 	//GreenShooter Spaceship animations
 	if (sprite_path == nullptr) {
@@ -138,6 +139,11 @@ void GreenShooter_Spaceship::OnCollision(Collider*collider, int num_enemy){
 	if (hits_life <= 0) {
 		App->player->score += score_points;
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_NONE, 0, "Assets/Images/Particles_Spritesheet.png");
+
+
+
+
+
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 		

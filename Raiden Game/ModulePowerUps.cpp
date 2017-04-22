@@ -50,3 +50,39 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 {
 
 }
+
+void ModulePowerUps::AddPowerUp(Particle*particle, POWERUP_TYPE type, int x, int y)
+{	
+	if (particle != nullptr) {
+
+
+		switch (type)
+		{
+		case POWERUP_BLUE: 
+			
+			break;
+		case POWERUP_RED: 
+
+			break;
+		case POWERUP_H: 
+
+			break;
+		case POWERUP_M: 
+
+			break;
+		case POWERUP_P: 
+
+			break;
+		case POWERUP_DRAGON: 
+
+			break;
+		case POWERUP_FAIRY: 
+
+			break;
+		case POWERUP_MEDAL: 
+
+			break;
+
+		}
+	}
+}
