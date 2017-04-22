@@ -6,6 +6,7 @@
 #include "Globals.h"
 #include "p2Point.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
 
 struct SDL_Texture;
 

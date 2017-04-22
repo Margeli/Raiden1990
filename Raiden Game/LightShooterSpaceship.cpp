@@ -33,7 +33,7 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 	
 
-	/*up.PushBack({1,1,22,31}); //Facing down
+	up.PushBack({1,1,22,31}); //Facing down
 
 	//Animation from facing downwards to facing right
 	down_right.PushBack({ 24,1,25 ,29 });
@@ -68,7 +68,7 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	left_down.PushBack({ 458,1,24,30 });
 	left_down.speed = 0.5f;
 
-	animation = &down;*/
+	animation = &down;
 
 
 	collider = App->collision->AddCollider({ 0, 0, 31, 31 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies); 
