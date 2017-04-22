@@ -29,6 +29,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 	explosion.anim.PushBack({ 446 ,60,34,30 });
 	explosion.anim.PushBack({ 478 ,60,34,30 });
 	explosion.anim.PushBack({ 512,60,34,30 });
+	explosion.anim.PushBack({ 0,0,0,0 });
 	explosion.anim.speed = 0.3f;
 
 	explosion.life = 6000;
@@ -138,7 +139,7 @@ void GreenShooter_Spaceship::OnCollision(Collider*collider, int num_enemy){
 	}
 	if (hits_life <= 0) {
 		App->player->score += score_points;
-		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_NONE, 0, "Assets/Images/Particles_Spritesheet.png");
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION, 0, "Assets/Images/Particles_Spritesheet.png");
 
 
 

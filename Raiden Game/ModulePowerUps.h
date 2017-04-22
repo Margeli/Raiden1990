@@ -6,6 +6,9 @@
 #include "Globals.h"
 #include "p2Point.h"
 #include "ModuleCollision.h"
+#include "ModuleParticles.h"
+
+#define MAX_POWERUPS 10
 
 struct SDL_Texture;
 
@@ -36,7 +39,7 @@ class ModulePowerUps : public Module{
 
 	public:
 
-		SDL_Texture* powerup = nullptr;
+		SDL_Texture* powerups[MAX_POWERUPS] ;
 		SDL_Rect PowerUp;
 		Collider* pu_collider;
 
