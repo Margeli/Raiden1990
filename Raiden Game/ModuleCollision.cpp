@@ -71,6 +71,16 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER2] = true;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER2_SHOT] = false;
 
+	matrix[COLLIDER_POWERUP][COLLIDER_WALL] = false;
+	matrix[COLLIDER_POWERUP][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_POWERUP][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_POWERUP][COLLIDER_PLAYER_SHOT] = false;
+	matrix[COLLIDER_POWERUP][COLLIDER_ENEMY_SHOT] = false;
+	matrix[COLLIDER_POWERUP][COLLIDER_POWERUP] = false;
+	matrix[COLLIDER_POWERUP][COLLIDER_PLAYER2] = true;
+	matrix[COLLIDER_POWERUP][COLLIDER_PLAYER2_SHOT] = false;
+	matrix[COLLIDER_POWERUP][COLLIDER_EXPLOSION] = false;
+
 	matrix[COLLIDER_EXPLOSION][COLLIDER_WALL] = false;
 	matrix[COLLIDER_EXPLOSION][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_EXPLOSION][COLLIDER_ENEMY] = false;
@@ -80,6 +90,7 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_EXPLOSION][COLLIDER_PLAYER2] = false;
 	matrix[COLLIDER_EXPLOSION][COLLIDER_PLAYER2_SHOT] = false;
 	matrix[COLLIDER_EXPLOSION][COLLIDER_EXPLOSION] = false;
+
 }
 
 ModuleCollision::~ModuleCollision()
@@ -180,6 +191,9 @@ void ModuleCollision::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
 		case COLLIDER_EXPLOSION: // black
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
+			break;
+		case COLLIDER_POWERUP: // black
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
 			break;
 		}
