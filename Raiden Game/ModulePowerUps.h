@@ -39,8 +39,7 @@ class ModulePowerUps : public Module{
 		void OnCollision(Collider* c1, Collider* c2);
 		void AddPowerUp( POWERUP_TYPES type, int x, int y);
 
-		char* sprites_path;
-		
+			
 
 public:
 	Particle Red_Bonus;

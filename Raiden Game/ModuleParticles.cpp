@@ -79,8 +79,13 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay, char* fx_path)
+void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay, char* FX_path, bool PowerUp)
 {
+	if (PowerUp) {
+		graphics = App->textures->Load("Assets/Images/PowerUps.png");//for PowerUps
+	}
+	else 
+		graphics = App->textures->Load("Assets/Images/Particles_Spritesheet.png");
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] == nullptr)
@@ -88,7 +93,7 @@ void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYP
 			if (particle.fx_played == false) //Fx sound when shooting
 			{
 
-				fx_shoot = App->audio->Load_Fx(fx_path);
+				fx_shoot = App->audio->Load_Fx(FX_path);
 				if (!fx_shoot) {
 					LOG("Error loading shoot's fx: %s", Mix_GetError)
 				}
@@ -108,6 +113,7 @@ void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYP
 		}
 	}
 } 
+	
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
