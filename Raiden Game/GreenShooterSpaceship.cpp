@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "GreenShooterSpaceship.h"
+#include "LightShooterSpaceship.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"

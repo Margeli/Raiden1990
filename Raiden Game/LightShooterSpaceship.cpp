@@ -1,16 +1,15 @@
 #include "Application.h"
-#include "LightShooterSpaceship.h"
+#include "GreenShooterSpaceship.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModuleTextures.h"
 
 
 LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
 {
-	score_points = 130;
-	hits_life = 1.0f;
 
 	//explosion  particle animation (2nd row particle spritesheet.)
 	explosion.anim.PushBack({2,60,34,30});
@@ -30,6 +29,12 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	explosion.anim.PushBack({478 ,60,34,30 });
 	explosion.anim.PushBack({ 512,60,34,30 });
 	
+	sprite_path = App->textures->Load("Assets/Images/Light_Shooter.png");
+
+	//LightShooter Spaceship animations
+	if (sprite_path == nullptr) {
+		LOG("Error loading LightShooter's textures. SDL Error: %s", SDL_GetError());
+	}
 
 	
 
@@ -70,6 +75,8 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 	animation = &down;
 
+	score_points = 130;
+	hits_life = 1.0f;
 
 	collider = App->collision->AddCollider({ 0, 0, 31, 31 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies); 
 }
