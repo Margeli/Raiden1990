@@ -75,6 +75,7 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -500, 3);
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 30,-100  );
+	
 	//App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -100, 3);
 	
 	

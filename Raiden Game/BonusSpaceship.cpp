@@ -6,6 +6,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleEnemies.h"
 #include "ModuleTextures.h"
+#include "math.h"
 
 
 Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y) 
@@ -52,7 +53,7 @@ Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y)
 	score_points = 480;
 	hits_life= 17.0f;
 	
-		
+	
 }
 
 void Bonus_Spaceship::Move() {
@@ -152,6 +153,7 @@ void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 		App->particles->AddParticle(explosion, position.x, position.y);
+		
 	}
 
 }

@@ -202,7 +202,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 			destroyed = true;
 		}
-
+		break;
 	}
-
 }

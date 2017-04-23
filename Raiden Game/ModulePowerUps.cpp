@@ -16,14 +16,16 @@ ModulePowerUps::ModulePowerUps()
 	
 
 	
-	/*
-	Red_Bonus.anim.PushBack({ , , ,  });	//Red_bonus
-	Red_Bonus.anim.speed = 1.0f;
+	
+	Red_Bonus.anim.PushBack({ 2,2,15,13 });	//Red Bonus
+	Red_Bonus.anim.PushBack({ 22,2,15,13 });
+	Red_Bonus.anim.PushBack({ 41,2,15,13 });	
+	Red_Bonus.anim.speed = 1.5f;
 	Red_Bonus.speed.y = 0;
 	Red_Bonus.speed.x = 0;
 	Red_Bonus.life = 6000;
 	Red_Bonus.anim.loop = true;
-
+/*
 	Blue_Bonus.anim.PushBack({ , , , });	//Blue_Bonus
 	Blue_Bonus.anim.speed = 1.0f;
 	Blue_Bonus.speed.y = 0;
