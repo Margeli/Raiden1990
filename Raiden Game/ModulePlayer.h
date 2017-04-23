@@ -37,6 +37,7 @@ public:
 	Collider* spaceship_collider;
 	bool destroyed=false;
 	float hit_dmg;
+	bool godmode = false;
 	uint high_score = 0;
 	uint score=0;
 	int red_font_score = -1;

@@ -54,6 +54,18 @@ bool ModuleLevel1::Start()
 	App->collision->Enable();
 	App->enemies->Enable();
 
+	if (App->player2->player2 == false) {
+
+		App->player->position.x = 111; //position if there's only 1 player
+		App->player->position.y = 150;
+	}
+	else {
+
+		App->player->position.x = 71; //position if there are 2 players
+		App->player->position.y = 150;
+	}
+
+
 	App->player->destroyed = false;
 	
 	LOG("Loading level 1");
@@ -88,7 +100,7 @@ bool ModuleLevel1::CleanUp()
 
 	App->textures->Unload(graphics);
 
-	App->player->Disable();
+	
 	App->player2->Disable();
 	App->enemies->Disable();
 	
