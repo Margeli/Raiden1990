@@ -46,17 +46,19 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 
 	fonts[id].graphic = tex; // graphic: pointer to the texture
 	fonts[id].rows = rows; // rows: rows of characters in the texture
-	fonts[id].len = strlen(characters); // len: length of the table
+	fonts[id].len = 0; // len: length of the table
 
-										// TODO 1: Finish storing font data
+					  
 
-	strcpy_s(fonts[id].table, characters);// table: array of chars to have the list of characters
-	fonts[id].row_chars = fonts[id].len / rows;// row_chars: amount of chars per row of the texture
-	App->textures->GetSize(fonts[id].graphic, fonts[id].char_w, fonts[id].char_h);
-	fonts[id].char_w /= fonts[id].row_chars;// char_w: width of each character
-	fonts[id].char_h /= rows;// char_h: height of each character
+	strcpy_s(fonts[id].table, characters); // table: array of chars to have the list of characters
+	fonts[id].row_chars = strlen(fonts[id].table); // row_chars: amount of chars per row of the texture
 
-	LOG("Successfully loaded BMP font from %s", texture_path);
+	uint width = 0;
+	uint height = 0;
+	App->textures->GetSize(fonts[id].graphic, width, height);
+
+	fonts[id].char_w = width / fonts[id].row_chars; // char_w: width of each character
+	fonts[id].char_h = height / rows; // char_h: height of each character
 
 	return id;
 }
@@ -87,19 +89,21 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 	rect.w = font->char_w;
 	rect.h = font->char_h;
 
-
+	int counter = 0;
 	for (uint i = 0; i < len; ++i)
-	{
-		// TODO 2: Find the character in the table and its position in the texture, then Blit
-		for (int j = 0; j < (strlen(font->table)); j++) {
-			if (text[i] == font->table[j]) {
-				App->render->Blit(font->graphic, x + font->char_w*j, y, &rect);
+	{		
+		while (counter != font->row_chars)// nº of letters of the sample array
+		{
+			if (fonts[font_id].table[counter] == text[i])
+			{
+				rect.y = font->char_h * (font_id);
+				rect.x = font->char_w * counter;
+				App->render->Blit(fonts[font_id].graphic, x, y, &rect,false);
+				x += font->char_w;
+				counter = 0;
+				break;
 			}
+			counter++;
 		}
-
-
-
-
-
 	}
 }

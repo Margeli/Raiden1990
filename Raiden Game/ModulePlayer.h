@@ -37,7 +37,15 @@ public:
 	Collider* spaceship_collider;
 	bool destroyed=false;
 	float hit_dmg;
-	uint score;
+	uint high_score = 0;
+	uint score=0;
+	int red_font_score = -1;
+	int yellow_font_score = 0;
+	char score_text[10];
+	char high_score_text[10];
+	char *user_interface;
+	
+	
 	
 };
 

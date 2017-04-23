@@ -12,12 +12,14 @@
 #include "ModuleFonts.h"
 #include "ModuleStageCompleted.h"
 
+#include<stdio.h>
+
 ModulePlayer::ModulePlayer()
 {
 	graphics = NULL;
 	current_animation = NULL;
 
-	
+	user_interface = "    1UP   HI_SCORE    2UP";
 	
 	idle.PushBack({ 80, 13, 24,27 });
 	
@@ -86,6 +88,14 @@ bool ModulePlayer::Start()
 		position.y = 150;
 	}
 	
+	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}./0123456789:", 3);
+	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}./0123456789:", 3);
+	
+	// * -> "
+	// [ -> tm
+	//	]. -> Pts
+	//	{. -> Cts
+	//	}. -> Pcs
 
 	spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
 
@@ -184,7 +194,22 @@ update_status ModulePlayer::Update()
 
 	// Draw everything --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	
+
+		// Draw UI (score) --------------------------------------
+
+		if (score >= high_score)
+			high_score = score;
+
+
+
+
+
+		sprintf_s(score_text, 10, "%7d", score);
+		sprintf_s(high_score_text, 10, "%7d", high_score);
+		
+		App->fonts->BlitText(0,1,red_font_score, user_interface);
+		App->fonts->BlitText(0, 9, yellow_font_score, score_text);
+		App->fonts->BlitText(88,9, yellow_font_score, high_score_text);
 	return UPDATE_CONTINUE;
 }
 
@@ -196,13 +221,18 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		score += 500;
 		break;
 
-	case (COLLIDER_ENEMY_SHOT || COLLIDER_ENEMY):
+	case COLLIDER_ENEMY_SHOT :
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
 			App->player2->player2 = false;
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 			destroyed = true;
 		}
-
+	case COLLIDER_ENEMY:
+		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
+			App->player2->player2 = false;
+			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
+			destroyed = true;
+		}
 	}
 
 }
