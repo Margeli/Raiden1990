@@ -43,7 +43,7 @@ ModuleLevel1::~ModuleLevel1()
 // Load assets
 bool ModuleLevel1::Start()
 {
-	
+
 	App->audio->Enable();
 	App->player->Enable();
 	if (App->player2->player2 == true)
@@ -54,7 +54,24 @@ bool ModuleLevel1::Start()
 	App->collision->Enable();
 	App->enemies->Enable();
 
-	App->player->destroyed = false;
+	if (App->player2->player2 == false) {
+
+		App->player->position.x = 111; //position if there's only 1 player
+		App->player->position.y = 150;
+	}
+	else {
+
+		App->player->position.x = 71; //position if there are 2 players
+		App->player->position.y = 150;
+	}
+	if ((!App->player->godmode)&&(!first)){
+		App->player->spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, App->player);
+	App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
+}
+
+	
+
+	
 	
 	LOG("Loading level 1");
 
@@ -89,9 +106,10 @@ bool ModuleLevel1::CleanUp()
 
 	App->textures->Unload(graphics);
 
-	App->player->Disable();
+	
 	App->player2->Disable();
 	App->enemies->Disable();
+	App->collision->Disable();
 	
 
 	return true;
@@ -111,7 +129,10 @@ update_status ModuleLevel1::Update()
 
 	App->render->Blit(graphics, -50, -2965, &foreground);
 	
-
+	if (App->player->position.y == -2965) {
+		App->fade->FadeToBlack(this, App->stageCompleted);
+		fading = true;
+	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
