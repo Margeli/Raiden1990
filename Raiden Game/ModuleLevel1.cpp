@@ -111,7 +111,10 @@ update_status ModuleLevel1::Update()
 
 	App->render->Blit(graphics, -50, -2965, &foreground);
 	
-
+	if (App->player->position.y == -2965) {
+		App->fade->FadeToBlack(this, App->stageCompleted);
+		fading = true;
+	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
