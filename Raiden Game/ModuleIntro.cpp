@@ -42,10 +42,10 @@ bool ModuleIntro::Start()
 	App->render->camera.y = 0;
 	App->particles->Disable();
 	App->audio->Enable(); 
-	App->player->Disable();
+	//App->player->Disable();
 	App->collision->Disable();
 	App->enemies->Disable();
-
+	App->player->destroyed = false;
 
 	return true;
 }

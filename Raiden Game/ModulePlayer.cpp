@@ -11,6 +11,7 @@
 #include "ModuleAudio.h"
 #include "ModuleFonts.h"
 #include "ModuleStageCompleted.h"
+#include "ModuleLevel1.h"
 
 #include<stdio.h>
 
@@ -59,9 +60,9 @@ bool ModulePlayer::CleanUp()
 
 	App->textures->Unload(graphics);
 
-	if (spaceship_collider != nullptr) {
-		spaceship_collider->to_delete = true;
-	}
+	//if (spaceship_collider != nullptr) {
+	//	spaceship_collider->to_delete = true;
+	//}
 
 	return true;
 }
@@ -173,10 +174,27 @@ update_status ModulePlayer::Update()
 		if (spaceship_collider!=nullptr){
 			spaceship_collider->SetPos(-1000, -1000);
 			spaceship_collider = nullptr;
+			godmode = true;
 		}
-		else
+		else {
 			spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
+
+			godmode = false;
+		}
+		
+		
+		
 	}
+
+
+	if ((spaceship_collider == nullptr) && (godmode == false)) {
+
+		spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
+		spaceship_collider->SetPos(position.x, position.y);
+	}
+
+
+
 
 	if( (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)&&(App->fade->IsFading()==false))//DIRECT WIN/LOSE
 	{
@@ -226,12 +244,17 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->player2->player2 = false;
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 			destroyed = true;
+			score = 0;
+			App->level1->first = false;
 		}
 	case COLLIDER_ENEMY:
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
 			App->player2->player2 = false;
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 			destroyed = true;
+			score = 0;
+			App->level1->first = false;
+
 		}
 <<<<<<< HEAD
 		break;

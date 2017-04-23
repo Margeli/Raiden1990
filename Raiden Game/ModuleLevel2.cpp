@@ -57,7 +57,7 @@ bool ModuleLevel2::CleanUp()
 
 	App->textures->Unload(graphics);
 
-	App->player->Disable();
+	
 
 	
 
