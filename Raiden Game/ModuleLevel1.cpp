@@ -84,12 +84,12 @@ bool ModuleLevel1::Start()
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
 
-	//col = App->collision->AddCollider({ 0,-250, 1000, 1 },COLLIDER_ENEMY_SHOT, this);//blue y=0 line
+	col = App->collision->AddCollider({ 0,-250, 1000, 1 },COLLIDER_EXPLOSION, this);//blue y=0 line
 
 
 	
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -330, 3);
-	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -500, 3);
+	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -330, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 30, -300, 3);
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 30,-100  );
 	

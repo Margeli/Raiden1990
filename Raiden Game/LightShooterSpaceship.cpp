@@ -39,13 +39,13 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 		LOG("Error loading LightShooter's textures. SDL Error: %s", SDL_GetError());
 	}
 
-	up.PushBack({1,1,30,30}); //Facing down
+	down.PushBack({1,1,30,30}); //Facing down
 
 	//Animation from facing downwards to facing right
 	down_right.PushBack({ 25,1,30,30 });
 	down_right.PushBack({ 53,1,30,30 });
 	down_right.PushBack({ 81,1,30,30 });
-	down_right.speed = 0.5f;
+	down_right.speed = 0.3f;
 
 	right.PushBack({114,1,30,30}); //Facing right
 	
@@ -72,7 +72,7 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	left_down.PushBack({ 392,1,30,30 });
 	left_down.PushBack({ 426,1,30,30 });
 	left_down.PushBack({ 458,1,30,30 });
-	left_down.speed = 0.5f;
+	left_down.speed = 0.3f;
 
 	animation = &down;
 

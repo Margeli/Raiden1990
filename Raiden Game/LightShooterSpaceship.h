@@ -20,13 +20,13 @@ private:
 
 	Particle explosion;
 
-	float hits_life;
+	
 	float speed;
 	float increment_y;
 	int initial_y;		
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	bool shooting;
-	uint score_points;
+	
 	bool downwards;
 	
 

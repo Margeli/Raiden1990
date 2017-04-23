@@ -89,8 +89,8 @@ bool ModulePlayer::Start()
 		position.y = 150;
 	}
 	
-	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!ก?_*#$%&'()x+.-,;[].{.}./0123456789:", 3);
-	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!ก?_*#$%&'()x+.-,;[].{.}./0123456789:", 3);
+	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!ยก?_*#$%&'()x+.-,;[].{.}./0123456789:", 3);
+	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!ยก?_*#$%&'()x+.-,;[].{.}./0123456789:", 3);
 	
 	// * -> "
 	// [ -> tm
@@ -244,8 +244,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->player2->player2 = false;
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 			destroyed = true;
+
 			score = 0;
 			App->level1->first = false;
+
 		}
 	case COLLIDER_ENEMY:
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
@@ -256,9 +258,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->level1->first = false;
 
 		}
-<<<<<<< HEAD
-		break;
-=======
->>>>>>> origin/master
+
 	}
 }
