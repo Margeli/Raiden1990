@@ -226,16 +226,15 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->player2->player2 = false;
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 			destroyed = true;
+			break;
 		}
 	case COLLIDER_ENEMY:
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
 			App->player2->player2 = false;
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 			destroyed = true;
+			break;
 		}
-<<<<<<< HEAD
-		break;
-=======
->>>>>>> origin/master
+
 	}
 }
