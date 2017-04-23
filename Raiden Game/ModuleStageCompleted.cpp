@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleLevel1.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleInput.h"
 #include "ModuleLevel2.h"
 #include "ModuleFadeToBlack.h"
@@ -30,6 +31,11 @@ ModuleStageCompleted::~ModuleStageCompleted()
 bool ModuleStageCompleted::Start()
 {
 	App->audio->Enable();
+	App->level1->Disable();
+	App->level2->Disable();
+	App->intro->Disable();
+	App->player->Disable();
+
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -51,7 +57,7 @@ bool ModuleStageCompleted::Start()
 bool ModuleStageCompleted::CleanUp()
 {
 	LOG("Unloading Stage Cleared");
-
+	App->audio->Disable();
 	App->textures->Unload(graphics);
 
 	return true;

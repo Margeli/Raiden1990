@@ -10,7 +10,14 @@
 
 GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
 {
-	
+	//Bonus Spaceship shot
+	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });
+	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
+	color_rotatory_shot.anim.PushBack({ 56, 40, 6, 7 });//animation
+	color_rotatory_shot.anim.speed = 0.3f;
+
+	color_rotatory_shot.life = 6000;
+	color_rotatory_shot.anim.loop = true;
 
 	//explosion  particle animation (2nd row particle spritesheet.)
 	explosion.anim.PushBack({ 2,60,34,30 });
@@ -61,6 +68,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 	initial_y = y;
 	increment_y = 0.0f;
 
+	
 	score_points = 130;
 	hits_life = 5.0f;// 21.0f
 	down = true;
@@ -79,7 +87,7 @@ void GreenShooter_Spaceship::Move() {
 	}
 
 	if (disperse_shoot) {//shots 8 bullets at the same time
-		
+		ShotVector(color_rotatory_shot, { 5,-1 }, position);
 
 
 		disperse_shoot = false;
@@ -107,8 +115,9 @@ void GreenShooter_Spaceship::Move() {
 	{
 		if (increment_y < 120&&increment_y>-200) {
 			speed = -2.3f;
-			if ((int)increment_y == 140) {
+			if ((increment_y <= -100)&&(!first_shot)) {
 				disperse_shoot = true;
+				first_shot = true;
 			}
 		}
 		else if (increment_y < -200) {
@@ -122,11 +131,16 @@ void GreenShooter_Spaceship::Move() {
 
 void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {	
 	shot.speed = { 0,0 };
+	
 	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
 }
 
 
-
+void GreenShooter_Spaceship::ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos) {
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
+	shot.speed.x = velocity_vector.x;
+	shot.speed.y = velocity_vector.y;
+}
 
 
 void GreenShooter_Spaceship::OnCollision(Collider*collider, int num_enemy){

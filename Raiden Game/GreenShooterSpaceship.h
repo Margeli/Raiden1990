@@ -16,18 +16,20 @@ private:
 	Animation backward_boost;
 
 	Particle explosion;
+	Particle color_rotatory_shot;
 	
 	
 	float speed;
 	float increment_y;
 	float initial_y;
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
-	//void ShotMovement();
+	void ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos);
 	bool lineal_shoot=false;
 	bool disperse_shoot = false;
 	bool down;
 	void OnCollision(Collider* collider, int num_enemy);
 	float hits_life;
+	bool first_shot = false;
 	uint score_points;
 
 

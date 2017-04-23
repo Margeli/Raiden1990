@@ -10,6 +10,7 @@
 #include "ModuleCollision.h"
 #include "ModuleAudio.h"
 #include "ModuleFonts.h"
+#include "ModuleStageCompleted.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -157,7 +158,7 @@ update_status ModulePlayer::Update()
 		current_animation = &idle;
 	}
 	
-	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)//GOD MODE
 	{
 		if (spaceship_collider!=nullptr){
 			spaceship_collider->SetPos(-1000, -1000);
@@ -165,6 +166,12 @@ update_status ModulePlayer::Update()
 		}
 		else
 			spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
+	}
+
+	if( (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)&&(App->fade->IsFading()==false))//DIRECT WIN/LOSE
+	{
+		App->fade->FadeToBlack(this, App->stageCompleted);		
+
 	}
 
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
