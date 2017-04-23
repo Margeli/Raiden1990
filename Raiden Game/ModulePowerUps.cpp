@@ -102,7 +102,6 @@ update_status ModulePowerUps::Update()
 
 void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 {
-
 }
 
 void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y)
@@ -111,28 +110,28 @@ void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y)
 	switch (type)
 		{
 		case POWERUP_BLUE: 
-			App->particles->AddParticle(Blue_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP,0,nullptr,true);
+			App->particles->AddParticle(Blue_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_B,0,nullptr,true);
 			break;
 		case POWERUP_RED: 
-			App->particles->AddParticle(Red_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP, 0, nullptr, true);
+			App->particles->AddParticle(Red_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_R, 0, nullptr, true);
 			break;
 		case POWERUP_H: 
-			App->particles->AddParticle(H_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP, 0, nullptr, true);
+			App->particles->AddParticle(H_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_H, 0, nullptr, true);
 			break;
 		case POWERUP_M: 
-			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP, 0, nullptr, true);
+			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M, 0, nullptr, true);
 			break;
 		case POWERUP_P: 
-			App->particles->AddParticle(P_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP, 0, nullptr, true);
+			App->particles->AddParticle(P_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_P, 0, nullptr, true);
 			break;
 		case POWERUP_DRAGON: 
-			App->particles->AddParticle(Dragon_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP, 0, nullptr, true);
+			App->particles->AddParticle(Dragon_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_DRAGON, 0, nullptr, true);
 			break;
 		case POWERUP_FAIRY: 
-			App->particles->AddParticle(Fairy_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP, 0, nullptr, true);
+			App->particles->AddParticle(Fairy_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_FAIRY, 0, nullptr, true);
 			break;
 		case POWERUP_MEDAL: 
-			App->particles->AddParticle(Medal_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP, 0, nullptr, true);
+			App->particles->AddParticle(Medal_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_MEDAL, 0, nullptr, true);
 			break;
 
 		}

@@ -180,15 +180,22 @@ update_status ModulePlayer::Update()
 	
 	return UPDATE_CONTINUE;
 }
+
+
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)
-	{
-		App->player2->player2 = false;
-		App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-		
+	switch (c2->type) {
+	case COLLIDER_POWERUP_MEDAL:
+		score += 500;
+		break;
 
+	case (COLLIDER_ENEMY_SHOT || COLLIDER_ENEMY):
+		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
+			App->player2->player2 = false;
+			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
+			destroyed = true;
+		}
 
-		destroyed = true;
 	}
+
 }
