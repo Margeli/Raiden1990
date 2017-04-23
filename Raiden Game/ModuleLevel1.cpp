@@ -43,7 +43,7 @@ ModuleLevel1::~ModuleLevel1()
 // Load assets
 bool ModuleLevel1::Start()
 {
-	
+
 	App->audio->Enable();
 	App->player->Enable();
 	if (App->player2->player2 == true)
@@ -64,9 +64,14 @@ bool ModuleLevel1::Start()
 		App->player->position.x = 71; //position if there are 2 players
 		App->player->position.y = 150;
 	}
+	if ((!App->player->godmode)&&(!first)){
+		App->player->spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, App->player);
+	App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
+}
 
+	
 
-	App->player->destroyed = false;
+	
 	
 	LOG("Loading level 1");
 
@@ -103,6 +108,7 @@ bool ModuleLevel1::CleanUp()
 	
 	App->player2->Disable();
 	App->enemies->Disable();
+	App->collision->Disable();
 	
 
 	return true;

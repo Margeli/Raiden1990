@@ -45,7 +45,7 @@ bool ModuleIntro::Start()
 	//App->player->Disable();
 	App->collision->Disable();
 	App->enemies->Disable();
-
+	App->player->destroyed = false;
 
 	return true;
 }

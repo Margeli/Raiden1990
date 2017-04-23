@@ -31,6 +31,8 @@ public:
 
 	float foreground_pos;
 	bool forward;
+
+	bool first = true;
 };
 
 #endif // __MODULELEVEL1_H__
