@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "GreenShooterSpaceship.h"
+#include "LightShooterSpaceship.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
@@ -10,7 +10,7 @@
 
 LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
 {
-
+ 	
 	//explosion  particle animation (2nd row particle spritesheet.)
 	explosion.anim.PushBack({2,60,34,30});
 	explosion.anim.PushBack({36 ,60,34,30 });
@@ -28,6 +28,9 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	explosion.anim.PushBack({446 ,60,34,30 });
 	explosion.anim.PushBack({478 ,60,34,30 });
 	explosion.anim.PushBack({ 512,60,34,30 });
+
+	explosion.life = 6000;
+	explosion.anim.loop = false;
 	
 	sprite_path = App->textures->Load("Assets/Images/Light_Shooter.png");
 
@@ -36,55 +39,94 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 		LOG("Error loading LightShooter's textures. SDL Error: %s", SDL_GetError());
 	}
 
-	
-
-	up.PushBack({1,1,22,31}); //Facing down
+	up.PushBack({1,1,30,30}); //Facing down
 
 	//Animation from facing downwards to facing right
-	down_right.PushBack({ 24,1,25 ,29 });
-	down_right.PushBack({ 52,1,27,25 });
-	down_right.PushBack({ 80,1,30,22 });
+	down_right.PushBack({ 25,1,30,30 });
+	down_right.PushBack({ 53,1,30,30 });
+	down_right.PushBack({ 81,1,30,30 });
 	down_right.speed = 0.5f;
 
-	right.PushBack({113,1,31,30}); //Facing right
+	right.PushBack({114,1,30,30}); //Facing right
 	
 	//Animation from right to up
 
-	right_up.PushBack({ 146,1,30,22 });
-	right_up.PushBack({ 181,1,27,25 });
-	right_up.PushBack({ 211,1,25,29 });
+	right_up.PushBack({ 147,1,30,30 });
+	right_up.PushBack({ 182,1,30,30});
+	right_up.PushBack({ 212,1,30,30 });
 	right_up.speed = 0.5f;
 
-	up.PushBack({241,1,22,31 }); //Facing up
+	up.PushBack({241,1,30,30 }); //Facing up
 
 	//Animation from up to left
 
-	up_left.PushBack({ 266,1,25,29 });
-	up_left.PushBack({ 293,1,27,25 });
-	up_left.PushBack({ 321,1,30,22 });
+	up_left.PushBack({ 266,1,30,30 });
+	up_left.PushBack({ 294,1,30,30 });
+	up_left.PushBack({ 322,1,30,30 });
 	up_left.speed = 0.5f;
 
 	left.PushBack({356,1,31,29}); //Facing left
 
 	//Animation from left to down
 
-	left_down.PushBack({ 392,1,30,22 });
-	left_down.PushBack({ 426,1,27,26 });
-	left_down.PushBack({ 458,1,24,30 });
+	left_down.PushBack({ 392,1,30,30 });
+	left_down.PushBack({ 426,1,30,30 });
+	left_down.PushBack({ 458,1,30,30 });
 	left_down.speed = 0.5f;
 
 	animation = &down;
 
+	initial_y = y;
+	increment_y = 0.0f;
+
 	score_points = 130;
 	hits_life = 1.0f;
+	downwards = true;
 
-	collider = App->collision->AddCollider({ 0, 0, 31, 31 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies); 
+	collider = App->collision->AddCollider({ 0, 0, 30, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies); 
 }
 
-void LightShooter_Spaceship::Move() {
+void LightShooter_Spaceship::Move()
+{
+	/*position.y = (position.y - initial_y);
 
+	if (downwards) {
+		if (increment_y < 55)
+			speed = 0.3f;
 
+		else if (increment_y > 55 && increment_y < 120) {
+			speed = 1.0f;
+			animation = &down;
+			if (position.x < App->player->position.x) {
+				&down_right;
+				position.x++;
+			}
+			else if (position.x > App->player->position.x) {
+				&left_down;
+				position.x--;
+			}
+
+			else if (increment_y >= 120) {
+				downwards = false;
+				speed = -2.0f;
+				animation = &up;
+			}
+		}
+		else
+		{
+			if (increment_y < 120 && increment_y>-200) {
+				speed = -2.3f;
+			}
+			else if (increment_y < -200) {
+				speed = -3.0f;
+				animation = &up;
+			}
+		}
+		position.y += speed;
+
+	}*/
 }
+
 
 void LightShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
 	

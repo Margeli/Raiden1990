@@ -151,7 +151,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP:
-			enemies[i] = new LightShooter_Spaceship(info.x, info.y, info.shots);
+   			enemies[i] = new LightShooter_Spaceship(info.x, info.y, info.shots);
 			break;
 		}
 	}

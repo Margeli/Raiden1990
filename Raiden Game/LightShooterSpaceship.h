@@ -23,11 +23,12 @@ private:
 	float hits_life;
 	float speed;
 	float increment_y;
-	float initial_y;		
-	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);	
+	int initial_y;		
+	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	bool shooting;
 	uint score_points;
-
+	bool downwards;
+	
 
 	void OnCollision(Collider* collider, int num_enemy);
 
