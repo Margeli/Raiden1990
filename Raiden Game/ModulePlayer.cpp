@@ -59,7 +59,8 @@ bool ModulePlayer::CleanUp()
 	LOG("Unloading player");
 
 	App->textures->Unload(graphics);
-
+	App->fonts->UnLoad(yellow_font_score);
+	App->fonts->UnLoad(red_font_score);
 	//if (spaceship_collider != nullptr) {
 	//	spaceship_collider->to_delete = true;
 	//}
@@ -91,14 +92,14 @@ bool ModulePlayer::Start()
 
 	user_interface = "    1UP   HI.SCORE    2UP ";
 	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
-	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
-	
-	
+	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);	
 	// * -> "
 	// [ -> tm
 	//	]. -> Pts
 	//	{. -> Cts
 	//	}. -> Pcs
+
+
 	if (spaceship_collider==nullptr)
 	spaceship_collider = App->collision->AddCollider({ 0,0, 24, 26 }, COLLIDER_PLAYER, this);
 

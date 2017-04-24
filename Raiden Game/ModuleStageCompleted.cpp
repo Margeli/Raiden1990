@@ -36,9 +36,16 @@ bool ModuleStageCompleted::Start()
 	App->level1->Disable();
 	App->level2->Disable();
 	App->intro->Disable();
-	//App->player->Enable();
+	App->player->Enable();
 
 	
+	App->player->red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
+	App->player->yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
+	// * -> "
+	// [ -> tm
+	//	]. -> Pts
+	//	{. -> Cts
+	//	}. -> Pcs
 
 
 	App->render->camera.x = 0;
@@ -66,6 +73,10 @@ bool ModuleStageCompleted::CleanUp()
 	App->audio->Disable();
 	App->textures->Unload(graphics);
 
+	App->fonts->UnLoad(App->player->red_font_score);
+	App->fonts->UnLoad(App->player->yellow_font_score);
+
+
 	App->player->Disable();
 	App->player2->Disable();
 	App->enemies->Disable();
@@ -87,8 +98,8 @@ update_status ModuleStageCompleted::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &background);
 
-	App->fonts->BlitText(0, 1, App->player->red_font_score, App->player->user_interface);//NOT WORKING
-	App->fonts->BlitText(0, 9, App->player->yellow_font_score, App->player->score_text);
+	App->fonts->BlitText(0, 1, App->player->red_font_score, App->player->user_interface);
+	App->fonts->BlitText(0, 9, App->player->yellow_font_score, App->player->score_text);//CHECK
 	App->fonts->BlitText(88, 9, App->player->yellow_font_score, App->player->high_score_text);
 
 	if (App->input->keyboard[SDL_SCANCODE_TAB] && App->fade->IsFading()==false) {

@@ -22,6 +22,8 @@ public:
 public:
 
 	
+
+
 	Mix_Music* music_stage_cleared = nullptr;
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
