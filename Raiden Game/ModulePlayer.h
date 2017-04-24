@@ -41,11 +41,14 @@ public:
 	bool godmode = false;
 	uint high_score = 0;
 	uint score=0;
-	int red_font_score = 0;
-	int yellow_font_score = 0;
+
 	char score_text[10];
 	char high_score_text[10];
 	char *user_interface;
+
+	int red_font_score = 0;
+	int yellow_font_score = 0;
+
 	
 	uint red_powerup_level = 0;
 	

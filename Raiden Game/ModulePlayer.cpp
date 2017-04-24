@@ -21,6 +21,9 @@ ModulePlayer::ModulePlayer()
 	current_animation = NULL;
 
 	
+
+
+	
 	
 	idle.PushBack({ 80, 13, 24,27 });
 	
@@ -92,13 +95,12 @@ bool ModulePlayer::Start()
 
 	user_interface = "    1UP   HI.SCORE    2UP ";
 	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
-	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);	
+	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
 	// * -> "
 	// [ -> tm
 	//	]. -> Pts
 	//	{. -> Cts
 	//	}. -> Pcs
-
 
 	if (spaceship_collider==nullptr)
 	spaceship_collider = App->collision->AddCollider({ 0,0, 24, 26 }, COLLIDER_PLAYER, this);
@@ -228,7 +230,7 @@ update_status ModulePlayer::Update()
 		
 		App->fonts->BlitText(0,1,red_font_score, user_interface);
 		App->fonts->BlitText(0, 9, yellow_font_score, score_text);
-		App->fonts->BlitText(88,9, yellow_font_score, high_score_text);
+		App->fonts->BlitText(88,9,yellow_font_score, high_score_text);
 	return UPDATE_CONTINUE;
 }
 

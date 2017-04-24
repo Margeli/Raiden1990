@@ -21,7 +21,9 @@ public:
 
 public:
 
-	
+
+	int red_font_score = 0;
+	int yellow_font_score = 0;
 
 
 	Mix_Music* music_stage_cleared = nullptr;

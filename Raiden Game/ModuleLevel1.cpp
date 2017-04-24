@@ -43,6 +43,8 @@ ModuleLevel1::~ModuleLevel1()
 // Load assets
 bool ModuleLevel1::Start()
 {
+	App->level2->Disable();
+	App->stageCompleted->Disable();
 
 	App->audio->Enable();
 	App->player->Enable();
@@ -89,14 +91,11 @@ bool ModuleLevel1::Start()
 
 	
 	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -330, 3);
-<<<<<<< HEAD
+
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 20, -150, 3);
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 100, -250, 3);
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 200, -350, 3);
-	//App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 200, -1600, 3);
-=======
-	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 30, -300, 3);
->>>>>>> origin/master
+
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 30,-100  );
 	
