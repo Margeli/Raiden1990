@@ -20,24 +20,40 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 	color_rotatory_shot.anim.loop = true;
 
 	//explosion  particle animation (2nd row particle spritesheet.)
-	explosion.anim.PushBack({ 2,60,34,30 });
-	explosion.anim.PushBack({ 36 ,60,34,30 });
-	explosion.anim.PushBack({ 70,60,34,30 });
-	explosion.anim.PushBack({ 104 ,60,34,30 }); // test explosion (this explosion is LightShooter's one.)
-	explosion.anim.PushBack({ 138 ,60,34,30 });
-	explosion.anim.PushBack({ 172 ,60,34,30 });
-	explosion.anim.PushBack({ 206 ,60,34,30 });
-	explosion.anim.PushBack({ 240,60,34,30 });
-	explosion.anim.PushBack({ 274,60,34,30 });
-	explosion.anim.PushBack({ 308 ,60,34,30 });
-	explosion.anim.PushBack({ 342,60,34,30 });
-	explosion.anim.PushBack({ 376 ,60,34,30 });
-	explosion.anim.PushBack({ 410,60,34,30 });
-	explosion.anim.PushBack({ 446 ,60,34,30 });
-	explosion.anim.PushBack({ 478 ,60,34,30 });
-	explosion.anim.PushBack({ 512,60,34,30 });
+	explosion.anim.PushBack({ 0, 466, 77, 68 });
+	explosion.anim.PushBack({ 77, 466, 77, 68 });
+	explosion.anim.PushBack({ 154, 466, 77, 68 });
+	explosion.anim.PushBack({ 231, 466, 77, 68 }); // test explosion (this explosion is LightShooter's one.)
+	explosion.anim.PushBack({ 308, 466, 77, 68 });
+	explosion.anim.PushBack({ 385, 466, 77, 68 });
+	explosion.anim.PushBack({ 462, 466, 77, 68 });
+	explosion.anim.PushBack({ 539, 466, 77, 68 });
+	explosion.anim.PushBack({ 616, 466, 77, 68 });
+	explosion.anim.PushBack({ 0, 534, 77, 68 });
+	explosion.anim.PushBack({ 77, 534, 77, 68 });
+	explosion.anim.PushBack({ 154, 534, 77, 68 });
+	explosion.anim.PushBack({ 231, 534, 77, 68 });
+	explosion.anim.PushBack({ 308, 534, 77, 68 });
+	explosion.anim.PushBack({ 385, 534, 77, 68 });	
 	explosion.anim.PushBack({ 0,0,0,0 });
 	explosion.anim.speed = 0.3f;
+
+	/*{( 0, 466, 77, 68)}
+{( 77, 466, 77, 68)}
+{( 154, 466, 77, 68)}
+{( 231, 466, 77, 68)}
+{( 308, 466, 77, 68)}
+{( 385, 466, 77, 68)}
+{( 462, 466, 77, 68)}
+{( 539, 466, 77, 68)}
+{( 616, 466, 77, 68)}
+{( 0, 534, 77, 68)}
+{( 77, 534, 77, 68)}
+{( 154, 534, 77, 68)}
+{( 231, 534, 77, 68)}
+{( 308, 534, 77, 68)}
+{( 385, 534, 77, 68)}*/
+
 
 	explosion.life = 6000;
 	explosion.anim.loop = false;
@@ -153,7 +169,7 @@ void GreenShooter_Spaceship::OnCollision(Collider*collider, int num_enemy){
 	}
 	if (hits_life <= 0) {
 		App->player->score += score_points;
-		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION, 0, "Assets/Images/Particles_Spritesheet.png");
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 
 
 

@@ -13,6 +13,24 @@ Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y)
 {
 	sprite_path = App->textures->Load("Assets/Images/Bonus_Spaceship.png");
 
+	explosion.anim.PushBack({ 0, 466, 77, 68 });
+	explosion.anim.PushBack({ 77, 466, 77, 68 });
+	explosion.anim.PushBack({ 154, 466, 77, 68 });
+	explosion.anim.PushBack({ 231, 466, 77, 68 }); 
+	explosion.anim.PushBack({ 308, 466, 77, 68 });
+	explosion.anim.PushBack({ 385, 466, 77, 68 });
+	explosion.anim.PushBack({ 462, 466, 77, 68 });
+	explosion.anim.PushBack({ 539, 466, 77, 68 });
+	explosion.anim.PushBack({ 616, 466, 77, 68 });
+	explosion.anim.PushBack({ 0, 534, 77, 68 });
+	explosion.anim.PushBack({ 77, 534, 77, 68 });
+	explosion.anim.PushBack({ 154, 534, 77, 68 });
+	explosion.anim.PushBack({ 231, 534, 77, 68 });
+	explosion.anim.PushBack({ 308, 534, 77, 68 });
+	explosion.anim.PushBack({ 385, 534, 77, 68 });
+	explosion.anim.PushBack({ 0,0,0,0 });
+	explosion.anim.speed = 0.3f;
+
 	//Bonus Spaceship shot
 	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });	
 	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
@@ -152,7 +170,7 @@ void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 		App->player->score += score_points;
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
-		App->particles->AddParticle(explosion, position.x, position.y);
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 		
 	}
 
