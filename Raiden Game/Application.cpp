@@ -51,7 +51,7 @@ bool Application::Init()
 	bool ret = true;
 
 	// Deactivate modules here ----
-	player->Disable();
+	//player->Disable();
 	level2->Disable();
 	level1->Disable();
 	stageCompleted->Disable();

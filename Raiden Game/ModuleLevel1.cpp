@@ -106,11 +106,12 @@ bool ModuleLevel1::CleanUp()
 
 	App->textures->Unload(graphics);
 
-	
+	App->player->Disable();
 	App->player2->Disable();
 	App->enemies->Disable();
 	App->collision->Disable();
-	
+	App->powerup->Disable();
+	App->particles->Disable();
 
 	return true;
 }

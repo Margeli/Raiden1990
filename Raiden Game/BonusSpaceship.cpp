@@ -29,7 +29,7 @@ Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y)
 	explosion.anim.PushBack({ 308, 534, 77, 68 });
 	explosion.anim.PushBack({ 385, 534, 77, 68 });
 	explosion.anim.PushBack({ 0,0,0,0 });
-	explosion.anim.speed = 0.3f;
+	explosion.anim.speed = 0.2f;
 
 	//Bonus Spaceship shot
 	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });	

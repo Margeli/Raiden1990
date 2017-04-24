@@ -36,24 +36,9 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 	explosion.anim.PushBack({ 308, 534, 77, 68 });
 	explosion.anim.PushBack({ 385, 534, 77, 68 });	
 	explosion.anim.PushBack({ 0,0,0,0 });
-	explosion.anim.speed = 0.3f;
+	explosion.anim.speed = 0.2f;
 
-	/*{( 0, 466, 77, 68)}
-{( 77, 466, 77, 68)}
-{( 154, 466, 77, 68)}
-{( 231, 466, 77, 68)}
-{( 308, 466, 77, 68)}
-{( 385, 466, 77, 68)}
-{( 462, 466, 77, 68)}
-{( 539, 466, 77, 68)}
-{( 616, 466, 77, 68)}
-{( 0, 534, 77, 68)}
-{( 77, 534, 77, 68)}
-{( 154, 534, 77, 68)}
-{( 231, 534, 77, 68)}
-{( 308, 534, 77, 68)}
-{( 385, 534, 77, 68)}*/
-
+	
 
 	explosion.life = 6000;
 	explosion.anim.loop = false;

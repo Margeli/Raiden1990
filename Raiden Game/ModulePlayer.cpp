@@ -29,14 +29,14 @@ ModulePlayer::ModulePlayer()
 	right.PushBack({ 114, 14, 20, 27 });
 	right.PushBack({ 149, 14, 15, 27 });
 	right.loop = false;
-	right.speed = 0.1f;
+	right.speed = 0.05f;
 
 	//move animation left
 	
 	left.PushBack({ 51, 14, 20, 27 });
 	left.PushBack({ 22, 14, 15, 27 });
 	left.loop = false;
-	left.speed = 0.1f;
+	left.speed = 0.05f;
 
 	//Raiden basic shot 
 	
