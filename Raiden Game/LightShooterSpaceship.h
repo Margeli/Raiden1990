@@ -8,19 +8,22 @@ class LightShooter_Spaceship : public Enemy
 {
 private:
 
-
-	Animation up;
 	Animation down;
-	Animation left;
 	Animation right;
+	Animation left;
+	Animation up;
 	Animation down_right;
 	Animation right_up;
 	Animation up_left;
 	Animation left_down;
+	Animation left_downwards;
+	Animation downwards_right;
+	Animation* current_animation = nullptr;
+
 
 	Particle explosion;
 
-	
+	bool move;
 	float speed;
 	float increment_y;
 	int initial_y;		
