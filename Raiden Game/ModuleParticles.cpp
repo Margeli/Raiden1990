@@ -79,13 +79,9 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay, char* FX_path, bool PowerUp)
+void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay, char* FX_path)
 {
-	if (PowerUp) {
-		graphics = App->textures->Load("Assets/Images/PowerUps.png");//for PowerUps
-	}
-	else 
-		graphics = App->textures->Load("Assets/Images/Particles_Spritesheet.png");
+	 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] == nullptr)

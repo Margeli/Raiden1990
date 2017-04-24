@@ -17,9 +17,9 @@ ModulePowerUps::ModulePowerUps()
 
 	
 	
-	Red_Bonus.anim.PushBack({ 2,2,15,13 });	//Red Bonus
-	Red_Bonus.anim.PushBack({ 22,2,15,13 });
-	Red_Bonus.anim.PushBack({ 41,2,15,13 });	
+	Red_Bonus.anim.PushBack({ 383,1,15,13 });	//Red Bonus
+	Red_Bonus.anim.PushBack({ 403,1,15,13 });
+	Red_Bonus.anim.PushBack({ 422,1,15,13 });	
 	Red_Bonus.anim.speed = 1.5f;
 	Red_Bonus.speed.y = 0;
 	Red_Bonus.speed.x = 0;
@@ -69,7 +69,7 @@ ModulePowerUps::ModulePowerUps()
 	Fairy_Bonus.anim.loop = true;
 */
 
-	Medal_Bonus.anim.PushBack({ 119, 1,9,16 });	//Medal_Bonus
+	Medal_Bonus.anim.PushBack({ 499, 0,9,16 });	//Medal_Bonus
 	Medal_Bonus.anim.speed = 1.0f;
 	Medal_Bonus.speed.y = 0;
 	Medal_Bonus.speed.x = 0;
@@ -112,28 +112,28 @@ void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y)
 	switch (type)
 		{
 		case POWERUP_BLUE: 
-			App->particles->AddParticle(Blue_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_B,0,nullptr,true);
+			App->particles->AddParticle(Blue_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_B);
 			break;
 		case POWERUP_RED: 
-			App->particles->AddParticle(Red_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_R, 0, nullptr, true);
+			App->particles->AddParticle(Red_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_R);
 			break;
 		case POWERUP_H: 
-			App->particles->AddParticle(H_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_H, 0, nullptr, true);
+			App->particles->AddParticle(H_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_H);
 			break;
 		case POWERUP_M: 
-			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M, 0, nullptr, true);
+			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M);
 			break;
 		case POWERUP_P: 
-			App->particles->AddParticle(P_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_P, 0, nullptr, true);
+			App->particles->AddParticle(P_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_P);
 			break;
 		case POWERUP_DRAGON: 
-			App->particles->AddParticle(Dragon_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_DRAGON, 0, nullptr, true);
+			App->particles->AddParticle(Dragon_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_DRAGON);
 			break;
 		case POWERUP_FAIRY: 
-			App->particles->AddParticle(Fairy_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_FAIRY, 0, nullptr, true);
+			App->particles->AddParticle(Fairy_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_FAIRY);
 			break;
 		case POWERUP_MEDAL: 
-			App->particles->AddParticle(Medal_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_MEDAL, 0, nullptr, true);
+			App->particles->AddParticle(Medal_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_MEDAL);
 			break;
 
 		}
