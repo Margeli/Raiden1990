@@ -28,8 +28,9 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	explosion.anim.PushBack({446 ,60,34,30 });
 	explosion.anim.PushBack({478 ,60,34,30 });
 	explosion.anim.PushBack({ 512,60,34,30 });
+	explosion.anim.PushBack({ 0,0,0,0 });
 
-	explosion.life = 6000;
+	explosion.life = 1000;
 	explosion.anim.loop = false;
 	
 	sprite_path = App->textures->Load("Assets/Images/Light_Shooter.png");
@@ -163,9 +164,9 @@ void LightShooter_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 	}
 	if (hits_life <= 0) {
 		App->player->score += score_points;
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
-		App->particles->AddParticle(explosion, position.x, position.y);
-	}
 
+	}
 }

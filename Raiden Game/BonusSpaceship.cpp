@@ -30,6 +30,7 @@ Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y)
 	explosion.anim.PushBack({ 385, 534, 77, 68 });
 	explosion.anim.PushBack({ 0,0,0,0 });
 	explosion.anim.speed = 0.2f;
+	explosion.life = 1000;
 
 	//Bonus Spaceship shot
 	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });	
@@ -168,10 +169,9 @@ void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 	}
 	if (hits_life <= 0) {
 		App->player->score += score_points;
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
-		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
-		
-	}
 
+	}
 }

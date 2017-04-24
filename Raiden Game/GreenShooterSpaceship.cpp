@@ -40,7 +40,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 
 	
 
-	explosion.life = 6000;
+	explosion.life = 1000;
 	explosion.anim.loop = false;
 
 	sprite_path = App->textures->Load("Assets/Images/Green_Shooter.png");
@@ -155,11 +155,6 @@ void GreenShooter_Spaceship::OnCollision(Collider*collider, int num_enemy){
 	if (hits_life <= 0) {
 		App->player->score += score_points;
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
-
-
-
-
-
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 		
