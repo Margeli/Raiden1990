@@ -99,8 +99,8 @@ bool ModulePlayer::Start()
 	//	]. -> Pts
 	//	{. -> Cts
 	//	}. -> Pcs
-
-	spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
+	if (spaceship_collider==nullptr)
+	spaceship_collider = App->collision->AddCollider({ 0,0, 24, 26 }, COLLIDER_PLAYER, this);
 
 	return ret;
 }
@@ -182,18 +182,11 @@ update_status ModulePlayer::Update()
 			spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
 
 			godmode = false;
-		}
-		
-		
+		}		
 		
 	}
 
 
-	if ((spaceship_collider == nullptr) && (godmode == false)) {
-
-		spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
-		spaceship_collider->SetPos(position.x, position.y);
-	}
 
 
 

@@ -12,7 +12,8 @@
 #include "ModuleAudio.h"
 #include "ModuleFonts.h"
 #include "ModuleStageCompleted.h"
-
+#include "ModuleEnemies.h"
+#include "ModulePowerUps.h"
 #include <stdio.h>
 
 ModuleStageCompleted::ModuleStageCompleted()
@@ -64,6 +65,13 @@ bool ModuleStageCompleted::CleanUp()
 	LOG("Unloading Stage Cleared");
 	App->audio->Disable();
 	App->textures->Unload(graphics);
+
+	App->player->Disable();
+	App->player2->Disable();
+	App->enemies->Disable();
+	App->collision->Disable();
+	App->powerup->Disable();
+	App->particles->Disable();
 	
 	return true;
 }
