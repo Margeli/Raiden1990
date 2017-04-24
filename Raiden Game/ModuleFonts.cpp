@@ -51,10 +51,10 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 					  
 
 	strcpy_s(fonts[id].table, characters); // table: array of chars to have the list of characters
-	fonts[id].row_chars = strlen(fonts[id].table); // row_chars: amount of chars per row of the texture
+	fonts[id].row_chars = (strlen(fonts[id].table)); // row_chars: amount of chars per row of the texture
 
-	uint width = 0;
-	uint height = 0;
+	uint width, height = 0;
+
 	App->textures->GetSize(fonts[id].graphic, width, height);
 
 	fonts[id].char_w = width / fonts[id].row_chars; // char_w: width of each character
@@ -89,21 +89,21 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 	rect.w = font->char_w;
 	rect.h = font->char_h;
 
-	int counter = 0;
+	int j = 0;
 	for (uint i = 0; i < len; ++i)
 	{		
-		while (counter != font->row_chars+1)// nº of letters of the sample array
+		while (j != font->row_chars)// nº of letters of the sample array
 		{
-			if (fonts[font_id].table[counter] == text[i])
+			if (font->table[j] == text[i])
 			{
 				rect.y = font->char_h * (font_id);
-				rect.x = font->char_w * counter;
+				rect.x = font->char_w * j;
 				App->render->Blit(fonts[font_id].graphic, x, y, &rect,false);
 				x += font->char_w;
-				counter = 0;
+				j = 0;
 				break;
 			}
-			counter++;
+			j++;
 		}
 	}
 }

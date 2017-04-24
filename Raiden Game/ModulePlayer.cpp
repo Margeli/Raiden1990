@@ -59,7 +59,8 @@ bool ModulePlayer::CleanUp()
 	LOG("Unloading player");
 
 	App->textures->Unload(graphics);
-
+	App->fonts->UnLoad(yellow_font_score);
+	App->fonts->UnLoad(red_font_score);
 	//if (spaceship_collider != nullptr) {
 	//	spaceship_collider->to_delete = true;
 	//}
@@ -91,16 +92,16 @@ bool ModulePlayer::Start()
 
 	user_interface = "    1UP   HI.SCORE    2UP ";
 	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
-	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
-	
-	
+	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);	
 	// * -> "
 	// [ -> tm
 	//	]. -> Pts
 	//	{. -> Cts
 	//	}. -> Pcs
 
-	spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
+
+	if (spaceship_collider==nullptr)
+	spaceship_collider = App->collision->AddCollider({ 0,0, 24, 26 }, COLLIDER_PLAYER, this);
 
 	return ret;
 }
@@ -182,18 +183,11 @@ update_status ModulePlayer::Update()
 			spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
 
 			godmode = false;
-		}
-		
-		
+		}		
 		
 	}
 
 
-	if ((spaceship_collider == nullptr) && (godmode == false)) {
-
-		spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
-		spaceship_collider->SetPos(position.x, position.y);
-	}
 
 
 
@@ -205,8 +199,13 @@ update_status ModulePlayer::Update()
 	}
 
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-	{			
- 		App->particles->AddParticle(basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT,0,"Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
+	{	
+		if (red_powerup_level == 0)
+			App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
+		else if (red_powerup_level == 1) {
+			App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");
+			App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");
+		}
 	}
 
 	if (spaceship_collider!= nullptr)
@@ -241,25 +240,27 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		score += 500;
 		break;
 
+	case COLLIDER_POWERUP_R:
+		red_powerup_level++;
+		break;
+
 	case COLLIDER_ENEMY_SHOT :
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
-			App->player2->player2 = false;
-			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-			destroyed = true;
-
-			score = 0;
-			App->level1->first = false;
-
+			Dead();
 		}
 	case COLLIDER_ENEMY:
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
-			App->player2->player2 = false;
-			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-			destroyed = true;
-			score = 0;
-			App->level1->first = false;
-
+			Dead();
 		}
 
 	}
+}
+
+void ModulePlayer::Dead() {
+	App->player2->player2 = false;
+	App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
+	destroyed = true;
+	score = 0;
+	App->level1->first = false;
+	red_powerup_level = 0;
 }

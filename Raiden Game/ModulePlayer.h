@@ -20,6 +20,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
+	void Dead();
 
 public:
 
@@ -40,12 +41,13 @@ public:
 	bool godmode = false;
 	uint high_score = 0;
 	uint score=0;
-	int red_font_score = -1;
+	int red_font_score = 0;
 	int yellow_font_score = 0;
 	char score_text[10];
 	char high_score_text[10];
 	char *user_interface;
 	
+	uint red_powerup_level = 0;
 	
 	
 };
