@@ -92,7 +92,7 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 	int counter = 0;
 	for (uint i = 0; i < len; ++i)
 	{		
-		while (counter != font->row_chars)// nº of letters of the sample array
+		while (counter != font->row_chars+1)// nº of letters of the sample array
 		{
 			if (fonts[font_id].table[counter] == text[i])
 			{
