@@ -20,6 +20,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
+	void Dead();
 
 public:
 
@@ -46,6 +47,7 @@ public:
 	char high_score_text[10];
 	char *user_interface;
 	
+	uint red_powerup_level = 0;
 	
 	
 };

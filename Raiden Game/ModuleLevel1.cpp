@@ -88,10 +88,10 @@ bool ModuleLevel1::Start()
 
 
 	
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -330, 3);
-	//App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 30, -300, 3);
+	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -330, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 30, -300, 3);
 	
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 30,-100  );
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 30,-100  );
 	
 	//App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -100, 3);
 	

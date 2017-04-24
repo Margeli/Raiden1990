@@ -205,8 +205,13 @@ update_status ModulePlayer::Update()
 	}
 
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-	{			
- 		App->particles->AddParticle(basic_shot, position.x + 9 , position.y, COLLIDER_PLAYER_SHOT,0,"Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
+	{	
+		if (red_powerup_level == 0)
+			App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
+		else if (red_powerup_level == 1) {
+			App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");
+			App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");
+		}
 	}
 
 	if (spaceship_collider!= nullptr)
@@ -241,25 +246,27 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		score += 500;
 		break;
 
+	case COLLIDER_POWERUP_R:
+		red_powerup_level++;
+		break;
+
 	case COLLIDER_ENEMY_SHOT :
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
-			App->player2->player2 = false;
-			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-			destroyed = true;
-
-			score = 0;
-			App->level1->first = false;
-
+			Dead();
 		}
 	case COLLIDER_ENEMY:
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
-			App->player2->player2 = false;
-			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-			destroyed = true;
-			score = 0;
-			App->level1->first = false;
-
+			Dead();
 		}
 
 	}
+}
+
+void ModulePlayer::Dead() {
+	App->player2->player2 = false;
+	App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
+	destroyed = true;
+	score = 0;
+	App->level1->first = false;
+	red_powerup_level = 0;
 }

@@ -85,7 +85,7 @@ update_status ModuleStageCompleted::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_TAB] && App->fade->IsFading()==false) {
 
-		App->fade->FadeToBlack(this, App->level2);		
+		App->fade->FadeToBlack(this, App->intro);		
 
 	}
 
