@@ -90,8 +90,17 @@ void GreenShooter_Spaceship::Move() {
 	}
 
 	if (disperse_shoot) {//shots 8 bullets at the same time
+		ShotVector(color_rotatory_shot, {2, 1}, { position.x + 35, position.y + 26 });
+		ShotVector(color_rotatory_shot, { -1, 1 }, { position.x + 35, position.y + 26 });
+		ShotVector(color_rotatory_shot, { 3, 0 }, { position.x + 35, position.y + 26 });
+		ShotVector(color_rotatory_shot, { -3, 0 }, { position.x + 35, position.y + 26 });
+		ShotVector(color_rotatory_shot, { 1,-3 }, { position.x + 35, position.y + 26 });
+		ShotVector(color_rotatory_shot, { -1, -3 }, { position.x + 35, position.y + 26 });
+		ShotVector(color_rotatory_shot, { 3, -2 },  { position.x + 35, position.y + 26 });
+		ShotVector(color_rotatory_shot, { -3, -2 },  { position.x + 35, position.y + 26 });
 		
 
+		
 
 		disperse_shoot = false;
 	}
@@ -100,7 +109,7 @@ void GreenShooter_Spaceship::Move() {
 	if (down) {
 		if (increment_y < 55) {
 			speed = 0.3f;
-			if ((increment_y >= 40) && (shoot_number == 3)) {
+			if ((increment_y >= 40) && (shoot_number == 3)) {//lineal shot
 				lineal_shoot = true;
 				shoot_number--;
 			}
@@ -122,16 +131,22 @@ void GreenShooter_Spaceship::Move() {
 	}
 	else
 	{
-		if (increment_y < 120&&increment_y>-200) {
+		if (increment_y < 120 && increment_y>-200) {
 			speed = -2.3f;
-			if (increment_y <= -100) {
+			if ((increment_y <= -80) && (shoot_number == 2)) {//disperse shot
 				disperse_shoot = true;
-				
+				shoot_number--;
+
 			}
 		}
 		else if (increment_y < -200) {
 			speed = -3.0f;
 			animation = &backward_boost;
+			if ((increment_y <= -230) && (shoot_number == 1)) {//disperse shot
+				disperse_shoot = true;
+				shoot_number--;
+			}
+
 		}
 	}
 	position.y += speed;
@@ -178,7 +193,7 @@ void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint sh
 		else if (aim_position.x - shot_initial_pos.x > 150)
 			shot.speed.x = -5.0f;
 	}
-	if ((aim_position.x < (int)shot_initial_pos.x + 35) && (aim_position.x > (int)shot_initial_pos.x - 35)) {
+	if ((aim_position.x < (int)shot_initial_pos.x + 35) && (aim_position.x > (int)shot_initial_pos.x - 35)) {// in front of the greenspaceship (shoots completely vertical)
 		shot.speed.x = 0;
 	}
 
@@ -192,27 +207,15 @@ void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint sh
 	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+30.0f, COLLIDER_ENEMY_SHOT);
 	
 
-	/*shot.speed.y -= 0.01f;
-	shot.speed.x -= 0.01f;
-	App->particles->AddParticle(shot, shot_initial_pos.x , shot_initial_pos.y , COLLIDER_ENEMY_SHOT);
-	shot.speed.y -= 0.01f;
-	shot.speed.x -= 0.01f;
-	App->particles->AddParticle(shot, shot_initial_pos.x , shot_initial_pos.y , COLLIDER_ENEMY_SHOT);
-	shot.speed.y -= 0.05f;
-	shot.speed.x -= 0.05f;
-	App->particles->AddParticle(shot, shot_initial_pos.x , shot_initial_pos.y , COLLIDER_ENEMY_SHOT);
-	shot.speed.y -= 0.05f;
-	shot.speed.x -= 0.05f;
-	App->particles->AddParticle(shot, shot_initial_pos.x , shot_initial_pos.y , COLLIDER_ENEMY_SHOT);*/
 }
 
 
 void GreenShooter_Spaceship::ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos) {
 	
-	
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
 	shot.speed.x = velocity_vector.x;
 	shot.speed.y = velocity_vector.y;
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
+	
 }
 
 
