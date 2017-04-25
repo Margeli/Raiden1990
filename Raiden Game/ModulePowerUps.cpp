@@ -23,35 +23,35 @@ ModulePowerUps::ModulePowerUps()
 	Red_Bonus.anim.speed = 1.5f;
 	Red_Bonus.speed.y = 0;
 	Red_Bonus.speed.x = 0;
-	Red_Bonus.life = 6000;
+	Red_Bonus.life = 60000;
 	Red_Bonus.anim.loop = true;
 
 	M_Bonus.anim.PushBack({ 440,17,15,13 });	//M_Bonus
 	M_Bonus.anim.speed = 1.0f;
 	M_Bonus.speed.y = 0;
 	M_Bonus.speed.x = 0;
-	M_Bonus.life = 6000;
+	M_Bonus.life = 60000;
 	M_Bonus.anim.loop = true;
 /*
 	Blue_Bonus.anim.PushBack({ , , , });	//Blue_Bonus
 	Blue_Bonus.anim.speed = 1.0f;
 	Blue_Bonus.speed.y = 0;
 	Blue_Bonus.speed.x = 0;
-	Blue_Bonus.life = 6000;
+	Blue_Bonus.life = 60000;
 	Blue_Bonus.anim.loop = true;
 
 	H_Bonus.anim.PushBack({ , , , });	//H_Bonus
 	H_Bonus.anim.speed = 1.0f;
 	H_Bonus.speed.y = 0;
 	H_Bonus.speed.x = 0;
-	H_Bonus.life = 6000;
+	H_Bonus.life = 60000;
 	H_Bonus.anim.loop = true;
 
 	P_Bonus.anim.PushBack({ , , , });	//P_Bonus
 	P_Bonus.anim.speed = 1.0f;
 	P_Bonus.speed.y = 0;
 	P_Bonus.speed.x = 0;
-	P_Bonus.life = 6000;
+	P_Bonus.life = 60000;
 	P_Bonus.anim.loop = true;
 
 	
@@ -60,14 +60,14 @@ ModulePowerUps::ModulePowerUps()
 	Dragon_Bonus.anim.speed = 1.0f;
 	Dragon_Bonus.speed.y = 0;
 	Dragon_Bonus.speed.x = 0;
-	Dragon_Bonus.life = 6000;
+	Dragon_Bonus.life = 60000;
 	Dragon_Bonus.anim.loop = true;
 
 	Fairy_Bonus.anim.PushBack({ , , , });	//Fairy_Bonus
 	Fairy_Bonus.anim.speed = 1.0f;
 	Fairy_Bonus.speed.y = 0;
 	Fairy_Bonus.speed.x = 0;
-	Fairy_Bonus.life = 6000;
+	Fairy_Bonus.life = 60000;
 	Fairy_Bonus.anim.loop = true;
 */
 
@@ -75,7 +75,7 @@ ModulePowerUps::ModulePowerUps()
 	Medal_Bonus.anim.speed = 1.0f;
 	Medal_Bonus.speed.y = 0;
 	Medal_Bonus.speed.x = 0;
-	Medal_Bonus.life = 6000;
+	Medal_Bonus.life = 60000;
 	Medal_Bonus.anim.loop = true;
 
 	

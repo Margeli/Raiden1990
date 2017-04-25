@@ -86,7 +86,7 @@ bool ModuleLevel1::Start()
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
 
-	col = App->collision->AddCollider({ 0,-250, 1000, 1 },COLLIDER_EXPLOSION, this);//dark line
+	col = App->collision->AddCollider({ 0,0, 1000, 1 },COLLIDER_EXPLOSION, this);//dark line
 
 
 	
@@ -97,14 +97,19 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 80, -250, 3);
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 140, -280, 3);
 
-
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL,50,-100);
-	
-
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 30,-100  );
-
-	
 	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -200, 3);
+
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
+	
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 60,-420);
+
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -700);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 160, -710);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -690);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 160, -700);
+
+	
+	
 	
 	
 	return true;
