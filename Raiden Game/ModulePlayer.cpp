@@ -102,9 +102,9 @@ bool ModulePlayer::CleanUp()
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(yellow_font_score);
 	App->fonts->UnLoad(red_font_score);
-	//if (spaceship_collider != nullptr) {
-	//	spaceship_collider->to_delete = true;
-	//}
+	if (spaceship_collider != nullptr) {
+	spaceship_collider->to_delete = true;
+	}
 
 	return true;
 }
@@ -112,6 +112,7 @@ bool ModulePlayer::CleanUp()
 // Load assets
 bool ModulePlayer::Start()
 {
+	App->collision->Enable();
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png"); 
@@ -286,10 +287,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	switch (c2->type) {
 	case COLLIDER_POWERUP_MEDAL:
 		//App->particles->AddParticle(bonus_medal, position.x + 9, position.y, COLLIDER_PLAYER, 0, "Assets/Audio/Fx_Medal_Bonus.wav");
-		score += 500;
-
-	
-			fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Medal_Bonus.wav");
+		score += 500;	
+		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Medal_Bonus.wav");
 			if (!fx_shoot) {
 				LOG("Error loading shoot's fx: %s", Mix_GetError)
 			}

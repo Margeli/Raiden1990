@@ -24,6 +24,10 @@ public:
 	bool fading = false;
 
 	bool forward;
+
+	char *user_interface;
+	int red_font_score = 0;
+	int yellow_font_score = 0;
 };
 
 #endif // __MODULELINTRO_H__

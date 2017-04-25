@@ -47,13 +47,14 @@ bool ModuleLevel1::Start()
 	App->stageCompleted->Disable();
 
 	App->audio->Enable();
+	App->collision->Enable();
 	App->player->Enable();
 	if (App->player2->player2 == true)
 		App->player2->Enable();
 	else if (App->player2->player2)
 		App->player2->Disable();
 	App->particles->Enable();
-	App->collision->Enable();
+	
 	App->enemies->Enable();
 
 	if (App->player2->player2 == false) {
@@ -66,7 +67,7 @@ bool ModuleLevel1::Start()
 		App->player->position.x = 71; //position if there are 2 players
 		App->player->position.y = 150;
 	}
-	if ((!App->player->godmode)&&(!first)){
+	if ((!App->player->godmode)&&(App->player->spaceship_collider->rect.w<-1000)){ //SOLVES AN ERROR THAT THE COLLIDER OF RAIDEN HAS -572662307 of x, y, w & h
 		App->player->spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, App->player);
 	App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
 }
@@ -92,6 +93,7 @@ bool ModuleLevel1::Start()
 	
 
 	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -150, 3);
+	App->powerup->AddPowerUp(POWERUP_MEDAL, 30, -150);
 
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 20, -150, 3);

@@ -31,7 +31,7 @@ private:
 	bool down;
 	void OnCollision(Collider* collider, int num_enemy);
 	float hits_life;
-	bool first_shot = false;
+	int shoot_number = 0;
 	uint score_points;
 
 
@@ -40,7 +40,7 @@ private:
 
 public:
 
-	GreenShooter_Spaceship(int x, int y, int count);
+	GreenShooter_Spaceship(int x, int y, int shoot_num);
 	void Move();
 	
 

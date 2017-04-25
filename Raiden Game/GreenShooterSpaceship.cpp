@@ -9,7 +9,7 @@
 #include "ModuleAudio.h"
 
 
-GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
+GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int shoot_num) : Enemy(x, y)
 {
 	//Bonus Spaceship shot
 	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });
@@ -67,6 +67,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 
 	animation = &idle;
 
+	shoot_number = shoot_num;
 	initial_y = y;
 	increment_y = 0.0f;
 
@@ -81,7 +82,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int count) : Enemy(
 void GreenShooter_Spaceship::Move() {
 	increment_y = (position.y - initial_y);
 
-	if (lineal_shoot) {	//shots 6 bullets sequentially
+	if (lineal_shoot) {	//shots 5 bullets sequentially
 		Shot(color_rotatory_shot, App->player->position, position);
 		Shot(color_rotatory_shot, App->player->position, {position.x+ 53, position.y+20  });
 		
@@ -97,10 +98,13 @@ void GreenShooter_Spaceship::Move() {
 
 
 	if (down) {
-		if (increment_y < 55)
+		if (increment_y < 55) {
 			speed = 0.3f;
-		if((int)increment_y==40)
-			lineal_shoot = true;
+			if ((increment_y >= 40) && (shoot_number == 3)) {
+				lineal_shoot = true;
+				shoot_number--;
+			}
+		}
 
 		else if (increment_y > 55 && increment_y < 120) {
 			speed = 1.0f;			
@@ -120,9 +124,9 @@ void GreenShooter_Spaceship::Move() {
 	{
 		if (increment_y < 120&&increment_y>-200) {
 			speed = -2.3f;
-			if ((increment_y <= -100)&&(!first_shot)) {
+			if (increment_y <= -100) {
 				disperse_shoot = true;
-				first_shot = true;
+				
 			}
 		}
 		else if (increment_y < -200) {
@@ -134,11 +138,11 @@ void GreenShooter_Spaceship::Move() {
 	
 }
 
-void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {	
-	
+void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
+
 	shot.speed = { 0,0 };
 
-	if ((int)shot_initial_pos.y <aim_position.y) {//down 
+	if ((int)shot_initial_pos.y < aim_position.y) {//down 
 		if (aim_position.y - shot_initial_pos.y < 75)
 			shot.speed.y = 1.0f;
 		else if ((aim_position.y - shot_initial_pos.y > 75) && (aim_position.y - shot_initial_pos.y < 150))
@@ -148,7 +152,7 @@ void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint sh
 	}
 
 
-	else if ((int)shot_initial_pos.y >aim_position.y) {//up
+	else if ((int)shot_initial_pos.y > aim_position.y) {//up
 		if (aim_position.y - shot_initial_pos.y < 75)
 			shot.speed.y = -3.0f;
 		else if ((aim_position.y - shot_initial_pos.y > 75) && (aim_position.y - shot_initial_pos.y < 150))
@@ -158,7 +162,7 @@ void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint sh
 	}
 
 
-	if ((int)shot_initial_pos.x <aim_position.x) {//right
+	if ((int)shot_initial_pos.x+35 < aim_position.x) {//right
 		if (aim_position.x - shot_initial_pos.x < 75)
 			shot.speed.x = 1.0f;
 		else if ((aim_position.x - shot_initial_pos.x > 75) && (aim_position.x - shot_initial_pos.x < 150))
@@ -166,7 +170,7 @@ void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint sh
 		else if (aim_position.x - shot_initial_pos.x > 150)
 			shot.speed.x = 5.0f;
 	}
-	if ((int)shot_initial_pos.x >aim_position.x) {//left
+	if ((int)shot_initial_pos.x-35 > aim_position.x) {//left
 		if (aim_position.x - shot_initial_pos.x < 75)
 			shot.speed.x = -1.0f;
 		else if ((aim_position.x - shot_initial_pos.x > 75) && (aim_position.x - shot_initial_pos.x < 150))
@@ -174,16 +178,32 @@ void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint sh
 		else if (aim_position.x - shot_initial_pos.x > 150)
 			shot.speed.x = -5.0f;
 	}
+	if ((aim_position.x < (int)shot_initial_pos.x + 35) && (aim_position.x > (int)shot_initial_pos.x - 35)) {
+		shot.speed.x = 0;
+	}
 
 
 
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
+
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+8.0f, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+16.0f, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+24.0f , COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+30.0f, COLLIDER_ENEMY_SHOT);
 	
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);	
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
+
+	/*shot.speed.y -= 0.01f;
+	shot.speed.x -= 0.01f;
+	App->particles->AddParticle(shot, shot_initial_pos.x , shot_initial_pos.y , COLLIDER_ENEMY_SHOT);
+	shot.speed.y -= 0.01f;
+	shot.speed.x -= 0.01f;
+	App->particles->AddParticle(shot, shot_initial_pos.x , shot_initial_pos.y , COLLIDER_ENEMY_SHOT);
+	shot.speed.y -= 0.05f;
+	shot.speed.x -= 0.05f;
+	App->particles->AddParticle(shot, shot_initial_pos.x , shot_initial_pos.y , COLLIDER_ENEMY_SHOT);
+	shot.speed.y -= 0.05f;
+	shot.speed.x -= 0.05f;
+	App->particles->AddParticle(shot, shot_initial_pos.x , shot_initial_pos.y , COLLIDER_ENEMY_SHOT);*/
 }
 
 
