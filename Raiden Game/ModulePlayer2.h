@@ -38,6 +38,8 @@ public:
 	bool destroyed = false;
 	bool player2 = false;
 	float hit_dmg;
+	bool godmode = false;
+
 
 
 };
