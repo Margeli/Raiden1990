@@ -57,6 +57,7 @@ public:
 	uint red_powerup_level = 0;
 	uint M_powerup_level = 0;
 	
+	Mix_Chunk* fx_shoot = nullptr;
 	
 	
 };

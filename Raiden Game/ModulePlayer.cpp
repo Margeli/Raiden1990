@@ -269,6 +269,15 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	case COLLIDER_POWERUP_MEDAL:
 		//App->particles->AddParticle(bonus_medal, position.x + 9, position.y, COLLIDER_PLAYER, 0, "Assets/Audio/Fx_Medal_Bonus.wav");
 		score += 500;
+
+	
+			fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Medal_Bonus.wav");
+			if (!fx_shoot) {
+				LOG("Error loading shoot's fx: %s", Mix_GetError)
+			}
+			App->audio->Play_Fx(fx_shoot);
+			
+		
 		break;
 
 	case COLLIDER_POWERUP_R:

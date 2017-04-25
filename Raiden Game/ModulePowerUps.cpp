@@ -124,7 +124,7 @@ void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y, char* FX_path)
 			App->particles->AddParticle(H_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_H);
 			break;
 		case POWERUP_M: 
-			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M, 0,"Assets/Audio/Fx_Medal_Bonus.wav" );
+			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M);
 		/*	if (powerup.fx_played == false) //Fx sound when shooting
 			{
 
