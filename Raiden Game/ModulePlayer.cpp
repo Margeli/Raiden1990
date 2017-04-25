@@ -79,10 +79,17 @@ ModulePlayer::ModulePlayer()
 	misile_right.speed.x = 0;
 	misile_right.life = 3000;
 	misile_right.anim.loop = true;
-	
 
 	hit_dmg = 1.0f;
-	
+
+	explosion.anim.PushBack({ 7,202,32,30});
+	explosion.anim.PushBack({ 40,202,32,30 });
+	explosion.anim.PushBack({ 76,202,32,30 });
+	explosion.anim.PushBack({ 116,202,32,30 });
+	explosion.anim.PushBack({ 164,202,32,30 });
+	explosion.anim.PushBack({ 0,0,0,0 });
+	explosion.anim.speed = 0.1f;
+	explosion.life = 1000;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -230,7 +237,7 @@ update_status ModulePlayer::Update()
 		App->fade->FadeToBlack(this, App->stageCompleted);		
 
 	}
-
+	
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{	
 		if (red_powerup_level == 0)
@@ -313,6 +320,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 void ModulePlayer::Dead() {
 	App->player2->player2 = false;
 	App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
+	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Player_Explosion.wav");
+	if (!fx_shoot) {
+		LOG("Error loading shoot's fx: %s", Mix_GetError)
+	}
+	App->audio->Play_Fx(fx_shoot);
+	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+	App->textures->Unload(graphics);
 	destroyed = true;
 	score = 0;
 	App->level1->first = false;
