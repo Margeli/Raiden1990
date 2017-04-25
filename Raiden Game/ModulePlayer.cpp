@@ -50,6 +50,25 @@ ModulePlayer::ModulePlayer()
 	basic_shot.life = 3000;
 	basic_shot.anim.loop = true;
 
+	//Raiden misile shot 
+
+	misile_left.anim.PushBack({ 411, 169, 6, 15 });
+	misile_left.anim.PushBack({ 428, 169, 6, 15 });
+	misile_left.anim.speed = 1.0f;
+	misile_left.speed.y = -4.5f;
+	misile_left.speed.x = 0;
+	misile_left.life = 3000;
+	misile_left.anim.loop = true;
+
+	misile_right.anim.PushBack({ 411, 169, 6, 15 });
+	misile_right.anim.PushBack({ 428, 169, 6, 15 });
+	misile_right.anim.speed = 1.0f;
+	misile_right.speed.y = -4.5f;
+	misile_right.speed.x = 0;
+	misile_right.life = 3000;
+	misile_right.anim.loop = true;
+	
+
 	hit_dmg = 1.0f;
 	
 }
@@ -208,7 +227,16 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");
 			App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");
 		}
+
+		if (M_powerup_level > 0) {
+			App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+			App->particles->AddParticle(misile_right, position.x+24, position.y, COLLIDER_PLAYER_SHOT, 0 );
+			
+		}
 	}
+	
+
+
 
 	if (spaceship_collider!= nullptr)
 		spaceship_collider->SetPos(position.x, position.y);
@@ -245,6 +273,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	case COLLIDER_POWERUP_R:
 		red_powerup_level++;
 		break;
+	case COLLIDER_POWERUP_M:
+		M_powerup_level++;
+		break;
 
 	case COLLIDER_ENEMY_SHOT :
 		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
@@ -265,4 +296,5 @@ void ModulePlayer::Dead() {
 	score = 0;
 	App->level1->first = false;
 	red_powerup_level = 0;
+	M_powerup_level = 0;
 }

@@ -25,6 +25,8 @@ public:
 public:
 
 	Particle basic_shot;
+	Particle misile_left;
+	Particle misile_right;
 
 public:
 
@@ -51,6 +53,8 @@ public:
 
 	
 	uint red_powerup_level = 0;
+	uint M_powerup_level = 0;
+	
 	
 	
 };

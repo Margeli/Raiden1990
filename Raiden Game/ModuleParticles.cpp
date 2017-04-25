@@ -139,6 +139,10 @@ Particle::Particle(const Particle& p) :
 	fx(p.fx), born(p.born), life(p.life)
 {}
 
+iPoint Particle::GetPos() const {
+	return position;
+}
+
 Particle::~Particle()
 {
 	if (collider != nullptr)

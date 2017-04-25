@@ -26,7 +26,7 @@ struct Particle
 	Uint32 life = 0;	
 	bool fx_played = false;
 	
-
+	iPoint GetPos() const;
 	Particle();
 	Particle(const Particle& p);
 	~Particle();
