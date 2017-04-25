@@ -25,8 +25,10 @@ public:
 public:
 
 	Particle basic_shot;
+
 	Particle misile_left;
 	Particle misile_right;
+
 
 public:
 

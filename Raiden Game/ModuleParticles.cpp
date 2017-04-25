@@ -94,7 +94,7 @@ void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYP
 					LOG("Error loading shoot's fx: %s", Mix_GetError)
 				}
 				App->audio->Play_Fx(fx_shoot);
-				particle.fx_played = true;
+				particle.fx_played = false;
 			}
 
 			Particle* p = new Particle(particle);

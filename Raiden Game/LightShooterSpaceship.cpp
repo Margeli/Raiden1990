@@ -92,59 +92,47 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 void LightShooter_Spaceship::Move()
 {
-	if (downwards) {
+	if (downwards && position.y>=-280) {
 		speed = 2.0;
 		if (position.y < App->player->position.y && position.x < App->player->position.x) {
 			animation = &downwards_right;
 			position.y++;
-
 		}
 
 		else if (position.y < App->player->position.y && position.x > App->player->position.x) {
 			animation = &left_downwards;
 			position.y++;
 		}
-	}
-	
-	if (position.y == App->player->position.y) {
-
-		position.y--;
-		speed = 2.0f;
-		if (App->player->position.y--) {
+		/*if (position.y <= App->player->position.y)
+		{
 			position.y--;
+			animation = current_animation;
 		}
-		else if (App->player->position.y++) {
-			position.y++;
-		}
-		else if (position.x < App->player->position.x && App->player->position.y >= position.y) {
-			animation = &right_up;
-			position.y++;
-		}
-		else if (position.x > App->player->position.x && App->player->position.y <= position.y) {
-			animation = &up_left;
-			position.y++;
-		}
-		else if (animation==&right_up && App->player->position.y == position.y) {
-			animation = &right;
-			position.y++;
-			position.x++;
-		}
-		else if (animation==&up_left && App->player->position.y == position.y) {
-			animation = &left;
-			position.y++;
-			position.x++;
-		}
+		*/
+	}
 
+}
+
+void LightShooter_Spaceship::Direction() {
+/*
+	if (position.x > App->player->position.x) {
+		current_animation = &right;
 	}
-	if (position.y==-350 && position.x < App->player->position.x) {
-		animation = &downwards_right;
-		position.y--;
+	else if (position.x < App->player->position.x) {
+		current_animation = &left;
 	}
-	else if (position.y == -350 && position.x > App->player->position.x) {
-		animation = &left_downwards;
-		position.y--;
+	else if (position.x < App->player->position.x && App->player->position.y++) {
+		current_animation = &left_down;
 	}
-	
+	else if (position.x < App->player->position.x && App->player->position.y--) {
+		current_animation = &up_left;
+	}
+	else if (position.x > App->player->position.x && App->player->position.y--) {
+		current_animation = &right_up;
+	}
+	else if (position.x < App->player->position.x && App->player->position.y++) {
+		current_animation = &down_right;
+	}*/
 }
 
 void LightShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {

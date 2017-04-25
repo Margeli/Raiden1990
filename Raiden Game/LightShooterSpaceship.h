@@ -43,6 +43,7 @@ public:
 
 	LightShooter_Spaceship(int x, int y, int count);
 	void Move();
+	void Direction();
 	
 
 
