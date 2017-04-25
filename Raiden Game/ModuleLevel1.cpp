@@ -90,21 +90,24 @@ bool ModuleLevel1::Start()
 
 
 	
-	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -330, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -450, 3);
 
 
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 20, -150, 3);
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 80, -250, 3);
 	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 140, -280, 3);
 
+	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 20, -800, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 80, -900, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 140, -930, 3);
 
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL,50,-100);
-	
 
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 30,-100  );
+	//App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 30,-100  );
 
-	
-	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -200, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -400, 3);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -400, 3);
 	
 	
 	return true;
@@ -141,7 +144,7 @@ update_status ModuleLevel1::Update()
 
 	App->render->Blit(graphics, -50, -2965, &foreground);
 	
-	if (App->player->position.y == -2965) {
+	if (App->player->position.y == -2925) {
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;
 	}
