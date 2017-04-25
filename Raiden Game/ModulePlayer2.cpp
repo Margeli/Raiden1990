@@ -154,7 +154,8 @@ update_status ModulePlayer2::Update()
 		App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
 	}
 
-	spaceship_collider->SetPos(position.x, position.y);
+	if (spaceship_collider != nullptr)
+		spaceship_collider->SetPos(position.x, position.y);
 
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
