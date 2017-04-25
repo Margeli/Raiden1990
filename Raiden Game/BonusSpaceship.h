@@ -26,12 +26,6 @@ private:
 	uint score_points;
 
 
-	float m;//
-	float delta_x;
-	float delta_y ;
-	float vector_lenght = 0.0f;
-	fPoint unitary;
-
 	void OnCollision(Collider* collider, int num_enemy);
 
 	Particle explosion;

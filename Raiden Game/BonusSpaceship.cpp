@@ -99,7 +99,7 @@ void Bonus_Spaceship::Move() {
 
 		speed = 0.7f;
 		if ((int)increment_y == 101|| (int)increment_y == 200|| (int)increment_y == 300) {
-			shooting = true; //shots at 100, 200 & 300
+			shooting = true; //shots at 101, 200 & 300
 		}
 
 		if (right) {
@@ -130,7 +130,7 @@ position.y -= speed;
 }
 
 void Bonus_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
-	unitary = { 0,0 };
+	
 	shot.speed ={0,0};
 
 	if ((int)shot_initial_pos.y <aim_position.y){//down 
@@ -169,29 +169,8 @@ void Bonus_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_init
 		else if (aim_position.x - shot_initial_pos.x > 150)
 			shot.speed.x = -5.0f;
 	}
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);/*
-	delta_x = (float)aim_position.x - shot_initial_pos.x;
-	delta_y = (float)aim_position.y - shot_initial_pos.y;
-	vector_lenght = sqrt(delta_x*delta_x + delta_y*delta_y); //length between Enemy pos & Player pos
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
 	
-	m = vector_lenght / 2.0f;
-	shot.speed.y = -2.0f;
-	shot.speed.y -= delta_y / m;
-	shot.speed.x = delta_x / m;
-	*/
-	
-	
-	
-
-	
-	/*
-	unitary.x = delta_x / vector_lenght;
-	unitary.y = delta_y / vector_lenght;
-	unitary.x *= 2.0f;
-	unitary.y *= 2.0f;	
-	
-	shot.speed.y = unitary.y;
-	shot.speed.x = unitary.x;*/
 }
 
 
