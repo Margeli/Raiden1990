@@ -86,15 +86,17 @@ bool ModuleLevel1::Start()
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
 
-	col = App->collision->AddCollider({ 0,0, 1000, 1 },COLLIDER_EXPLOSION, this);//dark line
+	col = App->collision->AddCollider({ 0,-250, 1000, 1 },COLLIDER_EXPLOSION, this);//dark line
 
 
 	
+
 	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -150, 3);
 
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 20, -150, 3);
 	
+
 	
 	
 	return true;
@@ -131,7 +133,7 @@ update_status ModuleLevel1::Update()
 
 	App->render->Blit(graphics, -50, -2965, &foreground);
 	
-	if (App->player->position.y == -2965) {
+	if (App->player->position.y == -2925) {
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;
 	}

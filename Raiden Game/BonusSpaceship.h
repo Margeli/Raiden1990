@@ -30,6 +30,8 @@ private:
 
 	Particle explosion;
 
+	Mix_Chunk* fx_shoot = nullptr;
+
 
 public:
 

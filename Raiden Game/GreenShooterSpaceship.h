@@ -17,6 +17,8 @@ private:
 
 	Particle explosion;
 	Particle color_rotatory_shot;
+
+	Mix_Chunk* fx_shoot = nullptr;
 	
 	
 	float speed;

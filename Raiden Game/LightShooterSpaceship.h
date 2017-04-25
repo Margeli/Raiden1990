@@ -22,6 +22,7 @@ private:
 
 
 	Particle explosion;
+	Mix_Chunk* fx_shoot = nullptr;
 
 	bool move;
 	float speed;
