@@ -92,7 +92,7 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 void LightShooter_Spaceship::Move()
 {
-	if (downwards && position.y>=-250) {
+	if (downwards && position.y>=-280) {
 		speed = 2.0;
 		if (position.y < App->player->position.y && position.x < App->player->position.x) {
 			animation = &downwards_right;
