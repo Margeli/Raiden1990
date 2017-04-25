@@ -20,14 +20,11 @@ ModulePlayer::ModulePlayer()
 	graphics = NULL;
 	current_animation = NULL;
 
-	
+	//Player image
 
+	idle.PushBack({ 80, 13, 24, 27 });
 
-	
-	
-	idle.PushBack({ 80, 13, 24,27 });
-	
-	//move animation right
+	//move animation right 
 	
 	right.PushBack({ 114, 14, 20, 27 });
 	right.PushBack({ 149, 14, 15, 27 });
@@ -40,6 +37,21 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 22, 14, 15, 27 });
 	left.loop = false;
 	left.speed = 0.05f;
+
+	//shadow image
+	shadow_idle.PushBack({ 47, 657, 12, 8 });
+
+	//shadow animation right
+	shadow_right.PushBack({ 64, 657, 9, 8 });
+	shadow_right.PushBack({ 81, 657, 7, 8 });
+	shadow_right.loop = false;
+	shadow_right.speed = 0.05f;
+
+	//shadow animation left
+	shadow_left.PushBack({ 33, 657, 9, 8 });
+	shadow_left.PushBack({ 18, 657, 7, 8 });
+	shadow_left.loop = false;
+	shadow_left.speed = 0.05f;
 
 	//Raiden basic shot 
 	
@@ -243,7 +255,6 @@ update_status ModulePlayer::Update()
 
 	// Draw everything --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-
 		// Draw UI (score) --------------------------------------
 
 		if (score >= high_score)

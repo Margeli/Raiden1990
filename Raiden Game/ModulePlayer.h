@@ -38,6 +38,9 @@ public:
 	Animation right;
 	Animation left;	
 	Animation backward;	
+	Animation shadow_idle;
+	Animation shadow_right;
+	Animation shadow_left;
 	iPoint position;
 	Collider* spaceship_collider;
 	bool destroyed=false;
