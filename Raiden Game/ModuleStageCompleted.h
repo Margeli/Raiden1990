@@ -21,6 +21,7 @@ public:
 
 public:
 
+	char *user_interface;
 
 	int red_font_score = 0;
 	int yellow_font_score = 0;
