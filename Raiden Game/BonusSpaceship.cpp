@@ -7,6 +7,8 @@
 #include "ModuleEnemies.h"
 #include "ModuleTextures.h"
 #include "math.h"
+#include "ModulePowerUps.h"
+
 
 
 Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y) 
@@ -170,6 +172,7 @@ void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 	if (hits_life <= 0) {
 		App->player->score += score_points;
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+		App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, position.x+32, position.y+32);
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 

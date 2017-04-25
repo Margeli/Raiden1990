@@ -25,6 +25,8 @@ public:
 public:
 
 	Particle basic_shot;
+	Particle bonus_medal;
+	
 
 public:
 

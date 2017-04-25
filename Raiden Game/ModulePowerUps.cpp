@@ -75,6 +75,7 @@ ModulePowerUps::ModulePowerUps()
 	Medal_Bonus.speed.x = 0;
 	Medal_Bonus.life = 6000;
 	Medal_Bonus.anim.loop = true;
+
 	
 }
 
@@ -106,7 +107,7 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 {
 }
 
-void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y)
+void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y, char* FX_path)
 {	
 
 	switch (type)
@@ -122,6 +123,25 @@ void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y)
 			break;
 		case POWERUP_M: 
 			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M);
+		/*	if (powerup.fx_played == false) //Fx sound when shooting
+			{
+
+				fx_shoot = App->audio->Load_Fx(FX_path);
+				if (!fx_shoot) {
+					LOG("Error loading shoot's fx: %s", Mix_GetError)
+				}
+				App->audio->Play_Fx(fx_shoot);
+				particle.fx_played = false;
+			}
+
+			PowerUp* p = new PowerUp(powerup);
+			p->born = SDL_GetTicks() + delay;
+			p->position.x = x;
+			p->position.y = y;
+			if (collider_type != COLLIDER_NONE) {
+				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+				active[i] = p;
+			}*/
 			break;
 		case POWERUP_P: 
 			App->particles->AddParticle(P_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_P);

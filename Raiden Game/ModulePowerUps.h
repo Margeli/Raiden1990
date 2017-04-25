@@ -7,12 +7,24 @@
 #include "p2Point.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
 
 #define MAX_POWERUPS 10
 
 struct SDL_Texture;
 
-struct PowerUp;
+struct PowerUp
+{/*
+	Collider* collider = nullptr;
+	uint fx = 0;
+	Uint32 born = 0;
+	Uint32 life = 0;
+	bool fx_played = false;
+
+	PowerUp();
+	PowerUp(const PowerUp& powerup);
+	bool Update();*/
+};
 
 enum POWERUP_TYPES {
 		POWERUP_NONE = -1,
@@ -37,7 +49,7 @@ class ModulePowerUps : public Module{
 		update_status Update();
 		bool CleanUp();
 		void OnCollision(Collider* c1, Collider* c2);
-		void AddPowerUp( POWERUP_TYPES type, int x, int y);
+		void AddPowerUp( POWERUP_TYPES type, int x, int y, char* FX_path = nullptr);
 
 			
 
@@ -50,6 +62,10 @@ public:
 	Particle Fairy_Bonus;
 	Particle Medal_Bonus;
 	Particle Dragon_Bonus;
+
+public:
+
+	
 			
 };
 
