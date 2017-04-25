@@ -225,7 +225,7 @@ update_status ModulePlayer::Update()
 
 
 
-		sprintf_s(score_text, 10, "%7d", score);
+		sprintf_s(score_text, 10, "%8d", score);
 		sprintf_s(high_score_text, 10, "%7d", high_score);
 		
 		App->fonts->BlitText(0,1,red_font_score, user_interface);
