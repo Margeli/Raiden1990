@@ -56,9 +56,9 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	//Animation from facing downwards to facing right
 
 	down.PushBack({ 1,1,30,30 }); //Facing down
-	down_right.PushBack({ 25,1,30,30 });
-	down_right.PushBack({ 53,1,30,30 });
-	down_right.PushBack({ 81,1,30,30 });
+	down_right.PushBack({ 25,1,30,30 }); //CHECK
+	down_right.PushBack({ 53,1,30,30 });//	!
+	down_right.PushBack({ 81,1,30,30 });//	v
 	down_right.speed = 0.05f;
 
 	downwards_right.PushBack({ 25,1,30,30 });
@@ -75,7 +75,7 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 	//Animation from up to left
 
-	up.PushBack({ 241,1,30,30 }); //Facing up
+	up.PushBack({ 241,1,30,30 }); //Facing up //CHECK
 	up_left.PushBack({ 266,1,30,30 });
 	up_left.PushBack({ 294,1,30,30 });
 	up_left.PushBack({ 322,1,30,30 });
