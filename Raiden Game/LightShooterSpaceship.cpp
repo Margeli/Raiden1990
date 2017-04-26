@@ -11,37 +11,37 @@
 
 LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
 {
- 	
+
 	//explosion  particle animation (2nd row particle spritesheet.)
-	explosion.anim.PushBack({2,60,34,30});
-	explosion.anim.PushBack({36 ,60,34,30 });
+	explosion.anim.PushBack({ 2,60,34,30 });
+	explosion.anim.PushBack({ 36 ,60,34,30 });
 	explosion.anim.PushBack({ 70,60,34,30 });
-	explosion.anim.PushBack({104 ,60,34,30 });
-	explosion.anim.PushBack({138 ,60,34,30 }); 
-	explosion.anim.PushBack({172 ,60,34,30 });
-	explosion.anim.PushBack({206 ,60,34,30 });
+	explosion.anim.PushBack({ 104 ,60,34,30 });
+	explosion.anim.PushBack({ 138 ,60,34,30 });
+	explosion.anim.PushBack({ 172 ,60,34,30 });
+	explosion.anim.PushBack({ 206 ,60,34,30 });
 	explosion.anim.PushBack({ 240,60,34,30 });
 	explosion.anim.PushBack({ 274,60,34,30 });
-	explosion.anim.PushBack({308 ,60,34,30 });
+	explosion.anim.PushBack({ 308 ,60,34,30 });
 	explosion.anim.PushBack({ 342,60,34,30 });
-	explosion.anim.PushBack({376 ,60,34,30 });
+	explosion.anim.PushBack({ 376 ,60,34,30 });
 	explosion.anim.PushBack({ 410,60,34,30 });
-	explosion.anim.PushBack({446 ,60,34,30 });
-	explosion.anim.PushBack({478 ,60,34,30 });
+	explosion.anim.PushBack({ 446 ,60,34,30 });
+	explosion.anim.PushBack({ 478 ,60,34,30 });
 	explosion.anim.PushBack({ 512,60,34,30 });
 	explosion.anim.PushBack({ 0,0,0,0 });
 
 	explosion.life = 1000;
 	explosion.anim.loop = false;
-	
+
 	sprite_path = App->textures->Load("Assets/Images/Light_Shooter.png");
 
 	//LightShooter Spaceship animations
 	if (sprite_path == nullptr) {
 		LOG("Error loading LightShooter's textures. SDL Error: %s", SDL_GetError());
 	}
-	
-	
+
+
 
 	//Animation from facing downwards to facing right
 
@@ -57,11 +57,11 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 	right.PushBack({ 114,1,30,30 }); //Facing right
 	right_up.PushBack({ 147,1,30,30 });
-	right_up.PushBack({ 182,1,30,30});
+	right_up.PushBack({ 182,1,30,30 });
 	right_up.PushBack({ 212,1,30,30 });
 	right_up.speed = 0.05f;
 
-	
+
 
 	//Animation from up to left
 
@@ -69,9 +69,9 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	up_left.PushBack({ 266,1,30,30 });
 	up_left.PushBack({ 294,1,30,30 });
 	up_left.PushBack({ 322,1,30,30 });
-	up_left.speed = 0.01f;	
+	up_left.speed = 0.01f;
 
-	
+
 
 	//Animation from left to down
 
@@ -86,55 +86,29 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 	score_points = 130;
 	hits_life = 1.0f;
-	downwards = true;
+	
+	collider = App->collision->AddCollider({ 0, 0, 30, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	collider = App->collision->AddCollider({ 0, 0, 30, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies); 
+	if (position.x < App->player->position.x) {
+		path.PushBack({ 0.0f, +0.8f }, 1, &left_downwards);
+		}
+	else if (position.x > App->player->position.x) {
+		path.PushBack({ 0.0f, +0.8f }, 1, &downwards_right);
+		}
+
+	else if (position.y >= App->player->position.y-20) {
+		downwards = false;
+		position.y--;
+		path.PushBack({ 0.0f, -0.8f }, 1, &up);
+	}
+	
+	original_pos.x = x;
+	original_pos.y = y;
 }
 
 void LightShooter_Spaceship::Move()
 {
-	if (downwards) {
-		speed = 2.0;
-		if (position.y < App->player->position.y && position.x < App->player->position.x) {
-			animation = &downwards_right;
-			position.y++;
-		}
-
-		else if (position.y < App->player->position.y && position.x > App->player->position.x) {
-			animation = &left_downwards;
-			position.y++;
-		}
-		/*if (position.y <= App->player->position.y)
-		{
-			position.y--;
-			animation = current_animation;
-		}
-		*/
-		collider->SetPos(position.x, position.y);
-	}
-
-}
-
-void LightShooter_Spaceship::Direction() {
-/*
-	if (position.x > App->player->position.x) {
-		current_animation = &right;
-	}
-	else if (position.x < App->player->position.x) {
-		current_animation = &left;
-	}
-	else if (position.x < App->player->position.x && App->player->position.y++) {
-		current_animation = &left_down;
-	}
-	else if (position.x < App->player->position.x && App->player->position.y--) {
-		current_animation = &up_left;
-	}
-	else if (position.x > App->player->position.x && App->player->position.y--) {
-		current_animation = &right_up;
-	}
-	else if (position.x < App->player->position.x && App->player->position.y++) {
-		current_animation = &down_right;
-	}*/
+	position = original_pos + path.GetCurrentSpeed(&animation);
 }
 
 void LightShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {

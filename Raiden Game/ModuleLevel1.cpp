@@ -104,6 +104,8 @@ bool ModuleLevel1::Start()
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -720);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 170, -700);
 
+
+	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -150, 0);
 	
 	
 
