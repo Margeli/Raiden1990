@@ -6,6 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 
 
 LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(x, y)
@@ -92,7 +93,7 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 void LightShooter_Spaceship::Move()
 {
-	if (downwards && position.y>=-280) {
+	if (downwards) {
 		speed = 2.0;
 		if (position.y < App->player->position.y && position.x < App->player->position.x) {
 			animation = &downwards_right;
@@ -109,6 +110,7 @@ void LightShooter_Spaceship::Move()
 			animation = current_animation;
 		}
 		*/
+		collider->SetPos(position.x, position.y);
 	}
 
 }
@@ -153,6 +155,11 @@ void LightShooter_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 	if (hits_life <= 0) {
 		App->player->score += score_points;
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_SmallSpaceship_Explosion.wav");
+		if (!fx_shoot) {
+			LOG("Error loading shoot's fx: %s", Mix_GetError)
+		}
+		App->audio->Play_Fx(fx_shoot);
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 

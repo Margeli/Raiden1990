@@ -20,14 +20,11 @@ ModulePlayer::ModulePlayer()
 	graphics = NULL;
 	current_animation = NULL;
 
-	
+	//Player image
 
+	idle.PushBack({ 80, 13, 24, 27 });
 
-	
-	
-	idle.PushBack({ 80, 13, 24,27 });
-	
-	//move animation right
+	//move animation right 
 	
 	right.PushBack({ 114, 14, 20, 27 });
 	right.PushBack({ 149, 14, 15, 27 });
@@ -40,6 +37,21 @@ ModulePlayer::ModulePlayer()
 	left.PushBack({ 22, 14, 15, 27 });
 	left.loop = false;
 	left.speed = 0.05f;
+
+	//shadow image
+	shadow_idle.PushBack({ 47, 657, 12, 8 });
+
+	//shadow animation right
+	shadow_right.PushBack({ 64, 657, 9, 8 });
+	shadow_right.PushBack({ 81, 657, 7, 8 });
+	shadow_right.loop = false;
+	shadow_right.speed = 0.05f;
+
+	//shadow animation left
+	shadow_left.PushBack({ 33, 657, 9, 8 });
+	shadow_left.PushBack({ 18, 657, 7, 8 });
+	shadow_left.loop = false;
+	shadow_left.speed = 0.05f;
 
 	//Raiden basic shot 
 	
@@ -67,10 +79,17 @@ ModulePlayer::ModulePlayer()
 	misile_right.speed.x = 0;
 	misile_right.life = 3000;
 	misile_right.anim.loop = true;
-	
 
 	hit_dmg = 1.0f;
-	
+
+	explosion.anim.PushBack({ 7,202,32,30});
+	explosion.anim.PushBack({ 40,202,32,30 });
+	explosion.anim.PushBack({ 76,202,32,30 });
+	explosion.anim.PushBack({ 116,202,32,30 });
+	explosion.anim.PushBack({ 164,202,32,30 });
+	explosion.anim.PushBack({ 0,0,0,0 });
+	explosion.anim.speed = 0.1f;
+	explosion.life = 1000;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -83,9 +102,9 @@ bool ModulePlayer::CleanUp()
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(yellow_font_score);
 	App->fonts->UnLoad(red_font_score);
-	//if (spaceship_collider != nullptr) {
-	//	spaceship_collider->to_delete = true;
-	//}
+	if (spaceship_collider != nullptr) {
+	spaceship_collider->to_delete = true;
+	}
 
 	return true;
 }
@@ -93,6 +112,7 @@ bool ModulePlayer::CleanUp()
 // Load assets
 bool ModulePlayer::Start()
 {
+	App->collision->Enable();
 	LOG("Loading player textures");
 	bool ret = true;
 	graphics = App->textures->Load("Assets/Images/Raiden_Spaceship.png"); 
@@ -218,19 +238,19 @@ update_status ModulePlayer::Update()
 		App->fade->FadeToBlack(this, App->stageCompleted);		
 
 	}
-
+	
   	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{	
 		if (red_powerup_level == 0)
 			App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
-		else if (red_powerup_level == 1) {
+		else if (red_powerup_level >= 1) {
 			App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
 			App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
 		}
 
 		if (M_powerup_level > 0) {
-			App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
-			App->particles->AddParticle(misile_right, position.x+24, position.y, COLLIDER_PLAYER_SHOT, 0 );
+			App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0 );
+			App->particles->AddParticle(misile_right, position.x+24, position.y, COLLIDER_PLAYER_SHOT, 0  );
 			
 		}
 	}
@@ -243,7 +263,6 @@ update_status ModulePlayer::Update()
 
 	// Draw everything --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-
 		// Draw UI (score) --------------------------------------
 
 		if (score >= high_score)
@@ -268,10 +287,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	switch (c2->type) {
 	case COLLIDER_POWERUP_MEDAL:
 		//App->particles->AddParticle(bonus_medal, position.x + 9, position.y, COLLIDER_PLAYER, 0, "Assets/Audio/Fx_Medal_Bonus.wav");
-		score += 500;
-
-	
-			fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Medal_Bonus.wav");
+		score += 500;	
+		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Medal_Bonus.wav");
 			if (!fx_shoot) {
 				LOG("Error loading shoot's fx: %s", Mix_GetError)
 			}
@@ -300,11 +317,19 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 }
 
 void ModulePlayer::Dead() {
-	App->player2->player2 = false;
-	App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-	destroyed = true;
+
+	
 	score = 0;
-	App->level1->first = false;
 	red_powerup_level = 0;
 	M_powerup_level = 0;
+	sprintf_s(score_text, 10, "%8d", score);
+	sprintf_s(high_score_text, 10, "%7d", high_score);
+	
+	destroyed = true;
+	
+	App->player2->player2 = false;
+	App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
+	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION,0, "Assets/Audio/Fx_Player_Explosion.wav");
+	App->textures->Unload(graphics);
+		
 }

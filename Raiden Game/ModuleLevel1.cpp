@@ -47,13 +47,14 @@ bool ModuleLevel1::Start()
 	App->stageCompleted->Disable();
 
 	App->audio->Enable();
+	App->collision->Enable();
 	App->player->Enable();
 	if (App->player2->player2 == true)
 		App->player2->Enable();
 	else if (App->player2->player2)
 		App->player2->Disable();
 	App->particles->Enable();
-	App->collision->Enable();
+	
 	App->enemies->Enable();
 
 	if (App->player2->player2 == false) {
@@ -66,7 +67,7 @@ bool ModuleLevel1::Start()
 		App->player->position.x = 71; //position if there are 2 players
 		App->player->position.y = 150;
 	}
-	if ((!App->player->godmode)&&(!first)){
+	if ((!App->player->godmode)&&(App->player->spaceship_collider->rect.w<-1000)){ //SOLVES AN ERROR THAT THE COLLIDER OF RAIDEN HAS -572662307 of x, y, w & h
 		App->player->spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, App->player);
 	App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
 }
@@ -90,18 +91,13 @@ bool ModuleLevel1::Start()
 
 
 	
-	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -330, 3);
 
-
-	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 20, -150, 3);
-	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 80, -250, 3);
-	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 140, -280, 3);
-
-	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 92, -200, 3);
-
+	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
+
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 60,-420);
+
 
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -700);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 160, -710);
@@ -110,6 +106,7 @@ bool ModuleLevel1::Start()
 
 	
 	
+
 	
 	
 	return true;
@@ -146,18 +143,18 @@ update_status ModuleLevel1::Update()
 
 	App->render->Blit(graphics, -50, -2965, &foreground);
 	
-	if (App->player->position.y == -2965) {
+	if (App->player->position.y == -2925) {
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;
 	}
 
 
-	if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
+	/*if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
 	
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;
 		
-	}
+	}*/
 
 	return UPDATE_CONTINUE;
 }
