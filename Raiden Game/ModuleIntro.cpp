@@ -81,11 +81,10 @@ update_status ModuleIntro::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, 0, &background); 
 
-	sprintf_s(App->player->score_text, 10, "%8d", App->player->score);
-	sprintf_s(App->player->high_score_text, 10, "%7d", App->player->high_score);
-
+	
+	
 	App->fonts->BlitText(0, 1, red_font_score, user_interface);
-	App->fonts->BlitText(0, 9, yellow_font_score, App->player->score_text);
+	
 	App->fonts->BlitText(88, 9, yellow_font_score, App->player->high_score_text);
 
 	if (App->input->keyboard[SDL_SCANCODE_1]) {

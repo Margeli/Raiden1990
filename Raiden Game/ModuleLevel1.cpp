@@ -67,6 +67,7 @@ bool ModuleLevel1::Start()
 		App->player->position.x = 71; //position if there are 2 players
 		App->player->position.y = 150;
 	}
+
 	if ((!App->player->godmode)&&(App->player->spaceship_collider->rect.w<-1000)){ //SOLVES AN ERROR THAT THE COLLIDER OF RAIDEN HAS -572662307 of x, y, w & h
 		App->player->spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, App->player);
 	App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
@@ -87,7 +88,7 @@ bool ModuleLevel1::Start()
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
 
-	col = App->collision->AddCollider({ 0,0, 1000, 1 },COLLIDER_EXPLOSION, this);//dark line
+	
 
 
 	
@@ -158,6 +159,10 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
+	if ((App->player->spaceship_collider==nullptr)&&(App->player->godmode==false)) {
+	
+		App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
+	}
 	
 	float scroll_speed = 0.5f;
 
