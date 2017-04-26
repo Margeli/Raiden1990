@@ -73,7 +73,10 @@ bool ModuleLevel1::Start()
 	App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
 }
 
-	
+	if ((App->player->spaceship_collider == nullptr) && (App->player->godmode == false)) {
+		App->player->spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, App->player);
+		App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
+	}
 
 	
 	
@@ -149,7 +152,7 @@ bool ModuleLevel1::CleanUp()
 	App->player->Disable();
 	App->player2->Disable();
 	App->enemies->Disable();
-	App->collision->Disable();
+	//App->collision->Disable();
 	App->powerup->Disable();
 	App->particles->Disable();
 
@@ -159,10 +162,7 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
-	if ((App->player->spaceship_collider==nullptr)&&(App->player->godmode==false)) {
 	
-		App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
-	}
 	
 	float scroll_speed = 0.5f;
 

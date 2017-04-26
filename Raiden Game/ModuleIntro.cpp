@@ -45,7 +45,7 @@ bool ModuleIntro::Start()
 	App->particles->Disable();
 	App->audio->Enable(); 
 	App->player->Disable();
-	App->collision->Disable();
+	//App->collision->Disable();
 	App->enemies->Disable();
 	App->player->destroyed = false;
 
@@ -65,8 +65,8 @@ bool ModuleIntro::CleanUp()
 	LOG("Unloading intro screen");
 
 	App->textures->Unload(graphics);
-	App->audio->Disable();
-
+	
+	
 	App->fonts->UnLoad(red_font_score);
 	App->fonts->UnLoad(yellow_font_score);
 	

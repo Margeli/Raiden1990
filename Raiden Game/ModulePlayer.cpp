@@ -102,9 +102,9 @@ bool ModulePlayer::CleanUp()
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(yellow_font_score);
 	App->fonts->UnLoad(red_font_score);
-	if (spaceship_collider != nullptr) {
+	/*if (spaceship_collider != nullptr) {
 	spaceship_collider->to_delete = true;
-	}
+	}*/
 
 	return true;
 }
