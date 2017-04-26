@@ -1,5 +1,5 @@
 # Raiden
-
+Raiden is a scrolling shooter arcade game wich was developed in September 1990 by Seibu Kaihatsu.
 ### CONTROLS
 
 **W:** MOVE UPWARDS
