@@ -55,30 +55,30 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 	//Animation from facing downwards to facing right
 
-	down.PushBack({ 1,1,30,30 }); //Facing down
-	down_right.PushBack({ 25,1,30,30 }); //CHECK
-	down_right.PushBack({ 53,1,30,30 });//	!
-	down_right.PushBack({ 81,1,30,30 });//	v
+	down.PushBack({ 1,1,25,30 }); //Facing down
+	down_right.PushBack({ 25,1,25,30 }); //CHECK
+	down_right.PushBack({ 53,1,25,30 });//	!
+	down_right.PushBack({ 81,1,25,30 });//	v
 	down_right.speed = 0.05f;
 
-	downwards_right.PushBack({ 25,1,30,30 });
+	downwards_right.PushBack({ 25,1,25,30 });
 
 	//Animation from right to up
 
-	right.PushBack({ 114,1,30,30 }); //Facing right
-	right_up.PushBack({ 147,1,30,30 });
-	right_up.PushBack({ 182,1,30,30 });
-	right_up.PushBack({ 212,1,30,30 });
+	right.PushBack({ 114,1,25,30 }); //Facing right
+	right_up.PushBack({ 147,1,25,30 });
+	right_up.PushBack({ 182,1,25,30 });
+	right_up.PushBack({ 212,1,25,30 });
 	right_up.speed = 0.05f;
 
 
 
 	//Animation from up to left
 
-	up.PushBack({ 241,1,30,30 }); //Facing up //CHECK
-	up_left.PushBack({ 266,1,30,30 });
-	up_left.PushBack({ 294,1,30,30 });
-	up_left.PushBack({ 322,1,30,30 });
+	up.PushBack({ 241,1,25,30 }); //Facing up //CHECK
+	up_left.PushBack({ 266,1,25,30 });
+	up_left.PushBack({ 294,1,25,30 });
+	up_left.PushBack({ 322,1,25,30 });
 	up_left.speed = 0.01f;
 
 
