@@ -59,6 +59,7 @@ bool ModuleLevel2::CleanUp()
 	LOG("Unloading level 2");
 
 	App->textures->Unload(graphics);
+	App->audio->Unload_Music(music_lvl2);
 
 	
 

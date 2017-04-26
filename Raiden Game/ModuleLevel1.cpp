@@ -144,6 +144,7 @@ bool ModuleLevel1::CleanUp()
 
 	App->textures->Unload(graphics);
 
+	App->audio->Unload_Music(music_lvl1);
 	App->player->Disable();
 	App->player2->Disable();
 	App->enemies->Disable();
