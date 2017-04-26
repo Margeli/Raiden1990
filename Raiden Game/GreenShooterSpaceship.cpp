@@ -150,6 +150,7 @@ void GreenShooter_Spaceship::Move() {
 		}
 	}
 	position.y += speed;
+	collider->SetPos(position.x, position.y);
 	
 }
 

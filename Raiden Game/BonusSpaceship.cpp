@@ -128,6 +128,7 @@ void Bonus_Spaceship::Move() {
 	
 
 position.y -= speed;
+collider->SetPos(position.x, position.y);
 }
 
 void Bonus_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
@@ -188,10 +189,10 @@ void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 		App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, position.x+32, position.y+32);
 		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_BigSpaceship_Explosion.wav");
-		if (!fx_shoot) {
+ 		if (!fx_shoot) {
 			LOG("Error loading shoot's fx: %s", Mix_GetError)
 		}
-		App->audio->Play_Fx(fx_shoot);
+		App->audio->Play_Fx(fx_shoot); 
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 

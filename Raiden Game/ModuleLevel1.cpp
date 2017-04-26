@@ -92,7 +92,7 @@ bool ModuleLevel1::Start()
 
 	
 
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -450, 0);
+	App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 30, -450, 3);
 	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -850, 3);
 	App->powerup->AddPowerUp(POWERUP_MEDAL, 30, -150);
 	App->powerup->AddPowerUp(POWERUP_RED, 30, -100);

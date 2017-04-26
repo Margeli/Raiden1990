@@ -110,6 +110,7 @@ void LightShooter_Spaceship::Move()
 			animation = current_animation;
 		}
 		*/
+		collider->SetPos(position.x, position.y);
 	}
 
 }

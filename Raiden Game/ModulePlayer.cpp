@@ -249,8 +249,8 @@ update_status ModulePlayer::Update()
 		}
 
 		if (M_powerup_level > 0) {
-			App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
-			App->particles->AddParticle(misile_right, position.x+24, position.y, COLLIDER_PLAYER_SHOT, 0 );
+			App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0 );
+			App->particles->AddParticle(misile_right, position.x+24, position.y, COLLIDER_PLAYER_SHOT, 0  );
 			
 		}
 	}
@@ -329,12 +329,7 @@ void ModulePlayer::Dead() {
 	
 	App->player2->player2 = false;
 	App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Player_Explosion.wav");
-	if (!fx_shoot) {
-		LOG("Error loading shoot's fx: %s", Mix_GetError)
-	}
-	App->audio->Play_Fx(fx_shoot);
-	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION,0, "Assets/Audio/Fx_Player_Explosion.wav");
 	App->textures->Unload(graphics);
 		
 }
