@@ -9,9 +9,15 @@ class LightShooter_Spaceship : public Enemy
 {
 private:
 
-	Path path;
+	Path down_path;
+	Path up_path;
+	//Path idle_path;
+
+	Particle color_rotatory_shot;
+
+	
 	fPoint original_pos;
-	int initial_count;
+	int shoot_number = 0;
 	Animation down;
 	Animation right;
 	Animation left;
@@ -32,7 +38,11 @@ private:
 	int initial_y;		
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	bool shooting;
-	
+	bool b_right= false;
+	bool b_left= false;
+	bool b_idle = false;
+	bool first = true;
+
 	bool downwards=true;
 	
 
