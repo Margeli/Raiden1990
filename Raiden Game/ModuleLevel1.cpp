@@ -92,8 +92,11 @@ bool ModuleLevel1::Start()
 
 	
 
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -150, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -450, 0);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 30, -850, 3);
 	App->powerup->AddPowerUp(POWERUP_MEDAL, 30, -150);
+	App->powerup->AddPowerUp(POWERUP_RED, 30, -100);
+	App->powerup->AddPowerUp(POWERUP_M, 30, -80);
 
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::BONUS_SPACESHIP, 20, -150, 3);
@@ -141,12 +144,12 @@ update_status ModuleLevel1::Update()
 	}
 
 
-	if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
+	/*if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
 	
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;
 		
-	}
+	}*/
 
 	return UPDATE_CONTINUE;
 }

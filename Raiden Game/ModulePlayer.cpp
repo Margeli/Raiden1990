@@ -243,7 +243,7 @@ update_status ModulePlayer::Update()
 	{	
 		if (red_powerup_level == 0)
 			App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
-		else if (red_powerup_level == 1) {
+		else if (red_powerup_level >= 1) {
 			App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
 			App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
 		}
@@ -317,6 +317,16 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 }
 
 void ModulePlayer::Dead() {
+
+	
+	score = 0;
+	red_powerup_level = 0;
+	M_powerup_level = 0;
+	sprintf_s(score_text, 10, "%8d", score);
+	sprintf_s(high_score_text, 10, "%7d", high_score);
+	
+	destroyed = true;
+	
 	App->player2->player2 = false;
 	App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
 	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Player_Explosion.wav");
@@ -326,9 +336,5 @@ void ModulePlayer::Dead() {
 	App->audio->Play_Fx(fx_shoot);
 	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 	App->textures->Unload(graphics);
-	destroyed = true;
-	score = 0;
-	App->level1->first = false;
-	red_powerup_level = 0;
-	M_powerup_level = 0;
+		
 }
