@@ -100,7 +100,7 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	collider = App->collision->AddCollider({ 0, 0, 30, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	
-	down_path.PushBack({ 0.0f, +0.8f }, 150);
+	down_path.PushBack({ 0.0f, +0.6f }, 150);
 
 	//idle_path.PushBack({ 0.0f, -1.0f }, 50);
 
