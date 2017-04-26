@@ -14,6 +14,7 @@ private:
 	Animation boost;
 	Particle color_rotatory_shot;
 
+	int shoot_number;
 	float hits_life;
 	float speed ;
 	float increment_y;
@@ -35,7 +36,7 @@ private:
 
 public:
 
-	Bonus_Spaceship(int x, int y, int count);
+	Bonus_Spaceship(int x, int y, int count=3);
 	void Move();
 	int shoots = 3;
 

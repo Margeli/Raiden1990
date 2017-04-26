@@ -108,7 +108,7 @@ void GreenShooter_Spaceship::Move() {
 
 	if (down) {
 		if (increment_y < 55) {
-			speed = 0.3f;
+			speed = 0.2f;
 			if ((increment_y >= 40) && (shoot_number == 3)) {//lineal shot
 				lineal_shoot = true;
 				shoot_number--;
@@ -116,7 +116,7 @@ void GreenShooter_Spaceship::Move() {
 		}
 
 		else if (increment_y > 55 && increment_y < 120) {
-			speed = 1.0f;			
+			speed = 0.4f;			
 			animation = &boost;
 			if (position.x < App->player->position.x)position.x++;
 			else if (position.x > App->player->position.x)position.x--;
@@ -131,18 +131,18 @@ void GreenShooter_Spaceship::Move() {
 	}
 	else
 	{
-		if (increment_y < 120 && increment_y>-200) {
+		if (increment_y < 120 && increment_y>-280) {
 			speed = -2.3f;
-			if ((increment_y <= -80) && (shoot_number == 2)) {//disperse shot
+			if ((increment_y <= -250) && (shoot_number == 2)) {//disperse shot
 				disperse_shoot = true;
 				shoot_number--;
 
 			}
 		}
 		else if (increment_y < -200) {
-			speed = -3.0f;
+			speed = -2.4f;
 			animation = &backward_boost;
-			if ((increment_y <= -230) && (shoot_number == 1)) {//disperse shot
+			if ((increment_y <= -500) && (shoot_number == 1)) {//disperse shot
 				disperse_shoot = true;
 				shoot_number--;
 			}

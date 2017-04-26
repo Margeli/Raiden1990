@@ -63,6 +63,7 @@ Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y)
 	animation = &forward;
 	idle.speed = 0.03f;
 
+	shoot_number = count;
 
 	initial_y = y;
 	increment_y = 0.0f;
@@ -83,12 +84,14 @@ void Bonus_Spaceship::Move() {
 	increment_y = -(position.y - initial_y);
 
 	if (shooting) {
-		Shot(color_rotatory_shot, { App->player->position.x+11 ,App->player->position.y+13 }, { position.x + 31,  position.y + 25 });//Adds a particle (color_rotatory_shot) in front of the spaceship.
+		Shot(color_rotatory_shot, { App->player->position.x + 70 ,App->player->position.y-10 }, { position.x + 31,  position.y + 25 });
+		Shot(color_rotatory_shot, { App->player->position.x - 70 ,App->player->position.y-10 }, { position.x + 31,  position.y + 25 });
+		Shot(color_rotatory_shot, { App->player->position.x + 11 ,App->player->position.y + 13 }, { position.x + 31,  position.y + 25 });//Adds a particle (color_rotatory_shot) in front of the spaceship.
 		shooting = false;
 	}	
 
 	if(increment_y<80) 
-	speed = 0.5f;
+	speed = 0.4f;
 	
 
 	else if ((increment_y >= 80)&&(increment_y<550)) {//enemy entrance
@@ -98,11 +101,23 @@ void Bonus_Spaceship::Move() {
 			animation = &boost;		
 		}		
 
-		speed = 0.7f;
-		if ((int)increment_y == 101|| (int)increment_y == 200|| (int)increment_y == 300) {
-			shooting = true; //shots at 101, 200 & 300
+		speed = 0.6f;
+
+		if (increment_y >= 100  && shoot_number==3) {
+			shooting = true; //shots at 100
+			shoot_number--;
 		}
 
+		if (increment_y >= 200 && shoot_number==2) {
+			shooting = true; //shots at 200
+			shoot_number--;
+		}
+		if (increment_y >= 300 && shoot_number==1) {
+			shooting = true; //shots at 300
+			shoot_number--;
+		}
+
+		
 		if (right) {
 			position.x+=0.3f;
 			counter_movement++;
@@ -139,9 +154,9 @@ void Bonus_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_init
 		if (aim_position.y - shot_initial_pos.y < 75)
 			shot.speed.y = 1.0f;
 		else if ((aim_position.y - shot_initial_pos.y > 75) && (aim_position.y - shot_initial_pos.y < 150))
-			shot.speed.y = 3.0f;
+			shot.speed.y = 2.0f;
 		else if (aim_position.y - shot_initial_pos.y > 150)
-			shot.speed.y = 5.0f;
+			shot.speed.y = 3.0f;
 	}
 	
 	
