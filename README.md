@@ -1,4 +1,4 @@
-# RAIDEN
+![](http://vignette1.wikia.nocookie.net/raidenbase/images/7/7a/RaidenLogo.png/revision/latest?cb=20160307170649)
 ## PetaBytes
 
 Raiden is a scrolling shooter arcade game wich was developed in September 1990 by Seibu Kaihatsu. It consists of eight vertical scrolling stages where the player manages the Raiden craft trying to avoid and destroy enemy robots, buildings, ground targets, and aircrafts. In this first version, we have tried to imitate the first stage of the original game, however some small details are missing.
