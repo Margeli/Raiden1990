@@ -44,5 +44,24 @@ Raiden is a scrolling shooter arcade game wich was developed in September 1990 b
 
 
 ### Team Members
+1. Carles Margelí:  
+   * Code.
+   * Github account: [Margelí](https://github.com/Margeli)
+
+2. Vladislav Bulansev:
+   * Code.
+   * Github account: [Vlaad96](https://github.com/vlaad96)
+
+3. Marc Climent:
+   * Management.
+   * Github account: [Maclimo13](https://github.com/maclimo13)
+
+4. Arnau Gallofré:
+    * QA.
+   * Github account: [ggaka6god](https://github.com/ggaka6god)
+
+5. Pol Bosch:
+   * Art/Design.
+   * Github account: [OhCaXulu](https://github.com/OhCaXulu)
 
 
