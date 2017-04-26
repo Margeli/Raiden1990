@@ -10,6 +10,8 @@ Raiden is a scrolling shooter arcade game wich was developed in September 1990 b
 - 2 players mode
 - First stage 
 - Debug stage
+- Original first stage soundtrack
+- Most sound effects
 
 ### CONTROLS
 
