@@ -18,7 +18,7 @@ Raiden is a scrolling shooter arcade game wich was developed in September 1990 b
 
 
 
-### Controls
+### Controls:
 
 * **W:** MOVE UPWARDS
 
@@ -43,7 +43,9 @@ Raiden is a scrolling shooter arcade game wich was developed in September 1990 b
 * **2:** 2 PLAYERS MODE
 
 
-### Team Members
+
+### Team Members:
+
 1. Carles Margelí:  
    * Code.
    * Github account: [Margelí](https://github.com/Margeli)
