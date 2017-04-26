@@ -91,7 +91,7 @@ void Bonus_Spaceship::Move() {
 	}	
 
 	if(increment_y<80) 
-	speed = 0.5f;
+	speed = 0.4f;
 	
 
 	else if ((increment_y >= 80)&&(increment_y<550)) {//enemy entrance
@@ -101,7 +101,7 @@ void Bonus_Spaceship::Move() {
 			animation = &boost;		
 		}		
 
-		speed = 0.7f;
+		speed = 0.6f;
 
 		if (increment_y >= 100  && shoot_number==3) {
 			shooting = true; //shots at 100
