@@ -92,7 +92,7 @@ bool ModuleLevel1::Start()
 
 	
 
-	
+	App->enemies->AddEnemy(BONUS_SPACESHIP, 80, -200, 3);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
 
 	
