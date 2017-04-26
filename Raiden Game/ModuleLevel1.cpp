@@ -127,6 +127,8 @@ bool ModuleLevel1::Start()
 	
 
 
+
+	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -150, 0);
 	
 	
 

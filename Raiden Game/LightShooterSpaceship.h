@@ -3,11 +3,21 @@
 
 #include "Enemy.h"
 #include "ModuleParticles.h"
+#include "Path.h"
 
 class LightShooter_Spaceship : public Enemy
 {
 private:
 
+	Path down_path;
+	Path up_path;
+	//Path idle_path;
+
+	Particle color_rotatory_shot;
+
+	
+	fPoint original_pos;
+	int shoot_number = 0;
 	Animation down;
 	Animation right;
 	Animation left;
@@ -18,8 +28,6 @@ private:
 	Animation left_down;
 	Animation left_downwards;
 	Animation downwards_right;
-	Animation* current_animation = nullptr;
-
 
 	Particle explosion;
 	Mix_Chunk* fx_shoot = nullptr;
@@ -30,24 +38,21 @@ private:
 	int initial_y;		
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	bool shooting;
-	
-	bool downwards;
+	bool b_right= false;
+	bool b_left= false;
+	bool b_idle = false;
+	bool first = true;
+
+	bool downwards=true;
 	
 
 	void OnCollision(Collider* collider, int num_enemy);
-
-
-
 
 
 public:
 
 	LightShooter_Spaceship(int x, int y, int count);
 	void Move();
-	void Direction();
-	
-
-
 
 };
 
