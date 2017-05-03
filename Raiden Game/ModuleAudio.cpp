@@ -65,7 +65,8 @@ bool ModuleAudio::CleanUp()
 {
 	LOG("Freeing audio library");
 		
-	App->audio->Disable();	
+	Mix_FreeChunk(fx_shoot);
+	Mix_FreeMusic(music);
 	Mix_Quit();
 
 	return true;
