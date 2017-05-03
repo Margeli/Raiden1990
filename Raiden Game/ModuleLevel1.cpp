@@ -42,20 +42,19 @@ ModuleLevel1::~ModuleLevel1()
 
 // Load assets
 bool ModuleLevel1::Start()
-{
-	App->level2->Disable();
-	App->stageCompleted->Disable();
-
+{	
+	App->player->Enable();
+	App->particles->Enable();
+	App->enemies->Enable();	
 	App->audio->Enable();
 	App->collision->Enable();
-	App->player->Enable();
+	App->powerup->Enable();
+	
 	if (App->player2->player2 == true)
 		App->player2->Enable();
 	else if (App->player2->player2)
 		App->player2->Disable();
-	App->particles->Enable();
 	
-	App->enemies->Enable();
 
 	if (App->player2->player2 == false) {
 
@@ -148,13 +147,14 @@ bool ModuleLevel1::CleanUp()
 
 	App->textures->Unload(graphics);
 
+	App->enemies->Disable();
+	App->collision->Disable();
+	App->particles->Disable();
 	App->audio->Unload_Music(music_lvl1);
 	App->player->Disable();
-	App->player2->Disable();
-	App->enemies->Disable();
-	//App->collision->Disable();
+	App->player2->Disable();	
 	App->powerup->Disable();
-	App->particles->Disable();
+	
 
 	return true;
 }
