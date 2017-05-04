@@ -20,29 +20,24 @@
 Application::Application()
 {
 	int i = 0;
-	
+
 	modules[i++] = window = new ModuleWindow();
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
-	modules[i++] = fonts = new ModuleFonts();
-	modules[i++] = intro = new ModuleIntro();
-	modules[i++] = level1 = new ModuleLevel1();
 	modules[i++] = level2 = new ModuleLevel2();
-	modules[i++] = stageCompleted = new ModuleStageCompleted();
+	modules[i++] = level1 = new ModuleLevel1();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
-	modules[i++] = particles = new ModuleParticles();
-	modules[i++] = collision = new ModuleCollision();
-	modules[i++] = audio = new ModuleAudio();	
-	modules[i++] = powerup = new ModulePowerUps();
 	modules[i++] = fade = new ModuleFadeToBlack();
-	
-	
-	
-	
-	
+	modules[i++] = intro = new ModuleIntro();
+	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = particles = new ModuleParticles();
+	modules[i++] = stageCompleted = new ModuleStageCompleted();
+	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = fonts = new ModuleFonts();
+	modules[i++] = powerup = new ModulePowerUps();
 }	
 
 Application::~Application()
@@ -56,9 +51,7 @@ bool Application::Init()
 	bool ret = true;
 
 	// Deactivate modules here ----
-	player->Disable();
-	collision->Disable();
-	enemies->Disable();
+	//player->Disable();
 	level2->Disable();
 	level1->Disable();
 	stageCompleted->Disable();

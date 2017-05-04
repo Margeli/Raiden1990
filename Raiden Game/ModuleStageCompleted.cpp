@@ -33,9 +33,9 @@ ModuleStageCompleted::~ModuleStageCompleted()
 bool ModuleStageCompleted::Start()
 {
 	App->audio->Enable();
-	//App->level1->Disable();
-	//App->level2->Disable();
-	//App->intro->Disable();
+	App->level1->Disable();
+	App->level2->Disable();
+	App->intro->Disable();
 	App->player->Disable();
 
 	user_interface = "    1UP   HI-SCORE    2UP ";
