@@ -25,7 +25,7 @@ ModuleLevel1::ModuleLevel1()
 	foreground.x = 352;
 	foreground.y = 134;
 	foreground.w = 351;
-	foreground.h = 3265;
+	foreground.h = 2836;
 
 	// Background / sky
 	background.x = 0;
@@ -33,7 +33,10 @@ ModuleLevel1::ModuleLevel1()
 	background.w = 351;
 	background.h = 3265;
 
-
+	ship_launcher.x = 352;
+	ship_launcher.y = 2971;
+	ship_launcher.w = 351;
+	ship_launcher.h = 429;
 	
 }
 
@@ -162,18 +165,36 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
-	
-	
-	float scroll_speed = 0.5f;
+		//float scroll_speed = 0.5f;
 
-	App->player->position.y += 1;
-	App->render->camera.y += 2;
+	if (App->render->camera.y < 100) {
+
+		App->player->position.y += 1;
+		App->render->camera.y += 1;
+		first_animation = true;
+
+	}
+	else {
+		if (App->render->camera.y < 220) {
+			App->player->current_animation = &App->player->boost;
+		}
+		else {
+			first_animation = false;
+		}
+		App->render->camera.y += 2;
+		
+	
+	
+	}
 
 	// Draw everything --------------------------------------
+	
 	App->render->Blit(graphics, -50, -2965, &background); 
 
 	App->render->Blit(graphics, -50, -2965, &foreground);
 	
+	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
+
 	if (App->player->position.y == -2925) {
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;

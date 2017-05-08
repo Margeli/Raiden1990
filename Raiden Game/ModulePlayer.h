@@ -37,6 +37,7 @@ public:
 	Animation idle;
 	Animation right;
 	Animation left;	
+	Animation boost;
 	Animation backward;	
 	Animation shadow_idle;
 	Animation shadow_right;

@@ -24,6 +24,12 @@ ModulePlayer::ModulePlayer()
 
 	idle.PushBack({ 80, 13, 24, 27 });
 
+
+	//move animation boost
+
+	boost.PushBack({ 147, 619, 24, 32 });
+	boost.PushBack({ 178, 619, 24, 32 });
+
 	//move animation right 
 	
 	right.PushBack({ 114, 14, 20, 27 });
@@ -131,7 +137,7 @@ bool ModulePlayer::Start()
 		position.x = 71; //position if there are 2 players
 		position.y = 150;
 	}
-
+	current_animation = &idle;
 	user_interface = "    1UP   HI.SCORE    2UP ";
 	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
 	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
@@ -151,68 +157,84 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	
-	float speed = 2;
-	float  spaceship_speed = 2;
+	int speed = 2;
+	int spaceship_speed = 1;
 	position.y -= spaceship_speed;
-
-	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT) //---UP
-	{
-		position.y -= speed;
-		if (-position.y*SCREEN_SIZE > App->render->camera.y) {
-			position.y = -App->render->camera.y / SCREEN_SIZE; //upper player limit. ------->The relation between camera.y and position.y is camera.y=-position.y*SCREEN_SIZE
+	if (!App->level1->first_animation) {// not able to move during first animation
+		if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT) //---UP
+		{
+			position.y -= speed;
+			if (-position.y*SCREEN_SIZE > App->render->camera.y) {
+				position.y = -App->render->camera.y / SCREEN_SIZE; //upper player limit. ------->The relation between camera.y and position.y is camera.y=-position.y*SCREEN_SIZE
+			}
 		}
-	}
 
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)//---DOWN
-	{
-		position.y += speed;
-		if ((-(position.y-SCREEN_HEIGHT+27)*SCREEN_SIZE)<App->render->camera.y) { //lower player limit (27 is height of spaceship)
-			position.y = ((-App->render->camera.y / SCREEN_SIZE) -27+ SCREEN_HEIGHT) ;
-		}
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)//---DOWN
+		{
+			position.y += speed;
+			if ((-(position.y-SCREEN_HEIGHT+27)*SCREEN_SIZE)<App->render->camera.y) { //lower player limit (27 is height of spaceship)
+				position.y = ((-App->render->camera.y / SCREEN_SIZE) -27+ SCREEN_HEIGHT) ;
+			}
 		
-		}
+			}
 		
 	
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)//---LEFT
-	{
-		position.x -= speed;
-		App->render->camera.x +=4;
-		if (current_animation != &left)
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)//---LEFT
 		{
-			left.Reset();
-			current_animation = &left;
-		}
-		if (App->render->camera.x >= 100) {//left camera limit
-			App->render->camera.x = 100;
-			if (position.x <= -48) { //left player limit
-				position.x = -48;
+			position.x -= speed;
+			App->render->camera.x +=4;
+			if (current_animation != &left)
+			{
+				left.Reset();
+				current_animation = &left;
 			}
-		}
-		
-	}
+			if (App->render->camera.x >= 100) {//left camera limit
+				App->render->camera.x = 100;
+				if (position.x <= -48) { //left player limit
+					position.x = -48;
+				}
+			}
+			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
+			{
+				if (red_powerup_level == 0)
+					App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
+				else if (red_powerup_level >= 1) {
+					App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+					App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				}
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)//---RIGHT
-	{
-		position.x += speed;
-		App->render->camera.x -= 4;
-		if (current_animation != &right)
-		{
-			right.Reset();
-			current_animation = &right;
+				if (M_powerup_level > 0) {
+					App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+					App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER_SHOT, 0);
+
+				}
+			}
+
 		}
-		if (App->render->camera.x <= -154) {//right camera limit
-			App->render->camera.x =-154;
-			if (position.x >= 275) { //right player limit
-				position.x = 275;
+
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)//---RIGHT
+		{
+			position.x += speed;
+			App->render->camera.x -= 4;
+			if (current_animation != &right)
+			{
+				right.Reset();
+				current_animation = &right;
+			}
+			if (App->render->camera.x <= -154) {//right camera limit
+				App->render->camera.x =-154;
+				if (position.x >= 275) { //right player limit
+					position.x = 275;
+				}
 			}
 		}
-	}
 	 
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE //check error
-		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-		current_animation = &idle;
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE //check error
+			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE&&!App->level1->first_animation) {
+			current_animation = &idle;
+		}
 	}
-	
+
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)//GOD MODE
 	{
 		if (!godmode){			
@@ -222,32 +244,9 @@ update_status ModulePlayer::Update()
 			godmode = false;
 		}				
 	}
-
-
-
-
-
-
 	if( (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)&&(App->fade->IsFading()==false))//DIRECT WIN/LOSE
 	{
 		App->fade->FadeToBlack(this, App->stageCompleted);		
-
-	}
-	
-  	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-	{	
-		if (red_powerup_level == 0)
-			App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
-		else if (red_powerup_level >= 1) {
-			App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
-			App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
-		}
-
-		if (M_powerup_level > 0) {
-			App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0 );
-			App->particles->AddParticle(misile_right, position.x+24, position.y, COLLIDER_PLAYER_SHOT, 0  );
-			
-		}
 	}
 	
 
