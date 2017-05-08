@@ -215,17 +215,12 @@ update_status ModulePlayer::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)//GOD MODE
 	{
-		if (spaceship_collider!=nullptr){
-			spaceship_collider->SetPos(-1000, -1000);
-			spaceship_collider = nullptr;
+		if (!godmode){			
 			godmode = true;
 		}
-		else {
-			spaceship_collider = App->collision->AddCollider({ 0,0, 23, 26 }, COLLIDER_PLAYER, this);
-
+		else {			
 			godmode = false;
-		}		
-		
+		}				
 	}
 
 
@@ -305,11 +300,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		break;
 
 	case COLLIDER_ENEMY_SHOT :
-		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
+		if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false&&godmode==false) {
 			Dead();
 		}
 	case COLLIDER_ENEMY:
-		if ((c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false)) {
+		if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false && godmode==false ) {
 			Dead();
 		}
 
