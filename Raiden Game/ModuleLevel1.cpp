@@ -110,7 +110,7 @@ bool ModuleLevel1::Start()
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 240, -900);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 20, -940);
 
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -190, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -190, 0);
 	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -245, 0);
 	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -255, 0);
 	//App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -260, 0); // just in the middle
@@ -130,6 +130,7 @@ bool ModuleLevel1::Start()
 	//App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
 	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
 	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::MINE, 60, -190, 0);
 
 	
 
