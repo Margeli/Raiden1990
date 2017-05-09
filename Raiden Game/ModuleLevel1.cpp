@@ -102,7 +102,7 @@ bool ModuleLevel1::Start()
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 60,-420);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_B, 60,-420);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -660);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 170, -680);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -680);

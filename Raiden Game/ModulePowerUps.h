@@ -57,7 +57,7 @@ public:
 	Particle Red_Bonus;
 	Particle Blue_Bonus;
 	Particle M_Bonus;
-	Particle H_Bonus;
+	Particle B_Bonus;
 	Particle P_Bonus; 
 	Particle Fairy_Bonus;
 	Particle Medal_Bonus;
