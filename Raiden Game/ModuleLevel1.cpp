@@ -111,25 +111,25 @@ bool ModuleLevel1::Start()
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 20, -940);
 
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -190, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -245, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -255, 0);
-	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -260, 0); // just in the middle
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -450, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -480, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -500, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 200, -500, 0);
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -650, 3);
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 180, -800, 3);
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 111, -850, 3);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -1000, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -1100, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -1150, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 100, -1250, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 120, -1300, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 140, -1350, 1);
-	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -245, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -255, 0);
+	//App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -260, 0); // just in the middle
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -450, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -480, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -500, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 200, -500, 0);
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -650, 3);
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 180, -800, 3);
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 111, -850, 3);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -1000, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -1100, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -1150, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 100, -1250, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 120, -1300, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 140, -1350, 1);
+	//App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
 
 	
 

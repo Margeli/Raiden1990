@@ -8,6 +8,7 @@
 #include "BonusSpaceship.h"
 #include "LightShooterSpaceship.h"
 #include "GreenShooterSpaceship.h"
+#include "Mine.h"
 
 
 
@@ -152,6 +153,9 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 		case ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP:
    			enemies[i] = new LightShooter_Spaceship(info.x, info.y, info.shots);
+			break;
+		case ENEMY_TYPES::MINE:
+			enemies[i] = new Mine(info.x, info.y, info.shots);
 			break;
 		}
 	}
