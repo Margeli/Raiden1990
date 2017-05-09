@@ -17,7 +17,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int shoot_num) : En
 	color_rotatory_shot.anim.PushBack({ 56, 40, 6, 7 });//animation
 	color_rotatory_shot.anim.speed = 0.3f;
 
-	color_rotatory_shot.life = 6000;
+	color_rotatory_shot.life = 3000;
 	color_rotatory_shot.anim.loop = true;
 
 	//explosion  particle animation (2nd row particle spritesheet.)
