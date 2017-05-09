@@ -54,6 +54,7 @@ public:
 	char score_text[10];
 	char high_score_text[10];
 	char *user_interface;
+	char *godmode_activated;
 
 	int red_font_score = 0;
 	int yellow_font_score = 0;

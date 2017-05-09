@@ -47,7 +47,12 @@ bool ModuleIntro::Start()
 	App->player->Disable();
 	//App->collision->Disable();
 	App->enemies->Disable();
-	App->player->destroyed = false;
+
+	if (App->player->destroyed) { //Resets score
+		App->player->score = 0;
+		App->player->destroyed = false;
+	}
+	
 
 
 	user_interface = "    1UP   HI-SCORE    2UP ";

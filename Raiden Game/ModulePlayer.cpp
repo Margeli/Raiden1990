@@ -65,7 +65,7 @@ ModulePlayer::ModulePlayer()
 	basic_shot.anim.speed = 1.0f;
 	basic_shot.speed.y = -3;
 	basic_shot.speed.x = 0;
-	basic_shot.life = 3000;
+	basic_shot.life = 1850;
 	basic_shot.anim.loop = true;
 
 	//Raiden misile shot 
@@ -75,7 +75,7 @@ ModulePlayer::ModulePlayer()
 	misile_left.anim.speed = 1.0f;
 	misile_left.speed.y = -4.5f;
 	misile_left.speed.x = 0;
-	misile_left.life = 3000;
+	misile_left.life = 1850;
 	misile_left.anim.loop = true;
 
 	misile_right.anim.PushBack({ 411, 169, 6, 15 });
@@ -83,7 +83,7 @@ ModulePlayer::ModulePlayer()
 	misile_right.anim.speed = 1.0f;
 	misile_right.speed.y = -4.5f;
 	misile_right.speed.x = 0;
-	misile_right.life = 3000;
+	misile_right.life = 1850;
 	misile_right.anim.loop = true;
 
 	hit_dmg = 1.0f;
@@ -138,6 +138,7 @@ bool ModulePlayer::Start()
 		position.y = 150;
 	}
 	current_animation = &idle;
+	godmode_activated = " G ";
 	user_interface = "    1UP   HI.SCORE    2UP ";
 	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
 	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
@@ -193,24 +194,24 @@ update_status ModulePlayer::Update()
 				if (position.x <= -48) { //left player limit
 					position.x = -48;
 				}
-			}
-			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
-			{
-				if (red_powerup_level == 0)
-					App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
-				else if (red_powerup_level >= 1) {
-					App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
-					App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
-				}
-
-				if (M_powerup_level > 0) {
-					App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
-					App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER_SHOT, 0);
-
-				}
-			}
-
+			}			
 		}
+		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
+		{
+			if (red_powerup_level == 0)
+				App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
+			else if (red_powerup_level >= 1) {
+				App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+			}
+
+			if (M_powerup_level > 0) {
+				App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER_SHOT, 0);
+
+			}
+		}
+
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)//---RIGHT
 		{
@@ -272,6 +273,10 @@ update_status ModulePlayer::Update()
 		App->fonts->BlitText(0,1,red_font_score, user_interface);
 		App->fonts->BlitText(0, 9, yellow_font_score, score_text);
 		App->fonts->BlitText(88,9,yellow_font_score, high_score_text);
+		if (godmode) {
+			App->fonts->BlitText(0, 1, yellow_font_score, godmode_activated);// Yellow "G" in left upper corner when godmode activated.
+		}
+
 	return UPDATE_CONTINUE;
 }
 
@@ -313,7 +318,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 void ModulePlayer::Dead() {
 
 	
-	score = 0;
+	
 	red_powerup_level = 0;
 	M_powerup_level = 0;
 	sprintf_s(score_text, 10, "%8d", score);

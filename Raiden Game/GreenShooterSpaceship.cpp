@@ -72,7 +72,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int shoot_num) : En
 	increment_y = 0.0f;
 
 	
-	score_points = 130;
+	score_points = 130;//130
 	hits_life = 21.0f;// 21.0f
 	down = true;
 	
