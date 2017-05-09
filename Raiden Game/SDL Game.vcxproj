@@ -80,6 +80,7 @@
     <ClInclude Include="GreenShooterSpaceship.h" />
     <ClInclude Include="LightShooterSpaceship.h" />
     <ClInclude Include="MemLeaks.h" />
+    <ClInclude Include="Mine.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollision.h" />
@@ -108,6 +109,7 @@
     <ClCompile Include="GreenShooterSpaceship.cpp" />
     <ClCompile Include="LightShooterSpaceship.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mine.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
