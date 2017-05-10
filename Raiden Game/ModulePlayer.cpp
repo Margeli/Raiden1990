@@ -88,15 +88,15 @@ ModulePlayer::ModulePlayer()
 
 	hit_dmg = 1.0f;
 
-	missile_explosion.anim.PushBack({ 7,202,32,30 });
-	missile_explosion.anim.PushBack({ 40,202,32,30 });
-	missile_explosion.anim.PushBack({ 76,202,32,30 });
-	missile_explosion.anim.PushBack({ 116,202,32,30 });
-	missile_explosion.anim.PushBack({ 164,202,32,30 });
-	missile_explosion.anim.PushBack({ 0,0,0,0 });
-	missile_explosion.anim.speed = 0.1f;
-	missile_explosion.life = 1000;
-
+	dead_explosion.anim.PushBack({ 7,202,32,30 });
+	dead_explosion.anim.PushBack({ 40,202,32,30 });
+	dead_explosion.anim.PushBack({ 76,202,32,30 });
+	dead_explosion.anim.PushBack({ 116,202,32,30 });
+	dead_explosion.anim.PushBack({ 164,202,32,30 });
+	dead_explosion.anim.PushBack({ 0,0,0,0 });
+	dead_explosion.anim.speed = 0.1f;
+	dead_explosion.life = 1000;
+	
 	//Raiden Bomb Explosion
 	bomb_explosion.anim.PushBack({ 0, 633, 168, 154 });
 	bomb_explosion.anim.PushBack({ 168, 633, 168, 154 });
@@ -125,9 +125,9 @@ ModulePlayer::ModulePlayer()
 	bomb_explosion.anim.PushBack({ 168, 969, 168, 154 });//
 	bomb_explosion.anim.PushBack({ 336, 969, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 969, 168, 154 });
-	bomb_explosion.anim.speed = 0.1f;
+	bomb_explosion.anim.speed = 0.4f;
 	bomb_explosion.life = 2500;
-
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -360,7 +360,7 @@ void ModulePlayer::Dead() {
 	
 	App->player2->player2 = false;
 	App->fade->FadeToBlack((Module*)App->level1, (Module*)App->intro);
-	App->particles->AddParticle(missile_explosion, position.x, position.y, COLLIDER_EXPLOSION,0, "Assets/Audio/Fx_Player_Explosion.wav");
+	App->particles->AddParticle(dead_explosion, position.x, position.y, COLLIDER_EXPLOSION,0, "Assets/Audio/Fx_Player_Explosion.wav");
 	App->textures->Unload(graphics);
 		
 }

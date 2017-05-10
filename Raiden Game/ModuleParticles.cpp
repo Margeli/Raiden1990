@@ -101,8 +101,7 @@ void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYP
 			}
 
 			Particle* p = new Particle(particle);
-			p->born = SDL_GetTicks();// +delay;
-			//p->life += delay;
+			p->born = SDL_GetTicks();			
 			p->position.x = x;
 			p->position.y = y;
 			p->delay = delay;
