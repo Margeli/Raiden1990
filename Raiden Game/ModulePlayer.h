@@ -28,6 +28,8 @@ public:
 
 	Particle misile_left;
 	Particle misile_right;
+	Particle missile_explosion;
+	Particle bomb_explosion;
 
 
 public:
@@ -42,7 +44,7 @@ public:
 	Animation shadow_idle;
 	Animation shadow_right;
 	Animation shadow_left;
-	Particle explosion;
+	
 	iPoint position;
 	Collider* spaceship_collider;
 	bool destroyed=false;
