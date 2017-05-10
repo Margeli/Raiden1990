@@ -23,7 +23,8 @@ struct Particle
 	iPoint position;
 	fPoint speed;
 	Uint32 born = 0;
-	Uint32 life = 0;	
+	Uint32 life = 0;
+	Uint32 delay = 0;
 	bool fx_played = false;
 	
 	iPoint GetPos() const;
@@ -31,6 +32,7 @@ struct Particle
 	Particle(const Particle& p);
 	~Particle();
 	bool Update();
+	bool to_delete=false;
 };
 
 class ModuleParticles : public Module

@@ -135,8 +135,9 @@ bool ModuleLevel1::Start()
 	
 
 
+	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 50, -150, 3);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -150, 0);
+	//App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -150, 0);
 	
 	
 

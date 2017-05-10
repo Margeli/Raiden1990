@@ -202,10 +202,10 @@ void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint sh
 
 	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
 
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+8.0f, COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+16.0f, COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+24.0f , COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+30.0f, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT, 30);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT, 60);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y , COLLIDER_ENEMY_SHOT, 90);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT, 120);
 	
 
 }
