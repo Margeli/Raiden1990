@@ -25,19 +25,20 @@ Application::Application()
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = level2 = new ModuleLevel2();
 	modules[i++] = level1 = new ModuleLevel1();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
 	modules[i++] = fade = new ModuleFadeToBlack();
-	modules[i++] = intro = new ModuleIntro();
-	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = intro = new ModuleIntro();	
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = stageCompleted = new ModuleStageCompleted();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = powerup = new ModulePowerUps();
+	
 }	
 
 Application::~Application()
