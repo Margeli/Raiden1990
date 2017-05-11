@@ -15,16 +15,12 @@ private:
 	Mix_Chunk* fx_shoot = nullptr;
 	fPoint original_pos;
 	void OnCollision(Collider* collider, int num_enemy);
+	void ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos);
+	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 
-
-	float speed;
-	bool b_right = false;
-	bool b_left = false;
-	bool downwards = true;
-	
+	float speed;	
 	float hits_life;
 	int shoot_number = 0;
-	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	uint score_points;
 
 

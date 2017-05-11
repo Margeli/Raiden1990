@@ -43,20 +43,16 @@ Mine::Mine(int x, int y, int shoot_num) : Enemy(x, y)
 }
 
 void Mine::Move() {
-	if (downwards) {
+	
 		animation = &idle;
 		if (App->player->position.x > position.x) {
-			b_left = false;
-			b_right = true;
 			position.x += 0.3f;
 		}
-		else if (App->player->position.x < position.x) {
-			b_left = true;
-			b_right = false;
+		else if (App->player->position.x < position.x) {		
 			position.x -= 0.3f;
 		}
 		position.y += 0.1f;
-	}
+	
 }
 
 
@@ -70,6 +66,14 @@ void Mine::OnCollision(Collider*collider, int num_enemy) {
 
 	}
 	if (hits_life <= 0) {
+		ShotVector(color_rotatory_shot, { 2, 1 }, { position.x + 3, position.y + 3 });
+		ShotVector(color_rotatory_shot, { -1, 1 }, { position.x + 3, position.y + 3 });
+		ShotVector(color_rotatory_shot, { 3, 0 }, { position.x + 3, position.y + 3 });
+		ShotVector(color_rotatory_shot, { -3, 0 }, { position.x + 3, position.y + 3 });
+		ShotVector(color_rotatory_shot, { 1,-3 }, { position.x + 3, position.y + 3 });
+		ShotVector(color_rotatory_shot, { -1, -3 }, { position.x + 3, position.y + 3 });
+		ShotVector(color_rotatory_shot, { 3, -2 }, { position.x + 3, position.y + 3 });
+		ShotVector(color_rotatory_shot, { -3, -2 }, { position.x + 3, position.y + 3 });
 		App->player->score += score_points;
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 		delete App->enemies->enemies[num_enemy];
@@ -79,7 +83,13 @@ void Mine::OnCollision(Collider*collider, int num_enemy) {
 
 }
 
+void Mine::ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos) {
+
+	shot.speed.x = velocity_vector.x;
+	shot.speed.y = velocity_vector.y;
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
+
+}
+
 void Mine::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
-
-
 }
