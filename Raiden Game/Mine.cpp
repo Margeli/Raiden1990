@@ -20,16 +20,16 @@ Mine::Mine(int x, int y, int shoot_num) : Enemy(x, y)
 	color_rotatory_shot.life = 3000;
 	color_rotatory_shot.anim.loop = true;
 
-	sprite_path = App->textures->Load("Assets/Images/Bomb.png");
+	sprite_path = App->textures->Load("Assets/Images/Mine.png");
 
 	if (sprite_path == nullptr) {
 		LOG("Error loading GreenShooter's textures. SDL Error: %s", SDL_GetError());
 	}
 
-	idle.PushBack({ 73,5,24,34 });
-	idle.PushBack({ 100,5,16,34 });
-	idle.PushBack({ 120,5,16,34 });
-	idle.PushBack({ 100,5,16,34 });
+	idle.PushBack({ 4,4,24,33 });
+	idle.PushBack({ 28,4,24,33 });
+	idle.PushBack({ 52,4,24,33 });
+	idle.PushBack({ 28,4,24,33 });
 
 	idle.speed = 0.3f;
 
