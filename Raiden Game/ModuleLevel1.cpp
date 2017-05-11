@@ -151,9 +151,12 @@ bool ModuleLevel1::CleanUp()
 {
 	LOG("Unloading level 1");
 
-	App->textures->Unload(graphics);
+	
 
-	App->audio->Unload_Music(music_lvl1);
+	if (graphics != nullptr)	
+		App->textures->Unload(graphics);
+	if (music_lvl1 != nullptr) 	
+		App->audio->Unload_Music(music_lvl1);
 	App->player->Disable();
 	App->player2->Disable();
 	App->enemies->Disable();

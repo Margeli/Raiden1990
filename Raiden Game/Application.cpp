@@ -32,12 +32,13 @@ Application::Application()
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = player2 = new ModulePlayer2();
 	modules[i++] = fade = new ModuleFadeToBlack();
-	modules[i++] = intro = new ModuleIntro();
+	modules[i++] = intro = new ModuleIntro();	
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = stageCompleted = new ModuleStageCompleted();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = powerup = new ModulePowerUps();
+	
 }	
 
 Application::~Application()

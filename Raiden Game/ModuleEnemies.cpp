@@ -9,6 +9,11 @@
 #include "LightShooterSpaceship.h"
 #include "GreenShooterSpaceship.h"
 #include "Mine.h"
+#include "HeavyShooter.h"
+#include "MegaTank.h"
+#include "Tank.h"
+#include "StaticCannon.h"
+#include "Boss.h"
 
 
 
@@ -156,6 +161,21 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::MINE:
 			enemies[i] = new Mine(info.x, info.y, info.shots);
+			break;
+		case ENEMY_TYPES::HEAVY_SHOOTER:
+			enemies[i] = new HeavyShooter(info.x, info.y, info.shots);
+			break;
+		case ENEMY_TYPES::TANK:
+			enemies[i] = new Tank(info.x, info.y, info.shots);
+			break;
+		case ENEMY_TYPES::MEGA_TANK:
+			enemies[i] = new MegaTank(info.x, info.y, info.shots);
+			break;
+		case ENEMY_TYPES::STATIC_CANNON:
+			enemies[i] = new StaticCannon(info.x, info.y, info.shots);
+			break;
+		case ENEMY_TYPES::BOSS:
+			enemies[i] = new Boss(info.x, info.y, info.shots);
 			break;
 		}
 	}
