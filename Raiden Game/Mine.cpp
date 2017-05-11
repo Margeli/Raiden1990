@@ -29,20 +29,53 @@ Mine::Mine(int x, int y, int shoot_num) : Enemy(x, y)
 	idle.PushBack({ 73,5,24,34 });
 	idle.PushBack({ 100,5,16,34 });
 	idle.PushBack({ 120,5,16,34 });
+	idle.PushBack({ 100,5,16,34 });
 
-	idle.speed = 1.0f;
+	idle.speed = 0.3f;
+
+	score_points = 180;//180
+	hits_life = 4.0f;
+
+	collider = App->collision->AddCollider({ 0, 0, 30, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+
+	original_pos.x = x;
+	original_pos.y = y;
 }
 
 void Mine::Move() {
-	
-	increment_y = (position.y - initial_y);
+	if (downwards) {
+		animation = &idle;
+		if (App->player->position.x > position.x) {
+			b_left = false;
+			b_right = true;
+			position.x += 0.3f;
+		}
+		else if (App->player->position.x < position.x) {
+			b_left = true;
+			b_right = false;
+			position.x -= 0.3f;
+		}
+		position.y += 0.1f;
+	}
 }
-
-
 
 
 void Mine::OnCollision(Collider*collider, int num_enemy) {
 	
+	if (collider->type == COLLIDER_PLAYER_SHOT) {
+		hits_life -= App->player->hit_dmg;
+	}
+	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
+		hits_life -= App->player2->hit_dmg;
+
+	}
+	if (hits_life <= 0) {
+		App->player->score += score_points;
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+		delete App->enemies->enemies[num_enemy];
+		App->enemies->enemies[num_enemy] = nullptr;
+
+	}
 
 }
 

@@ -3,23 +3,24 @@
 
 #include "Enemy.h"
 #include "ModuleParticles.h"
+#include "Path.h"
 
 class Mine : public Enemy
 {
 private:
 	
-
 	Animation idle;
 	Particle explosion;
 	Particle color_rotatory_shot;
 	Mix_Chunk* fx_shoot = nullptr;
+	fPoint original_pos;
 	void OnCollision(Collider* collider, int num_enemy);
 
 
 	float speed;
-	float increment_y;
-	float initial_y;
-	
+	bool b_right = false;
+	bool b_left = false;
+	bool downwards = true;
 	
 	float hits_life;
 	int shoot_number = 0;

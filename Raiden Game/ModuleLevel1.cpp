@@ -135,7 +135,7 @@ bool ModuleLevel1::Start()
 	
 
 
-	App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 50, -150, 3);
+	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 50, -150, 3);
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -150, 0);
 	
@@ -197,7 +197,7 @@ update_status ModuleLevel1::Update()
 	
 	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
 
-	if (App->player->position.y == -2925) {
+	if (App->player->position.y == -2850) {
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;
 	}
