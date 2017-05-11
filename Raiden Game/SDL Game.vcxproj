@@ -75,10 +75,13 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GreenShooterSpaceship.h" />
+    <ClInclude Include="HeavyShooter.h" />
     <ClInclude Include="LightShooterSpaceship.h" />
+    <ClInclude Include="MegaTank.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="Module.h" />
@@ -102,13 +105,18 @@
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="BonusSpaceship.h" />
     <ClInclude Include="Path.h" />
+    <ClInclude Include="StaticCannon.h" />
+    <ClInclude Include="Tank.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="GreenShooterSpaceship.cpp" />
+    <ClCompile Include="HeavyShooter.cpp" />
     <ClCompile Include="LightShooterSpaceship.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MegaTank.cpp" />
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
@@ -129,6 +137,8 @@
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="BonusSpaceship.cpp" />
+    <ClCompile Include="StaticCannon.cpp" />
+    <ClCompile Include="Tank.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
