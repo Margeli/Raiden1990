@@ -103,12 +103,12 @@ bool ModuleLevel1::Start()
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_B, 60,-420);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -660);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 170, -680);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -680);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 170, -660);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 240, -900);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 20, -940);
+	App->enemies->AddEnemy(BOX, 150, -660);
+	App->enemies->AddEnemy(BOX, 172, -682);
+	App->enemies->AddEnemy(BOX, 150, -682);
+	App->enemies->AddEnemy(BOX, 172, -660);
+	App->enemies->AddEnemy(BOX, 240, -900);
+	App->enemies->AddEnemy(BOX, 20, -940);
 
 	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -190, 0);
 	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -245, 0);
@@ -130,7 +130,7 @@ bool ModuleLevel1::Start()
 	//App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
 	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
 	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
-	App->enemies->AddEnemy(ENEMY_TYPES::MINE, 60, -190, 0);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOX, 60, -190, 0);
 
 	
 

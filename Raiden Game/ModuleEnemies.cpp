@@ -14,6 +14,7 @@
 #include "Tank.h"
 #include "StaticCannon.h"
 #include "Boss.h"
+#include "Box.h"
 
 
 
@@ -159,23 +160,33 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP:
    			enemies[i] = new LightShooter_Spaceship(info.x, info.y, info.shots);
 			break;
+
 		case ENEMY_TYPES::MINE:
 			enemies[i] = new Mine(info.x, info.y, info.shots);
 			break;
+
 		case ENEMY_TYPES::HEAVY_SHOOTER:
 			enemies[i] = new HeavyShooter(info.x, info.y, info.shots);
 			break;
+
 		case ENEMY_TYPES::TANK:
 			enemies[i] = new Tank(info.x, info.y, info.shots);
 			break;
+
 		case ENEMY_TYPES::MEGA_TANK:
 			enemies[i] = new MegaTank(info.x, info.y, info.shots);
 			break;
+
 		case ENEMY_TYPES::STATIC_CANNON:
 			enemies[i] = new StaticCannon(info.x, info.y, info.shots);
 			break;
+
 		case ENEMY_TYPES::BOSS:
 			enemies[i] = new Boss(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::BOX:
+			enemies[i] = new Box(info.x, info.y);
 			break;
 		}
 	}

@@ -11,15 +11,7 @@
 
 Mine::Mine(int x, int y, int shoot_num) : Enemy(x, y)
 {
-	//Mine explosion shot
-	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });
-	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
-	color_rotatory_shot.anim.PushBack({ 56, 40, 6, 7 });//animation
-	color_rotatory_shot.anim.speed = 0.3f;
-
-	color_rotatory_shot.life = 3000;
-	color_rotatory_shot.anim.loop = true;
-
+	
 	sprite_path = App->textures->Load("Assets/Images/Mine.png");
 
 	if (sprite_path == nullptr) {
@@ -40,6 +32,37 @@ Mine::Mine(int x, int y, int shoot_num) : Enemy(x, y)
 
 	original_pos.x = x;
 	original_pos.y = y;
+	
+	//Mine explosion shot
+	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });
+	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
+	color_rotatory_shot.anim.PushBack({ 56, 40, 6, 7 });//animation
+	color_rotatory_shot.anim.speed = 0.3f;
+	color_rotatory_shot.life = 3000;
+	color_rotatory_shot.anim.loop = true;
+
+
+	//explosion  particle animation (2nd row particle spritesheet.)
+	explosion.anim.PushBack({ 2,60,34,30 });
+	explosion.anim.PushBack({ 36 ,60,34,30 });
+	explosion.anim.PushBack({ 70,60,34,30 });
+	explosion.anim.PushBack({ 104 ,60,34,30 });
+	explosion.anim.PushBack({ 138 ,60,34,30 });
+	explosion.anim.PushBack({ 172 ,60,34,30 });
+	explosion.anim.PushBack({ 206 ,60,34,30 });
+	explosion.anim.PushBack({ 240,60,34,30 });
+	explosion.anim.PushBack({ 274,60,34,30 });
+	explosion.anim.PushBack({ 308 ,60,34,30 });
+	explosion.anim.PushBack({ 342,60,34,30 });
+	explosion.anim.PushBack({ 376 ,60,34,30 });
+	explosion.anim.PushBack({ 410,60,34,30 });
+	explosion.anim.PushBack({ 446 ,60,34,30 });
+	explosion.anim.PushBack({ 478 ,60,34,30 });
+	explosion.anim.PushBack({ 512,60,34,30 });
+	explosion.anim.PushBack({ 0,0,0,0 });
+
+	explosion.life = 1000;
+	explosion.anim.loop = false;
 }
 
 void Mine::Move() {

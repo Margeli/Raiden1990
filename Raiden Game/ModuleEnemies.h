@@ -21,7 +21,8 @@ enum ENEMY_TYPES
 	TANK,
 	MEGA_TANK,
 	STATIC_CANNON,
-	BOSS
+	BOSS,
+	BOX
 };
 
 class Enemy;

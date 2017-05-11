@@ -76,6 +76,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="Box.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GreenShooterSpaceship.h" />
@@ -111,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="GreenShooterSpaceship.cpp" />
     <ClCompile Include="HeavyShooter.cpp" />
