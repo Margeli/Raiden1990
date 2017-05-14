@@ -193,26 +193,32 @@ update_status ModulePlayer::Update()
 	int speed = 2;
 	int spaceship_speed = 1;
 	position.y -= spaceship_speed;
+
 	if (!App->level1->first_animation) {// not able to move during first animation
-		if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT) //---UP
+		if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[0] == KEY_STATE::KEY_REPEAT) //---UP
 		{
 			position.y -= speed;
 			if (-position.y*SCREEN_SIZE > App->render->camera.y) {
 				position.y = -App->render->camera.y / SCREEN_SIZE; //upper player limit. ------->The relation between camera.y and position.y is camera.y=-position.y*SCREEN_SIZE
 			}
+
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)//---DOWN
+
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[1] == KEY_STATE::KEY_REPEAT)//---DOWN
 		{
 			position.y += speed;
 			if ((-(position.y-SCREEN_HEIGHT+27)*SCREEN_SIZE)<App->render->camera.y) { //lower player limit (27 is height of spaceship)
 				position.y = ((-App->render->camera.y / SCREEN_SIZE) -27+ SCREEN_HEIGHT) ;
 			}
+
 		
 			}
 		
 	
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)//---LEFT
+
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[3] == KEY_STATE::KEY_REPEAT)//---LEFT
+
 		{
 			position.x -= speed;
 			App->render->camera.x +=4;
@@ -228,7 +234,7 @@ update_status ModulePlayer::Update()
 				}
 			}			
 		}
-		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
+		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN|| App->input->gamepad[4] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
 		{
 			if (red_powerup_level == 0)
 				App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
@@ -245,7 +251,8 @@ update_status ModulePlayer::Update()
 		}
 
 
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)//---RIGHT
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
+
 		{
 			position.x += speed;
 			App->render->camera.x -= 4;
@@ -268,7 +275,9 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)//GOD MODE
+
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN|| App->input->gamepad[5] == KEY_STATE::KEY_REPEAT)//GOD MODE (press right stick on controller)
+
 	{
 		if (!godmode){			
 			godmode = true;
@@ -280,6 +289,7 @@ update_status ModulePlayer::Update()
 	if( (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)&&(App->fade->IsFading()==false))//DIRECT WIN/LOSE
 	{
 		App->fade->FadeToBlack(this, App->stageCompleted);		
+
 	}
 	
 

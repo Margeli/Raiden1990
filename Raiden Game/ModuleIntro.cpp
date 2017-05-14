@@ -116,7 +116,7 @@ update_status ModuleIntro::Update()
 		App->player2->player2 = true;
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_TAB] && App->fade->IsFading() == false) {
+	if ((( App->input->gamepad[6] == KEY_STATE::KEY_REPEAT)||(App->input->keyboard[SDL_SCANCODE_TAB])) && App->fade->IsFading() == false) {
 
 		
 		App->fade->FadeToBlack(this, App->level1);
