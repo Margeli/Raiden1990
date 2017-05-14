@@ -118,7 +118,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int shots)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int shots, bool right)
 {
 	bool ret = false;
 
@@ -130,6 +130,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int shots)
 			queue[i].x = x;
 			queue[i].y = y;
 			queue[i].shots = shots;
+			queue[i].right = right;
 
 			ret = true;
 			break;
@@ -174,7 +175,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::MEGA_TANK:
-			enemies[i] = new MegaTank(info.x, info.y, info.shots);
+			enemies[i] = new MegaTank(info.x, info.y, info.right);
 			break;
 
 		case ENEMY_TYPES::STATIC_CANNON:

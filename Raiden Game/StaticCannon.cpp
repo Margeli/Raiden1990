@@ -128,7 +128,7 @@ void StaticCannon::OnCollision(Collider*collider, int num_enemy) {
 		App->audio->Play_Fx(fx_shoot);*/
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
-		//App->textures->Unload(graphics);// NEED TO PUT IN THE PARTICLE SPRITESHEET THE BASE OF THE CANNON, 
+		App->textures->Unload(graphics);// NEED TO PUT IN THE PARTICLE SPRITESHEET THE BASE OF THE CANNON, 
 
 	}
 
