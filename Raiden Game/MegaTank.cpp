@@ -33,7 +33,7 @@ MegaTank::MegaTank(int x, int y, bool right) : Enemy(x, y)
 	score_points = 1120;//1120
 	hits_life = 30.0f;//30
 
-	collider = App->collision->AddCollider({ 0, 0, 47, 48 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 47, 48 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies); // collider type box because the tank is in the ground, so there is no damage for touching with the player's collider
 		
 	initial.x = x;
 	initial.y = y;

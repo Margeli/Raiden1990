@@ -55,7 +55,7 @@ StaticCannon::StaticCannon(int x, int y, int shoot_num) : Enemy(x, y)
 	hits_life = 4.0f;// 4.0f
 	
 
-	collider = App->collision->AddCollider({ x, y, 28, 25 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ x, y, 28, 25 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies); // collider type box because the tank is in the ground, so there is no damage for touching with the player's collider
 
 	timer_shot = SDL_GetTicks();
 

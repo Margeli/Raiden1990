@@ -44,7 +44,7 @@ Box::Box(int x, int y) : Enemy(x, y)
 	idle.PushBack({ 1, 1,21,20 });//box sprite
 	animation = &idle;
 	hits_life = 2.0f;// 1.0f
-	collider = App->collision->AddCollider({ 0, 0, 21, 20 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 21, 20 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies);
 
 	position.x = x;
 	position.y = y;
