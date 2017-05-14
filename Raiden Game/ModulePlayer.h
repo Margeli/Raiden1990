@@ -35,6 +35,7 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
+	Animation* shadow_animation = nullptr;
 	Animation idle;
 	Animation right;
 	Animation left;	
@@ -46,6 +47,7 @@ public:
 	Particle dead_explosion;
 	Particle bomb_explosion;
 	iPoint position;
+	iPoint shadow_position;
 	Collider* spaceship_collider;
 	bool destroyed=false;
 	float hit_dmg;
