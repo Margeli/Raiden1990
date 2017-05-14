@@ -15,7 +15,14 @@ enum ENEMY_TYPES
 	NO_TYPE,
 	BONUS_SPACESHIP,
 	GREENSHOOTER_SPACESHIP,
-	LIGHTSHOOTER_SPACESHIP
+	LIGHTSHOOTER_SPACESHIP,
+	MINE,
+	HEAVY_SHOOTER,
+	TANK,
+	MEGA_TANK,
+	STATIC_CANNON,
+	BOSS,
+	BOX
 };
 
 class Enemy;
@@ -24,6 +31,7 @@ struct EnemyInfo
 {
 	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
 	int x, y, shots;
+	bool right;
 };
 
 class ModuleEnemies : public Module
@@ -40,7 +48,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	bool AddEnemy(ENEMY_TYPES type, int x, int y, int shots=0);
+	bool AddEnemy(ENEMY_TYPES type, int x, int y, int shots = 0, bool right = false);
 
 	Enemy* enemies[MAX_ENEMIES];
 

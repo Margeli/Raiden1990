@@ -17,7 +17,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int shoot_num) : En
 	color_rotatory_shot.anim.PushBack({ 56, 40, 6, 7 });//animation
 	color_rotatory_shot.anim.speed = 0.3f;
 
-	color_rotatory_shot.life = 6000;
+	color_rotatory_shot.life = 3000;
 	color_rotatory_shot.anim.loop = true;
 
 	//explosion  particle animation (2nd row particle spritesheet.)
@@ -72,7 +72,7 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int shoot_num) : En
 	increment_y = 0.0f;
 
 	
-	score_points = 130;
+	score_points = 130;//130
 	hits_life = 21.0f;// 21.0f
 	down = true;
 	
@@ -202,10 +202,10 @@ void GreenShooter_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint sh
 
 	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
 
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+8.0f, COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+16.0f, COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+24.0f , COLLIDER_ENEMY_SHOT);
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y+30.0f, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT, 30);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT, 60);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y , COLLIDER_ENEMY_SHOT, 90);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT, 120);
 	
 
 }

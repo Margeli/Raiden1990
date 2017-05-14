@@ -94,7 +94,7 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 	shoot_number = count;
 	left_downwards.PushBack({ 458,1,30,30 });
 
-	score_points = 130;
+	score_points = 130;//130
 	hits_life = 1.0f;
 	
 	collider = App->collision->AddCollider({ 0, 0, 30, 30 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);

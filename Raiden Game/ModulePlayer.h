@@ -30,6 +30,7 @@ public:
 	Particle misile_right;
 
 
+
 public:
 
 	SDL_Texture* graphics = nullptr;
@@ -37,11 +38,13 @@ public:
 	Animation idle;
 	Animation right;
 	Animation left;	
+	Animation boost;
 	Animation backward;	
 	Animation shadow_idle;
 	Animation shadow_right;
 	Animation shadow_left;
-	Particle explosion;
+	Particle dead_explosion;
+	Particle bomb_explosion;
 	iPoint position;
 	Collider* spaceship_collider;
 	bool destroyed=false;
@@ -53,6 +56,7 @@ public:
 	char score_text[10];
 	char high_score_text[10];
 	char *user_interface;
+	char *godmode_activated;
 
 	int red_font_score = 0;
 	int yellow_font_score = 0;

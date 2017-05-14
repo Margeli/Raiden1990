@@ -22,9 +22,24 @@ ModuleIntro::ModuleIntro()
 {
 	background.x = 0;
 	background.y = 0;
-	background.w = 223;
+	background.w = 224;
 	background.h = 256;
-
+/*
+	loading.PushBack({ 449,257,224,256 });
+	loading.PushBack({ 225,257,224,256 });
+	loading.PushBack({ 0,257,224,256 });
+	loading.PushBack({ 674,0,224,256 });
+	loading.PushBack({ 449,0,224,256 });
+	loading.PushBack({ 225,0,224,256 });
+	loading.PushBack({ 0,0,224,256 });
+	loading.PushBack({ 0,0,224,256 });
+	loading.PushBack({ 225,0,224,256 });
+	loading.PushBack({ 449,0,224,256 });
+	loading.PushBack({ 674,0,224,256 });
+	loading.PushBack({ 0,257,224,256 });
+	loading.PushBack({ 225,257,224,256 });
+	loading.PushBack({ 449,257,224,256 });
+	loading.speed = 0.3f;*/
 
 }
 
@@ -47,7 +62,12 @@ bool ModuleIntro::Start()
 	App->player->Disable();
 	//App->collision->Disable();
 	App->enemies->Disable();
-	App->player->destroyed = false;
+
+	if (App->player->destroyed) { //Resets score
+		App->player->score = 0;
+		App->player->destroyed = false;
+	}
+	
 
 
 	user_interface = "    1UP   HI-SCORE    2UP ";
@@ -98,6 +118,7 @@ update_status ModuleIntro::Update()
 
 	if ((( App->input->gamepad[6] == KEY_STATE::KEY_REPEAT)||(App->input->keyboard[SDL_SCANCODE_TAB])) && App->fade->IsFading() == false) {
 
+		
 		App->fade->FadeToBlack(this, App->level1);
 		
 

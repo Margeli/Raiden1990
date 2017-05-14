@@ -19,7 +19,7 @@ ModulePowerUps::ModulePowerUps()
 	
 	Red_Bonus.anim.PushBack({ 383,1,15,13 });	//Red Bonus
 	Red_Bonus.anim.PushBack({ 403,1,15,13 });
-	Red_Bonus.anim.PushBack({ 422,1,15,13 });	
+	Red_Bonus.anim.PushBack({ 422,1,15,13 });
 	Red_Bonus.anim.speed = 1.5f;
 	Red_Bonus.speed.y = 0;
 	Red_Bonus.speed.x = 0;
@@ -34,6 +34,14 @@ ModulePowerUps::ModulePowerUps()
 	M_Bonus.speed.x = 0;
 	M_Bonus.life = 60000;
 	M_Bonus.anim.loop = true;
+
+	B_Bonus.anim.PushBack({532,15,19,16});	//B_Bonus
+	B_Bonus.anim.speed = 1.0f;
+	B_Bonus.speed.y = 0;
+	B_Bonus.speed.x = 0;
+	B_Bonus.life = 60000;
+	B_Bonus.anim.loop = true;
+
 /*
 	Blue_Bonus.anim.PushBack({ , , , });	//Blue_Bonus
 	Blue_Bonus.anim.speed = 1.0f;
@@ -42,12 +50,7 @@ ModulePowerUps::ModulePowerUps()
 	Blue_Bonus.life = 60000;
 	Blue_Bonus.anim.loop = true;
 
-	H_Bonus.anim.PushBack({ , , , });	//H_Bonus
-	H_Bonus.anim.speed = 1.0f;
-	H_Bonus.speed.y = 0;
-	H_Bonus.speed.x = 0;
-	H_Bonus.life = 60000;
-	H_Bonus.anim.loop = true;
+	
 
 	P_Bonus.anim.PushBack({ , , , });	//P_Bonus
 	P_Bonus.anim.speed = 1.0f;
@@ -56,14 +59,6 @@ ModulePowerUps::ModulePowerUps()
 	P_Bonus.life = 60000;
 	P_Bonus.anim.loop = true;
 
-	
-
-	Dragon_Bonus.anim.PushBack({ , , , });	//Dragon_Bonus
-	Dragon_Bonus.anim.speed = 1.0f;
-	Dragon_Bonus.speed.y = 0;
-	Dragon_Bonus.speed.x = 0;
-	Dragon_Bonus.life = 60000;
-	Dragon_Bonus.anim.loop = true;
 
 	Fairy_Bonus.anim.PushBack({ , , , });	//Fairy_Bonus
 	Fairy_Bonus.anim.speed = 1.0f;
@@ -72,6 +67,15 @@ ModulePowerUps::ModulePowerUps()
 	Fairy_Bonus.life = 60000;
 	Fairy_Bonus.anim.loop = true;
 */
+
+	Dragon_Bonus.anim.PushBack({ 496,16,16,15 });
+	Dragon_Bonus.anim.PushBack({ 513,16,16,16 });	//Dragon_Bonus
+	Dragon_Bonus.anim.speed = 0.2f;
+	Dragon_Bonus.speed.y = 0;
+	Dragon_Bonus.speed.x = 0;
+	Dragon_Bonus.life = 60000;
+	Dragon_Bonus.anim.loop = true;
+
 
 	Medal_Bonus.anim.PushBack({ 499, 0,9,16 });	//Medal_Bonus
 	Medal_Bonus.anim.speed = 1.0f;
@@ -117,13 +121,13 @@ void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y, char* FX_path)
 	switch (type)
 		{
 		case POWERUP_BLUE: 
-			App->particles->AddParticle(Blue_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_B);
+			App->particles->AddParticle(Blue_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_BLUE);
 			break;
 		case POWERUP_RED: 
 			App->particles->AddParticle(Red_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_R);
 			break;
-		case POWERUP_H: 
-			App->particles->AddParticle(H_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_H);
+		case POWERUP_B: 
+			App->particles->AddParticle(B_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_B);
 			break;
 		case POWERUP_M: 
 			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M);

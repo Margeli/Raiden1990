@@ -16,7 +16,7 @@ private:
 
 	int shoot_number;
 	float hits_life;
-	float speed ;
+	float speed;
 	float increment_y;
 	float initial_y;
 	int counter_movement;

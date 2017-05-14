@@ -25,7 +25,7 @@ ModuleLevel1::ModuleLevel1()
 	foreground.x = 352;
 	foreground.y = 134;
 	foreground.w = 351;
-	foreground.h = 3265;
+	foreground.h = 2836;
 
 	// Background / sky
 	background.x = 0;
@@ -33,7 +33,10 @@ ModuleLevel1::ModuleLevel1()
 	background.w = 351;
 	background.h = 3265;
 
-
+	ship_launcher.x = 352;
+	ship_launcher.y = 2971;
+	ship_launcher.w = 351;
+	ship_launcher.h = 429;
 	
 }
 
@@ -99,40 +102,42 @@ bool ModuleLevel1::Start()
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 60,-420);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -660);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 170, -680);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 150, -680);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 170, -660);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 240, -900);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_MEDAL, 20, -940);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_B, 60,-420);
+	App->enemies->AddEnemy(BOX, 150, -660);
+	App->enemies->AddEnemy(BOX, 172, -682);
+	App->enemies->AddEnemy(BOX, 150, -682);
+	App->enemies->AddEnemy(BOX, 172, -660);
+	App->enemies->AddEnemy(BOX, 240, -900);
+	App->enemies->AddEnemy(BOX, 20, -940);
 
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -170, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -225, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -235, 0);
-	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -240, 0); // just in the middle
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -430, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -460, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -480, 0);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 200, -500, 0);
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -650, 3);
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 180, -800, 3);
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 111, -850, 3);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -1000, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -1100, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -1150, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 100, -1250, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 120, -1300, 1);
-	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 140, -1350, 1);
-	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
-	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
-
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -190, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -245, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -255, 0);
+	//App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -260, 0); // just in the middle
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -450, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -480, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -500, 0);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 200, -500, 0);
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -650, 3);
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 180, -800, 3);
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 111, -850, 3);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -1000, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -1100, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -1150, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 100, -1250, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 120, -1300, 1);
+	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 140, -1350, 1);
+	//App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
+	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
+	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 0, -190,0, true);	// <---- NO BORRAR COORDENADAS "X", ESTÁN EXACTAS (SIEMPRE SALEN LOS DOS A LA VEZ)
+	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 177, -190,0, false); // <----´
 	
 
 
+	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 50, -150, 3);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -150, 0);
+	//App->enemies->AddEnemy(ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP, 50, -150, 0);
 	
 	
 
@@ -146,9 +151,12 @@ bool ModuleLevel1::CleanUp()
 {
 	LOG("Unloading level 1");
 
-	App->textures->Unload(graphics);
+	
 
-	App->audio->Unload_Music(music_lvl1);
+	if (graphics != nullptr)	
+		App->textures->Unload(graphics);
+	if (music_lvl1 != nullptr) 	
+		App->audio->Unload_Music(music_lvl1);
 	App->player->Disable();
 	App->player2->Disable();
 	App->enemies->Disable();
@@ -162,19 +170,37 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
-	
-	
-	float scroll_speed = 0.5f;
+		//float scroll_speed = 0.5f;
 
-	App->player->position.y += 1;
-	App->render->camera.y += 2;
+	if (App->render->camera.y < 100) {
+
+		App->player->position.y += 1;
+		App->render->camera.y += 1;
+		first_animation = true;
+
+	}
+	else {
+		if (App->render->camera.y < 220) {
+			App->player->current_animation = &App->player->boost;
+		}
+		else {
+			first_animation = false;
+		}
+		App->render->camera.y += 2;
+		
+	
+	
+	}
 
 	// Draw everything --------------------------------------
+	
 	App->render->Blit(graphics, -50, -2965, &background); 
 
 	App->render->Blit(graphics, -50, -2965, &foreground);
 	
-	if (App->player->position.y == -2925) {
+	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
+
+	if (App->player->position.y == -2850) {
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;
 	}

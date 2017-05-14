@@ -66,10 +66,13 @@ update_status ModuleParticles::Update()
 
 		if (p->Update() == false)
 		{
+			if (p->to_delete) {
 			delete p;
 			active[i] = nullptr;
+			}
+			
 		}
-		else if (SDL_GetTicks() >= p->born)
+		else //if (SDL_GetTicks() >= p->born)
 		{
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 			
@@ -98,9 +101,10 @@ void ModuleParticles::AddParticle(Particle& particle, int x, int y, COLLIDER_TYP
 			}
 
 			Particle* p = new Particle(particle);
-			p->born = SDL_GetTicks() + delay;
+			p->born = SDL_GetTicks();			
 			p->position.x = x;
 			p->position.y = y;
+			p->delay = delay;
 			if (collider_type != COLLIDER_NONE) {
 				p->collider = App->collision->AddCollider( p->anim.GetCurrentFrame() , collider_type, this);
 				active[i] = p;
@@ -136,7 +140,7 @@ Particle::Particle()
 
 Particle::Particle(const Particle& p) :
 	anim(p.anim), position(p.position), speed(p.speed),
-	fx(p.fx), born(p.born), life(p.life)
+	fx(p.fx), born(p.born), life(p.life), delay(p.delay)
 {}
 
 iPoint Particle::GetPos() const {
@@ -152,18 +156,28 @@ Particle::~Particle()
 bool Particle::Update()
 {
 	bool ret = true;
-
+	uint particle_life = SDL_GetTicks() - born;
 	if (life > 0)
 	{
-		if ((SDL_GetTicks() - born) > life)
+		if (particle_life < delay) {
 			ret = false;
+		}
+		else if (particle_life > life + delay) {
+			to_delete = true;
+			ret = false;
+		}
+		else {
+			position.x += speed.x;
+			position.y += speed.y;
+		}
+
 	}
 	else
 		if (anim.Finished())
 			ret = false;
 
-	position.x += speed.x;
-	position.y += speed.y;
+	
+	
 	
 	if (collider != nullptr) {
 		collider->SetPos(position.x, position.y);

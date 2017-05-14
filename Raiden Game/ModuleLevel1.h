@@ -25,10 +25,12 @@ public:
 	Mix_Music* music_lvl1 = nullptr;
 	SDL_Rect foreground;
 	SDL_Rect background;
+	SDL_Rect ship_launcher;
 	bool fading = false;
 
 	
 	float foreground_pos;
+	bool first_animation=false;
 	bool forward;
 
 	

@@ -8,6 +8,13 @@
 #include "BonusSpaceship.h"
 #include "LightShooterSpaceship.h"
 #include "GreenShooterSpaceship.h"
+#include "Mine.h"
+#include "HeavyShooter.h"
+#include "MegaTank.h"
+#include "Tank.h"
+#include "StaticCannon.h"
+#include "Boss.h"
+#include "Box.h"
 
 
 
@@ -111,7 +118,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int shots)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int shots, bool right)
 {
 	bool ret = false;
 
@@ -123,6 +130,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int shots)
 			queue[i].x = x;
 			queue[i].y = y;
 			queue[i].shots = shots;
+			queue[i].right = right;
 
 			ret = true;
 			break;
@@ -152,6 +160,34 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 		case ENEMY_TYPES::LIGHTSHOOTER_SPACESHIP:
    			enemies[i] = new LightShooter_Spaceship(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::MINE:
+			enemies[i] = new Mine(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::HEAVY_SHOOTER:
+			enemies[i] = new HeavyShooter(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::TANK:
+			enemies[i] = new Tank(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::MEGA_TANK:
+			enemies[i] = new MegaTank(info.x, info.y, info.right);
+			break;
+
+		case ENEMY_TYPES::STATIC_CANNON:
+			enemies[i] = new StaticCannon(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::BOSS:
+			enemies[i] = new Boss(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::BOX:
+			enemies[i] = new Box(info.x, info.y);
 			break;
 		}
 	}

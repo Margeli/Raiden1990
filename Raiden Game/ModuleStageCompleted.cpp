@@ -66,8 +66,8 @@ bool ModuleStageCompleted::Start()
 bool ModuleStageCompleted::CleanUp()
 {
 	LOG("Unloading Stage Cleared");
-	App->audio->Unload_Music(music_stage_cleared);
-	App->textures->Unload(graphics);
+	if (graphics != nullptr)	App->textures->Unload(graphics);
+	if (music_stage_cleared != nullptr) 	App->audio->Unload_Music(music_stage_cleared); 
 
 	App->fonts->UnLoad(red_font_score);
 	App->fonts->UnLoad(yellow_font_score);
