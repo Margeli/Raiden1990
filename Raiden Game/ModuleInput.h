@@ -8,6 +8,7 @@
 
 #define MAX_KEYS 300
 #define JOYSTICK_DEAD_ZONE 8000
+#define MAX_BUTTONS 20
 
 
 enum KEY_STATE
@@ -31,6 +32,7 @@ public:
 
 public:
 	KEY_STATE keyboard[MAX_KEYS];
+	KEY_STATE gamepad[MAX_BUTTONS];
 	SDL_GameController* controller = NULL;
 
 public:

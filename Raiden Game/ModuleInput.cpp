@@ -7,6 +7,8 @@ ModuleInput::ModuleInput() : Module()
 {
 	for (uint i = 0; i < MAX_KEYS; ++i)
 		keyboard[i] = KEY_IDLE;
+	for (uint i = 0; i < MAX_BUTTONS; ++i)
+		gamepad[i] = KEY_IDLE;
 }
 
 // Destructor
@@ -19,7 +21,7 @@ bool ModuleInput::Init()
 	LOG("Init SDL input event system");
 	bool ret = true;
 	SDL_Init(0);
-
+	SDL_Init(SDL_INIT_GAMECONTROLLER);
 	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
 	{
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -52,6 +54,16 @@ update_status ModuleInput::PreUpdate()
 	SDL_PumpEvents();
 
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
+	Uint8 buttons[MAX_BUTTONS];
+
+	buttons[0] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_DPAD_UP);
+	buttons[1] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_DPAD_DOWN);
+	buttons[2] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
+	buttons[3] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_DPAD_LEFT);
+	buttons[4] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_A);
+	buttons[5] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_RIGHTSTICK);
+	buttons[6] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_START);
+	buttons[7] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_LEFTSTICK);
 
 	for (int i = 0; i < MAX_KEYS; ++i)
 	{
@@ -70,7 +82,23 @@ update_status ModuleInput::PreUpdate()
 				keyboard[i] = KEY_IDLE;
 		}
 	}
-
+	for (int i = 0; i < MAX_BUTTONS; ++i)
+	{
+		if (buttons[i] == 1)
+		{
+			if (gamepad[i] == KEY_IDLE)
+				gamepad[i] = KEY_DOWN;
+			else
+				gamepad[i] = KEY_REPEAT;
+		}
+		else
+		{
+			if (gamepad[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
+				gamepad[i] = KEY_UP;
+			else
+				gamepad[i] = KEY_IDLE;
+		}
+	}
 	if (keyboard[SDL_SCANCODE_ESCAPE])
 		return update_status::UPDATE_STOP;
 

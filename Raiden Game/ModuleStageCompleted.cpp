@@ -97,7 +97,7 @@ update_status ModuleStageCompleted::Update()
 	App->fonts->BlitText(0, 9, yellow_font_score, App->player->score_text);
 	App->fonts->BlitText(88, 9, yellow_font_score, App->player->high_score_text);
 
-	if (App->input->keyboard[SDL_SCANCODE_TAB] && App->fade->IsFading()==false) {
+	if (((App->input->gamepad[6] == KEY_STATE::KEY_REPEAT) || (App->input->keyboard[SDL_SCANCODE_TAB])) && App->fade->IsFading() == false) {
 
 		App->fade->FadeToBlack(this, App->level1);		
 

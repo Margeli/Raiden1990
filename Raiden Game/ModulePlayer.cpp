@@ -155,7 +155,7 @@ update_status ModulePlayer::Update()
 	float  spaceship_speed = 2;
 	position.y -= spaceship_speed;
 
-	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT) //---UP
+	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->gamepad[0] == KEY_STATE::KEY_REPEAT) //---UP
 	{
 		position.y -= speed;
 		if (-position.y*SCREEN_SIZE > App->render->camera.y) {
@@ -163,7 +163,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)//---DOWN
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || App->input->gamepad[1] == KEY_STATE::KEY_REPEAT)//---DOWN
 	{
 		position.y += speed;
 		if ((-(position.y-SCREEN_HEIGHT+27)*SCREEN_SIZE)<App->render->camera.y) { //lower player limit (27 is height of spaceship)
@@ -173,7 +173,7 @@ update_status ModulePlayer::Update()
 		}
 		
 	
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)//---LEFT
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->gamepad[3] == KEY_STATE::KEY_REPEAT)//---LEFT
 	{
 		position.x -= speed;
 		App->render->camera.x +=4;
@@ -191,7 +191,7 @@ update_status ModulePlayer::Update()
 		
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)//---RIGHT
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
 	{
 		position.x += speed;
 		App->render->camera.x -= 4;
@@ -213,7 +213,7 @@ update_status ModulePlayer::Update()
 		current_animation = &idle;
 	}
 	
-	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)//GOD MODE
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN || App->input->gamepad[5] == KEY_STATE::KEY_REPEAT)//GOD MODE (press right stick on controller)
 	{
 		if (spaceship_collider!=nullptr){
 			spaceship_collider->SetPos(-1000, -1000);
@@ -239,7 +239,7 @@ update_status ModulePlayer::Update()
 
 	}
 	
-  	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+  	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->gamepad[4] == KEY_STATE::KEY_DOWN)//SHOT
 	{	
 		if (red_powerup_level == 0)
 			App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
