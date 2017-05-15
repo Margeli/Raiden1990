@@ -48,6 +48,26 @@ StaticCannon::StaticCannon(int x, int y, int shoot_num) : Enemy(x, y)
 
 	animation = &down;
 
+	//explosion animation
+	explosion.anim.PushBack({ 0, 0, 32, 30 });
+	explosion.anim.PushBack({ 32, 0, 32, 30 });
+	explosion.anim.PushBack({ 64, 0, 32, 30 });
+	explosion.anim.PushBack({ 96, 0, 32, 30 });
+	explosion.anim.PushBack({ 128, 0, 32, 30 });
+	explosion.anim.PushBack({ 160, 0, 32, 30 });
+	explosion.anim.PushBack({ 192, 0, 32, 30 });
+	explosion.anim.PushBack({ 224, 0, 32, 30 });
+	explosion.anim.PushBack({ 256, 0, 32, 30 });
+	explosion.anim.PushBack({ 288, 0, 32, 30 });
+	explosion.anim.PushBack({ 320, 0, 32, 30 });
+	explosion.anim.PushBack({ 0, 0, 0, 0 });
+    explosion.life = 1000;
+	explosion.anim.speed = 0.2f;
+	explosion.anim.loop = false;
+
+	//destroyed base
+	destroyed_base.anim.PushBack({ 566, 0, 32, 30 });
+	destroyed_base.life = 5000;
 	//shoot_number = shoot_num;
 	
 
@@ -120,6 +140,7 @@ void StaticCannon::OnCollision(Collider*collider, int num_enemy) {
 	}
 	if (hits_life <= 0) {
 		App->player->score += score_points;
+		App->particles->AddParticle(destroyed_base, position.x - 1.25, position.y - 2.25, COLLIDER_EXPLOSION);
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 		/*fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_BigSpaceship_Explosion.wav");
 		if (!fx_shoot) {

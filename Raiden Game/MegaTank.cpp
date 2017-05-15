@@ -50,7 +50,7 @@ MegaTank::MegaTank(int x, int y, bool right) : Enemy(x, y)
 	to_right = right;
 	shot_timer = SDL_GetTicks();
 
-	//explosion anim coordenates
+	//explosion coordenates
 	explosion.anim.PushBack({ 0, 247, 73, 64 });
 	explosion.anim.PushBack({ 73, 247, 73, 64 });
 	explosion.anim.PushBack({ 146, 247, 73, 64 });
@@ -60,7 +60,10 @@ MegaTank::MegaTank(int x, int y, bool right) : Enemy(x, y)
 	explosion.anim.PushBack({ 438, 247, 73, 64 });
 	explosion.anim.PushBack({ 511, 247, 73, 64 });
 	explosion.anim.PushBack({ 584, 247, 73, 64 });
+	explosion.anim.PushBack({ 0, 0, 0, 0 });
 	explosion.life = 1000;
+	explosion.anim.speed = 0.2f;
+	explosion.anim.loop = false;
 
 
 	
@@ -141,7 +144,7 @@ void MegaTank::OnCollision(Collider*collider, int num_enemy) {
 	}
 	if (hits_life <= 0) {
 		App->player->score += score_points;
-		//App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 	/*	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_BigSpaceship_Explosion.wav");
 		if (!fx_shoot) {
 			LOG("Error loading shoot's fx: %s", Mix_GetError)
