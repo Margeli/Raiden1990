@@ -274,8 +274,8 @@ bool ModulePlayer::Start()
 		position.x = 111; //position if there's only 1 player
 		position.y = 150;
 
-		shadow_position.x = 118;
-		shadow_position.y = 150;
+		/*shadow_position.x = 118;
+		shadow_position.y = 150;*/
 
 		
 	}
@@ -286,7 +286,7 @@ bool ModulePlayer::Start()
 
 	}
 	current_animation = &idle;
-	shadow_animation = &shadow_idle;
+	//shadow_animation = &shadow_idle;
 	godmode_activated = " G ";
 	user_interface = "    1UP   HI.SCORE    2UP ";
 	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
@@ -306,9 +306,9 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	int speed = 2;
 	int spaceship_speed = 1;
 	position.y -= spaceship_speed;
+	int speed = 2;
 
 	if (!App->level1->first_animation) {// not able to move during first animation
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->gamepad[0] == KEY_STATE::KEY_REPEAT) //---UP
