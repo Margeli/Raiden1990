@@ -102,7 +102,7 @@ bool ModuleLevel1::Start()
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60,-420);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-1000);
 	App->enemies->AddEnemy(BOX, 150, -660);
 	App->enemies->AddEnemy(BOX, 172, -682);
 	App->enemies->AddEnemy(BOX, 150, -682);
@@ -110,7 +110,7 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(BOX, 240, -900);
 	App->enemies->AddEnemy(BOX, 20, -940);
 
-<<<<<<< HEAD
+
 	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -190, 0);
 	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -245, 0);
 	//App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -255, 0);
@@ -151,6 +151,7 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -650, 3);
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 180, -800, 3);
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 111, -850, 3);
+
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 111, -1000, 1);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -1100, 1);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -1150, 1);
@@ -160,13 +161,21 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
+	
+
 	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 0, -2000,3, true);	// <---- NO BORRAR COORDENADAS "X", ESTÁN EXACTAS (SIEMPRE SALEN LOS DOS A LA VEZ)
 	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 177, -2000,3, false); // <----´
 
-	
-	
-	
->>>>>>> origin/master
+
+
+
+	// RANDOM ENEMIES |
+	//				  V
+	App->enemies->AddEnemy(MINE, 111, -1500);
+	App->enemies->AddEnemy(STATIC_CANNON, 121, -1700);
+	App->enemies->AddEnemy(STATIC_CANNON, 160, -1650);
+	App->enemies->AddEnemy(STATIC_CANNON, 191, -1750);
+	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1000, 0); // just in the middle
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 50, -150, 3);
 
