@@ -102,7 +102,7 @@ bool ModuleLevel1::Start()
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_B, 60,-420);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60,-420);
 	App->enemies->AddEnemy(BOX, 150, -660);
 	App->enemies->AddEnemy(BOX, 172, -682);
 	App->enemies->AddEnemy(BOX, 150, -682);
@@ -130,12 +130,14 @@ bool ModuleLevel1::Start()
 	//App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
 	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
 	//App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
-	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 0, -190,0, true);	// <---- NO BORRAR COORDENADAS "X", ESTÁN EXACTAS (SIEMPRE SALEN LOS DOS A LA VEZ)
-	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 177, -190,0, false); // <----´
+	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 0, -190,3, true);	// <---- NO BORRAR COORDENADAS "X", ESTÁN EXACTAS (SIEMPRE SALEN LOS DOS A LA VEZ)
+	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 177, -190,3, false); // <----´
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::MINE, 150, -350, false);
 	
-
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60, -440);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60, -460);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60, -480);
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 50, -150, 3);
 

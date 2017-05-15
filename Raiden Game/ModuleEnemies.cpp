@@ -175,7 +175,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 
 		case ENEMY_TYPES::MEGA_TANK:
-			enemies[i] = new MegaTank(info.x, info.y, info.right);
+			enemies[i] = new MegaTank(info.x, info.y, info.shots, info.right);
 			break;
 
 		case ENEMY_TYPES::STATIC_CANNON:

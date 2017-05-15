@@ -10,6 +10,8 @@
 struct SDL_Texture;
 struct Collider;
 
+
+
 class ModulePlayer : public Module
 {
 public:
@@ -25,6 +27,13 @@ public:
 public:
 
 	Particle basic_shot;
+	Particle left_basic_shot;
+	Particle right_basic_shot;
+	Particle triple_shot;
+	Particle left_triple_shot;
+	Particle right_triple_shot;
+	Particle ext_left_triple_shot;
+	Particle ext_right_triple_shot;
 
 	Particle misile_left;
 	Particle misile_right;
@@ -63,9 +72,11 @@ public:
 	int red_font_score = 0;
 	int yellow_font_score = 0;
 
+	uint Red_Powerup_Lvl;
+	uint Blue_Powerup_Lvl;
+	uint M_Powerup_Lvl;
+
 	
-	uint red_powerup_level = 0;
-	uint M_powerup_level = 0;
 	
 	Mix_Chunk* fx_shoot = nullptr;
 	
