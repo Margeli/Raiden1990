@@ -142,11 +142,11 @@ void StaticCannon::OnCollision(Collider*collider, int num_enemy) {
 		App->player->score += score_points;
 		App->particles->AddParticle(destroyed_base, position.x - 1.25, position.y - 2.25, COLLIDER_EXPLOSION);
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
-		/*fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_BigSpaceship_Explosion.wav");
+ 		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_StaticCannon_Explosion.wav");
 		if (!fx_shoot) {
 			LOG("Error loading shoot's fx: %s", Mix_GetError)
 		}
-		App->audio->Play_Fx(fx_shoot);*/
+		App->audio->Play_Fx(fx_shoot);
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 		App->textures->Unload(graphics);// NEED TO PUT IN THE PARTICLE SPRITESHEET THE BASE OF THE CANNON, 
