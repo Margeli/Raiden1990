@@ -9,6 +9,8 @@
 #include "ModuleAudio.h"
 #include "ModulePowerUps.h"
 
+#include <stdlib.h>  
+#include <time.h>  
 
 Box::Box(int x, int y) : Enemy(x, y)
 {
@@ -48,6 +50,7 @@ Box::Box(int x, int y) : Enemy(x, y)
 
 	position.x = x;
 	position.y = y;
+	srand(time(NULL));
 }
 
 void Box::Move() {	
@@ -62,7 +65,14 @@ void Box::OnCollision(Collider*collider, int num_enemy) {
 
 	}
 	if (hits_life <= 0) {
-		App->powerup->AddPowerUp(POWERUP_MEDAL,position.x+4, position.y+4);
+		int random_number = rand()%100;
+		if (random_number <5 ) {//5% of chances to drop dragon
+			App->powerup->AddPowerUp(POWERUP_DRAGON, position.x + 4, position.y + 4);
+		}
+
+		else {//95% of chances to drop the medal
+			App->powerup->AddPowerUp(POWERUP_MEDAL,position.x+4, position.y+4);
+		}
 		App->particles->AddParticle(explosion, position.x+2, position.y+2, COLLIDER_EXPLOSION);
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;

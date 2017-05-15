@@ -37,10 +37,11 @@ public:
 	Particle bomb;
 
 	Particle misile_left;
+	Particle misile_mid;
 	Particle misile_right;
 
 	Particle laser_shot;
-	Particle med_laser_shot;
+	Particle big_laser_shot;
 
 
 public:

@@ -23,9 +23,7 @@ ModulePowerUps::ModulePowerUps()
 	Red_Bonus.anim.speed = 1.5f;
 	Red_Bonus.speed.y = 0;
 	Red_Bonus.speed.x = 0;
-
 	Red_Bonus.life = 60000;
-
 	Red_Bonus.anim.loop = true;
 
 	M_Bonus.anim.PushBack({ 440,17,15,13 });	//M_Bonus
@@ -72,7 +70,7 @@ ModulePowerUps::ModulePowerUps()
 
 	Dragon_Bonus.anim.PushBack({ 496,16,16,15 });
 	Dragon_Bonus.anim.PushBack({ 513,16,16,16 });	//Dragon_Bonus
-	Dragon_Bonus.anim.speed = 0.2f;
+	Dragon_Bonus.anim.speed = 0.1f;
 	Dragon_Bonus.speed.y = 0;
 	Dragon_Bonus.speed.x = 0;
 	Dragon_Bonus.life = 60000;
