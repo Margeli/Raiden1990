@@ -133,6 +133,10 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 100, -2300, 1);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 120, -2450, 1);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -2500, 1);
+	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 110, -2150, 1);
+	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 150, -2300, 1);
+	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -2450, 1);
+	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 100, -2500, 1);
 	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1400, 3); // just in the middle
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
@@ -149,9 +153,14 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(STATIC_CANNON, 191, -1750);
 	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1000, 0); // just in the middle
 
-	App->enemies->AddEnemy(STATIC_CANNON, 150, -500);
-	App->enemies->AddEnemy(STATIC_CANNON, 180, -550);
-	App->enemies->AddEnemy(STATIC_CANNON, 110, -400);
+	App->enemies->AddEnemy(STATIC_CANNON, 150, -600);
+	App->enemies->AddEnemy(STATIC_CANNON, 210, -700);
+	App->enemies->AddEnemy(STATIC_CANNON, 90, -520);
+
+	App->enemies->AddEnemy(STATIC_CANNON, 121, -1100);
+	App->enemies->AddEnemy(STATIC_CANNON, 160, -1200);
+	App->enemies->AddEnemy(STATIC_CANNON, 191, -1300);
+	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -1000, 0);
 
 	App->enemies->AddEnemy(MINE, 150, -2400);
 
