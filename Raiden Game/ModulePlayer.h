@@ -38,6 +38,8 @@ public:
 	Particle misile_left;
 	Particle misile_right;
 
+	Particle laser_shot;
+
 
 
 public:

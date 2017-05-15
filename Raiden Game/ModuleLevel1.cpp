@@ -102,7 +102,7 @@ bool ModuleLevel1::Start()
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60,-500);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60,-420);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60,-420);
 	App->enemies->AddEnemy(BOX, 150, -660);
 	App->enemies->AddEnemy(BOX, 172, -682);
 	App->enemies->AddEnemy(BOX, 150, -682);
@@ -135,7 +135,7 @@ bool ModuleLevel1::Start()
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::MINE, 150, -350, false);
 	
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60, -440);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60, -440);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60, -460);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60, -480);
 

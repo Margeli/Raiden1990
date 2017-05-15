@@ -42,16 +42,18 @@ ModulePowerUps::ModulePowerUps()
 	B_Bonus.life = 60000;
 	B_Bonus.anim.loop = true;
 
-/*
-	Blue_Bonus.anim.PushBack({ , , , });	//Blue_Bonus
-	Blue_Bonus.anim.speed = 1.0f;
+
+	Blue_Bonus.anim.PushBack({440,1 ,15 ,13 });	//Blue_Bonus
+	Blue_Bonus.anim.PushBack({459 ,1 ,15 ,13 });
+	Blue_Bonus.anim.PushBack({477 ,1 ,15, 13});
+	Blue_Bonus.anim.speed = 1.5f;
 	Blue_Bonus.speed.y = 0;
 	Blue_Bonus.speed.x = 0;
 	Blue_Bonus.life = 60000;
 	Blue_Bonus.anim.loop = true;
 
 	
-
+/*
 	P_Bonus.anim.PushBack({ , , , });	//P_Bonus
 	P_Bonus.anim.speed = 1.0f;
 	P_Bonus.speed.y = 0;
@@ -130,26 +132,7 @@ void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y, char* FX_path)
 			App->particles->AddParticle(B_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_B);
 			break;
 		case POWERUP_M: 
-			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M);
-		/*	if (powerup.fx_played == false) //Fx sound when shooting
-			{
-
-				fx_shoot = App->audio->Load_Fx(FX_path);
-				if (!fx_shoot) {
-					LOG("Error loading shoot's fx: %s", Mix_GetError)
-				}
-				App->audio->Play_Fx(fx_shoot);
-				particle.fx_played = false;
-			}
-
-			PowerUp* p = new PowerUp(powerup);
-			p->born = SDL_GetTicks() + delay;
-			p->position.x = x;
-			p->position.y = y;
-			if (collider_type != COLLIDER_NONE) {
-				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
-				active[i] = p;
-			}*/
+			App->particles->AddParticle(M_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_M);		
 			break;
 		case POWERUP_P: 
 			App->particles->AddParticle(P_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_P);
