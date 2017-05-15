@@ -101,7 +101,10 @@ void Mine::OnCollision(Collider*collider, int num_enemy) {
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
-
+		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_SmallSpaceship_Explosion.wav");
+		if (!fx_shoot) {
+			LOG("Error loading shoot's fx: %s", Mix_GetError)
+		}
 	}
 
 }
