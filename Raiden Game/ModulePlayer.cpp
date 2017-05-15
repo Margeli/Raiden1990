@@ -134,6 +134,22 @@ ModulePlayer::ModulePlayer()
 	ext_left_triple_shot.life = 1850;
 	ext_left_triple_shot.anim.loop = true;
 
+	//Raiden bomb
+
+	bomb.anim.PushBack({ 552,171,8,16 });
+	bomb.anim.PushBack({ 564,171,8,16 });
+	bomb.anim.PushBack({ 575,171,8,16 });
+	bomb.anim.PushBack({ 585,171,8,16 });
+	bomb.anim.PushBack({ 595,171,8,16 });
+	bomb.anim.PushBack({ 5605,171,8,16 });
+	bomb.anim.PushBack({ 515,171,8,16 });
+	bomb.anim.PushBack({ 526,171,8,16 });
+	bomb.anim.speed = 0.1f;
+	bomb.speed.y = -3;
+	bomb.speed.x = 0;
+	bomb.life = 1600;
+	bomb.anim.loop = true;
+
 	//Raiden misile shot 
 
 	misile_left.anim.PushBack({ 411, 169, 6, 15 });
@@ -389,7 +405,10 @@ update_status ModulePlayer::Update()
 			}	
 			
 		}
+		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN) /*App->input->gamepad[4] == KEY_STATE::KEY_DOWN*/ {
 
+			App->particles->AddParticle(bomb, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
+		}
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
 

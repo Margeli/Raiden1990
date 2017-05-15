@@ -34,6 +34,7 @@ public:
 	Particle right_triple_shot;
 	Particle ext_left_triple_shot;
 	Particle ext_right_triple_shot;
+	Particle bomb;
 
 	Particle misile_left;
 	Particle misile_right;
