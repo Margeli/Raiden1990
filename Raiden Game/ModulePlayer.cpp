@@ -424,8 +424,7 @@ update_status ModulePlayer::Update()
 					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 10, "Assets/Audio/Fx_Simple_Shot.wav");
 					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 70, "Assets/Audio/Fx_Simple_Shot.wav");
 					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER_SHOT, 140, "Assets/Audio/Fx_Simple_Shot.wav");
-
-					
+								
 					break;
 
 				}
