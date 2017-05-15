@@ -311,7 +311,7 @@ update_status ModulePlayer::Update()
 	position.y -= spaceship_speed;
 
 	if (!App->level1->first_animation) {// not able to move during first animation
-		if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[0] == KEY_STATE::KEY_REPEAT) //---UP
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || App->input->gamepad[0] == KEY_STATE::KEY_REPEAT) //---UP
 		{
 			position.y -= speed;
 			if (-position.y*SCREEN_SIZE > App->render->camera.y) {
@@ -321,24 +321,24 @@ update_status ModulePlayer::Update()
 		}
 
 
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[1] == KEY_STATE::KEY_REPEAT)//---DOWN
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || App->input->gamepad[1] == KEY_STATE::KEY_REPEAT)//---DOWN
 		{
 			position.y += speed;
-			if ((-(position.y-SCREEN_HEIGHT+27)*SCREEN_SIZE)<App->render->camera.y) { //lower player limit (27 is height of spaceship)
-				position.y = ((-App->render->camera.y / SCREEN_SIZE) -27+ SCREEN_HEIGHT) ;
+			if ((-(position.y - SCREEN_HEIGHT + 27)*SCREEN_SIZE) < App->render->camera.y) { //lower player limit (27 is height of spaceship)
+				position.y = ((-App->render->camera.y / SCREEN_SIZE) - 27 + SCREEN_HEIGHT);
 			}
 
-		
-			}
-		
-	
+
+		}
+
+
 		shadow_animation = &shadow_idle;
 
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[3] == KEY_STATE::KEY_REPEAT)//---LEFT
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->gamepad[3] == KEY_STATE::KEY_REPEAT)//---LEFT
 
 		{
 			position.x -= speed;
-			App->render->camera.x +=4;
+			App->render->camera.x += 4;
 			if (current_animation != &left)
 			{
 				left.Reset();
@@ -350,14 +350,14 @@ update_status ModulePlayer::Update()
 				if (position.x <= -48) { //left player limit
 					position.x = -48;
 				}
-			}			
+			}
 		}
-		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN|| App->input->gamepad[4] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
+		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->gamepad[4] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
 		{
 			if (Red_Powerup_Lvl >= Blue_Powerup_Lvl) {// the shot type is the greater level between the blue and the red powerup (in case of equal level predominates the red ones. ) 
 				switch (Red_Powerup_Lvl)
 				{
-				case 0:					
+				case 0:
 					App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.					
 					break;
 				case 1:
@@ -395,7 +395,7 @@ update_status ModulePlayer::Update()
 					break;
 				case 2:
 					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot1.wav");//Adds 5 particle (laser_shot) in front of the spaceship.
-					App->particles->AddParticle(laser_shot, position.x +12, position.y, COLLIDER_PLAYER_SHOT, 60/*, "Assets/Audio/Fx_BluePowerUp_Shot1"*/);
+					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER_SHOT, 60/*, "Assets/Audio/Fx_BluePowerUp_Shot1"*/);
 					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER_SHOT, 120/*, "Assets/Audio/Fx_BluePowerUp_Shot1.wav"*/);
 					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER_SHOT, 180/*, "Assets/Audio/Fx_BluePowerUp_Shot1.wav"*/);
 					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER_SHOT, 240/*, "Assets/Audio/Fx_BluePowerUp_Shot1.wav"*/);
@@ -461,34 +461,34 @@ update_status ModulePlayer::Update()
 			case 0:
 				break;
 			case 1:
-				App->particles->AddParticle(misile_left, position.x-6, position.y, COLLIDER_PLAYER_SHOT, 0);
+				App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER_SHOT, 0);
 				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER_SHOT, 0);
 				break;
 			case 2:
 				App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER_SHOT, 30);
 				App->particles->AddParticle(misile_mid, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0);
-				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER_SHOT,30);
+				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER_SHOT, 30);
 				break;
 			case 3:
 				App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER_SHOT, 30);
 				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER_SHOT, 30);
-				App->particles->AddParticle(misile_left, position.x-2 , position.y, COLLIDER_PLAYER_SHOT, 0);
+				App->particles->AddParticle(misile_left, position.x - 2, position.y, COLLIDER_PLAYER_SHOT, 0);
 				App->particles->AddParticle(misile_right, position.x + 20, position.y, COLLIDER_PLAYER_SHOT, 0);
 				break;
-			
-			}	
-			
+
+			}
+
 		}
-		int total_bombs = 3;
-		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && total_bombs > 0) /*App->input->gamepad[4] == KEY_STATE::KEY_DOWN*/ {
+		/*int total_bombs = 3;
+		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && total_bombs > 0) /*App->input->gamepad[4] == KEY_STATE::KEY_DOWN*//* {
 
 				App->particles->AddParticle(bomb, position.x, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Drop_Bomb");
 				App->particles->AddParticle(bomb_explosion, position.x - 70, position.y - 200, COLLIDER_PLAYER_SHOT, 1000, "Assets/Audio/Fx_BigTank_Explosion");
 			}
 		total_bombs--;
-		}
+		}*/
 
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT|| App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
 
 		{
 			position.x += speed;
@@ -500,45 +500,45 @@ update_status ModulePlayer::Update()
 				shadow_animation = &shadow_right;
 			}
 			if (App->render->camera.x <= -154) {//right camera limit
-				App->render->camera.x =-154;
+				App->render->camera.x = -154;
 				if (position.x >= 275) { //right player limit
 					position.x = 275;
 				}
 			}
 		}
-	 
+
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE //check error
-			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE&&!App->level1->first_animation) {
+			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && !App->level1->first_animation) {
 			current_animation = &idle;
 			shadow_animation = &idle;
 		}
-	
 
 
 
-	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN|| App->input->gamepad[5] == KEY_STATE::KEY_REPEAT)//GOD MODE (press right stick on controller)
 
-	{
-		if (!godmode){			
-			godmode = true;
+		if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN || App->input->gamepad[5] == KEY_STATE::KEY_REPEAT)//GOD MODE (press right stick on controller)
+
+		{
+			if (!godmode) {
+				godmode = true;
+			}
+			else {
+				godmode = false;
+			}
 		}
-		else {			
-			godmode = false;
-		}				
-	}
-	if( (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)&&(App->fade->IsFading()==false))//DIRECT WIN/LOSE
-	{
-		App->fade->FadeToBlack(this, App->stageCompleted);		
+		if ((App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) && (App->fade->IsFading() == false))//DIRECT WIN/LOSE
+		{
+			App->fade->FadeToBlack(this, App->stageCompleted);
 
-	}
-	
+		}
 
 
 
-	if (spaceship_collider!= nullptr)
-		spaceship_collider->SetPos(position.x, position.y);
 
-	// Draw everything --------------------------------------
+		if (spaceship_collider != nullptr)
+			spaceship_collider->SetPos(position.x, position.y);
+
+		// Draw everything --------------------------------------
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		// Draw UI (score) --------------------------------------
 
@@ -547,18 +547,19 @@ update_status ModulePlayer::Update()
 
 		//Draw shadows
 
-		
+
 		sprintf_s(score_text, 10, "%8d", score);
 		sprintf_s(high_score_text, 10, "%7d", high_score);
-		
-		App->fonts->BlitText(0,1,red_font_score, user_interface);
+
+		App->fonts->BlitText(0, 1, red_font_score, user_interface);
 		App->fonts->BlitText(0, 9, yellow_font_score, score_text);
-		App->fonts->BlitText(88,9,yellow_font_score, high_score_text);
+		App->fonts->BlitText(88, 9, yellow_font_score, high_score_text);
 		if (godmode) {
 			App->fonts->BlitText(0, 1, yellow_font_score, godmode_activated);// Yellow "G" in left upper corner when godmode activated.
 		}
 
-	return UPDATE_CONTINUE;
+		return UPDATE_CONTINUE;
+	}
 }
 
 
