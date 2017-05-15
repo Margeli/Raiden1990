@@ -19,15 +19,15 @@ MegaTank::MegaTank(int x, int y, int shots, bool right) : Enemy(x, y)
 	}
 
 	idle_forward.PushBack({ 0,0,47,48 });
-	forward.PushBack({ 0,0,47,48 });
-	forward.PushBack({ 49,0,47,48 });
-	forward.PushBack({ 99,0,47,48 });
+	forward.PushBack({ 0, 0, 47, 48 });
+	forward.PushBack({ 49, 0, 47, 48 });
+	forward.PushBack({ 99, 0, 47, 48 });
 	forward.speed = 0.2f;
 
-	idle_side.PushBack({ 0,48,47,48 });
-	sideward.PushBack({ 0,48,47,48 });
-	sideward.PushBack({ 49,48,47,48 });
-	sideward.PushBack({ 99,48,47,48 });
+	idle_side.PushBack({ 0, 48, 47, 48 });
+	sideward.PushBack({ 0, 48, 47, 48 });
+	sideward.PushBack({ 49, 48, 47, 48 });
+	sideward.PushBack({ 99, 48, 47, 48 });
 	sideward.speed = 0.2f;
 
 	score_points = 1120;//1120
@@ -49,7 +49,24 @@ MegaTank::MegaTank(int x, int y, int shots, bool right) : Enemy(x, y)
 	animation = &idle_side;
 	to_right = right;
 	shot_timer = SDL_GetTicks();
+
 	shoot_number = shots;
+
+
+	//explosion anim coordenates
+	explosion.anim.PushBack({ 0, 247, 73, 64 });
+	explosion.anim.PushBack({ 73, 247, 73, 64 });
+	explosion.anim.PushBack({ 146, 247, 73, 64 });
+	explosion.anim.PushBack({ 219, 247, 73, 64 });
+	explosion.anim.PushBack({ 292, 247, 73, 64 });
+	explosion.anim.PushBack({ 365, 247, 73, 64 });
+	explosion.anim.PushBack({ 438, 247, 73, 64 });
+	explosion.anim.PushBack({ 511, 247, 73, 64 });
+	explosion.anim.PushBack({ 584, 247, 73, 64 });
+	explosion.life = 1000;
+
+
+
 	
 }
 

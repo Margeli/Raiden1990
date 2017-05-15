@@ -23,23 +23,23 @@ LightShooter_Spaceship::LightShooter_Spaceship(int x, int y, int count) : Enemy(
 
 
 	//explosion  particle animation (2nd row particle spritesheet.)
-	explosion.anim.PushBack({ 2,60,34,30 });
-	explosion.anim.PushBack({ 36 ,60,34,30 });
-	explosion.anim.PushBack({ 70,60,34,30 });
-	explosion.anim.PushBack({ 104 ,60,34,30 });
-	explosion.anim.PushBack({ 138 ,60,34,30 });
-	explosion.anim.PushBack({ 172 ,60,34,30 });
-	explosion.anim.PushBack({ 206 ,60,34,30 });
-	explosion.anim.PushBack({ 240,60,34,30 });
-	explosion.anim.PushBack({ 274,60,34,30 });
-	explosion.anim.PushBack({ 308 ,60,34,30 });
-	explosion.anim.PushBack({ 342,60,34,30 });
-	explosion.anim.PushBack({ 376 ,60,34,30 });
-	explosion.anim.PushBack({ 410,60,34,30 });
-	explosion.anim.PushBack({ 446 ,60,34,30 });
-	explosion.anim.PushBack({ 478 ,60,34,30 });
-	explosion.anim.PushBack({ 512,60,34,30 });
-	explosion.anim.PushBack({ 0,0,0,0 });
+	explosion.anim.PushBack({ 2, 60, 34, 30 });
+	explosion.anim.PushBack({ 36, 60, 34, 30 });
+	explosion.anim.PushBack({ 70, 60, 34, 30 });
+	explosion.anim.PushBack({ 104, 60, 34, 30 });
+	explosion.anim.PushBack({ 138, 60, 34, 30 });
+	explosion.anim.PushBack({ 172, 60, 34, 30 });
+	explosion.anim.PushBack({ 206, 60, 34, 30 });
+	explosion.anim.PushBack({ 240, 60, 34, 30 });
+	explosion.anim.PushBack({ 274, 60, 34, 30 });
+	explosion.anim.PushBack({ 308, 60, 34, 30 });
+	explosion.anim.PushBack({ 342, 60, 34, 30 });
+	explosion.anim.PushBack({ 376, 60, 34, 30 });
+	explosion.anim.PushBack({ 410, 60, 34, 30 });
+	explosion.anim.PushBack({ 446, 60, 34, 30 });
+	explosion.anim.PushBack({ 478, 60, 34, 30 });
+	explosion.anim.PushBack({ 512, 60, 34, 30 });
+	explosion.anim.PushBack({ 0, 0, 0, 0 });
 
 	explosion.life = 1000;
 	explosion.anim.loop = false;
