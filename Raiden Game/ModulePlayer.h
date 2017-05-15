@@ -67,7 +67,7 @@ public:
 	bool godmode = false;
 	uint high_score = 0;
 	uint score=0;
-	uint total_bombs;
+	int total_bombs;
 
 	char score_text[10];
 	char high_score_text[10];

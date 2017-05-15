@@ -139,7 +139,6 @@ bool ModuleLevel1::Start()
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60, -440);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60, -460);
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60, -480);
-=======
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 60, -190, 0);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -245, 0);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 180, -255, 0);
