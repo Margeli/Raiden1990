@@ -136,8 +136,8 @@ bool ModuleLevel1::Start()
 	//App->enemies->AddEnemy(ENEMY_TYPES::MINE, 150, -350, false);
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60, -440);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60, -460);
-	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, 60, -480);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60, -460);
+	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, 60, -480);
 
 	//App->enemies->AddEnemy(ENEMY_TYPES::GREENSHOOTER_SPACESHIP, 50, -150, 3);
 

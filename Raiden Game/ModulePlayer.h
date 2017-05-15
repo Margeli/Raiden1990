@@ -40,7 +40,7 @@ public:
 	Particle misile_right;
 
 	Particle laser_shot;
-
+	Particle med_laser_shot;
 
 
 public:
