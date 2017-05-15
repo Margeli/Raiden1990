@@ -35,7 +35,7 @@ private:
 
 public:
 	void MegaTank::ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos, uint delay=0);
-	MegaTank(int x, int y, bool right);
+	MegaTank(int x, int y,int shots, bool right);
 	void Move();
 
 

@@ -17,6 +17,8 @@
 
 ModulePlayer::ModulePlayer()
 {
+	
+	
 	graphics = NULL;
 	current_animation = NULL;
 	shadow_animation = NULL;
@@ -68,6 +70,69 @@ ModulePlayer::ModulePlayer()
 	basic_shot.speed.x = 0;
 	basic_shot.life = 1850;
 	basic_shot.anim.loop = true;
+
+	//Raiden left basic shot 
+
+	left_basic_shot.anim.PushBack({ 22, 31, 5, 5 });	//animation
+	left_basic_shot.anim.speed = 1.0f;
+	left_basic_shot.speed.y = -3;
+	left_basic_shot.speed.x = -1;
+	left_basic_shot.life = 1850;
+	left_basic_shot.anim.loop = true;
+
+	//Raiden right basic shot 
+
+	right_basic_shot.anim.PushBack({ 22, 31, 5, 5 });	//animation
+	right_basic_shot.anim.speed = 1.0f;
+	right_basic_shot.speed.y = -3;
+	right_basic_shot.speed.x = 1;
+	right_basic_shot.life = 1850;
+	right_basic_shot.anim.loop = true;
+
+	//Raiden triple basic shot 
+
+	triple_shot.anim.PushBack({ 33, 31, 8, 5 });	//animation
+	triple_shot.anim.speed = 1.0f;
+	triple_shot.speed.y = -3;
+	triple_shot.speed.x = 0;
+	triple_shot.life = 1850;
+	triple_shot.anim.loop = true;
+
+	//Raiden left triple basic shot 
+
+	left_triple_shot.anim.PushBack({ 33, 31, 8, 5 });	//animation
+	left_triple_shot.anim.speed = 1.0f;
+	left_triple_shot.speed.y = -3;
+	left_triple_shot.speed.x = -1;
+	left_triple_shot.life = 1850;
+	left_triple_shot.anim.loop = true;
+
+	//Raiden right triple basic shot 
+
+	right_triple_shot.anim.PushBack({ 33, 31, 8, 5 });	//animation
+	right_triple_shot.anim.speed = 1.0f;
+	right_triple_shot.speed.y = -3;
+	right_triple_shot.speed.x = 1;
+	right_triple_shot.life = 1850;
+	right_triple_shot.anim.loop = true;
+
+	//Raiden external right triple basic shot 
+
+	ext_right_triple_shot.anim.PushBack({ 33, 31, 8, 5 });	//animation
+	ext_right_triple_shot.anim.speed = 1.0f;
+	ext_right_triple_shot.speed.y = -3;
+	ext_right_triple_shot.speed.x = 2;
+	ext_right_triple_shot.life = 1850;
+	ext_right_triple_shot.anim.loop = true;
+
+	//Raiden external left triple basic shot 
+
+	ext_left_triple_shot.anim.PushBack({ 33, 31, 8, 5 });	//animation
+	ext_left_triple_shot.anim.speed = 1.0f;
+	ext_left_triple_shot.speed.y = -3;
+	ext_left_triple_shot.speed.x = -2;
+	ext_left_triple_shot.life = 1850;
+	ext_left_triple_shot.anim.loop = true;
 
 	//Raiden misile shot 
 
@@ -244,18 +309,63 @@ update_status ModulePlayer::Update()
 		}
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN|| App->input->gamepad[4] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
 		{
-			if (red_powerup_level == 0)
+			switch (Red_Powerup_Lvl)
+			{
+			case 0:
 				App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.
-			else if (red_powerup_level >= 1) {
-				App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				break;
+			case 1:
+				App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 2 particles
 				App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				break;
+			case 2:
+				App->particles->AddParticle(left_basic_shot, position.x + 3, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 3 particles
+				App->particles->AddParticle(right_basic_shot, position.x + 15, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				break;
+			case 3:
+				App->particles->AddParticle(left_triple_shot, position.x + 3, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 3 particles (triple)
+				App->particles->AddParticle(right_triple_shot, position.x + 15, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				App->particles->AddParticle(triple_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				break;
+			case 4:
+				App->particles->AddParticle(left_triple_shot, position.x + 5, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 5 particles (triple)
+				App->particles->AddParticle(right_triple_shot, position.x + 13, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				App->particles->AddParticle(triple_shot, position.x + 9, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				App->particles->AddParticle(ext_left_triple_shot, position.x + 1, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); 
+				App->particles->AddParticle(ext_right_triple_shot, position.x + 17, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
+				break;
+			
 			}
-
-			if (M_powerup_level > 0) {
+			switch (Blue_Powerup_Lvl)
+			{
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+		
+			}
+			switch (M_Powerup_Lvl)
+			{
+			case 0:
+				break;
+			case 1:
 				App->particles->AddParticle(misile_left, position.x, position.y, COLLIDER_PLAYER_SHOT, 0);
 				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER_SHOT, 0);
-
-			}
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			
+			}	
+			
 		}
 
 
@@ -348,10 +458,18 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		break;
 
 	case COLLIDER_POWERUP_R:
-		red_powerup_level++;
+		Red_Powerup_Lvl++;
+		if (Red_Powerup_Lvl >= 5) {
+			Red_Powerup_Lvl = 4;
+			score += 5000;
+		}
 		break;
 	case COLLIDER_POWERUP_M:
-		M_powerup_level++;
+		M_Powerup_Lvl++;
+		if (Red_Powerup_Lvl >= 4) {
+			Red_Powerup_Lvl = 3;
+			score += 5000;
+		}
 		break;
 
 	case COLLIDER_ENEMY_SHOT :
@@ -370,8 +488,9 @@ void ModulePlayer::Dead() {
 
 	
 	
-	red_powerup_level = 0;
-	M_powerup_level = 0;
+	Red_Powerup_Lvl = 0;
+	M_Powerup_Lvl = 0;
+	Blue_Powerup_Lvl = 0;
 	sprintf_s(score_text, 10, "%8d", score);
 	sprintf_s(high_score_text, 10, "%7d", high_score);
 	

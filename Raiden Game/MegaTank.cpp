@@ -10,7 +10,7 @@
 
 #include "SDL/include/SDL_timer.h"
 
-MegaTank::MegaTank(int x, int y, bool right) : Enemy(x, y)
+MegaTank::MegaTank(int x, int y, int shots, bool right) : Enemy(x, y)
 {
 	sprite_path = App->textures->Load("Assets/Images/Mega_Tank.png");
 
@@ -49,6 +49,7 @@ MegaTank::MegaTank(int x, int y, bool right) : Enemy(x, y)
 	animation = &idle_side;
 	to_right = right;
 	shot_timer = SDL_GetTicks();
+	shoot_number = shots;
 	
 }
 
@@ -99,7 +100,7 @@ void MegaTank::Move() {
 		}
 		position.y -= speed;
 	}
-	if (SDL_GetTicks() - shot_timer > 3000) {//Shoots every 3s
+	if (SDL_GetTicks() - shot_timer > 2500&& shoot_number>0) {//Shoots every 2'5s
 		ShotVector(color_rotatory_shot, { 2, 1 }, { position.x + 23, position.y + 24, });
 		ShotVector(color_rotatory_shot, { -1, 1 }, { position.x + 23, position.y + 24 });
 		ShotVector(color_rotatory_shot, { 3, 0 }, { position.x + 23, position.y + 24}, 300 );
@@ -110,6 +111,7 @@ void MegaTank::Move() {
 		ShotVector(color_rotatory_shot, { -3, -2 }, { position.x + 23, position.y + 24 },200);
 
 		shot_timer = SDL_GetTicks();
+		shoot_number--;
 	}
 	collider->SetPos(position.x, position.y);
 }
