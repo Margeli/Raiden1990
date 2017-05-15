@@ -157,7 +157,7 @@ ModulePlayer::ModulePlayer()
 	misile_left.anim.speed = 1.0f;
 	misile_left.speed.y = -4.5f;
 	misile_left.speed.x = 0;
-	misile_left.life = 1850;
+	misile_left.life = 1500;
 	misile_left.anim.loop = true;
 
 	misile_right.anim.PushBack({ 359, 170, 6, 15 });
@@ -165,7 +165,7 @@ ModulePlayer::ModulePlayer()
 	misile_right.anim.speed = 1.0f;
 	misile_right.speed.y = -4.5f;
 	misile_right.speed.x = 0;
-	misile_right.life = 1850;
+	misile_right.life = 1500;
 	misile_right.anim.loop = true;
 
 	misile_mid.anim.PushBack({ 359, 170, 6, 15 });
@@ -173,7 +173,7 @@ ModulePlayer::ModulePlayer()
 	misile_mid.anim.speed = 0;
 	misile_mid.speed.y = -4.5f;
 	misile_mid.speed.x = 0;
-	misile_mid.life = 1850;
+	misile_mid.life = 1500;
 	misile_mid.anim.loop = true;
 
 	//Raiden laser shot 
@@ -182,7 +182,7 @@ ModulePlayer::ModulePlayer()
 	laser_shot.anim.speed = 1.0f;
 	laser_shot.speed.y = -7;
 	laser_shot.speed.x = 0;
-	laser_shot.life = 1000;
+	laser_shot.life =700;
 	laser_shot.anim.loop = true;
 
 	//Raiden big laser shot 
@@ -191,7 +191,7 @@ ModulePlayer::ModulePlayer()
 	big_laser_shot.anim.speed = 1.0f;
 	big_laser_shot.speed.y = -7;
 	big_laser_shot.speed.x = 0;
-	big_laser_shot.life = 1000;
+	big_laser_shot.life = 700;
 	big_laser_shot.anim.loop = true;
 
 	hit_dmg = 1.0f;
