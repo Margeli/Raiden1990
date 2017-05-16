@@ -141,10 +141,9 @@ ModulePlayer::ModulePlayer()
 	bomb.anim.PushBack({ 575,171,8,16 });
 	bomb.anim.PushBack({ 585,171,8,16 });
 	bomb.anim.PushBack({ 595,171,8,16 });
-	bomb.anim.PushBack({ 5605,171,8,16 });
-	bomb.anim.PushBack({ 515,171,8,16 });
-	bomb.anim.PushBack({ 526,171,8,16 });
-	bomb.anim.PushBack({ 526,171,8,16 });
+	bomb.anim.PushBack({ 605,171,8,16 });
+	bomb.anim.PushBack({ 615,171,8,16 });
+	bomb.anim.PushBack({ 626,171,8,16 });
 	bomb.anim.speed = 0.08f;
 	bomb.speed.y = -2.5f;
 	bomb.speed.x = 0.;
@@ -479,14 +478,14 @@ update_status ModulePlayer::Update()
 			}
 
 		}
-		/*int total_bombs = 3;
-		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && total_bombs > 0) /*App->input->gamepad[4] == KEY_STATE::KEY_DOWN*//* {
+		int total_bombs = 3;
+		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && total_bombs > 0) /*App->input->gamepad[4] == KEY_STATE::KEY_DOWN*/ {
 
-				App->particles->AddParticle(bomb, position.x, position.y, COLLIDER_PLAYER_SHOT, 0, "Assets/Audio/Fx_Drop_Bomb");
-				App->particles->AddParticle(bomb_explosion, position.x - 70, position.y - 200, COLLIDER_PLAYER_SHOT, 1000, "Assets/Audio/Fx_BigTank_Explosion");
+				App->particles->AddParticle(bomb, position.x+8, position.y, COLLIDER_EXPLOSION, 0, "Assets/Audio/Fx_Drop_Bomb");
+				App->particles->AddParticle(bomb_explosion, position.x - 70, position.y - 250, COLLIDER_EXPLOSION, 1300, "Assets/Audio/Fx_BigTank_Explosion");
 			}
 		total_bombs--;
-		}*/
+		}
 
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
 
@@ -560,7 +559,8 @@ update_status ModulePlayer::Update()
 
 		return UPDATE_CONTINUE;
 	}
-}
+
+
 
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
