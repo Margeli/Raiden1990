@@ -77,6 +77,19 @@ void Tank::Move() {
 void Tank::OnCollision(Collider*collider, int num_enemy) {
 
 
+	if (hits_life <= 0) {
+		App->player->score += score_points;
+		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Tank_Explosion.wav");
+		if (!fx_shoot) {
+			LOG("Error loading shoot's fx: %s", Mix_GetError)
+		}
+		App->audio->Play_Fx(fx_shoot);
+		delete App->enemies->enemies[num_enemy];
+		App->enemies->enemies[num_enemy] = nullptr;
+
+	}
+
 }
 
 void Tank::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {

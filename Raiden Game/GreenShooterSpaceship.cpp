@@ -38,9 +38,6 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int shoot_num) : En
 	explosion.anim.PushBack({ 385, 534, 77, 68 });	
 	explosion.anim.PushBack({ 0,0,0,0 });
 	explosion.anim.speed = 0.2f;
-
-	
-
 	explosion.life = 1000;
 	explosion.anim.loop = false;
 

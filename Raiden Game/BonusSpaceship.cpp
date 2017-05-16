@@ -10,7 +10,7 @@
 #include "ModulePowerUps.h"
 #include "ModuleAudio.h"
 
-
+#include "SDL/include/SDL_timer.h"
 
 Bonus_Spaceship::Bonus_Spaceship (int x, int y, int count) : Enemy(x, y) 
 {
@@ -202,7 +202,12 @@ void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 	if (hits_life <= 0) {
 		App->player->score += score_points;
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
-		App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, position.x+32, position.y+32);
+		if (SDL_GetTicks() % 2) { //50% RED
+			App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, position.x+32, position.y+32);
+		}
+		else {//50% BLUE
+			App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, position.x + 32, position.y + 32);
+		}
 		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_BigSpaceship_Explosion.wav");
  		if (!fx_shoot) {
 			LOG("Error loading shoot's fx: %s", Mix_GetError)
