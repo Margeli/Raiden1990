@@ -85,7 +85,7 @@ bool ModuleLevel1::Start()
 	
 	LOG("Loading level 1");
 
-	music_lvl1 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");// UNCOMMENT FOR PLAYING MUSIC
+	music_lvl1 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");// COMMENT TO STOP MUSIC
 	if (!music_lvl1) {
 	LOG("Error loading lvl1 music: %s",Mix_GetError)
 	}
