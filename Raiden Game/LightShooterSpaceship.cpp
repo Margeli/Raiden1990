@@ -183,7 +183,9 @@ void LightShooter_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 	}
 	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
 		hits_life -= App->player2->hit_dmg;
-
+	}
+	else if (collider->type == COLLIDER_BOMB) {
+		hits_life -= App->player->bomb_dmg;	
 	}
 	if (hits_life <= 0) {
 		App->player->score += score_points;

@@ -88,6 +88,9 @@ void Mine::OnCollision(Collider*collider, int num_enemy) {
 		hits_life -= App->player2->hit_dmg;
 
 	}
+	else if (collider->type == COLLIDER_BOMB) {
+		hits_life -= App->player->bomb_dmg;
+	}
 	if (hits_life <= 0) {
 		ShotVector(color_rotatory_shot, { 2, 1 }, { position.x + 3, position.y + 3 });
 		ShotVector(color_rotatory_shot, { -1, 1 }, { position.x + 3, position.y + 3 });

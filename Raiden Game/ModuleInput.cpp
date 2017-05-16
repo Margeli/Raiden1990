@@ -64,6 +64,8 @@ update_status ModuleInput::PreUpdate()
 	buttons[5] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_RIGHTSTICK);
 	buttons[6] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_START);
 	buttons[7] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_LEFTSTICK);
+	buttons[8] = SDL_GameControllerGetButton(App->input->controller, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
+
 
 	for (int i = 0; i < MAX_KEYS; ++i)
 	{

@@ -23,7 +23,7 @@ enum COLLIDER_TYPE
 	COLLIDER_POWERUP_B,
 	COLLIDER_POWERUP_P,
 	COLLIDER_POWERUP_DRAGON,
-	COLLIDER_POWERUP_FAIRY,
+	COLLIDER_BOMB,
 	COLLIDER_POWERUP_MEDAL ,
 	COLLIDER_MAX
 };
@@ -34,6 +34,7 @@ struct Collider
 	bool to_delete = false;
 	COLLIDER_TYPE type;
 	Module* callback = nullptr;
+	
 
 	Collider(SDL_Rect rectangle, COLLIDER_TYPE type, Module* callback = nullptr) :
 		rect(rectangle),

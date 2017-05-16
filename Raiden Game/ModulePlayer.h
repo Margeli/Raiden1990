@@ -60,14 +60,19 @@ public:
 	Particle dead_explosion;
 	Particle bomb_explosion;
 	iPoint position;
+	iPoint saved_position;
 	iPoint shadow_position;
 	Collider* spaceship_collider;
 	bool destroyed=false;
 	float hit_dmg;
+	float bomb_dmg;
 	bool godmode = false;
 	uint high_score = 0;
 	uint score=0;
 	int total_bombs;
+	Uint32 bomb_thrown;
+	Uint32 bomb_life;
+	Uint32 last_bomb;
 
 	char score_text[10];
 	char high_score_text[10];

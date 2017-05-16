@@ -138,9 +138,9 @@ void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y, char* FX_path)
 		case POWERUP_DRAGON: 
 			App->particles->AddParticle(Dragon_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_DRAGON);
 			break;
-		case POWERUP_FAIRY: 
+		/*case POWERUP_FAIRY: 
 			App->particles->AddParticle(Fairy_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_FAIRY);
-			break;
+			break;*/
 		case POWERUP_MEDAL: 
 			App->particles->AddParticle(Medal_Bonus, x, y, COLLIDER_TYPE::COLLIDER_POWERUP_MEDAL);
 			break;

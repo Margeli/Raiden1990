@@ -35,7 +35,7 @@ enum POWERUP_TYPES {
 		POWERUP_P,
 		POWERUP_MEDAL,
 		POWERUP_DRAGON,
-		POWERUP_FAIRY,	
+		
 	};
 
 class ModulePowerUps : public Module{
@@ -59,7 +59,7 @@ public:
 	Particle M_Bonus;
 	Particle B_Bonus;
 	Particle P_Bonus; 
-	Particle Fairy_Bonus;
+	
 	Particle Medal_Bonus;
 	Particle Dragon_Bonus;
 

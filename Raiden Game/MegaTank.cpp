@@ -149,6 +149,9 @@ void MegaTank::OnCollision(Collider*collider, int num_enemy) {
 		hits_life -= App->player2->hit_dmg;
 
 	}
+	else if (collider->type == COLLIDER_BOMB) {
+		hits_life -= App->player->bomb_dmg;
+	}
 	if (hits_life <= 0) {
 		App->player->score += score_points;
 		App->particles->AddParticle(explosion, position.x-6, position.y-5, COLLIDER_EXPLOSION);

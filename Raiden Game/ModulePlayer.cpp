@@ -14,6 +14,7 @@
 #include "ModuleLevel1.h"
 
 #include<stdio.h>
+#include "SDL/include/SDL_timer.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -195,6 +196,7 @@ ModulePlayer::ModulePlayer()
 	big_laser_shot.anim.loop = true;
 
 	hit_dmg = 1.0f;
+	bomb_dmg = 20.0f;
 
 	dead_explosion.anim.PushBack({ 7,202,32,30 });
 	dead_explosion.anim.PushBack({ 40,202,32,30 });
@@ -233,9 +235,11 @@ ModulePlayer::ModulePlayer()
 	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 941, 168, 154 });
-	bomb_explosion.anim.speed = 0.3f;
-	bomb_explosion.life = 2500;
-	bomb_explosion.anim.loop = true;
+	bomb_explosion.anim.speed = 0.1f;
+	bomb_explosion.life = 3000;
+	bomb_explosion.anim.loop = false;
+
+
 
 }
 
@@ -299,6 +303,11 @@ bool ModulePlayer::Start()
 	if (spaceship_collider==nullptr)
 	spaceship_collider = App->collision->AddCollider({ 0,0, 24, 26 }, COLLIDER_PLAYER, this);
 
+	total_bombs = 3;
+	bomb_thrown = 0;
+	bomb_life = 0;
+	last_bomb = 0;
+
 	return ret;
 }
 
@@ -329,9 +338,24 @@ update_status ModulePlayer::Update()
 
 
 		}
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
 
-
-		shadow_animation = &shadow_idle;
+		{
+			position.x += speed;
+			App->render->camera.x -= 4;
+			if (current_animation != &right)
+			{
+				right.Reset();
+				current_animation = &right;
+				shadow_animation = &shadow_right;
+			}
+			if (App->render->camera.x <= -154) {//right camera limit
+				App->render->camera.x = -154;
+				if (position.x >= 275) { //right player limit
+					position.x = 275;
+				}
+			}
+		}
 
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || App->input->gamepad[3] == KEY_STATE::KEY_REPEAT)//---LEFT
 
@@ -478,33 +502,29 @@ update_status ModulePlayer::Update()
 			}
 
 		}
-		int total_bombs = 3;
-		if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && total_bombs > 0) /*App->input->gamepad[4] == KEY_STATE::KEY_DOWN*/ {
 
-				App->particles->AddParticle(bomb, position.x+8, position.y, COLLIDER_EXPLOSION, 0, "Assets/Audio/Fx_Drop_Bomb");
-				App->particles->AddParticle(bomb_explosion, position.x - 70, position.y - 250, COLLIDER_EXPLOSION, 1300, "Assets/Audio/Fx_BigTank_Explosion");
-			}
-		total_bombs--;
-		}
-
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
-
-		{
-			position.x += speed;
-			App->render->camera.x -= 4;
-			if (current_animation != &right)
+		if ((App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || App->input->gamepad[8] == KEY_STATE::KEY_REPEAT) && total_bombs > 0 && SDL_GetTicks() - last_bomb>5000) //-----BOMB! (only when ur player has bombs and passed 5s from the last bomb)
 			{
-				right.Reset();
-				current_animation = &right;
-				shadow_animation = &shadow_right;
-			}
-			if (App->render->camera.x <= -154) {//right camera limit
-				App->render->camera.x = -154;
-				if (position.x >= 275) { //right player limit
-					position.x = 275;
-				}
-			}
+			bomb_thrown = SDL_GetTicks();
+			App->particles->AddParticle(bomb, position.x + 8, position.y, COLLIDER_EXPLOSION, 0, "Assets/Audio/Fx_Drop_Bomb");
+			saved_position = position;			
+			total_bombs--;
+			last_bomb = SDL_GetTicks();
 		}
+		if (bomb_thrown != 0 && SDL_GetTicks()-bomb_thrown>1300) {// 1.3s to generate the explosion of the bomb(damaging collider)
+			App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB,0, "Assets/Audio/Fx_BigTank_Explosion");
+			bomb_thrown = 0;
+			bomb_life = SDL_GetTicks();
+			saved_position = { 0,0 };
+			
+		}
+		if (bomb_life != 0 && SDL_GetTicks() - bomb_life > 3000) {// bomb life 3s then delete particle
+			bomb_life = 0;
+			bomb_explosion.to_delete;
+		}
+
+
+		
 
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE //check error
 			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && !App->level1->first_animation) {
@@ -530,7 +550,7 @@ update_status ModulePlayer::Update()
 			App->fade->FadeToBlack(this, App->stageCompleted);
 
 		}
-
+	}
 
 
 
@@ -597,6 +617,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		if (M_Powerup_Lvl >= 4) {
 			M_Powerup_Lvl = 3;
 			score += 5000;
+		}
+		break;
+	case COLLIDER_POWERUP_B:
+		total_bombs++;
+		if (total_bombs >= 6) {
+			total_bombs = 6;		
 		}
 		break;
 
