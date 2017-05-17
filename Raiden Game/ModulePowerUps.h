@@ -22,9 +22,8 @@ struct PowerUp
 	bool fx_played = false;
 
 	PowerUp();
-	PowerUp(const PowerUp& powerup);*/
-	void Update();
-	iPoint position;
+	PowerUp(const PowerUp& powerup);
+	bool Update();*/
 };
 
 enum POWERUP_TYPES {
@@ -50,7 +49,7 @@ class ModulePowerUps : public Module{
 		update_status Update();
 		bool CleanUp();
 		void OnCollision(Collider* c1, Collider* c2);
-		void AddPowerUp(PowerUp* powerup, POWERUP_TYPES type, int x, int y)
+		void AddPowerUp( POWERUP_TYPES type, int x, int y, char* FX_path = nullptr);
 
 			
 
@@ -64,8 +63,8 @@ public:
 	Particle Medal_Bonus;
 	Particle Dragon_Bonus;
 
-private:
-	PowerUp* powerups[MAX_POWERUPS];
+public:
+
 	
 			
 };
