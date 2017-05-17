@@ -13,8 +13,7 @@
 
 ModulePowerUps::ModulePowerUps()
 {
-	for (uint i = 0; i < MAX_POWERUPS; ++i)
-		powerups[i] = nullptr;
+	
 
 	
 	
@@ -95,15 +94,6 @@ ModulePowerUps::~ModulePowerUps()
 
 bool ModulePowerUps::CleanUp()
 {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-	{
-		if (powerups[i] != nullptr)
-		{
-			delete powerups[i];
-			powerups[i] = nullptr;
-		}
-	}
-
 	
 	
 	return true;
@@ -117,21 +107,6 @@ bool ModulePowerUps::Start()
 
 update_status ModulePowerUps::Update()
 {
-	for (uint i = 0; i < MAX_POWERUPS; ++i)
-	{
-		PowerUp* p = powerups[i];
-
-		if (p == nullptr)
-			continue;
-
-		else {
-			p->Update();
-		
-		}
-		
-	}
-
-
 	return UPDATE_CONTINUE;
 
 }
@@ -140,17 +115,8 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 {
 }
 
-void ModulePowerUps::AddPowerUp(PowerUp* powerup,POWERUP_TYPES type, int x, int y)
+void ModulePowerUps::AddPowerUp(POWERUP_TYPES type, int x, int y, char* FX_path)
 {	
-	for (uint i = 0; i < MAX_POWERUPS; ++i)
-	{
-		if (powerups[i] == nullptr)
-		{
-			
-			PowerUp* p = new PowerUp(powerup);
-			p->position.x = x;
-			p->position.y = y;
-			
 
 	switch (type)
 		{
@@ -181,8 +147,3 @@ void ModulePowerUps::AddPowerUp(PowerUp* powerup,POWERUP_TYPES type, int x, int 
 
 		}
 	}
-
-void PowerUp::Update()
-{
-	
-}
