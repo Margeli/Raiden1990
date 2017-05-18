@@ -50,7 +50,7 @@ Tank::Tank(int x, int y, int shoot_num) : Enemy(x, y)
 void Tank::Move() {
 
 	increment_y = (position.y - initial_y);
-	if (increment_y < 100) {
+	if (increment_y < 30) {
 		if (App->player->position.x > position.x) {
 			animation = &forward_left;
 			position.x++;
@@ -63,7 +63,7 @@ void Tank::Move() {
 		}
 	}
 	else {
-		speed = -2.0f;
+		speed = -4.0f;
 	}
 
 
