@@ -9,16 +9,10 @@
 #include "ModuleAudio.h"
 
 
+
+
 Tank::Tank(int x, int y, int shoot_num) : Enemy(x, y)
 {
-	aim_down.PushBack({ 0,29,38,34 });
-	aim_up.PushBack({ 38,29,38,34 });
-	aim_right.PushBack({ 75,29,38,34 });
-	aim_left.PushBack({ 113,29,38,34 });
-	aim_down_left.PushBack({ 152,29,38,34 });
-	aim_down_right.PushBack({ 190,29,38,34 });
-	aim_up_right.PushBack({ 228,29,38,34 });
-	aim_up_left.PushBack({ 266,29,38,34 });
 
 	forward.PushBack({ 0,0,31,29 });
 	side.PushBack({ 31,0,31,29 });
@@ -27,9 +21,9 @@ Tank::Tank(int x, int y, int shoot_num) : Enemy(x, y)
 
 	sprite_path = App->textures->Load("Assets/Images/Tank.png");
 
-	//GreenShooter Spaceship animations
+	
 	if (sprite_path == nullptr) {
-		LOG("Error loading GreenShooter's textures. SDL Error: %s", SDL_GetError());
+		LOG("Error loading Tank's textures. SDL Error: %s", SDL_GetError());
 	}
 	animation = &forward;
 
@@ -39,34 +33,39 @@ Tank::Tank(int x, int y, int shoot_num) : Enemy(x, y)
 
 
 	score_points = 130;//130
-	hits_aim = 2.0f;//2.0f
-	hits_life = 3.0f;// 3.0f
 	
+	hits_life = 1.0f;// 1.0f
+	player_initial_x = App->player->position.x; //Stores player position X when tank is spawning.
 
-	collider = App->collision->AddCollider({ 0, 0, 38, 34 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 31, 29 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies);//collider type box because the tank is in the ground, so there is no damage for touching with the player's collider 
+
+	App->enemies->AddEnemy(CANNON_TANK, x, y-2, shoot_num);
 
 }
 
 void Tank::Move() {
 
 	increment_y = (position.y - initial_y);
-	if (increment_y < 30) {
-		if (App->player->position.x > position.x) {
-			animation = &forward_left;
-			position.x++;
-			speed = 0.2f;
-		}	
-		else {
-			animation = &forward_right;
-			position.x--;
-			speed = 0.2f;
-		}
+
+	if (player_initial_x > position.x) {
+		animation = &forward_left;
+		position.x++;
+		speed = 0.1f;
+
+	}
+	else if (player_initial_x< position.x) {
+		animation = &forward_right;
+		position.x--;
+		speed = 0.1f;
 	}
 	else {
-		speed = -4.0f;
+		speed = 0.0f;
+		animation = &side;
+
+
+
+
 	}
-
-
 	position.y += speed;
 	collider->SetPos(position.x, position.y);
 }

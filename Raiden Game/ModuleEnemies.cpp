@@ -12,6 +12,7 @@
 #include "HeavyShooter.h"
 #include "MegaTank.h"
 #include "Tank.h"
+#include "CannonTank.h"
 #include "StaticCannon.h"
 #include "Boss.h"
 #include "Box.h"
@@ -174,6 +175,10 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i] = new Tank(info.x, info.y, info.shots);
 			break;
 
+		case ENEMY_TYPES::CANNON_TANK:
+			enemies[i] = new CannonTank(info.x, info.y, info.shots);
+			break;
+
 		case ENEMY_TYPES::MEGA_TANK:
 			enemies[i] = new MegaTank(info.x, info.y, info.shots, info.right);
 			break;
@@ -189,6 +194,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		case ENEMY_TYPES::BOX:
 			enemies[i] = new Box(info.x, info.y);
 			break;
+
 		}
 	}
 }

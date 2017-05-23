@@ -205,7 +205,7 @@ void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 	if (hits_life <= 0) {
 		App->player->score += score_points;
 		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
-		if (SDL_GetTicks() % 2) { //50% RED
+		if (SDL_GetTicks() % 2==0) { //50% RED
 			App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, position.x+32, position.y+32);
 		}
 		else {//50% BLUE

@@ -1,21 +1,23 @@
-#ifndef __TANK_H__
-#define __TANK_H__
+#ifndef __CANNONTANK_H__
+#define __CANNONTANK_H__
+
 
 #include "Enemy.h"
 #include "ModuleParticles.h"
 
-class Tank : public Enemy
+class CannonTank : public Enemy
 {
 private:
 
-	Animation forward;
-	Animation side;
-	Animation forward_right;
-	Animation forward_left;
-
+	Animation down;
+	Animation up;
+	Animation left;
+	Animation right;
+	Animation down_left;
+	Animation down_right;
+	Animation up_left;
+	Animation up_right;
 	
-
-
 	Particle explosion;
 	Particle color_rotatory_shot;
 	Mix_Chunk* fx_shoot = nullptr;
@@ -31,7 +33,7 @@ private:
 	float hits_aim;
 	int shoot_number = 0;
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
-	uint score_points;
+	Uint32 timer_shot;
 
 
 
@@ -39,7 +41,7 @@ private:
 
 public:
 
-	Tank(int x, int y, int shoot_num);
+	CannonTank(int x, int y, int shoot_num);
 	void Move();
 
 
@@ -47,4 +49,4 @@ public:
 
 };
 
-#endif// __TANK_H__
+#endif// __CANNONTANK_H__
