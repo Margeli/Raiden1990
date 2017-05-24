@@ -30,20 +30,7 @@ CannonTank::CannonTank(int x, int y, int shoot_num) : Enemy(x, y)
 	color_rotatory_shot.life = 3000;
 	color_rotatory_shot.anim.loop = true;
 
-	explosion.anim.PushBack({ 0,0,32,30 });
-	explosion.anim.PushBack({ 32,0,32,30 });
-	explosion.anim.PushBack({ 64,0,32,30 });
-	explosion.anim.PushBack({ 96,0,32,30 });
-	explosion.anim.PushBack({ 128,0,32,30 });
-	explosion.anim.PushBack({ 160,0,32,30 });
-	explosion.anim.PushBack({ 192,0,32,30 });
-	explosion.anim.PushBack({ 224,0,32,30 });
-	explosion.anim.PushBack({ 256,0,32,30 });
-	explosion.anim.PushBack({ 288,0,32,30 });	
-	explosion.anim.PushBack({ 0,0,0,0 });
-	explosion.anim.speed = 0.2f;
-	explosion.anim.loop = false;
-	explosion.life = 1000;
+
 
 	sprite_path = App->textures->Load("Assets/Images/Tank.png");
 
@@ -73,7 +60,7 @@ void CannonTank::Move() {
 
 	increment_y = (position.y - initial_y);
 
-	if (player_initial_x > position.x) {		//SAME MOVEMENT AS THE TANK
+	if (player_initial_x > position.x) {		
 		position.x++;
 		speed = 0.1f;
 
@@ -88,10 +75,10 @@ void CannonTank::Move() {
 
 	if ((App->player->position.y > position.y + 34)) {// DOWN
 
-		if ((App->player->position.x > position.x-2) && (App->player->position.x < position.x + 38)) {
+		if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
 			animation = &down;
 		}
-		else if (App->player->position.x > position.x-2) {
+		else if (App->player->position.x > position.x) {
 			animation = &down_right;
 		}
 		else if (App->player->position.x < position.x + 38) {
