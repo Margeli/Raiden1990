@@ -27,6 +27,22 @@ Tank::Tank(int x, int y, int shoot_num) : Enemy(x, y)
 	}
 	animation = &forward;
 
+	explosion.anim.PushBack({ 0,0,32,30 });
+	explosion.anim.PushBack({ 32,0,32,30 });
+	explosion.anim.PushBack({ 64,0,32,30 });
+	explosion.anim.PushBack({ 96,0,32,30 });
+	explosion.anim.PushBack({ 128,0,32,30 });
+	explosion.anim.PushBack({ 160,0,32,30 });
+	explosion.anim.PushBack({ 192,0,32,30 });
+	explosion.anim.PushBack({ 224,0,32,30 });
+	explosion.anim.PushBack({ 256,0,32,30 });
+	explosion.anim.PushBack({ 288,0,32,30 });
+	explosion.anim.PushBack({ 320,0,32,30 });
+	explosion.anim.speed = 0.2f;
+	explosion.anim.loop = false;
+	explosion.life = 10000;// the explosion remains in the ground, so it lasts 10s
+	
+
 	shoot_number = shoot_num;
 	initial_y = y;
 	increment_y = 0.0f;
@@ -37,9 +53,9 @@ Tank::Tank(int x, int y, int shoot_num) : Enemy(x, y)
 	hits_life = 1.0f;// 1.0f
 	player_initial_x = App->player->position.x; //Stores player position X when tank is spawning.
 
-	collider = App->collision->AddCollider({ 0, 0, 31, 29 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies);//collider type box because the tank is in the ground, so there is no damage for touching with the player's collider 
+	collider = App->collision->AddCollider({ 0, 0, 30, 27 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies);//collider type box because the tank is in the ground, so there is no damage for touching with the player's collider 
 
-	App->enemies->AddEnemy(CANNON_TANK, x, y-2, shoot_num);
+	App->enemies->AddEnemy(CANNON_TANK, x-4, y-2, shoot_num);
 
 }
 
@@ -67,7 +83,7 @@ void Tank::Move() {
 
 	}
 	position.y += speed;
-	collider->SetPos(position.x, position.y);
+	collider->SetPos(position.x+1, position.y-1);
 }
 
 
