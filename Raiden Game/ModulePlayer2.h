@@ -63,8 +63,30 @@ public:
 	bool destroyed = false;
 	bool player2 = false;
 	float hit_dmg;
+	float bomb_dmg;
 	bool godmode = false;
+	uint high_score = 0;
+	uint score = 0;
+	int total_bombs;
+	Uint32 bomb_thrown;
+	Uint32 bomb_life;
+	Uint32 last_bomb;
 
+	char score_text[10];
+	char high_score_text[10];
+	char *user_interface;
+	char *godmode_activated;
+
+	int red_font_score = 0;
+	int yellow_font_score = 0;
+
+	uint Red_Powerup_Lvl;
+	uint Blue_Powerup_Lvl;
+	uint M_Powerup_Lvl;
+
+
+
+	Mix_Chunk* fx_shoot = nullptr;
 
 
 };
