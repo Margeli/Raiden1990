@@ -64,6 +64,7 @@ public:
 	iPoint shadow_position;
 	Collider* spaceship_collider;
 	bool destroyed=false;
+	bool player1 = false;
 	float hit_dmg;
 	float bomb_dmg;
 	bool godmode = false;

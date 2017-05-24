@@ -641,7 +641,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 void ModulePlayer::Dead() {
 
 	
-	
 	Red_Powerup_Lvl = 0;
 	M_Powerup_Lvl = 0;
 	Blue_Powerup_Lvl = 0;
