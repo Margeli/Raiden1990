@@ -32,7 +32,7 @@ private:
 	int shoot_number = 0;
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	uint score_points;
-
+	void Dead(Collider* shooter, int num_enemy);
 
 
 

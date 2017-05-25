@@ -531,9 +531,8 @@ update_status ModulePlayer::Update()
 			current_animation = &idle;
 			shadow_animation = &idle;
 		}
-
-
-
+		
+	}
 
 		if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN || App->input->gamepad[5] == KEY_STATE::KEY_REPEAT)//GOD MODE (press right stick on controller)
 
@@ -550,8 +549,6 @@ update_status ModulePlayer::Update()
 			App->fade->FadeToBlack(this, App->stageCompleted);
 
 		}
-	}
-
 
 
 		if (spaceship_collider != nullptr)
@@ -561,9 +558,13 @@ update_status ModulePlayer::Update()
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		// Draw UI (score) --------------------------------------
 
-		if (score >= high_score)
+		if (score > high_score)
 			high_score = score;
 
+		if (App->player2->score > high_score&&App->player2->IsEnabled()) {
+			high_score = App->player2->score;
+		
+		}
 		//Draw shadows
 
 

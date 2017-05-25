@@ -22,6 +22,7 @@ private:
 	float hits_life;
 	int shoot_number = 0;
 	uint score_points;
+	void Dead(Collider* shooter, int num_enemy);
 
 
 

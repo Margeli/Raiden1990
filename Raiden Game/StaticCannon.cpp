@@ -132,32 +132,46 @@ void StaticCannon::Move() {
 
 void StaticCannon::OnCollision(Collider*collider, int num_enemy) {
 	if (collider->type == COLLIDER_PLAYER_SHOT) {
-		hits_life -= App->player->hit_dmg;
+		hits_life -= App->player->hit_dmg;		
 	}
+
 	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
 		hits_life -= App->player2->hit_dmg;
-
 	}
+
 	else if (collider->type == COLLIDER_BOMB) {
-		hits_life -= App->player->bomb_dmg;
+		hits_life -= App->player->bomb_dmg;		
 	}
+	
 	if (hits_life <= 0) {
-		App->player->score += score_points;
-		App->particles->AddParticle(destroyed_base, position.x - 1.25, position.y - 2.25, COLLIDER_EXPLOSION);
-		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
- 		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_StaticCannon_Explosion.wav");
-		if (!fx_shoot) {
-			LOG("Error loading shoot's fx: %s", Mix_GetError)
-		}
-		App->audio->Play_Fx(fx_shoot);
-		delete App->enemies->enemies[num_enemy];
-		App->enemies->enemies[num_enemy] = nullptr;
-		App->textures->Unload(graphics);// NEED TO PUT IN THE PARTICLE SPRITESHEET THE BASE OF THE CANNON, 
-
+	Dead(collider, num_enemy);
 	}
+
+}
+
+void StaticCannon::Dead(Collider* shooter, int num_enemy) {
+
+	if (shooter->type == COLLIDER_PLAYER_SHOT || shooter->type == COLLIDER_BOMB) {
+		App->player->score += score_points;
+	}
+	else if (shooter->type == COLLIDER_PLAYER2_SHOT /*|| shooter->type == COLLIDER_BOMB2*/) {
+		App->player2->score += score_points;
+	}
+
+	App->particles->AddParticle(destroyed_base, position.x - 1.25, position.y - 2.25, COLLIDER_EXPLOSION);
+	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_StaticCannon_Explosion.wav");
+	if (!fx_shoot) {
+		LOG("Error loading shoot's fx: %s", Mix_GetError)
+	}
+	App->audio->Play_Fx(fx_shoot);
+	delete App->enemies->enemies[num_enemy];
+	App->enemies->enemies[num_enemy] = nullptr;
+	App->textures->Unload(graphics);
 
 
 }
+
 
 void StaticCannon::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
 	shot.speed = { 0,0 };

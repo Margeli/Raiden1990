@@ -31,6 +31,7 @@ private:
 	
 	bool to_right;
 	bool move_up = false;
+	void Dead(Collider* shooter, int num_enemy);
 
 
 public:
