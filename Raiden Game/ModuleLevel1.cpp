@@ -214,7 +214,11 @@ update_status ModuleLevel1::Update()
 		}
 		App->render->camera.y += 2;
 		
-	
+		if ((App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) && (App->fade->IsFading() == false))//DIRECT WIN/LOSE
+		{
+			App->fade->FadeToBlack(this, App->stageCompleted);
+
+		}
 	
 	}
 
