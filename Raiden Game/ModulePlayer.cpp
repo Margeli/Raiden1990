@@ -503,20 +503,20 @@ update_status ModulePlayer::Update()
 
 		}
 
-		if ((App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || App->input->gamepad[8] == KEY_STATE::KEY_REPEAT) && total_bombs > 0 && SDL_GetTicks() - last_bomb>5000) //-----BOMB! (only when ur player has bombs and passed 5s from the last bomb)
-			{
+		if ((App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || App->input->gamepad[8] == KEY_STATE::KEY_REPEAT) && total_bombs > 0 && SDL_GetTicks() - last_bomb > 5000) //-----BOMB! (only when ur player has bombs and passed 5s from the last bomb)
+		{
 			bomb_thrown = SDL_GetTicks();
 			App->particles->AddParticle(bomb, position.x + 8, position.y, COLLIDER_EXPLOSION, 0, "Assets/Audio/Fx_Drop_Bomb");
-			saved_position = position;			
+			saved_position = position;
 			total_bombs--;
 			last_bomb = SDL_GetTicks();
 		}
-		if (bomb_thrown != 0 && SDL_GetTicks()-bomb_thrown>1300) {// 1.3s to generate the explosion of the bomb(damaging collider)
-			App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB,0, "Assets/Audio/Fx_BigTank_Explosion");
+		if (bomb_thrown != 0 && SDL_GetTicks() - bomb_thrown > 1300) {// 1.3s to generate the explosion of the bomb(damaging collider)
+			App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB, 0, "Assets/Audio/Fx_BigTank_Explosion");
 			bomb_thrown = 0;
 			bomb_life = SDL_GetTicks();
 			saved_position = { 0,0 };
-			
+
 		}
 		if (bomb_life != 0 && SDL_GetTicks() - bomb_life > 3000) {// bomb life 3s then delete particle
 			bomb_life = 0;
@@ -524,7 +524,7 @@ update_status ModulePlayer::Update()
 		}
 
 
-		
+
 
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE //check error
 			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && !App->level1->first_animation) {
@@ -532,7 +532,7 @@ update_status ModulePlayer::Update()
 			shadow_animation = &idle;
 		}
 
-
+	}
 
 
 		if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN || App->input->gamepad[5] == KEY_STATE::KEY_REPEAT)//GOD MODE (press right stick on controller)
@@ -545,12 +545,8 @@ update_status ModulePlayer::Update()
 				godmode = false;
 			}
 		}
-		if ((App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) && (App->fade->IsFading() == false))//DIRECT WIN/LOSE
-		{
-			App->fade->FadeToBlack(this, App->stageCompleted);
-
-		}
-	}
+		
+	
 
 
 
