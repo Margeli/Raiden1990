@@ -11,7 +11,7 @@
 
 GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int shoot_num) : Enemy(x, y)
 {
-	//Bonus Spaceship shot
+	//GreenShooter Spaceship shot
 	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });
 	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
 	color_rotatory_shot.anim.PushBack({ 56, 40, 6, 7 });//animation
@@ -20,11 +20,11 @@ GreenShooter_Spaceship::GreenShooter_Spaceship(int x, int y, int shoot_num) : En
 	color_rotatory_shot.life = 3000;
 	color_rotatory_shot.anim.loop = true;
 
-	//explosion  particle animation (2nd row particle spritesheet.)
+	//explosion  particle animation
 	explosion.anim.PushBack({ 0, 466, 77, 68 });
 	explosion.anim.PushBack({ 77, 466, 77, 68 });
 	explosion.anim.PushBack({ 154, 466, 77, 68 });
-	explosion.anim.PushBack({ 231, 466, 77, 68 }); // test explosion (this explosion is LightShooter's one.)
+	explosion.anim.PushBack({ 231, 466, 77, 68 }); 
 	explosion.anim.PushBack({ 308, 466, 77, 68 });
 	explosion.anim.PushBack({ 385, 466, 77, 68 });
 	explosion.anim.PushBack({ 462, 466, 77, 68 });
