@@ -10,16 +10,19 @@ private:
 
 
 	Animation idle;
+	Animation shoot;
 	Particle explosion;
 	Particle color_rotatory_shot;
 	Mix_Chunk* fx_shoot = nullptr;
 	void OnCollision(Collider* collider, int num_enemy);
 
-
+	bool first = true;
 	float speed;
 	float increment_y;
 	float initial_y;
-
+	Uint32 move_loop;
+	Uint32 start_move_loop;
+	bool right;
 
 	float hits_life;
 	int shoot_number = 0;
