@@ -1,4 +1,3 @@
-![](http://vignette1.wikia.nocookie.net/raidenbase/images/7/7a/RaidenLogo.png/revision/latest?cb=20160307170649)
 ![](https://upload.wikimedia.org/wikipedia/en/6/6b/Raiden_arcadeflyer.png)
 
 
