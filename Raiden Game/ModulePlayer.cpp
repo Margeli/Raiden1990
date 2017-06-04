@@ -217,22 +217,22 @@ ModulePlayer::ModulePlayer()
 	bomb_explosion.anim.PushBack({ 336, 790, 168, 151 });
 	bomb_explosion.anim.PushBack({ 505, 790, 168, 151 });
 	bomb_explosion.anim.PushBack({ 0, 941, 168, 154 });
-	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
+	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 941, 168, 154 });
-	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
+	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 941, 168, 154 });
-	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
+	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 941, 168, 154 });
-	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
+	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 941, 168, 154 });
-	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
+	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 941, 168, 154 });
-	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
+	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 941, 168, 154 });
 	bomb_explosion.anim.speed = 0.2f;
