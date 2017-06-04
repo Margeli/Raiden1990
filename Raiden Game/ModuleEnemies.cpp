@@ -15,7 +15,9 @@
 #include "CannonTank.h"
 #include "StaticCannon.h"
 #include "Boss.h"
-#include"BossCannon.h"
+#include"BossCannon.h"Ç
+#include "Boss2.h"
+#include"BossCannon2.h"
 #include "Box.h"
 
 
@@ -193,6 +195,14 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		case ENEMY_TYPES::BOSS_CANNON:
 			enemies[i] = new BossCannon(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::BOSS2:
+			enemies[i] = new Boss2(info.x, info.y, info.shots);
+			break;
+
+		case ENEMY_TYPES::BOSS_CANNON2:
+			enemies[i] = new BossCannon2(info.x, info.y, info.shots);
 			break;
 
 		case ENEMY_TYPES::BOX:

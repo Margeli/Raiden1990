@@ -100,6 +100,7 @@ bool ModuleLevel1::Start()
 
 
 	App->enemies->AddEnemy(BOSS, 100, -150);
+	App->enemies->AddEnemy(BOSS2, 100, -150);
 
 
 	
