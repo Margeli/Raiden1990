@@ -19,7 +19,7 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 	idle.PushBack({ 24,149,94,81 });
 	idle.PushBack({ 24,278,94,81 });
 	idle.PushBack({ 24,395,94,81 });
-	idle.speed = 0.01f;
+	idle.speed = 0.05f;
 	idle.loop = true;
 
 	animation = &idle;
@@ -47,6 +47,8 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 	star_shot.life = 3000;
 	star_shot.anim.loop = true;
 
+	score_points = 9660;
+	hits_life = 155;
 
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
@@ -64,6 +66,21 @@ void Boss::Move() {
 
 void Boss::OnCollision(Collider*collider, int num_enemy) {
 
+	if (collider->type == COLLIDER_PLAYER_SHOT) {
+		hits_life -= App->player->hit_dmg;
+	}
+
+	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
+		hits_life -= App->player2->hit_dmg;
+	}
+
+	else if (collider->type == COLLIDER_BOMB || collider->type == COLLIDER_BOMB2) {// FIX IF PLAYER 2 THROWS BOMB
+		hits_life -= App->player->bomb_dmg;
+	}
+
+	if (hits_life <= 0) {
+		//Dead(collider, num_enemy);
+	}
 
 }
 

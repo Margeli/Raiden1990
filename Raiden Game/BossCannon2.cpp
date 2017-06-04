@@ -62,7 +62,7 @@ BossCannon2::BossCannon2(int x, int y, int shoot_num) : Enemy(x, y)
 	explosion.life = 1000;*/
 
 
-	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.2.png");
+	sprite_path = App->textures->Load("Assets/Images/Boss2_lvl1.png");
 
 
 	if (sprite_path == nullptr) {

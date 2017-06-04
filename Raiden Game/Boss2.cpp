@@ -13,7 +13,7 @@
 Boss2::Boss2(int x, int y, int shoot_num) : Enemy(x, y)
 {
 
-	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.2.png");
+	sprite_path = App->textures->Load("Assets/Images/Boss2_lvl1.png");
 
 	idle.PushBack({ 24,33,94,81 });
 	idle.PushBack({ 24,149,94,81 });
@@ -23,6 +23,10 @@ Boss2::Boss2(int x, int y, int shoot_num) : Enemy(x, y)
 	idle.loop = true;
 
 	animation = &idle;
+
+	score_points = 9660;
+	hits_life = 155;
+
 
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 

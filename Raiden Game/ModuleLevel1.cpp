@@ -100,7 +100,7 @@ bool ModuleLevel1::Start()
 
 
 	App->enemies->AddEnemy(BOSS, 100, -150);
-	App->enemies->AddEnemy(BOSS2, 100, -150);
+	App->enemies->AddEnemy(BOSS2, 100, -400);
 
 
 	
@@ -238,8 +238,8 @@ update_status ModuleLevel1::Update()
 	if (App->player->position.y <= -2760) {
 		scroll_speed = 0;
 		App->player->spaceship_speed = 0;
-		if(App->player2->IsEnabled)
-		App->player2->spaceship_speed = 0;
+		/*if (App->player2->IsEnabled) 
+			App->player2->spaceship_speed = 0;*/
 	}
 
 
