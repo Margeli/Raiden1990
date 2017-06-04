@@ -102,4 +102,4 @@ Raiden is a scrolling shooter arcade game wich was developed in September 1990 b
 ### Download the lastest game version [here](https://github.com/Margeli/Raiden1990/releases)
 ### [Github Repository](https://github.com/Margeli/Raiden1990)
 ### All about the game in our [Wiki](https://github.com/Margeli/Raiden1990/wiki)
-### [Gameplay](https://www.youtube.com/watch?v=FrMLMR0IuLI)
+### [Gameplay](https://www.youtube.com/watch?v=wpz1Kg3H-l8&t=155s)
