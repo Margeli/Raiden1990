@@ -237,6 +237,7 @@ update_status ModuleLevel1::Update()
 	if (App->player->position.y <= -2760) {
 		scroll_speed = 0;
 		App->player->spaceship_speed = 0;
+		if(App->player2->IsEnabled)
 		App->player2->spaceship_speed = 0;
 	}
 

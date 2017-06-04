@@ -11,6 +11,8 @@ private:
 
 	Animation idle;
 	Particle explosion;
+	Particle bouncing_shot;
+	Particle star_shot;
 	Particle color_rotatory_shot;
 	Mix_Chunk* fx_shoot = nullptr;
 	void OnCollision(Collider* collider, int num_enemy);
