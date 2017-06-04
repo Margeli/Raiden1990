@@ -15,9 +15,9 @@ Raiden is a scrolling shooter arcade game wich was developed in September 1990 b
 - Original first stage soundtrack
 - Most sound effects
 
+* If you want 1 player mode, press 1, if you want 2 player mode, press 2.
 
-
-### Controls for keyboard:
+### Controls for keyboard (Player 1):
 
 * **W:** MOVE UPWARDS
 
@@ -31,18 +31,31 @@ Raiden is a scrolling shooter arcade game wich was developed in September 1990 b
 
 * **B:** THROW BOMB
 
-* **TAB:** NEXT STAGE
-
 * **F1:** DEBUG MODE
 
 * **F2:** GOD MODE
 
 * **F3:** DIRECT WIN
 
-* **1:** 1 PLAYER MODE
+### Controls for keyboard (Player 2):
 
-* **2:** 2 PLAYERS MODE
+* **UP KEY:** MOVE UPWARDS
 
+* **LEFT KEY:** MOVE LEFT
+
+* **DOWN KEY:** MOVE DOWNWARDS
+
+* **RIGHT KEY:** MOVE RIGHT
+
+* **O:** SHOOT
+
+* **P:** THROW BOMB
+
+* **F1:** DEBUG MODE
+
+* **F2:** GOD MODE
+
+* **F3:** DIRECT WIN
 
 
 ### Controls for gamepad:
@@ -59,13 +72,13 @@ Raiden is a scrolling shooter arcade game wich was developed in September 1990 b
 
 * **R1:** THROW BOMB
 
-* **TAB:** NEXT STAGE
+* **TAB:** START
 
 * **LEFT STICK(PRESS):** DEBUG MODE
 
 * **RIGHT STICK(PRESS):** GOD MODE
 
-
+* There's only 1 player mode for gamepad
 
 ### Team Members:
 
