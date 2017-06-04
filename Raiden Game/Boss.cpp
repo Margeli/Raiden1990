@@ -95,8 +95,15 @@ void Boss::Move() {
 		}
 	}
 
+	if (position.x + 35 > App->player->position.x+22) {//right
+		position.x--;
+	}
+	else if (App->player->position.x - 22 > position.x - 35) {//left
+		position.x++;
+	}
+	position.y += -0.8f;
+	collider->SetPos(position.x, position.y);
 
-	increment_y = (position.y - initial_y);
 }
 
 

@@ -69,15 +69,7 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 		LOG("Error loading BossCannon's textures. SDL Error: %s", SDL_GetError());
 	}
 
-	shoot_number = shoot_num;
-	initial_y = y;
-	increment_y = 0.0f;
-
-
-
-	hits_life = 2.0f;//2.0f
-
-	player_initial_x = App->player->position.x; //Stores player position X when tank is spawning.
+	
 
 	collider = App->collision->AddCollider({ 0, 0, 28, 25 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies);
 
@@ -87,20 +79,9 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 
 void BossCannon::Move() {
 
-	/*increment_y = (position.y - initial_y);//SAME MOVEMENT AS THE TANK
+	//SAME MOVEMENT AS THE TANK
 
-	if (player_initial_x > position.x) {
-		position.x++;
-		speed = 0.1f;
-
-	}
-	else if (player_initial_x< position.x) {
-		position.x--;
-		speed = 0.1f;
-	}
-	else {
-		speed = 0.0f;
-	}
+	
 
 	if ((App->player->position.y - 2 > position.y + 34)) {// DOWN
 
@@ -135,15 +116,16 @@ void BossCannon::Move() {
 		}
 	}
 
-	if (SDL_GetTicks() - timer_shot > 2500 && shoot_number>0) {
-		Shot(color_rotatory_shot, App->player->position, position);
-		timer_shot = SDL_GetTicks();
-		shoot_number--;
+
+	if (position.x + 35 > App->player->position.x + 22) {//right
+		position.x--;
 	}
+	else if (App->player->position.x - 22 > position.x - 35) {//left
+		position.x++;
+	}
+	position.y += -0.8f;
+	collider->SetPos(position.x, position.y);
 
-
-	position.y += speed;
-	collider->SetPos(position.x, position.y);*/
 }
 
 

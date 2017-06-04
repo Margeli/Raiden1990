@@ -20,8 +20,7 @@ private:
 
 
 	float speed;
-	float increment_y;
-	float initial_y;
+	
 
 
 	float hits_life;

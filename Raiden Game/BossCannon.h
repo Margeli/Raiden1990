@@ -25,9 +25,7 @@ private:
 
 
 	float speed;
-	float increment_y;
-	float initial_y;
-	int player_initial_x;
+	
 
 	float hits_life;
 	float hits_aim;

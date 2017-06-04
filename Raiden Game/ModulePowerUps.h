@@ -31,8 +31,7 @@ enum POWERUP_TYPES {
 		POWERUP_BLUE,
 		POWERUP_RED,
 		POWERUP_B,
-		POWERUP_M,
-		POWERUP_P,
+		POWERUP_M,		
 		POWERUP_MEDAL,
 		POWERUP_DRAGON,
 		
@@ -58,7 +57,7 @@ public:
 	Particle Blue_Bonus;
 	Particle M_Bonus;
 	Particle B_Bonus;
-	Particle P_Bonus; 
+	 
 	
 	Particle Medal_Bonus;
 	Particle Dragon_Bonus;
