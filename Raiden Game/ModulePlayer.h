@@ -48,20 +48,18 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
-	Animation* shadow_animation = nullptr;
+	
 	Animation idle;
 	Animation right;
 	Animation left;	
 	Animation boost;
 	Animation backward;	
-	Animation shadow_idle;
-	Animation shadow_right;
-	Animation shadow_left;
+
 	Particle dead_explosion;
 	Particle bomb_explosion;
 	iPoint position;
 	iPoint saved_position;
-	iPoint shadow_position;
+	
 	Collider* spaceship_collider;
 	bool destroyed=false;
 	bool player1 = false;

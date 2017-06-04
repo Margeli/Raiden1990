@@ -22,7 +22,7 @@ ModulePlayer::ModulePlayer()
 	
 	graphics = NULL;
 	current_animation = NULL;
-	shadow_animation = NULL;
+	
 
 	spaceship_speed = 1;
 
@@ -50,20 +50,7 @@ ModulePlayer::ModulePlayer()
 	left.loop = false;
 	left.speed = 0.05f;
 
-	//shadow image
-	shadow_idle.PushBack({ 15, 657, 12, 8 });
-
-	//shadow animation right
-	shadow_right.PushBack({ 64, 71, 12, 8 });
-	shadow_right.PushBack({ 81, 71, 12, 8 });
-	shadow_right.loop = false;
-	shadow_right.speed = 0.05f;
-
-	//shadow animation left
-	shadow_left.PushBack({ 29, 657, 12, 8 });
-	shadow_left.PushBack({ 43, 657, 12, 8 });
-	shadow_left.loop = false;
-	shadow_left.speed = 0.05f;
+	
 
 	//Raiden basic shot 
 	
@@ -279,8 +266,6 @@ bool ModulePlayer::Start()
 		position.x = 111; //position if there's only 1 player
 		position.y = 150;
 
-		/*shadow_position.x = 118;
-		shadow_position.y = 150;*/
 
 		
 	}
@@ -291,7 +276,7 @@ bool ModulePlayer::Start()
 
 	}
 	current_animation = &idle;
-	//shadow_animation = &shadow_idle;
+	
 	godmode_activated = " G ";
 	user_interface = "    1UP   HI.SCORE    2UP ";
 	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
@@ -341,7 +326,6 @@ update_status ModulePlayer::Update()
 
 		}
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---RIGHT
-
 		{
 			position.x += speed;
 			App->render->camera.x -= 4;
@@ -349,7 +333,7 @@ update_status ModulePlayer::Update()
 			{
 				right.Reset();
 				current_animation = &right;
-				shadow_animation = &shadow_right;
+				
 			}
 			if (App->render->camera.x <= -154) {//right camera limit
 				App->render->camera.x = -154;
@@ -367,8 +351,7 @@ update_status ModulePlayer::Update()
 			if (current_animation != &left)
 			{
 				left.Reset();
-				current_animation = &left;
-				shadow_animation = &shadow_left;
+				current_animation = &left;				
 			}
 			if (App->render->camera.x >= 100) {//left camera limit
 				App->render->camera.x = 100;
@@ -530,8 +513,7 @@ update_status ModulePlayer::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE //check error
 			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && !App->level1->first_animation) {
-			current_animation = &idle;
-			shadow_animation = &idle;
+			current_animation = &idle;			
 		}
 
 
@@ -571,7 +553,7 @@ update_status ModulePlayer::Update()
 			high_score = App->player2->score;
 		
 		}
-		//Draw shadows
+		
 
 
 		sprintf_s(score_text, 10, "%8d", score);

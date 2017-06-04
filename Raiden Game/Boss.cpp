@@ -9,6 +9,7 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 
+#include "SDL/include/SDL_timer.h"
 
 Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 {
@@ -40,10 +41,10 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 	color_rotatory_shot.life = 3000;
 	color_rotatory_shot.anim.loop = true;
 
-	star_shot.anim.PushBack({ 458, 172, 9, 7 });
-	star_shot.anim.PushBack({ 475, 172, 9, 7 });
-	star_shot.anim.PushBack({ 492, 172, 9, 7 });
-	star_shot.anim.speed = 0.3f;
+	star_shot.anim.PushBack({ 458, 172, 10, 8 });
+	star_shot.anim.PushBack({ 475, 172, 10, 8 });
+	star_shot.anim.PushBack({ 492, 172, 10, 8 });
+	star_shot.anim.speed = 0.2f;
 	star_shot.life = 3000;
 	star_shot.anim.loop = true;
 
@@ -53,10 +54,47 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	App->enemies->AddEnemy(BOSS_CANNON, x+33 , y+28 , shoot_num);
-
+	born = SDL_GetTicks();
 }
 
 void Boss::Move() {
+	
+	if (shot_vector) {
+		ShotVector(bouncing_shot, { 2,0 }, {position.x+71, position.y+34}); //right
+		ShotVector(bouncing_shot, { -2,0 }, { position.x+23, position.y+34 });//left
+		ShotVector(bouncing_shot, { 2,2 }, { position.x+68, position.y+54 });//down right
+		ShotVector(bouncing_shot, { -2,2 }, { position.x+23, position.y+54 });//down left
+		shot_vector = false;
+	}
+	if (burst_shot) {
+		ShotVector(color_rotatory_shot, { 1,2 }, { position.x + 47, position.y + 41 }); //left
+		ShotVector(color_rotatory_shot, { -1,2 }, { position.x + 47, position.y + 41 }); //right
+		ShotVector(color_rotatory_shot, { 2,2 }, { position.x + 47, position.y + 41 }); //left down
+		ShotVector(color_rotatory_shot, { -2,2 }, { position.x + 47, position.y + 41 }); //right down
+		ShotVector(star_shot, { 0,2 }, { position.x + 47, position.y + 41 }); //star shot burst
+		ShotVector(star_shot, { 0,2 }, { position.x + 47, position.y + 41 }, 80);//  |
+		ShotVector(star_shot, { 0,2 }, { position.x + 47, position.y + 41 }, 160);// V
+		ShotVector(star_shot, { 0,2 }, { position.x + 47, position.y + 41 }, 240);
+		ShotVector(star_shot, { 0,2 }, { position.x + 47, position.y + 41 }, 320);
+		burst_shot = false;
+	}
+	if (SDL_GetTicks() - born > 5000) {//5s without shooting
+		if (shot_timer == 0) {
+			shot_timer = SDL_GetTicks();
+		}
+		else if (SDL_GetTicks() - shot_timer > 2000) {//shots every 2 s
+			shot_vector = true;
+			shot_timer = 0;
+		}
+		if (star_shot_timer == 0) {
+			star_shot_timer = SDL_GetTicks();
+		}
+		else if (SDL_GetTicks() - star_shot_timer > 10000) {//shots every 10s
+			burst_shot = true;
+			star_shot_timer = 0;		
+		}
+	}
+
 
 	increment_y = (position.y - initial_y);
 }
@@ -110,10 +148,10 @@ void Boss::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
 
 }
 
-void Boss::ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos) {
+void Boss::ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos, unsigned int delay) {
 
 	shot.speed.x = velocity_vector.x;
 	shot.speed.y = velocity_vector.y;
-	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT, delay);
 
 }

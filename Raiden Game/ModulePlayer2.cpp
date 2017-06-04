@@ -502,7 +502,7 @@ update_status ModulePlayer2::Update()
 	if (score >= high_score)
 		high_score = score;
 
-	//Draw shadows
+	
 
 
 	sprintf_s(score_text, 10, "%8d", score);
