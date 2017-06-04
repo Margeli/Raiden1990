@@ -71,3 +71,11 @@ void Boss::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
 
 
 }
+
+void Boss::ShotVector(Particle& shot, iPoint velocity_vector, fPoint shot_initial_pos) {
+
+	shot.speed.x = velocity_vector.x;
+	shot.speed.y = velocity_vector.y;
+	App->particles->AddParticle(shot, shot_initial_pos.x, shot_initial_pos.y, COLLIDER_ENEMY_SHOT);
+
+}
