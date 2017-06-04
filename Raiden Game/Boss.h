@@ -19,6 +19,8 @@ private:
 	void Dead(Collider* shooter, int num_enemy);
 
 
+	float increment_y;
+	float initial_y;
 	float speed;
 	
 

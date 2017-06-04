@@ -26,8 +26,6 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 
 	animation = &idle;
 
-
-
 	//Boss shots
 	bouncing_shot.anim.PushBack({ 511, 172, 6, 7 });
 	bouncing_shot.anim.PushBack({ 526, 172, 6, 7 });	
@@ -52,6 +50,8 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 	score_points = 9660;
 	hits_life = 155.0f;
 
+	initial_y = y;
+
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	App->enemies->AddEnemy(BOSS_CANNON, x+60 , y+28 , shoot_num);
@@ -60,6 +60,8 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 
 void Boss::Move() {
 	
+	increment_y = -(position.y - initial_y);
+
 	if (shot_vector) {
 		ShotVector(bouncing_shot, { 2,0 }, {position.x+71, position.y+34}); //right
 		ShotVector(bouncing_shot, { -2,0 }, { position.x+23, position.y+34 });//left

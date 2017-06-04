@@ -24,19 +24,22 @@ BossCannon2::BossCannon2(int x, int y, int shoot_num) : Enemy(x, y)
 	down_left.PushBack({ 159,64,28,25 });
 	down_left.PushBack({ 189,64,28,25 });
 	down_left.PushBack({ 219,64,28,25 });
+	down_left.speed = 0.1f;
 
 	down_right.PushBack({ 279,33,28,25 });
 	down_right.PushBack({ 309,33,28,25 });
 	down_right.PushBack({ 339,33,28,25 });
+	down_right.speed = 0.1f;
 
 	up_right.PushBack({ 159,33,28,25 });
 	up_right.PushBack({ 189,33,28,25 });
 	up_right.PushBack({ 219,33,28,25 });
+	up_right.speed = 0.1f;
 
 	up_left.PushBack({ 279,64,28,25 });
 	up_left.PushBack({ 309,64,28,25 });
 	up_left.PushBack({ 339,64,28,25 });
-
+	up_left.speed = 0.1f;
 	
 
 

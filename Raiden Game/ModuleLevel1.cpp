@@ -95,8 +95,8 @@ bool ModuleLevel1::Start()
 	
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
-	//App->enemies->AddEnemy(BOSS2, 150, -150);
-	//App->enemies->AddEnemy(BOSS, 150, -150);
+	App->enemies->AddEnemy(BOSS2, 224, -2968);
+	App->enemies->AddEnemy(BOSS, 87, -2700);
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60, -500);
@@ -230,7 +230,7 @@ update_status ModuleLevel1::Update()
 	
 	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
 
-	if (App->player->position.y <= -2750) {
+	if (App->player->position.y <= -2720) {
 		scroll_speed = 0;
  		/*boss_music = App->audio->Load_Music("Assets/Audio/Boss_Music.ogg");
 		if (!boss_music) {
