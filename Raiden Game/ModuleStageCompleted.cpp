@@ -71,6 +71,10 @@ bool ModuleStageCompleted::CleanUp()
 
 	App->fonts->UnLoad(red_font_score);
 	App->fonts->UnLoad(yellow_font_score);
+
+	App->player->Disable();
+	App->player2->Disable();
+	App->level1->Disable();
 	
 
 

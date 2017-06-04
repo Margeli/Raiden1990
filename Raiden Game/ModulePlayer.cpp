@@ -24,7 +24,7 @@ ModulePlayer::ModulePlayer()
 	current_animation = NULL;
 	
 
-	spaceship_speed = 1;
+	
 
 	//Player image
 
@@ -260,6 +260,7 @@ bool ModulePlayer::Start()
 		LOG("Error loading player textures %s", SDL_GetError);
 		ret = false;
 	}
+	spaceship_speed = 1;
 	
 	if (App->player2->player2==false) { 
 

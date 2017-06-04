@@ -21,7 +21,7 @@ ModulePlayer2::ModulePlayer2()
 	graphics = NULL;
 	current_animation = NULL;
 
-	spaceship_speed = 1;
+	
 
 	//idle animation
 
@@ -253,6 +253,7 @@ bool ModulePlayer2::Start()
 
 	current_animation = &idle;
 	
+	spaceship_speed = 1;
 	
 	
 
