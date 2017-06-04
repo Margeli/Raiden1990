@@ -30,7 +30,7 @@ private:
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
 	uint score_points;
 	Uint32 timer_shot;
-
+	void Dead(Collider* shooter, int num_enemy);
 
 
 

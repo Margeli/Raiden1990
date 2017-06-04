@@ -25,7 +25,7 @@ private:
 	//void ShotMovement();
 	bool shooting ;
 	uint score_points;
-
+	void Dead(Collider* shooter, int num_enemy);
 
 	void OnCollision(Collider* collider, int num_enemy);
 

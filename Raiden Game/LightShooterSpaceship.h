@@ -47,6 +47,7 @@ private:
 	
 
 	void OnCollision(Collider* collider, int num_enemy);
+	void Dead(Collider* shooter, int num_enemy);
 
 
 public:

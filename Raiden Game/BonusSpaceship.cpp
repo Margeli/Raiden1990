@@ -193,31 +193,43 @@ void Bonus_Spaceship::Shot(Particle& shot, iPoint aim_position, fPoint shot_init
 
 void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 	if (collider->type == COLLIDER_PLAYER_SHOT) {
-		hits_life -= App->player->hit_dmg;
+		hits_life -= App->player->hit_dmg;	
 	}
+
 	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
 		hits_life -= App->player2->hit_dmg;
+	}
 
+	else if (collider->type == COLLIDER_BOMB) {// FIX IF PLAYER 2 THROWS BOMB
+		hits_life -= App->player->bomb_dmg;		
 	}
-	else if (collider->type == COLLIDER_BOMB) {
-		hits_life -= App->player->bomb_dmg;
-	}
+
 	if (hits_life <= 0) {
-		App->player->score += score_points;
-		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
-		if (SDL_GetTicks() % 2==0) { //50% RED
-			App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, position.x+32, position.y+32);
+			Dead(collider, num_enemy);
 		}
-		else {//50% BLUE
-			App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, position.x + 32, position.y + 32);
-		}
-		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_BigSpaceship_Explosion.wav");
- 		if (!fx_shoot) {
-			LOG("Error loading shoot's fx: %s", Mix_GetError)
-		}
-		App->audio->Play_Fx(fx_shoot); 
-		delete App->enemies->enemies[num_enemy];
-		App->enemies->enemies[num_enemy] = nullptr;
+}
 
+void Bonus_Spaceship::Dead(Collider* shooter, int num_enemy) {
+	if (shooter->type == COLLIDER_PLAYER_SHOT|| shooter->type == COLLIDER_BOMB) {
+		App->player->score += score_points;	
 	}
+	else if (shooter->type == COLLIDER_PLAYER2_SHOT /*|| shooter->type == COLLIDER_BOMB2*/) {
+		App->player2->score += score_points;
+	}
+
+	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+	if (SDL_GetTicks() % 2 == 0) { //50% RED
+		App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_RED, position.x + 32, position.y + 32);
+	}
+	else {//50% BLUE
+		App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_BLUE, position.x + 32, position.y + 32);
+	}
+	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_BigSpaceship_Explosion.wav");
+	if (!fx_shoot) {
+		LOG("Error loading shoot's fx: %s", Mix_GetError)
+	}
+	App->audio->Play_Fx(fx_shoot);
+	delete App->enemies->enemies[num_enemy];
+	App->enemies->enemies[num_enemy] = nullptr;
+
 }

@@ -230,9 +230,7 @@ bool ModulePlayer2::CleanUp()
 	LOG("Unloading player2");
 
 	App->textures->Unload(graphics);
-	App->fonts->UnLoad(yellow_font_score);
-	App->fonts->UnLoad(red_font_score);
-
+	
 	return true;
 }
 
@@ -252,15 +250,9 @@ bool ModulePlayer2::Start()
 	position.y = 150;
 
 	current_animation = &idle;
-	godmode_activated = " G ";
-	user_interface = "    1UP   HI.SCORE    2UP ";
-	red_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
-	yellow_font_score = App->fonts->Load("Assets/Images/Font.png", "> ?@ABCDEFGHIJKLMNOPQRSTUVWXYZ!¡?_*#$%&'()x+.-,;[].{.}/0123456789:", 3);
-	// * -> "
-	// [ -> tm
-	//	]. -> Pts
-	//	{. -> Cts
-	//	}. -> Pcs
+	
+	
+	
 
 	if (spaceship_collider == nullptr)
 		spaceship_collider = App->collision->AddCollider({ 0,0, 24, 26 }, COLLIDER_PLAYER2, this);
@@ -461,6 +453,7 @@ update_status ModulePlayer2::Update()
 
 				}
 
+
 			}
 
 			if ((App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) && total_bombs > 0 && SDL_GetTicks() - last_bomb > 5000) //-----BOMB! (only when ur player has bombs and passed 5s from the last bomb)
@@ -500,7 +493,9 @@ update_status ModulePlayer2::Update()
 			}
 
 		}
+
 	
+
 
 
 	if (spaceship_collider != nullptr)
@@ -517,15 +512,9 @@ update_status ModulePlayer2::Update()
 
 
 	sprintf_s(score_text, 10, "%8d", score);
-	sprintf_s(high_score_text, 10, "%7d", high_score);
-
-	App->fonts->BlitText(0, 1, red_font_score, user_interface);
-	App->fonts->BlitText(0, 9, yellow_font_score, score_text);
-	App->fonts->BlitText(88, 9, yellow_font_score, high_score_text);
-	if (godmode) {
-		App->fonts->BlitText(0, 1, yellow_font_score, godmode_activated);// Yellow "G" in left upper corner when godmode activated.
-	}
-
+	
+	App->fonts->BlitText(143, 10,App->player->yellow_font_score, score_text);
+	
 	return UPDATE_CONTINUE;
 	}
 
@@ -573,11 +562,11 @@ void ModulePlayer2::OnCollision(Collider* c1, Collider* c2)
 		break;
 
 	case COLLIDER_ENEMY_SHOT:
-		if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false && godmode == false) {
+		if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false && App->player->godmode == false) {
 			Dead();
 		}
 	case COLLIDER_ENEMY:
-		if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false && godmode == false) {
+		if (c1 == spaceship_collider && destroyed == false && App->fade->IsFading() == false && App->player->godmode == false) {
 			Dead();
 		}
 
@@ -591,7 +580,7 @@ void ModulePlayer2::Dead() {
 	M_Powerup_Lvl = 0;
 	Blue_Powerup_Lvl = 0;
 	sprintf_s(score_text, 10, "%8d", score);
-	sprintf_s(high_score_text, 10, "%7d", high_score);
+	
 
 	destroyed = true;
 

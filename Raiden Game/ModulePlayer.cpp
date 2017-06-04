@@ -532,6 +532,7 @@ update_status ModulePlayer::Update()
 			shadow_animation = &idle;
 		}
 
+
 	}
 
 
@@ -545,8 +546,12 @@ update_status ModulePlayer::Update()
 				godmode = false;
 			}
 		}
-		
-	
+
+		if ((App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) && (App->fade->IsFading() == false))//DIRECT WIN/LOSE
+		{
+			App->fade->FadeToBlack(this, App->stageCompleted);
+
+		}
 
 
 
@@ -557,9 +562,13 @@ update_status ModulePlayer::Update()
 		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 		// Draw UI (score) --------------------------------------
 
-		if (score >= high_score)
+		if (score > high_score)
 			high_score = score;
 
+		if (App->player2->score > high_score&&App->player2->IsEnabled()) {
+			high_score = App->player2->score;
+		
+		}
 		//Draw shadows
 
 
