@@ -27,6 +27,7 @@ public:
 	SDL_Rect background;
 	SDL_Rect ship_launcher;
 	bool fading = false;
+	int scroll_speed;
 
 	
 	float foreground_pos;

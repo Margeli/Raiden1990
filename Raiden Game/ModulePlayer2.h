@@ -71,6 +71,7 @@ public:
 	Uint32 bomb_thrown;
 	Uint32 bomb_life;
 	Uint32 last_bomb;
+	int spaceship_speed;
 
 	char score_text[10];
 	

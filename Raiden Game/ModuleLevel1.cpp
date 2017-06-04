@@ -37,6 +37,8 @@ ModuleLevel1::ModuleLevel1()
 	ship_launcher.y = 2971;
 	ship_launcher.w = 351;
 	ship_launcher.h = 429;
+
+	scroll_speed = 2;
 	
 }
 
@@ -196,10 +198,10 @@ bool ModuleLevel1::CleanUp()
 // Update: draw background
 update_status ModuleLevel1::Update()
 {
-		//float scroll_speed = 0.5f;
+	
 
 	if (App->render->camera.y < 100) {
-
+		
 		App->player->position.y += 1;
 		App->player2->position.y += 1;
 		App->render->camera.y += 1;
@@ -214,7 +216,7 @@ update_status ModuleLevel1::Update()
 		else {
 			first_animation = false;
 		}
-		App->render->camera.y += 2;
+		App->render->camera.y += scroll_speed;
 		
 		if ((App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) && (App->fade->IsFading() == false))//DIRECT WIN/LOSE
 		{
@@ -232,9 +234,10 @@ update_status ModuleLevel1::Update()
 	
 	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
 
-	if (App->player->position.y == -2850) {
-		App->fade->FadeToBlack(this, App->stageCompleted);
-		fading = true;
+	if (App->player->position.y <= -2760) {
+		scroll_speed = 0;
+		App->player->spaceship_speed = 0;
+		App->player2->spaceship_speed = 0;
 	}
 
 

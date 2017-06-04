@@ -21,6 +21,8 @@ ModulePlayer2::ModulePlayer2()
 	graphics = NULL;
 	current_animation = NULL;
 
+	spaceship_speed = 1;
+
 	//idle animation
 
 	idle.PushBack({ 305, 13, 24,27 });
@@ -269,7 +271,7 @@ bool ModulePlayer2::Start()
 update_status ModulePlayer2::Update()
 {
 
-	int spaceship_speed = 1;
+	
 	position.y -= spaceship_speed;
 	int speed = 2;
 

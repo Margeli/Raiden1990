@@ -24,6 +24,8 @@ ModulePlayer::ModulePlayer()
 	current_animation = NULL;
 	shadow_animation = NULL;
 
+	spaceship_speed = 1;
+
 	//Player image
 
 	idle.PushBack({ 80, 13, 24, 27 });
@@ -314,7 +316,7 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	int spaceship_speed = 1;
+	
 	position.y -= spaceship_speed;
 	int speed = 2;
 
