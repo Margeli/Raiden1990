@@ -38,7 +38,6 @@ ModuleLevel1::ModuleLevel1()
 	ship_launcher.w = 351;
 	ship_launcher.h = 429;
 
-	scroll_speed = 2;
 	
 }
 
@@ -83,7 +82,7 @@ bool ModuleLevel1::Start()
 		App->player->spaceship_collider->SetPos(App->player->position.x, App->player->position.y);
 	}
 
-	
+	scroll_speed = 2;
 	
 	LOG("Loading level 1");
 
@@ -191,6 +190,9 @@ bool ModuleLevel1::CleanUp()
 	App->powerup->Disable();
 	App->particles->Disable();
 
+	first_animation = false;
+
+
 	return true;
 }
 
@@ -233,7 +235,9 @@ update_status ModuleLevel1::Update()
 	
 	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
 
-	if (App->player->position.y <= -2730) {
+
+	if (App->player->position.y <= -2735) {
+
 		scroll_speed = 0;
  		boss_music = App->audio->Load_Music("Assets/Audio/Boss_Music.ogg");
 		if (!boss_music) {
@@ -241,17 +245,21 @@ update_status ModuleLevel1::Update()
 		}
 		/*App->audio->Play_Music(boss_music);
 		App->player->spaceship_speed = 0;
+<<<<<<< HEAD
 		/*if (App->player2->IsEnabled) 
 			App->player2->spaceship_speed = 0;*/
-	}
+
+		if (App->player2->IsEnabled()) 
+			App->player2->spaceship_speed = 0;
+
 
 
 	/*if (App->input->keyboard[SDL_SCANCODE_TAB] && fading == false) {
 	
 		App->fade->FadeToBlack(this, App->stageCompleted);
 		fading = true;
-		
-	}*/
+		*/
+	}
 
 	return UPDATE_CONTINUE;
 }

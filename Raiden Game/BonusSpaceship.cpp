@@ -134,12 +134,15 @@ void Bonus_Spaceship::Move() {
 			}		
 		}
 	}
-
+	else if (increment_y >= 600) {  //enemy stop
+		speed = 0;
+		animation = &forward;
+	}
 	else if (increment_y >= 550){  //enemy escape
 		speed = 0.5f;
 		animation = &forward;
 	}
-
+	
 	
 
 position.y -= speed;
