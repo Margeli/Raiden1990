@@ -23,6 +23,8 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 	idle.loop = true;
 
 	animation = &idle;
+
+	App->enemies->AddEnemy(BOSS_CANNON, x+33 , y+28 , shoot_num);
 }
 
 void Boss::Move() {

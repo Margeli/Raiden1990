@@ -62,13 +62,13 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 	explosion.life = 1000;*/
 
 
-	sprite_path = App->textures->Load("Assets/Images/Tank.png");
+	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.png");
 
 
 	if (sprite_path == nullptr) {
-		LOG("Error loading CannonTank's textures. SDL Error: %s", SDL_GetError());
+		LOG("Error loading BossCannon's textures. SDL Error: %s", SDL_GetError());
 	}
-	animation = &down;
+	animation = &up;
 
 	shoot_number = shoot_num;
 	initial_y = y;
@@ -88,7 +88,7 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 
 void BossCannon::Move() {
 
-	increment_y = (position.y - initial_y);//SAME MOVEMENT AS THE TANK
+	/*increment_y = (position.y - initial_y);//SAME MOVEMENT AS THE TANK
 
 	if (player_initial_x > position.x) {
 		position.x++;
@@ -144,7 +144,7 @@ void BossCannon::Move() {
 
 
 	position.y += speed;
-	collider->SetPos(position.x, position.y);
+	collider->SetPos(position.x, position.y);*/
 }
 
 
@@ -152,7 +152,7 @@ void BossCannon::Move() {
 
 void BossCannon::OnCollision(Collider*collider, int num_enemy) {
 
-	if (collider->type == COLLIDER_PLAYER_SHOT) {
+	/*if (collider->type == COLLIDER_PLAYER_SHOT) {
 		hits_life -= App->player->hit_dmg;
 
 	}
@@ -174,11 +174,11 @@ void BossCannon::OnCollision(Collider*collider, int num_enemy) {
 		App->enemies->enemies[num_enemy] = nullptr;
 
 	}
-
+	*/
 }
 
 void BossCannon::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
-	shot.speed = { 0,0 };
+	/*shot.speed = { 0,0 };
 
 	if (animation == &up) {
 		shot.speed = { 0,-5 };
@@ -210,5 +210,5 @@ void BossCannon::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_p
 
 	App->particles->AddParticle(shot, shot_initial_pos.x + 19, shot_initial_pos.y + 17, COLLIDER_ENEMY_SHOT);
 
-
+	*/
 }

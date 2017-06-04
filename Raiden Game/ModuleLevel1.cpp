@@ -99,8 +99,8 @@ bool ModuleLevel1::Start()
 	
 
 
-	
 	App->enemies->AddEnemy(BOSS, 100, -150);
+
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60, -500);
