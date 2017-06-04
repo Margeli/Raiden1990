@@ -228,8 +228,8 @@ update_status ModuleLevel1::Update()
 		}
 		App->audio->Play_Music(boss_music);*/
 		App->player->spaceship_speed = 0;
-		/*if (App->player2->IsEnabled) 
-			App->player2->spaceship_speed = 0;*/
+		if (App->player2->IsEnabled) 
+			App->player2->spaceship_speed = 0;
 	}
 
 
