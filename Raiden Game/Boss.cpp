@@ -15,10 +15,10 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 
 	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.png");
 
-	idle.PushBack({ 49,67,186,161 });
-	idle.PushBack({ 49,299,186,161 });
-	idle.PushBack({ 49,557,186,161 });
-	idle.PushBack({ 49,790,186,161 });
+	idle.PushBack({ 24,33,94,81 });
+	idle.PushBack({ 24,149,94,81 });
+	idle.PushBack({ 24,278,94,81 });
+	idle.PushBack({ 24,395,94,81 });
 	idle.speed = 0.01f;
 	idle.loop = true;
 
