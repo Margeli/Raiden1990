@@ -54,7 +54,7 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	App->enemies->AddEnemy(BOSS_CANNON, x+60 , y+28 , shoot_num);
+	App->enemies->AddEnemy(BOSS_CANNON, x+34 , y+28 , shoot_num);
 	born = SDL_GetTicks();
 }
 
@@ -101,9 +101,6 @@ void Boss::Move() {
 	if (position.x + 33 > 100) {//right
 		position.x--;
 	}
-
-	//else if(position.x<)
-	//position.y += -0.5f;
 
 	collider->SetPos(position.x, position.y);
 
