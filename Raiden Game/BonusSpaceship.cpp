@@ -200,7 +200,7 @@ void Bonus_Spaceship::OnCollision(Collider*collider, int num_enemy) {
 		hits_life -= App->player2->hit_dmg;
 	}
 
-	else if (collider->type == COLLIDER_BOMB) {// FIX IF PLAYER 2 THROWS BOMB
+	else if (collider->type == COLLIDER_BOMB || collider->type == COLLIDER_BOMB2) {// FIX IF PLAYER 2 THROWS BOMB
 		hits_life -= App->player->bomb_dmg;		
 	}
 
@@ -213,7 +213,7 @@ void Bonus_Spaceship::Dead(Collider* shooter, int num_enemy) {
 	if (shooter->type == COLLIDER_PLAYER_SHOT|| shooter->type == COLLIDER_BOMB) {
 		App->player->score += score_points;	
 	}
-	else if (shooter->type == COLLIDER_PLAYER2_SHOT /*|| shooter->type == COLLIDER_BOMB2*/) {
+	else if (shooter->type == COLLIDER_PLAYER2_SHOT || shooter->type == COLLIDER_BOMB2) {
 		App->player2->score += score_points;
 	}
 

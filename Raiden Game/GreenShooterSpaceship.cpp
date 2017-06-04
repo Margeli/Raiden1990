@@ -226,7 +226,7 @@ void GreenShooter_Spaceship::OnCollision(Collider*collider, int num_enemy){
 	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
 		hits_life -= App->player2->hit_dmg;		
 	}
-	else if (collider->type == COLLIDER_BOMB) {
+	else if (collider->type == COLLIDER_BOMB|| collider->type == COLLIDER_BOMB2) {
 		hits_life -= App->player->bomb_dmg;
 		
 	}
@@ -240,7 +240,7 @@ void GreenShooter_Spaceship::Dead(Collider* shooter, int num_enemy) {
 	if (shooter->type == COLLIDER_PLAYER_SHOT || shooter->type == COLLIDER_BOMB) {
 		App->player->score += score_points;
 	}
-	else if (shooter->type == COLLIDER_PLAYER2_SHOT /*|| shooter->type == COLLIDER_BOMB2*/) {
+	else if (shooter->type == COLLIDER_PLAYER2_SHOT || shooter->type == COLLIDER_BOMB2) {
 		App->player2->score += score_points;
 	}
 

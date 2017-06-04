@@ -185,7 +185,7 @@ ModulePlayer2::ModulePlayer2()
 	dead_explosion.anim.PushBack({ 116,202,32,30 });
 	dead_explosion.anim.PushBack({ 164,202,32,30 });
 	dead_explosion.anim.PushBack({ 0,0,0,0 });
-	dead_explosion.anim.speed = 0.1f;
+	dead_explosion.anim.speed = 0.2f;
 	dead_explosion.life = 1000;
 
 	//Raiden2 Bomb Explosion
@@ -193,10 +193,10 @@ ModulePlayer2::ModulePlayer2()
 	bomb_explosion.anim.PushBack({ 168, 633, 168, 154 });
 	bomb_explosion.anim.PushBack({ 336, 633, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 633, 168, 154 });
-	bomb_explosion.anim.PushBack({ 0, 790, 168, 154 });
-	bomb_explosion.anim.PushBack({ 168, 790, 168, 154 });
-	bomb_explosion.anim.PushBack({ 336, 790, 168, 154 });
-	bomb_explosion.anim.PushBack({ 505, 790, 168, 154 });
+	bomb_explosion.anim.PushBack({ 0, 790, 168, 151 });
+	bomb_explosion.anim.PushBack({ 168, 790, 168, 151 });
+	bomb_explosion.anim.PushBack({ 336, 790, 168, 151 });
+	bomb_explosion.anim.PushBack({ 505, 790, 168, 151 });
 	bomb_explosion.anim.PushBack({ 0, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
@@ -216,7 +216,7 @@ ModulePlayer2::ModulePlayer2()
 	bomb_explosion.anim.PushBack({ 168, 941, 168, 154 });//
 	bomb_explosion.anim.PushBack({ 336, 941, 168, 154 });
 	bomb_explosion.anim.PushBack({ 504, 941, 168, 154 });
-	bomb_explosion.anim.speed = 0.1f;
+	bomb_explosion.anim.speed = 0.2f;
 	bomb_explosion.life = 3000;
 	bomb_explosion.anim.loop = false;
 
@@ -274,7 +274,8 @@ update_status ModulePlayer2::Update()
 	int speed = 2;
 
 	if (!App->level1->first_animation) {
-		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT ) //---UP
+		current_animation = &idle;
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT) //---UP
 		{
 			current_animation = &idle;
 			position.y -= speed;
@@ -283,7 +284,7 @@ update_status ModulePlayer2::Update()
 			}
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT )//---DOWN
+		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)//---DOWN
 		{
 			position.y += speed;
 			if ((-(position.y - SCREEN_HEIGHT + 27)*SCREEN_SIZE) < App->render->camera.y) { //lower player limit (27 is height of spaceship)
@@ -293,7 +294,7 @@ update_status ModulePlayer2::Update()
 		}
 
 
-		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT )//---LEFT
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)//---LEFT
 		{
 			position.x -= speed;
 			App->render->camera.x += 4;
@@ -326,173 +327,164 @@ update_status ModulePlayer2::Update()
 					position.x = 275;
 				}
 			}
+		}
 
-			if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
-			{
-				if (Red_Powerup_Lvl >= Blue_Powerup_Lvl) {// the shot type is the greater level between the blue and the red powerup (in case of equal level predominates the red ones. ) 
-					switch (Red_Powerup_Lvl)
-					{
-					case 0:
-						App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.					
-						break;
-					case 1:
-						App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 2 particles
-						App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER2_SHOT, 0/*, "Assets/Audio/Fx_Red_Powerup_Shot.wav"*/);
-						break;
-					case 2:
-						App->particles->AddParticle(left_basic_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 3 particles
-						App->particles->AddParticle(right_basic_shot, position.x + 15, position.y, COLLIDER_PLAYER2_SHOT, 0/*, "Assets/Audio/Fx_Red_Powerup_Shot.wav"*/);
-						App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0/*, "Assets/Audio/Fx_Red_Powerup_Shot.wav"*/);
-						break;
-					case 3:
-						App->particles->AddParticle(left_triple_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 3 particles (triple)
-						App->particles->AddParticle(right_triple_shot, position.x + 15, position.y, COLLIDER_PLAYER2_SHOT/*, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"*/);
-						App->particles->AddParticle(triple_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0/*, "Assets/Audio/Fx_Red_Powerup_Shot.wav"*/);
-						break;
-					case 4:
-						App->particles->AddParticle(left_triple_shot, position.x + 5, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 5 particles (triple)
-						App->particles->AddParticle(right_triple_shot, position.x + 13, position.y, COLLIDER_PLAYER2_SHOT, 0/*, "Assets/Audio/Fx_Red_Powerup_Shot.wav"*/);
-						App->particles->AddParticle(triple_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
-						App->particles->AddParticle(ext_left_triple_shot, position.x + 1, position.y, COLLIDER_PLAYER2_SHOT, 0/*, "Assets/Audio/Fx_Red_Powerup_Shot.wav"*/);
-						App->particles->AddParticle(ext_right_triple_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav");
-						break;
+		if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
+		{
+			if (Red_Powerup_Lvl >= Blue_Powerup_Lvl) {// the shot type is the greater level between the blue and the red powerup (in case of equal level predominates the red ones. ) 
+				switch (Red_Powerup_Lvl)
+				{
+				case 0:
+					App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds a particle (basic_shot) in front of the spaceship.					
+					break;
+				case 1:
+					App->particles->AddParticle(basic_shot, position.x + 5, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 2 particles
+					App->particles->AddParticle(basic_shot, position.x + 13, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					break;
+				case 2:
+					App->particles->AddParticle(left_basic_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 3 particles
+					App->particles->AddParticle(right_basic_shot, position.x + 15, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(basic_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					break;
+				case 3:
+					App->particles->AddParticle(left_triple_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 3 particles (triple)
+					App->particles->AddParticle(right_triple_shot, position.x + 15, position.y, COLLIDER_PLAYER2_SHOT);
+					App->particles->AddParticle(triple_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					break;
+				case 4:
+					App->particles->AddParticle(left_triple_shot, position.x + 5, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Red_Powerup_Shot.wav"); // Adds 5 particles (triple)
+					App->particles->AddParticle(right_triple_shot, position.x + 13, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(triple_shot, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(ext_left_triple_shot, position.x + 1, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(ext_right_triple_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					break;
 
-					}
 				}
-				else if (Blue_Powerup_Lvl > Red_Powerup_Lvl) {			// ----------------------------------------------------------------------CHANGE ALL FX
-					switch (Blue_Powerup_Lvl)
-					{
-					case 0:
-						break;
-					case 1:
-						App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot1.wav");//Adds 2 particle (laser_shot) in front of the spaceship.
-						App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 50/*, "Assets/Audio/Fx_BluePowerUp_Shot1.wav"*/);
-						break;
-					case 2:
-						App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot1.wav");//Adds 5 particle (laser_shot) in front of the spaceship.
-						App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 60/*, "Assets/Audio/Fx_BluePowerUp_Shot1"*/);
-						App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 120/*, "Assets/Audio/Fx_BluePowerUp_Shot1.wav"*/);
-						App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 180/*, "Assets/Audio/Fx_BluePowerUp_Shot1.wav"*/);
-						App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 240/*, "Assets/Audio/Fx_BluePowerUp_Shot1.wav"*/);
-						break;
-					case 3:
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");//Adds 10 particle (laser_shot) in front of the spaceship.
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 60/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 120/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 180/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 240/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 60/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 120/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 180/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 240/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						break;
-					case 4:
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");//Adds 23 particle (laser_shot) in front of the spaceship.
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 60/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 120/* "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 180/* "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 240/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 60/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 120/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 180/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 240/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 10, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 70/*, "Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 140 /*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 60 /*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 120 /*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 180 /*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 240 /*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 60/*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 120 /*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 180 /*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 240 /*"Assets/Audio/Fx_BluePowerUp_Shot2.wav"*/);
-						break;
-					case 5:
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds 13 particle (laser_shot) in front of the spaceship.
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 60, );
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 120 );
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 180);
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 240);
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 60 );
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 120 );
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 180 );
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 240);
-						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 10);
-						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 70);
-						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 140, "Assets/Audio/Fx_Simple_Shot.wav");
-
-						break;
-
-					}
-				}
-				switch (M_Powerup_Lvl)
+			}
+			else if (Blue_Powerup_Lvl > Red_Powerup_Lvl) {			// ----------------------------------------------------------------------CHANGE ALL FX
+				switch (Blue_Powerup_Lvl)
 				{
 				case 0:
 					break;
 				case 1:
-					App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER2_SHOT, 0);
-					App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot1.wav");//Adds 2 particle (laser_shot) in front of the spaceship.
+					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 50);
 					break;
 				case 2:
-					App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER2_SHOT, 30);
-					App->particles->AddParticle(misile_mid, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0);
-					App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER2_SHOT, 30);
+					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot1.wav");//Adds 5 particle (laser_shot) in front of the spaceship.
+					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(laser_shot, position.x + 12, position.y, COLLIDER_PLAYER2_SHOT, 240);
 					break;
 				case 3:
-					App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER2_SHOT, 30);
-					App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER2_SHOT, 30);
-					App->particles->AddParticle(misile_left, position.x - 2, position.y, COLLIDER_PLAYER2_SHOT, 0);
-					App->particles->AddParticle(misile_right, position.x + 20, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");//Adds 10 particle (laser_shot) in front of the spaceship.
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 240);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 240);
+					break;
+				case 4:
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_BluePowerUp_Shot2.wav");//Adds 23 particle (laser_shot) in front of the spaceship.
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 240);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 240);
+					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 10);
+					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 70);
+					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 140);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(big_laser_shot, position.x + 4, position.y, COLLIDER_PLAYER2_SHOT, 240);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(big_laser_shot, position.x + 16, position.y, COLLIDER_PLAYER2_SHOT, 240);
+					break;
+				case 5:
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds 13 particle (laser_shot) in front of the spaceship.
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 240);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 0);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 60);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 120);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 180);
+					App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 240);
+					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 10);
+					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 70);
+					App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 140);
+
 					break;
 
 				}
-
-
 			}
-
-			if ((App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) && total_bombs > 0 && SDL_GetTicks() - last_bomb > 5000) //-----BOMB! (only when ur player has bombs and passed 5s from the last bomb)
+			switch (M_Powerup_Lvl)
 			{
-				bomb_thrown = SDL_GetTicks();
-				App->particles->AddParticle(bomb, position.x + 8, position.y, COLLIDER_EXPLOSION, 0, "Assets/Audio/Fx_Drop_Bomb");
-				saved_position = position;
-				total_bombs--;
-				last_bomb = SDL_GetTicks();
-			}
-			if (bomb_thrown != 0 && SDL_GetTicks() - bomb_thrown > 1300) {// 1.3s to generate the explosion of the bomb(damaging collider)
-				App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB2, 0, "Assets/Audio/Fx_BigTank_Explosion");
-				bomb_thrown = 0;
-				bomb_life = SDL_GetTicks();
-				saved_position = { 0,0 };
+			case 0:
+				break;
+			case 1:
+				App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER2_SHOT, 0);
+				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER2_SHOT, 0);
+				break;
+			case 2:
+				App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER2_SHOT, 30);
+				App->particles->AddParticle(misile_mid, position.x + 9, position.y, COLLIDER_PLAYER2_SHOT, 0);
+				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER2_SHOT, 30);
+				break;
+			case 3:
+				App->particles->AddParticle(misile_left, position.x - 6, position.y, COLLIDER_PLAYER2_SHOT, 30);
+				App->particles->AddParticle(misile_right, position.x + 24, position.y, COLLIDER_PLAYER2_SHOT, 30);
+				App->particles->AddParticle(misile_left, position.x - 2, position.y, COLLIDER_PLAYER2_SHOT, 0);
+				App->particles->AddParticle(misile_right, position.x + 20, position.y, COLLIDER_PLAYER2_SHOT, 0);
+				break;
 
 			}
-			if (bomb_life != 0 && SDL_GetTicks() - bomb_life > 3000) {// bomb life 3s then delete particle
-				bomb_life = 0;
-				bomb_explosion.to_delete;
-			}
 
-			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE //check error
-				&& App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE) {
-				current_animation = &idle;
-			}
-		}
-			if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN)//GOD MODE (press right stick on controller)
-
-			{
-				if (!godmode) {
-					godmode = true;
-				}
-				else {
-					godmode = false;
-				}
-			}
 
 		}
+
+		if ((App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) && total_bombs > 0 && SDL_GetTicks() - last_bomb > 5000) //-----BOMB! (only when ur player has bombs and passed 5s from the last bomb)
+		{
+			bomb_thrown = SDL_GetTicks();
+			App->particles->AddParticle(bomb, position.x + 8, position.y, COLLIDER_EXPLOSION, 0, "Assets/Audio/Fx_Drop_Bomb");
+			saved_position = position;
+			total_bombs--;
+			last_bomb = SDL_GetTicks();
+		}
+		if (bomb_thrown != 0 && SDL_GetTicks() - bomb_thrown > 1300) {// 1.3s to generate the explosion of the bomb(damaging collider)
+			App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB2, 0, "Assets/Audio/Fx_BigTank_Explosion");
+			bomb_thrown = 0;
+			bomb_life = SDL_GetTicks();
+			saved_position = { 0,0 };
+
+		}
+		if (bomb_life != 0 && SDL_GetTicks() - bomb_life > 3000) {// bomb life 3s then delete particle
+			bomb_life = 0;
+			bomb_explosion.to_delete;
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE //check error
+			&& App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE) {
+			current_animation = &idle;
+		}
+	}
+	
+
 
 	
 

@@ -145,7 +145,7 @@ void CannonTank::OnCollision(Collider*collider, int num_enemy) {
 		hits_life -= App->player2->hit_dmg;
 
 	}
-	else if (collider->type == COLLIDER_BOMB) {
+	else if (collider->type == COLLIDER_BOMB|| collider->type == COLLIDER_BOMB2) {
 		hits_life -= App->player->bomb_dmg;
 	}
 	if (hits_life <= 0) {		

@@ -24,7 +24,7 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_BOX][COLLIDER_BOMB] = true;
 	matrix[COLLIDER_BOX][COLLIDER_POWERUP_DRAGON] = false;
 	matrix[COLLIDER_BOX][COLLIDER_POWERUP_MEDAL] = false;
-	matrix[COLLIDER_BOX][COLLIDER_BOMB2] = false;
+	matrix[COLLIDER_BOX][COLLIDER_BOMB2] = true;
 	
 
 	matrix[COLLIDER_PLAYER][COLLIDER_BOX] = false;
@@ -284,6 +284,7 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_BOMB2][COLLIDER_POWERUP_BLUE] = false;
 	matrix[COLLIDER_BOMB2][COLLIDER_POWERUP_P] = false;
 	matrix[COLLIDER_BOMB2][COLLIDER_BOMB] = false;
+	matrix[COLLIDER_BOMB2][COLLIDER_BOMB2] = false;
 	matrix[COLLIDER_BOMB2][COLLIDER_POWERUP_DRAGON] = false;
 	matrix[COLLIDER_BOMB2][COLLIDER_POWERUP_MEDAL] = false;
 
@@ -446,6 +447,9 @@ void ModuleCollision::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
 			break;
 		case COLLIDER_BOMB: // black
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
+			break;
+		case COLLIDER_BOMB2: // black
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
 			break;
 		case COLLIDER_POWERUP_MEDAL: // black
