@@ -24,18 +24,22 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 	down_left.PushBack({ 159,64,28,25 });
 	down_left.PushBack({ 189,64,28,25 });
 	down_left.PushBack({ 219,64,28,25 });
+	down_left.speed = 0.1f;
 
 	down_right.PushBack({ 279,33,28,25 });
 	down_right.PushBack({ 309,33,28,25 });
 	down_right.PushBack({ 339,33,28,25 });
+	down_right.speed = 0.1f;
 
 	up_right.PushBack({ 159,33,28,25 });
 	up_right.PushBack({ 189,33,28,25 });
 	up_right.PushBack({ 219,33,28,25 });
+	up_right.speed = 0.1f;
 
 	up_left.PushBack({ 279,64,28,25 });
 	up_left.PushBack({ 309,64,28,25 });
 	up_left.PushBack({ 339,64,28,25 });
+	up_left.speed = 0.1f;
 
 	//TankCannon shot
 	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });
@@ -63,52 +67,47 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 void BossCannon::Move() {
 
 	//SAME MOVEMENT AS THE TANK
+	if (position.x + 33 > 100) {//right
+		position.x--;
 
+		if ((App->player->position.y - 2 > position.y + 34)) {// DOWN
+
+			if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
+				animation = &down;
+			}
+			else if (App->player->position.x > position.x - 2) {
+				animation = &down_right;
+			}
+			else if (App->player->position.x < position.x + 38) {
+				animation = &down_left;
+			}
+		}
+		else if ((App->player->position.y < position.y)) {//UP
+
+			if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
+				animation = &up;
+			}
+			else if (App->player->position.x > position.x) {
+				animation = &up_right;
+			}
+			else if (App->player->position.x < position.x + 38) {
+				animation = &up_left;
+			}
+		}
+		else if ((App->player->position.y > position.y) && (App->player->position.y < position.y + 34)) {//MIDDLE
+			if (App->player->position.x > position.x) {
+				animation = &right;
+			}
+			else if (App->player->position.x < position.x + 38) {
+				animation = &left;
+			}
+		}
 	
 
-	if ((App->player->position.y - 2 > position.y + 34)) {// DOWN
+		//position.y += -0.8f;
+		collider->SetPos(position.x, position.y);
 
-		if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
-			animation = &down;
-		}
-		else if (App->player->position.x > position.x - 2) {
-			animation = &down_right;
-		}
-		else if (App->player->position.x < position.x + 38) {
-			animation = &down_left;
-		}
 	}
-	else if ((App->player->position.y < position.y)) {//UP
-
-		if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
-			animation = &up;
-		}
-		else if (App->player->position.x > position.x) {
-			animation = &up_right;
-		}
-		else if (App->player->position.x < position.x + 38) {
-			animation = &up_left;
-		}
-	}
-	else if ((App->player->position.y > position.y) && (App->player->position.y < position.y + 34)) {//MIDDLE
-		if (App->player->position.x > position.x) {
-			animation = &right;
-		}
-		else if (App->player->position.x < position.x + 38) {
-			animation = &left;
-		}
-	}
-
-
-	if (position.x + 35 > App->player->position.x + 22) {//right
-		position.x--;
-	}
-	else if (App->player->position.x - 22 > position.x - 35) {//left
-		position.x++;
-	}
-	position.y += -0.8f;
-	collider->SetPos(position.x, position.y);
-
 }
 
 

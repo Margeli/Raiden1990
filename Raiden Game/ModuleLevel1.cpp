@@ -95,7 +95,8 @@ bool ModuleLevel1::Start()
 	
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
-	App->enemies->AddEnemy(BOSS2, 150, -150);
+	//App->enemies->AddEnemy(BOSS2, 150, -150);
+	App->enemies->AddEnemy(BOSS, 150, -150);
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60, -500);

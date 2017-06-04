@@ -8,6 +8,7 @@
 #include "ModulePlayer2.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModuleRender.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -53,7 +54,7 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	App->enemies->AddEnemy(BOSS_CANNON, x+33 , y+28 , shoot_num);
+	App->enemies->AddEnemy(BOSS_CANNON, x+60 , y+28 , shoot_num);
 	born = SDL_GetTicks();
 }
 
@@ -95,13 +96,11 @@ void Boss::Move() {
 		}
 	}
 
-	if (position.x + 35 > App->player->position.x+22) {//right
+	if (position.x + 33 > 100) {//right
 		position.x--;
 	}
-	else if (App->player->position.x - 22 > position.x - 35) {//left
-		position.x++;
-	}
-	position.y += -0.8f;
+	//else if(position.x<)
+	//position.y += -0.5f;
 	collider->SetPos(position.x, position.y);
 
 }

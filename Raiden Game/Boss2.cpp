@@ -33,7 +33,7 @@ Boss2::Boss2(int x, int y, int shoot_num) : Enemy(x, y)
 
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	App->enemies->AddEnemy(BOSS_CANNON, x + 33, y + 28, shoot_num);
+	App->enemies->AddEnemy(BOSS_CANNON, x+33 , y+100, shoot_num);
 }
 
 void Boss2::Move() {
