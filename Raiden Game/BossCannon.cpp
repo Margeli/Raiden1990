@@ -45,23 +45,6 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 	color_rotatory_shot.life = 3000;
 	color_rotatory_shot.anim.loop = true;
 
-
-	/*explosion.anim.PushBack({ 0,0,32,30 });
-	explosion.anim.PushBack({ 32,0,32,30 });
-	explosion.anim.PushBack({ 64,0,32,30 });
-	explosion.anim.PushBack({ 96,0,32,30 });
-	explosion.anim.PushBack({ 128,0,32,30 });
-	explosion.anim.PushBack({ 160,0,32,30 });
-	explosion.anim.PushBack({ 192,0,32,30 });
-	explosion.anim.PushBack({ 224,0,32,30 });
-	explosion.anim.PushBack({ 256,0,32,30 });
-	explosion.anim.PushBack({ 288,0,32,30 });
-	explosion.anim.PushBack({ 0,0,0,0 });
-	explosion.anim.speed = 0.2f;
-	explosion.anim.loop = false;
-	explosion.life = 1000;*/
-
-
 	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.png");
 
 
@@ -71,7 +54,7 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 
 	
 
-	collider = App->collision->AddCollider({ 0, 0, 28, 25 }, COLLIDER_TYPE::COLLIDER_BOX, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ 0, 0, 28, 25 }, COLLIDER_TYPE::COLLIDER_TURRET, (Module*)App->enemies);//JUST FOR DECORATION
 
 	timer_shot = SDL_GetTicks();
 
@@ -133,63 +116,14 @@ void BossCannon::Move() {
 
 void BossCannon::OnCollision(Collider*collider, int num_enemy) {
 
-	/*if (collider->type == COLLIDER_PLAYER_SHOT) {
-		hits_life -= App->player->hit_dmg;
-
-	}
-	else if ((App->player2->IsEnabled()) && (collider->type == COLLIDER_PLAYER2_SHOT)) {
-		hits_life -= App->player2->hit_dmg;
-
-	}
-	else if (collider->type == COLLIDER_BOMB || collider->type == COLLIDER_BOMB2) {
-		hits_life -= App->player->bomb_dmg;
-	}
-	if (hits_life <= 0) {
-		App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
-		fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Tank_Explosion.wav");
-		if (!fx_shoot) {
-			LOG("Error loading shoot's fx: %s", Mix_GetError)
-		}
-		App->audio->Play_Fx(fx_shoot);
+	if (collider->type == COLLIDER_TURRET) {		
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 
 	}
-	*/
+	
 }
 
 void BossCannon::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
-	/*shot.speed = { 0,0 };
-
-	if (animation == &up) {
-		shot.speed = { 0,-5 };
-	}
-	else if (animation == &down) {
-		shot.speed = { 0,3 };
-	}
-	else if (animation == &right) {
-		shot.speed = { 3,0 };
-
-	}
-	else if (animation == &left) {
-		shot.speed = { -3,0 };
-	}
-	else if (animation == &down_right) {
-		shot.speed = { 3,3 };
-
-	}
-	else if (animation == &down_left) {
-		shot.speed = { -3,3 };
-	}
-	else if (animation == &up_right) {
-		shot.speed = { 3,-4 };
-
-	}
-	else if (animation == &up_left) {
-		shot.speed = { -3,-4 };
-	}
-
-	App->particles->AddParticle(shot, shot_initial_pos.x + 19, shot_initial_pos.y + 17, COLLIDER_ENEMY_SHOT);
-
-	*/
+	
 }
