@@ -57,6 +57,7 @@ Boss2::Boss2(int x, int y, int shoot_num) : Enemy(x, y)
 	App->enemies->AddEnemy(BOSS_CANNON2, x + 33, y + 28, shoot_num);
 	born = SDL_GetTicks();
 	speed = 0.8f;
+
 }
 
 void Boss2::Move() {
