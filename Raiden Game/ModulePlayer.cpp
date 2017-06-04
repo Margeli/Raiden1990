@@ -193,7 +193,7 @@ ModulePlayer::ModulePlayer()
 	dead_explosion.anim.PushBack({ 116,202,32,30 });
 	dead_explosion.anim.PushBack({ 164,202,32,30 });
 	dead_explosion.anim.PushBack({ 0,0,0,0 });
-	dead_explosion.anim.speed = 0.2f;
+	dead_explosion.anim.speed = 0.1f;
 	dead_explosion.life = 1000;
 	
 	//Raiden Bomb Explosion
