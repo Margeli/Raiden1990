@@ -54,16 +54,18 @@ ModulePowerUps::ModulePowerUps()
 
 
 	Dragon_Bonus.anim.PushBack({ 496,16,16,15 });
-	Dragon_Bonus.anim.PushBack({ 513,16,16,16 });	//Dragon_Bonus
-	Dragon_Bonus.anim.speed = 0.1f;
+	Dragon_Bonus.anim.PushBack({ 513,16,16,16 });	
+	Dragon_Bonus.anim.PushBack({ 0,0,0,0 });//Dragon_Bonus
+	Dragon_Bonus.anim.speed = 1000;
 	Dragon_Bonus.speed.y = 0;
 	Dragon_Bonus.speed.x = 0;
 	Dragon_Bonus.life = 60000;
 	Dragon_Bonus.anim.loop = true;
 
 
-	Medal_Bonus.anim.PushBack({ 499, 0,9,16 });	//Medal_Bonus
-	Medal_Bonus.anim.speed = 1.0f;
+	Medal_Bonus.anim.PushBack({ 499, 0,9,16 });	
+	Medal_Bonus.anim.PushBack({ 0, 0,0,0 });//Medal_Bonus
+	Medal_Bonus.anim.speed = 1000;
 	Medal_Bonus.speed.y = 0;
 	Medal_Bonus.speed.x = 0;
 	Medal_Bonus.life = 60000;

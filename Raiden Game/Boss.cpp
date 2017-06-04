@@ -156,7 +156,7 @@ void Boss::Dead(Collider* shooter, int num_enemy) {
 		App->player2->score += score_points;
 	}
 
-	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+	App->particles->AddParticle(explosion, position.x - 6, position.y - 5, COLLIDER_EXPLOSION);
 
 	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Boss_Explosion.wav");
 	if (!fx_shoot) {

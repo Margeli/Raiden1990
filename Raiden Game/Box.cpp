@@ -44,6 +44,8 @@ Box::Box(int x, int y) : Enemy(x, y)
 	}
 
 	idle.PushBack({ 1, 1,21,20 });//box sprite
+	idle.PushBack({ 0,0,0,0 });
+	idle.speed = 1000;//box sprite
 	animation = &idle;
 	hits_life = 2.0f;// 1.0f
 

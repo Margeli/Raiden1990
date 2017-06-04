@@ -117,9 +117,15 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(BONUS_SPACESHIP, 111, -260, 0); // just in the middle
 
 	App->enemies->AddEnemy(TANK, 60, -450, 0);
-	App->enemies->AddEnemy(TANK, 111, -480, 1);
-	App->enemies->AddEnemy(TANK, 180, -500, 0);
-	App->enemies->AddEnemy(TANK, 200, -500, 1);
+	App->enemies->AddEnemy(TANK, 100, -490, 1);
+	App->enemies->AddEnemy(TANK, 140, -530, 0);
+	App->enemies->AddEnemy(TANK, 180, -570, 1);
+	App->enemies->AddEnemy(STATIC_CANNON, 210, -600, 3);
+	App->enemies->AddEnemy(STATIC_CANNON, 80, -600, 3);
+	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -700, 1);
+	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 70, -770, 1);
+	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 130, -810, 1);
+	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 160, -850, 1);
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 60, -550, 3);
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 170, -650, 3);
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 111, -750, 3);
@@ -144,6 +150,7 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 40, -1800, 1);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 140, -1830, 1);
 	App->enemies->AddEnemy(MINE, 110, -1860, 1);
+	App->enemies->AddEnemy(TANK, 20, -1860, 1);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 20, -1860, 1);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 70, -1900, 1);
 	App->enemies->AddEnemy(LIGHTSHOOTER_SPACESHIP, 120, -1950, 1);
@@ -156,7 +163,13 @@ bool ModuleLevel1::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 0, -2500, 3, true);	// <---- NO BORRAR COORDENADAS "X", ESTÁN EXACTAS (SIEMPRE SALEN LOS DOS A LA VEZ)
 	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 177, -2500, 3, false); // <----´
-	App->enemies->AddEnemy(MINE, 40, -2550, 2);
+	App->enemies->AddEnemy(ENEMY_TYPES::HEAVY_SHOOTER, 0, -2700, 3, true);	// <---- NO BORRAR COORDENADAS "X", ESTÁN EXACTAS (SIEMPRE SALEN LOS DOS A LA VEZ)
+	App->enemies->AddEnemy(ENEMY_TYPES::HEAVY_SHOOTER, 177, -2700, 3, false); // <----´
+	App->enemies->AddEnemy(MINE, 30, -2300, 2);
+	App->enemies->AddEnemy(MINE, 70, -2300, 2);
+	App->enemies->AddEnemy(MINE, 100, -2300, 2);
+	App->enemies->AddEnemy(MINE, 130, -2300, 2);
+	App->enemies->AddEnemy(MINE, 170, -2300, 2);
 	return true;
 }
 
@@ -220,13 +233,13 @@ update_status ModuleLevel1::Update()
 	
 	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
 
-	if (App->player->position.y <= -2750) {
+	if (App->player->position.y <= -2730) {
 		scroll_speed = 0;
- 		/*boss_music = App->audio->Load_Music("Assets/Audio/Boss_Music.ogg");
+ 		boss_music = App->audio->Load_Music("Assets/Audio/Boss_Music.ogg");
 		if (!boss_music) {
 			LOG("Error loading boss music: %s", Mix_GetError)
 		}
-		App->audio->Play_Music(boss_music);*/
+		/*App->audio->Play_Music(boss_music);
 		App->player->spaceship_speed = 0;
 		/*if (App->player2->IsEnabled) 
 			App->player2->spaceship_speed = 0;*/
