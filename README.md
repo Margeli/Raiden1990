@@ -1,6 +1,4 @@
-<center> 
-<img src=https://upload.wikimedia.org/wikipedia/en/6/6b/Raiden_arcadeflyer.png border=0> 
-</center> 
+<br><img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Raiden_arcadeflyer.png" width = "300" height = "425" alt="Error loading img"><br>
 
 
 Raiden is a scrolling shooter arcade game wich was developed in September 1990 by Seibu Kaihatsu. It consists of eight vertical scrolling stages where the player manages the Raiden craft trying to avoid and destroy enemy robots, buildings, ground targets, and aircrafts. In this first version, we have tried to imitate the first stage of the original game, however some small details are missing.
