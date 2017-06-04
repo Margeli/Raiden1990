@@ -110,19 +110,21 @@ update_status ModuleIntro::Update()
 	if (App->input->keyboard[SDL_SCANCODE_1]) {
 		
 		App->player2->player2;
+		App->fade->FadeToBlack(this, App->level1);
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_2]) {
 		
 		App->player2->player2 = true;
+		App->fade->FadeToBlack(this, App->level1);
 	}
 
-	if ((( App->input->gamepad[6] == KEY_STATE::KEY_REPEAT)||(App->input->keyboard[SDL_SCANCODE_TAB])) && App->fade->IsFading() == false) {
+	/*if ((( App->input->gamepad[6] == KEY_STATE::KEY_REPEAT)||(App->input->keyboard[SDL_SCANCODE_TAB])) && App->fade->IsFading() == false) {
 
 		
 		App->fade->FadeToBlack(this, App->level1);
 		
 
-	}
+	}*/
 
 	return UPDATE_CONTINUE;
 }

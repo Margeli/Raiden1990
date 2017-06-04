@@ -201,6 +201,7 @@ update_status ModuleLevel1::Update()
 	if (App->render->camera.y < 100) {
 
 		App->player->position.y += 1;
+		App->player2->position.y += 1;
 		App->render->camera.y += 1;
 		first_animation = true;
 
@@ -208,13 +209,18 @@ update_status ModuleLevel1::Update()
 	else {
 		if (App->render->camera.y < 220) {
 			App->player->current_animation = &App->player->boost;
+			App->player2->current_animation = &App->player2->boost;
 		}
 		else {
 			first_animation = false;
 		}
 		App->render->camera.y += 2;
 		
-	
+		if ((App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) && (App->fade->IsFading() == false))//DIRECT WIN/LOSE
+		{
+			App->fade->FadeToBlack(this, App->stageCompleted);
+
+		}
 	
 	}
 
