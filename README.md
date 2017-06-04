@@ -1,4 +1,4 @@
-   ![](https://upload.wikimedia.org/wikipedia/en/6/6b/Raiden_arcadeflyer.png)
+<img align=center src=https://upload.wikimedia.org/wikipedia/en/6/6b/Raiden_arcadeflyer.png border=0> 
 
 
 
