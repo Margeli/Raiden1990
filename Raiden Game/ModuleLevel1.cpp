@@ -87,7 +87,7 @@ bool ModuleLevel1::Start()
 	
 	LOG("Loading level 1");
 
-	///music_lvl1 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");// COMMENT TO STOP MUSIC
+	music_lvl1 = App->audio->Load_Music("Assets/Audio/00_Raiden.ogg");// COMMENT TO STOP MUSIC
 	if (!music_lvl1) {
 	LOG("Error loading lvl1 music: %s",Mix_GetError)
 	}
@@ -95,13 +95,7 @@ bool ModuleLevel1::Start()
 	
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
-
-	
-
-
-	App->enemies->AddEnemy(BOSS, 100, -150);
-	App->enemies->AddEnemy(BOSS2, 100, -400);
-
+	App->enemies->AddEnemy(BOSS2, 150, -150);
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60, -500);
@@ -235,8 +229,13 @@ update_status ModuleLevel1::Update()
 	
 	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
 
-	if (App->player->position.y <= -2760) {
+	if (App->player->position.y <= -2750) {
 		scroll_speed = 0;
+ 		/*boss_music = App->audio->Load_Music("Assets/Audio/Boss_Music.ogg");
+		if (!boss_music) {
+			LOG("Error loading boss music: %s", Mix_GetError)
+		}
+		App->audio->Play_Music(boss_music);*/
 		App->player->spaceship_speed = 0;
 		/*if (App->player2->IsEnabled) 
 			App->player2->spaceship_speed = 0;*/

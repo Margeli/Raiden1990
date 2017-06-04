@@ -79,8 +79,29 @@ void Boss::OnCollision(Collider*collider, int num_enemy) {
 	}
 
 	if (hits_life <= 0) {
-		//Dead(collider, num_enemy);
+		Dead(collider, num_enemy);
 	}
+
+}
+
+void Boss::Dead(Collider* shooter, int num_enemy) {
+
+	if (shooter->type == COLLIDER_PLAYER_SHOT || shooter->type == COLLIDER_BOMB) {
+		App->player->score += score_points;
+	}
+	else if (shooter->type == COLLIDER_PLAYER2_SHOT || shooter->type == COLLIDER_BOMB2) {
+		App->player2->score += score_points;
+	}
+
+	App->particles->AddParticle(explosion, position.x, position.y, COLLIDER_EXPLOSION);
+
+	fx_shoot = App->audio->Load_Fx("Assets/Audio/Fx_Boss_Explosion.wav");
+	if (!fx_shoot) {
+		LOG("Error loading shoot's fx: %s", Mix_GetError)
+	}
+	App->audio->Play_Fx(fx_shoot);
+	delete App->enemies->enemies[num_enemy];
+	App->enemies->enemies[num_enemy] = nullptr;
 
 }
 

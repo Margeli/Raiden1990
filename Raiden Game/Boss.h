@@ -16,6 +16,7 @@ private:
 	Particle color_rotatory_shot;
 	Mix_Chunk* fx_shoot = nullptr;
 	void OnCollision(Collider* collider, int num_enemy);
+	void Dead(Collider* shooter, int num_enemy);
 
 
 	float speed;

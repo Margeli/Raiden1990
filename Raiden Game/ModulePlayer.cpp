@@ -514,7 +514,7 @@ update_status ModulePlayer::Update()
 			last_bomb = SDL_GetTicks();
 		}
 		if (bomb_thrown != 0 && SDL_GetTicks() - bomb_thrown > 1300) {// 1.3s to generate the explosion of the bomb(damaging collider)
-			App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB, 0, "Assets/Audio/Fx_BigTank_Explosion");
+			App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB, 0, "Assets/Audio/Fx_Bomb_Explosion");
 			bomb_thrown = 0;
 			bomb_life = SDL_GetTicks();
 			saved_position = { 0,0 };

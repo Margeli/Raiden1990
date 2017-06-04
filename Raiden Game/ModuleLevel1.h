@@ -23,6 +23,7 @@ public:
 	
 	SDL_Texture* graphics = nullptr;
 	Mix_Music* music_lvl1 = nullptr;
+	Mix_Music* boss_music = nullptr;
 	SDL_Rect foreground;
 	SDL_Rect background;
 	SDL_Rect ship_launcher;
