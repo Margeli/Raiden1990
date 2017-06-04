@@ -67,7 +67,7 @@ bool ModuleIntro::Start()
 		App->player->score = 0;
 		App->player->destroyed = false;
 	}
-	else if (App->player2->destroyed) {
+	if (App->player2->destroyed) {
 		App->player2->score = 0;
 		App->player2->destroyed = false;
 	}
