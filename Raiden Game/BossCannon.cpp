@@ -37,13 +37,7 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 	up_left.PushBack({ 309,64,28,25 });
 	up_left.PushBack({ 339,64,28,25 });
 
-	//TankCannon shot
-	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });
-	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
-	color_rotatory_shot.anim.PushBack({ 56, 40, 6, 7 });
-	color_rotatory_shot.anim.speed = 0.3f;
-	color_rotatory_shot.life = 3000;
-	color_rotatory_shot.anim.loop = true;
+	
 
 	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.png");
 
@@ -51,18 +45,18 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 	if (sprite_path == nullptr) {
 		LOG("Error loading BossCannon's textures. SDL Error: %s", SDL_GetError());
 	}
-
+	
 	
 
 	collider = App->collision->AddCollider({ 0, 0, 28, 25 }, COLLIDER_TYPE::COLLIDER_TURRET, (Module*)App->enemies);//JUST FOR DECORATION
 
-	timer_shot = SDL_GetTicks();
+	
 
 }
 
 void BossCannon::Move() {
 
-	//SAME MOVEMENT AS THE TANK
+	//SAME MOVEMENT AS THE BOSS
 
 	
 
