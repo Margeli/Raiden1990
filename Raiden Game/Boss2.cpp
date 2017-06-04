@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Boss.h"
+#include "Boss2.h"
 #include "Enemy.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
@@ -10,10 +10,10 @@
 #include "ModuleAudio.h"
 
 
-Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
+Boss2::Boss2(int x, int y, int shoot_num) : Enemy(x, y)
 {
 
-	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.png");
+	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.2.png");
 
 	idle.PushBack({ 24,33,94,81 });
 	idle.PushBack({ 24,149,94,81 });
@@ -26,10 +26,10 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	App->enemies->AddEnemy(BOSS_CANNON, x+33 , y+28 , shoot_num);
+	App->enemies->AddEnemy(BOSS_CANNON, x + 33, y + 28, shoot_num);
 }
 
-void Boss::Move() {
+void Boss2::Move() {
 
 	increment_y = (position.y - initial_y);
 }
@@ -37,12 +37,12 @@ void Boss::Move() {
 
 
 
-void Boss::OnCollision(Collider*collider, int num_enemy) {
+void Boss2::OnCollision(Collider*collider, int num_enemy) {
 
 
 }
 
-void Boss::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
+void Boss2::Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos) {
 
 
 }
