@@ -49,7 +49,7 @@ Boss::Boss(int x, int y, int shoot_num) : Enemy(x, y)
 	star_shot.anim.loop = true;
 
 	score_points = 9660;
-	hits_life = 155;
+	hits_life = 155.0f;
 
 	collider = App->collision->AddCollider({ 0, 0, 94, 81 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
@@ -119,7 +119,7 @@ void Boss::OnCollision(Collider*collider, int num_enemy) {
 		hits_life -= App->player2->hit_dmg;
 	}
 
-	else if (collider->type == COLLIDER_BOMB || collider->type == COLLIDER_BOMB2) {// FIX IF PLAYER 2 THROWS BOMB
+	else if (collider->type == COLLIDER_BOMB || collider->type == COLLIDER_BOMB2) {
 		hits_life -= App->player->bomb_dmg;
 	}
 

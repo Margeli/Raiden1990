@@ -179,7 +179,7 @@ ModulePlayer2::ModulePlayer2()
 	big_laser_shot.anim.loop = true;
 
 	hit_dmg = 1.0f;
-	bomb_dmg = 20.0f;
+	bomb_dmg = 0.2f;
 
 	dead_explosion.anim.PushBack({ 7,202,32,30 });
 	dead_explosion.anim.PushBack({ 40,202,32,30 });

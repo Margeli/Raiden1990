@@ -116,7 +116,7 @@ void BossCannon::Move() {
 
 void BossCannon::OnCollision(Collider*collider, int num_enemy) {
 
-	if (collider->type == COLLIDER_TURRET) {		
+	if (collider->type == COLLIDER_EXPLOSION) {		
 		delete App->enemies->enemies[num_enemy];
 		App->enemies->enemies[num_enemy] = nullptr;
 
