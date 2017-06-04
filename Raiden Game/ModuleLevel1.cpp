@@ -95,8 +95,8 @@ bool ModuleLevel1::Start()
 	
 	graphics = App->textures->Load("Assets/Images/lvl1_tilemap.png");
 	
-	App->enemies->AddEnemy(BOSS2, 224, -2968);
-	App->enemies->AddEnemy(BOSS, 87, -2700);
+	App->enemies->AddEnemy(BOSS, 224, -2968);
+	App->enemies->AddEnemy(BOSS2, 87, -2700);
 
 	
 	App->powerup->AddPowerUp(POWERUP_TYPES::POWERUP_M, 60, -500);
@@ -140,12 +140,11 @@ bool ModuleLevel1::Start()
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 80, -1800, 3);
 	App->enemies->AddEnemy(GREENSHOOTER_SPACESHIP, 190, -1800, 3);
 	
-	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 0, -2000, 3, true);	// <---- NO BORRAR COORDENADAS "X", ESTÁN EXACTAS (SIEMPRE SALEN LOS DOS A LA VEZ)
-	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 177, -2000, 3, false); // <----´
+	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 0, -1900, 3, true);	// <---- NO BORRAR COORDENADAS "X", ESTÁN EXACTAS (SIEMPRE SALEN LOS DOS A LA VEZ)
+	App->enemies->AddEnemy(ENEMY_TYPES::MEGA_TANK, 177, -1900, 3, false); // <----´
 
 
-	// RANDOM ENEMIES |
-	//				  V
+	
 	App->enemies->AddEnemy(MINE, 111, -1500);
 	App->enemies->AddEnemy(STATIC_CANNON, 121, -1700);
 	App->enemies->AddEnemy(STATIC_CANNON, 160, -1650);
@@ -230,7 +229,7 @@ update_status ModuleLevel1::Update()
 	
 	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
 
-	if (App->player->position.y <= -2720) {
+	if (App->player->position.y <= -2750) {
 		scroll_speed = 0;
  		/*boss_music = App->audio->Load_Music("Assets/Audio/Boss_Music.ogg");
 		if (!boss_music) {

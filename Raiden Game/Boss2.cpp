@@ -47,6 +47,8 @@ Boss2::Boss2(int x, int y, int shoot_num) : Enemy(x, y)
 	star_shot.life = 3000;
 	star_shot.anim.loop = true;
 
+	
+
 	score_points = 9660;
 	hits_life = 155.0f;
 
@@ -98,7 +100,7 @@ void Boss2::Move() {
 			star_shot_timer = 0;
 		}
 	}
-	if (increment_y > 230) {
+	if (increment_y > 160) {
 		speed = 0.0f;
 	}
 	position.y -= speed;
@@ -146,6 +148,7 @@ void Boss2::Dead(Collider* shooter, int num_enemy) {
 	App->audio->Play_Fx(fx_shoot);
 	delete App->enemies->enemies[num_enemy];
 	App->enemies->enemies[num_enemy] = nullptr;
+	
 
 }
 

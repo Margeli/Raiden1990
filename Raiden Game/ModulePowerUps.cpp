@@ -28,7 +28,7 @@ ModulePowerUps::ModulePowerUps()
 
 	M_Bonus.anim.PushBack({ 440,17,15,13 });	//M_Bonus
 	M_Bonus.anim.speed = 1.0f;
-	M_Bonus.speed.y = -1.0f;
+	M_Bonus.speed.y = 0.0f;
 	M_Bonus.speed.x = 0;
 	M_Bonus.life = 60000;
 	M_Bonus.anim.loop = true;

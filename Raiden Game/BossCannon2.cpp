@@ -104,7 +104,7 @@ void BossCannon2::Move() {
 		}
 	}
 	increment_y = -(position.y - initial_y);
-	if (increment_y > 230) {
+	if (increment_y > 160) {
 		speed = 0.0f;
 	}
 	position.y -= speed;
