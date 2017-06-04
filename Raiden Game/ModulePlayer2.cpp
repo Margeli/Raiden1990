@@ -282,7 +282,7 @@ update_status ModulePlayer2::Update()
 	int speed = 2;
 
 	if (!App->level1->first_animation) {
-		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT || App->input->gamepad[0] == KEY_STATE::KEY_REPEAT) //---UP
+		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT ) //---UP
 		{
 			current_animation = &idle;
 			position.y -= speed;
@@ -291,7 +291,7 @@ update_status ModulePlayer2::Update()
 			}
 		}
 
-		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT || App->input->gamepad[1] == KEY_STATE::KEY_REPEAT)//---DOWN
+		if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT )//---DOWN
 		{
 			position.y += speed;
 			if ((-(position.y - SCREEN_HEIGHT + 27)*SCREEN_SIZE) < App->render->camera.y) { //lower player limit (27 is height of spaceship)
@@ -301,7 +301,7 @@ update_status ModulePlayer2::Update()
 		}
 
 
-		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT || App->input->gamepad[2] == KEY_STATE::KEY_REPEAT)//---LEFT
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT )//---LEFT
 		{
 			position.x -= speed;
 			App->render->camera.x += 4;
@@ -335,7 +335,7 @@ update_status ModulePlayer2::Update()
 				}
 			}
 
-			if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN || App->input->gamepad[4] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
+			if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)// --SPACE SHOT
 			{
 				if (Red_Powerup_Lvl >= Blue_Powerup_Lvl) {// the shot type is the greater level between the blue and the red powerup (in case of equal level predominates the red ones. ) 
 					switch (Red_Powerup_Lvl)
@@ -422,17 +422,17 @@ update_status ModulePlayer2::Update()
 						break;
 					case 5:
 						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");//Adds 13 particle (laser_shot) in front of the spaceship.
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 60, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 120, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 180, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 240, "Assets/Audio/Fx_Simple_Shot.wav");
+						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 60, );
+						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 120 );
+						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 180);
+						App->particles->AddParticle(big_laser_shot, position.x + 3, position.y, COLLIDER_PLAYER2_SHOT, 240);
 						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 0, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 60, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 120, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 180, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 240, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 10, "Assets/Audio/Fx_Simple_Shot.wav");
-						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 70, "Assets/Audio/Fx_Simple_Shot.wav");
+						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 60 );
+						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 120 );
+						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 180 );
+						App->particles->AddParticle(big_laser_shot, position.x + 17, position.y, COLLIDER_PLAYER2_SHOT, 240);
+						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 10);
+						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 70);
 						App->particles->AddParticle(big_laser_shot, position.x + 10, position.y, COLLIDER_PLAYER2_SHOT, 140, "Assets/Audio/Fx_Simple_Shot.wav");
 
 						break;
@@ -463,7 +463,7 @@ update_status ModulePlayer2::Update()
 
 			}
 
-			if ((App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN || App->input->gamepad[8] == KEY_STATE::KEY_REPEAT) && total_bombs > 0 && SDL_GetTicks() - last_bomb > 5000) //-----BOMB! (only when ur player has bombs and passed 5s from the last bomb)
+			if ((App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) && total_bombs > 0 && SDL_GetTicks() - last_bomb > 5000) //-----BOMB! (only when ur player has bombs and passed 5s from the last bomb)
 			{
 				bomb_thrown = SDL_GetTicks();
 				App->particles->AddParticle(bomb, position.x + 8, position.y, COLLIDER_EXPLOSION, 0, "Assets/Audio/Fx_Drop_Bomb");
@@ -472,7 +472,7 @@ update_status ModulePlayer2::Update()
 				last_bomb = SDL_GetTicks();
 			}
 			if (bomb_thrown != 0 && SDL_GetTicks() - bomb_thrown > 1300) {// 1.3s to generate the explosion of the bomb(damaging collider)
-				App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB, 0, "Assets/Audio/Fx_BigTank_Explosion");
+				App->particles->AddParticle(bomb_explosion, saved_position.x - 70, saved_position.y - 250, COLLIDER_BOMB2, 0, "Assets/Audio/Fx_BigTank_Explosion");
 				bomb_thrown = 0;
 				bomb_life = SDL_GetTicks();
 				saved_position = { 0,0 };
@@ -488,7 +488,7 @@ update_status ModulePlayer2::Update()
 				current_animation = &idle;
 			}
 		}
-			if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN || App->input->gamepad[5] == KEY_STATE::KEY_REPEAT)//GOD MODE (press right stick on controller)
+			if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN)//GOD MODE (press right stick on controller)
 
 			{
 				if (!godmode) {
