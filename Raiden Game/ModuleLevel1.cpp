@@ -177,6 +177,7 @@ bool ModuleLevel1::CleanUp()
 	//App->collision->Disable();
 	App->powerup->Disable();
 	App->particles->Disable();
+	first_animation = true;
 
 	return true;
 }
@@ -220,7 +221,7 @@ update_status ModuleLevel1::Update()
 	
 	App->render->Blit(graphics, -50, -150, &ship_launcher, 1.8f);
 
-	if (App->player->position.y <= -2750) {
+	if (App->player->position.y <= -2705) {
 		scroll_speed = 0;
  		/*boss_music = App->audio->Load_Music("Assets/Audio/Boss_Music.ogg");
 		if (!boss_music) {
