@@ -9,6 +9,10 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleLevel1.h"
+#include "ModuleStageCompleted.h"
+
 
 #include "SDL/include/SDL_timer.h"
 
@@ -161,6 +165,9 @@ void Boss::Dead(Collider* shooter, int num_enemy) {
 	App->audio->Play_Fx(fx_shoot);
 	delete App->enemies->enemies[num_enemy];
 	App->enemies->enemies[num_enemy] = nullptr;
+	
+	App->fade->FadeToBlack(App->level1, App->stageCompleted);
+
 
 }
 

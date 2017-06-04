@@ -635,6 +635,14 @@ void ModulePlayer::Dead() {
 	Blue_Powerup_Lvl = 0;
 	sprintf_s(score_text, 10, "%8d", score);
 	sprintf_s(high_score_text, 10, "%7d", high_score);
+
+	if (App->player2->IsEnabled()) {
+		App->player2->Red_Powerup_Lvl = 0;
+		App->player2->M_Powerup_Lvl = 0;
+		App->player2->Blue_Powerup_Lvl = 0;
+		App->player2->destroyed = true;
+	
+	}
 	
 	destroyed = true;
 	
