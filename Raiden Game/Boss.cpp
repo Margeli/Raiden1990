@@ -101,7 +101,7 @@ void Boss::Move() {
 	else if (App->player->position.x - 22 > position.x - 35) {//left
 		position.x++;
 	}
-	position.y += -0.8f;
+	
 	collider->SetPos(position.x, position.y);
 
 }
