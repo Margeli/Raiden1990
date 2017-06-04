@@ -1,4 +1,4 @@
-          ![](http://vignette1.wikia.nocookie.net/raidenbase/images/7/7a/RaidenLogo.png/revision/latest?cb=20160307170649)
+![](http://vignette1.wikia.nocookie.net/raidenbase/images/7/7a/RaidenLogo.png/revision/latest?cb=20160307170649)
 
 
 
