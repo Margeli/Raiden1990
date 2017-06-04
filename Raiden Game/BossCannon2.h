@@ -18,8 +18,7 @@ private:
 	Animation up_left;
 	Animation up_right;
 
-	Particle explosion;
-	Particle color_rotatory_shot;
+	
 	Mix_Chunk* fx_shoot = nullptr;
 	void OnCollision(Collider* collider, int num_enemy);
 
@@ -29,13 +28,9 @@ private:
 	float initial_y;
 	int player_initial_x;
 
-	float hits_life;
-	float hits_aim;
-	int shoot_number = 0;
+	
 	void Shot(Particle& shot, iPoint aim_position, fPoint shot_initial_pos);
-	Uint32 timer_shot;
-
-
+	
 
 
 

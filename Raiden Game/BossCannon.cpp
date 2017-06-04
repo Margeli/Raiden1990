@@ -41,13 +41,7 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 	up_left.PushBack({ 339,64,28,25 });
 	up_left.speed = 0.1f;
 
-	//TankCannon shot
-	color_rotatory_shot.anim.PushBack({ 22, 40, 6, 7 });
-	color_rotatory_shot.anim.PushBack({ 39, 40, 6, 7 });
-	color_rotatory_shot.anim.PushBack({ 56, 40, 6, 7 });
-	color_rotatory_shot.anim.speed = 0.3f;
-	color_rotatory_shot.life = 3000;
-	color_rotatory_shot.anim.loop = true;
+	
 
 	sprite_path = App->textures->Load("Assets/Images/Boss_lvl1.png");
 
@@ -55,57 +49,61 @@ BossCannon::BossCannon(int x, int y, int shoot_num) : Enemy(x, y)
 	if (sprite_path == nullptr) {
 		LOG("Error loading BossCannon's textures. SDL Error: %s", SDL_GetError());
 	}
-
+	
 	
 
 	collider = App->collision->AddCollider({ 0, 0, 28, 25 }, COLLIDER_TYPE::COLLIDER_TURRET, (Module*)App->enemies);//JUST FOR DECORATION
 
-	timer_shot = SDL_GetTicks();
+	
 
 }
 
 void BossCannon::Move() {
 
+
 	//SAME MOVEMENT AS THE TANK
 	if (position.x + 33 > 100) {//right
 		position.x--;
 
-		if ((App->player->position.y - 2 > position.y + 34)) {// DOWN
+			//SAME MOVEMENT AS THE BOSS
+			
 
-			if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
-				animation = &down;
-			}
-			else if (App->player->position.x > position.x - 2) {
-				animation = &down_right;
-			}
-			else if (App->player->position.x < position.x + 38) {
-				animation = &down_left;
-			}
-		}
-		else if ((App->player->position.y < position.y)) {//UP
+			if ((App->player->position.y - 2 > position.y + 34)) {// DOWN
 
-			if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
-				animation = &up;
+				if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
+					animation = &down;
+				}
+				else if (App->player->position.x > position.x - 2) {
+					animation = &down_right;
+				}
+				else if (App->player->position.x < position.x + 38) {
+					animation = &down_left;
+				}
 			}
-			else if (App->player->position.x > position.x) {
-				animation = &up_right;
-			}
-			else if (App->player->position.x < position.x + 38) {
-				animation = &up_left;
-			}
-		}
-		else if ((App->player->position.y > position.y) && (App->player->position.y < position.y + 34)) {//MIDDLE
-			if (App->player->position.x > position.x) {
-				animation = &right;
-			}
-			else if (App->player->position.x < position.x + 38) {
-				animation = &left;
-			}
-		}
-	
+			else if ((App->player->position.y < position.y)) {//UP
 
-		//position.y += -0.8f;
-		collider->SetPos(position.x, position.y);
+				if ((App->player->position.x > position.x) && (App->player->position.x < position.x + 38)) {
+					animation = &up;
+				}
+				else if (App->player->position.x > position.x) {
+					animation = &up_right;
+				}
+				else if (App->player->position.x < position.x + 38) {
+					animation = &up_left;
+				}
+			}
+			else if ((App->player->position.y > position.y) && (App->player->position.y < position.y + 34)) {//MIDDLE
+				if (App->player->position.x > position.x) {
+					animation = &right;
+				}
+				else if (App->player->position.x < position.x + 38) {
+					animation = &left;
+				}
+			}
+
+
+			//position.y += -0.8f;
+			collider->SetPos(position.x, position.y);
 
 	}
 }
