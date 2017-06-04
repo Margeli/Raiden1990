@@ -47,7 +47,19 @@ Boss2::Boss2(int x, int y, int shoot_num) : Enemy(x, y)
 	star_shot.life = 3000;
 	star_shot.anim.loop = true;
 
-	
+	explosion.anim.PushBack({ 0, 247, 73, 64 });
+	explosion.anim.PushBack({ 73, 247, 73, 64 });
+	explosion.anim.PushBack({ 146, 247, 73, 64 });
+	explosion.anim.PushBack({ 219, 247, 73, 64 });
+	explosion.anim.PushBack({ 292, 247, 73, 64 });
+	explosion.anim.PushBack({ 365, 247, 73, 64 });
+	explosion.anim.PushBack({ 438, 247, 73, 64 });
+	explosion.anim.PushBack({ 511, 247, 73, 64 });
+	explosion.anim.PushBack({ 584, 247, 73, 64 });
+	explosion.anim.PushBack({ 0, 0, 0, 0 });
+	explosion.life = 1000;
+	explosion.anim.speed = 0.2f;
+	explosion.anim.loop = false;
 
 	score_points = 9660;
 	hits_life = 155.0f;
